@@ -1,0 +1,179 @@
+/**
+ * MODERN FRONTIER — the Design DNA of the live Stitch project
+ * `projects/15196412611531097008`, applied theme, fetched over MCP 2026-08-02.
+ *
+ * Where this differs from the earlier local-export reading, the live project wins: it is the
+ * theme the V3 screens were generated against, and CLAUDE.md §2 puts Stitch V3 at Level 3 as
+ * the approved visual reference. The differences are recorded in
+ * docs/progress/V3_FIDELITY_COMPARISON.md §0 rather than absorbed silently — notably the
+ * display typeface (Libre Caslon Text, not the "Substitute" Playfair) and the UI typeface
+ * (Inter, not Hanken Grotesk).
+ *
+ * Corrections that still stand, because they are conformance fixes rather than taste:
+ *   - The focus ring is Tobacco #734F36 (6.49:1). The corpus specifies Oxidized Silver at
+ *     2.18:1 against a 3:1 requirement, and `:focus` appears in 0 of 48 exported files.
+ *   - Metadata text is #5f5e5c, which passes 4.5:1 on bone, raised and sunken alike.
+ *   - Interactive motion is capped at 400ms with two easing curves.
+ */
+
+:root {
+  /* ---- Colour: brand palette, from the project's override colours ---- */
+  --color-ink: #0a0a0a; /* overridePrimaryColor */
+  --color-bone: #f5f2ee; /* overrideNeutralColor */
+  --color-tobacco: #734f36; /* overrideSecondaryColor */
+  --color-rust: #8b3a3a; /* overrideTertiaryColor — the project's value, not #7E241F */
+  --color-carbon: #121212;
+  --color-sandstone: #d9c5b2;
+  --color-indigo: #1b2b45;
+
+  /* ---- Colour: measured, conformant corrections ---- */
+  --color-text: var(--color-ink);
+  /* 5.81:1 on bone, 5.23:1 on sunken. The documented #6e6d6b measures 4.16:1 in the footer. */
+  --color-text-meta: #5f5e5c;
+  --color-border: #96795d;
+  --rule: #e2dbd1;
+  --rule-strong: #cec4b6;
+  --color-chip-text: #6b4931;
+  --color-error: #8b3a3a; /* 6.02:1 on bone */
+  --color-error-on-dark: #d97066;
+  --color-focus: var(--color-tobacco); /* 6.49:1 — NOT Oxidized Silver */
+
+  /* ---- Colour: surfaces ---- */
+  --surface-page: var(--color-bone);
+  --surface-raised: #fffdfa;
+  --surface-sunken: #ece6de;
+  --surface-inverse: var(--color-ink);
+  --text-on-inverse: var(--color-bone);
+  --text-meta-on-inverse: var(--color-sandstone); /* 13.4:1 on ink */
+
+  /* ---- Typography ---- */
+  --font-display: var(--font-display-loaded), ui-serif, Georgia, serif;
+  --font-ui:
+    var(--font-ui-loaded), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Cascadia Mono', 'Courier New', monospace;
+
+  /* Type scale, verbatim from the applied theme. */
+  --display-xl: 84px;
+  --display-xl-leading: 90px;
+  --display-xl-tracking: -0.02em;
+  --display-lg: 64px;
+  --display-lg-leading: 72px;
+  --display-lg-tracking: -0.01em;
+  --headline-lg: 40px;
+  --headline-lg-leading: 48px;
+  --headline-lg-mobile: 32px;
+  --headline-lg-mobile-leading: 38px;
+  --headline-md: 24px;
+  --headline-md-leading: 32px;
+  --body-lg: 18px;
+  --body-lg-leading: 28px;
+  --body-md: 16px;
+  --body-md-leading: 24px;
+  --label-caps: 12px;
+  --label-caps-leading: 16px;
+  --label-caps-tracking: 0.1em;
+  --label-caps-weight: 600;
+  --ui-button: 14px;
+  --ui-button-leading: 20px;
+  --ui-button-tracking: 0.05em;
+  --ui-button-weight: 500;
+
+  /* Legacy aliases, kept so existing rules keep resolving. */
+  --text-2xs: var(--label-caps);
+  --text-xs: 14px;
+  --text-sm: var(--body-md);
+  --text-base: var(--body-lg);
+  --text-lg: var(--headline-md);
+  --text-xl: var(--headline-lg);
+  --text-2xl: var(--display-xl);
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* ---- Spacing: 8px unit, from the applied theme ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+  --space-9: 120px; /* section-gap */
+
+  /* ---- Layout ---- */
+  --container-max: 1440px;
+  --gutter: 24px;
+  --margin-desktop: 64px;
+  --margin-mobile: 20px;
+  --section-gap: 120px;
+
+  /*
+    SHAPE: sharp, 0px, everywhere.
+
+    "The design system utilizes Sharp (0px) corners for all structural elements, buttons and
+    product cards… The only exception is the Pearl Snap hardware elements, which are
+    perfectly circular." The earlier 2–12px radii were read from a Tailwind config in the
+    export; the applied theme overrides them.
+  */
+  --radius-default: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-full: 9999px; /* Pearl-Snap hardware only */
+
+  /* ---- Motion ---- */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 400ms; /* hard cap for anything interactive */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* ---- Depth: glassmorphism and ambient shadow, per the DNA ---- */
+  --glass-blur: 20px;
+  --glass-tint: rgb(245 242 238 / 0.7);
+  --hairline: rgb(10 10 10 / 0.1);
+  --shadow-ambient: 0 20px 40px rgb(10 10 10 / 0.05);
+
+  /* ---- Authored: the corpus has none of these ---- */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-overlay: 300;
+  --z-skip-link: 400;
+
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --target-min: 24px;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+
+/**
+ * Reduced motion applies INSIDE every experience state. It is not a fourth state and not a
+ * synonym for Instant Shop: user-initiated interaction stays responsive, motion the user did
+ * not initiate is removed. Content, controls and capability are never reduced.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 1ms;
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-slow: 1ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

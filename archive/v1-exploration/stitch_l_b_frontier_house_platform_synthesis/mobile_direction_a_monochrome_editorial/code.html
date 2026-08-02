@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Modern West</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#3f0207",
+                      "on-background": "#1c1c1a",
+                      "surface-tint": "#5f5e5e",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f6f3ef",
+                      "secondary-container": "#ffcdad",
+                      "background": "#fcf9f5",
+                      "outline": "#747878",
+                      "inverse-primary": "#c9c6c5",
+                      "tertiary-fixed": "#ffdad8",
+                      "surface-bright": "#fcf9f5",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary-fixed": "#2e1503",
+                      "on-surface": "#1c1c1a",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#ebe8e4",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#3f0207",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#ffdcc6",
+                      "error-container": "#ffdad6",
+                      "primary": "#000000",
+                      "secondary-fixed-dim": "#edbd9d",
+                      "outline-variant": "#c4c7c7",
+                      "surface-container-highest": "#e5e2de",
+                      "on-secondary-fixed-variant": "#613f27",
+                      "on-tertiary-container": "#c66867",
+                      "tertiary-fixed-dim": "#ffb3b0",
+                      "surface-dim": "#dcdad6",
+                      "surface": "#fcf9f5",
+                      "secondary": "#7b563d",
+                      "surface-container": "#f0ede9",
+                      "on-tertiary-fixed-variant": "#7a2d2e",
+                      "primary-fixed": "#e5e2e1",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e5e2de",
+                      "tertiary": "#000000",
+                      "on-surface-variant": "#444748",
+                      "inverse-on-surface": "#f3f0ec",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-primary-container": "#858383",
+                      "inverse-surface": "#31302e",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#7a553c",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "section-gap": "120px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Libre Caslon Text"
+                      ],
+                      "display-lg": [
+                              "Libre Caslon Text"
+                      ],
+                      "headline-md": [
+                              "Libre Caslon Text"
+                      ],
+                      "headline-lg-mobile": [
+                              "Libre Caslon Text"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-xl": [
+                              "Libre Caslon Text"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "ui-button": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "ui-button": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased md:hidden pb-24">
+<!-- Header: Minimalist -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex justify-between items-center px-margin-mobile py-4">
+<h1 class="font-display-lg text-headline-md tracking-tighter text-primary">L&amp;B</h1>
+<button class="font-ui-button text-ui-button border border-primary px-4 py-2 hover:bg-primary hover:text-on-primary transition-colors">Skip to Shop</button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="h-[751px] relative w-full overflow-hidden mb-12">
+<img class="absolute inset-0 w-full h-full object-cover object-center" data-alt="A striking black and white editorial fashion photograph of a model in modern western wear, stark high contrast, cinematic lighting, sharp focus, minimalist desert background, high-end magazine aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7mFLg4OCi0Atok982yuvxBww-DjsjVfwAgedPB1uJdGQM89DWrBY4HjXgOr-PpJt2gGdZsacVx7eH_8dB0kJrsM2NRHP7K3ZjNtzRQ-7oJvMHOwLmYq520OfO73mxH-HFOgcHmwOQYc8MOemYWrHnZDRUp2HI64Vgk3oW5aJ3wSXx0MMpomdXwUqyK-LmdtU1fR9ixH3LYBtgRtEFDNxsMoUiOVYao52NSzsvTcRa4R4qG_kDAfUcnw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/80 flex items-end px-margin-mobile pb-12">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary max-w-sm">NOT THE WEST YOU REMEMBER.</h2>
+</div>
+</section>
+<!-- Quick Selector -->
+<section class="px-margin-mobile mb-12">
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<button class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2">Cinema</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant pb-2">Balanced</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant pb-2">Instant</button>
+</div>
+</section>
+<!-- Vertical Gateways -->
+<section class="flex flex-col gap-1 w-full mb-12">
+<div class="h-64 relative group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Black and white editorial shot of women's modern western fashion, leather jacket detail, high contrast, elegant and rugged, premium quality lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB57kLW1ZNVlhbcE2WMoObyQJKVo8zCcZ1sacdQr5FpMFRBgofIxlqQmhDrTPHlR1HLfw2Y4eJH7P4y8XewvmB-Vlp8ItEHeD5UE-gQRIuE22wAe4BYkws-XFK_PSitStEfiGA4cZi3KEMFI0fIq9rSK2ZjD0vJcsAF8G8_-1ahnJwwOFJnXL60uuDr-SAM-a5v1Kq_GFRanAqLvrSxPPQVQ21ROIC9fugegwiQm8CvUlUB_K3aL0SaDQ"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-primary tracking-wide">FOR HER</span>
+</div>
+</div>
+<div class="h-64 relative group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Black and white editorial shot of men's modern western fashion, close up of denim and silver belt buckle, stark shadows, masculine and refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB33LJO4JF5Dp0BdZAkHe_hGo-VgbV_tTzhD1zBsx2kUfvMR_7tVa8qg4HFxxMCBqlQEMbPJpk9hB3-5HkAnn0g7Sxrf5MTQLc74qDaokRFe6LtCEPqkRlls6JFCdJ_MVR8k9JSx32PldLtAVN2CfTTzo2JVHegWkmGoQi203nAwhD7eI5igLun9PGuJuv31G2oyWHrkve7r636LanoE0mM8TDQkKmzU4v0E-dH2crmUczY_VVzlwJ3fA"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-primary tracking-wide">FOR HIM</span>
+</div>
+</div>
+<div class="h-64 relative group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Black and white close up of custom boot making, artisan hands working on leather, high contrast, focus on texture and craftsmanship, cinematic documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlLW8TC4CgQLPOdyxNXQUYSZhyHQnovhil5xVnmvE52wNbTjf2majRk4R8XXN1TG6peUK26GuQHRtdW6JJfjB4W2QzmJRk93kib2Bf2hWU9LQ1nfI7ZJaki_sIE7pQy--OOJI6j87VydOfXlxlqKRdRh-veBVEeOHdXCcXsNLEJsSNeh9y89CUO3P2QTkNgzy4VIxo1815kpakhsPoxoMTN2siKvgqceXky3HY8duZKPmfClvXNR_V8g"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-primary tracking-wide">CUSTOM</span>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-margin-mobile mb-24">
+<h3 class="font-headline-md text-headline-md mb-6">Latest Arrivals</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-3">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" data-alt="Black and white product photography of a premium leather western jacket on a stark white background, high contrast, crisp details, editorial styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1nlbXwP2o51PLiZ2NQ9mO9jV1bNQ-yEmo2jSbDXf-5vYr6t9SVGUZZmlXHVu86BsaUCXcXCxjQ6xTBONVzWDmAb8mcsfuu374L4XTYq7WFXWkkLkb2bl4N8xOyLT4wtkchSUqBaNIKHs1FUkAq7mrgH6emZkQsTqx8dwfFRYEEHjx8xYkaAF325AkuEgd0ElljgtGDrmmVId7SKZYz0SkxCi2-Ya3q6z9knTZHGIGqfj6ZUEcxd8awg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Frontier Jacket</span>
+<span class="font-headline-md text-headline-md italic text-on-surface-variant text-sm">$850</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-3">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" data-alt="Black and white product photography of modern western boots on a stark white background, sharp focus on texture, high contrast, minimalist presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqj4PCFpLZtKGyHh04uA1CJRDP57Vb890X0TXZlfgvYFBTbyFjC_JoOyzbqnVsa_z_hkwfMg0FfIynFUH13Cdlwb8IrSpocMQzlj2PnNJhHMv9XeZLtqBVqgFSJjYbUfR0X8Kd3f9GbAA5J33PyH6wijq_GsVW74_v4XyPQ5OV9ow6cxQaG6m8Dl-PersdFAD9NithdE2j3rmtwzilr5RN8QpT-uad9J6Mk8QKTbGX4QQolK-iMBacfg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Rancher Boots</span>
+<span class="font-headline-md text-headline-md italic text-on-surface-variant text-sm">$420</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar (Mobile) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+<button class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:bg-surface-container-high active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px] mt-1 tracking-wider">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-[10px] mt-1 tracking-wider">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-label-caps text-[10px] mt-1 tracking-wider">Custom</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined">person_pin_circle</span>
+<span class="font-label-caps text-[10px] mt-1 tracking-wider">Passport</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-caps text-[10px] mt-1 tracking-wider">Bag</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Experimental Mobile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#3f0207",
+                      "on-background": "#1c1c1a",
+                      "surface-tint": "#5f5e5e",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f6f3ef",
+                      "secondary-container": "#ffcdad",
+                      "background": "#fcf9f5",
+                      "outline": "#747878",
+                      "inverse-primary": "#c9c6c5",
+                      "tertiary-fixed": "#ffdad8",
+                      "surface-bright": "#fcf9f5",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary-fixed": "#2e1503",
+                      "on-surface": "#1c1c1a",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#ebe8e4",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#3f0207",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#ffdcc6",
+                      "error-container": "#ffdad6",
+                      "primary": "#000000",
+                      "secondary-fixed-dim": "#edbd9d",
+                      "outline-variant": "#c4c7c7",
+                      "surface-container-highest": "#e5e2de",
+                      "on-secondary-fixed-variant": "#613f27",
+                      "on-tertiary-container": "#c66867",
+                      "tertiary-fixed-dim": "#ffb3b0",
+                      "surface-dim": "#dcdad6",
+                      "surface": "#fcf9f5",
+                      "secondary": "#7b563d",
+                      "surface-container": "#f0ede9",
+                      "on-tertiary-fixed-variant": "#7a2d2e",
+                      "primary-fixed": "#e5e2e1",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e5e2de",
+                      "tertiary": "#000000",
+                      "on-surface-variant": "#444748",
+                      "inverse-on-surface": "#f3f0ec",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-primary-container": "#858383",
+                      "inverse-surface": "#31302e",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#7a553c",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "margin-mobile": "20px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "section-gap": "120px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Libre Caslon Text"
+                      ],
+                      "display-lg": [
+                              "Libre Caslon Text"
+                      ],
+                      "headline-md": [
+                              "Libre Caslon Text"
+                      ],
+                      "headline-lg-mobile": [
+                              "Libre Caslon Text"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-xl": [
+                              "Libre Caslon Text"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "ui-button": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "ui-button": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .bg-grain {
+              position: relative;
+          }
+          .bg-grain::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0.04;
+              pointer-events: none;
+              background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+              z-index: 10;
+          }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
+<!-- Top Nav Bar (Mobile Hidden, but structure here for completeness if needed) -->
+<header class="hidden md:flex bg-surface/70 backdrop-blur-xl fixed top-0 w-full z-50 justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto border-b border-outline-variant/10 shadow-sm text-primary dark:text-on-surface">
+<a class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-surface" href="#">L&amp;B Frontier House</a>
+<nav class="flex gap-6 font-ui-button text-ui-button">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Women</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Men</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Custom</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Wholesale</a>
+</nav>
+<div class="flex gap-4">
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span></button>
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span></button>
+</div>
+</header>
+<!-- Mobile Header (Experimental) -->
+<div class="md:hidden fixed top-0 w-full z-40 px-margin-mobile py-4 pointer-events-none flex justify-center">
+<div class="bg-white/40 backdrop-blur-md px-6 py-2 rounded-full border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.05)] pointer-events-auto">
+<h1 class="font-headline-lg-mobile text-[20px] tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">L&amp;B Frontier</h1>
+</div>
+</div>
+<!-- Main Content -->
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative h-[795px] w-full overflow-hidden flex items-end pb-24 px-margin-mobile">
+<!-- Background Image -->
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-1000 ease-out z-0" data-alt="A cinematic, high-fashion shot of a custom leather cowboy boot in a modern studio setting. The lighting is dramatic, highlighting the fine grain of the leather. The background is a clean, minimal bone-white canvas. The style is Sophisticated Minimalism." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIBIekfQ_s2ixzuii1HG7oF0ryBBd6_FueR90T36B8QdegjCCtxcGVtoIF-0yG0iq7qL8155FXAazI8CJWrwZ_maWZrJg4L2LcH2WD54NIkxiXjmFsGEQv9CEzhvpvc2P3v168184ua3fxPoWEflV8QTP8ysouzSreJUg6p--55gS3Pdli-WSCnqvqwPjNI67PuuVQ-4kTNYqRj9gxuFQEHPblSpYFMnIFR0-iYM1AW-IP1koc8PMeTw')"></div>
+<!-- Experimental Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent mix-blend-overlay z-10"></div>
+<div class="relative z-20 w-full">
+<p class="font-label-caps text-label-caps text-on-surface mb-2 tracking-widest opacity-80">The Heritage Collection</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary leading-tight mb-6">Crafted for<br/>the Modern West.</h2>
+<!-- Glassmorphic Experience Selector -->
+<div class="bg-white/30 backdrop-blur-lg border border-white/40 rounded-full p-1 flex justify-between items-center shadow-sm w-full max-w-sm mb-4">
+<button class="flex-1 py-2 px-4 rounded-full bg-primary text-on-primary font-ui-button text-[12px] shadow-sm transition-all">Cinema</button>
+<button class="flex-1 py-2 px-4 rounded-full text-on-surface font-ui-button text-[12px] hover:bg-white/50 transition-all">Balanced</button>
+<button class="flex-1 py-2 px-4 rounded-full text-on-surface font-ui-button text-[12px] hover:bg-white/50 transition-all">Instant</button>
+</div>
+</div>
+</section>
+<!-- Vertical Gateways (Parallax Scroll effect handled via CSS sticky) -->
+<section class="mt-section-gap px-margin-mobile space-y-gutter relative z-20 bg-background pt-12 pb-12">
+<h3 class="font-headline-md text-headline-md text-primary mb-8 text-center">Curated Journeys</h3>
+<!-- Gateway 1 -->
+<a class="block relative h-96 w-full rounded-2xl overflow-hidden group" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A striking minimal composition of a bespoke men's leather jacket draped over a modernist chair. High-key soft lighting emphasizes the jacket's texture against a pristine white room. Red accents subtly highlight the craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARGDW1mgjF8GUhxWgW-GYLz8qlx4kJ1LWHQOBHGyld_7Oe5Y0itb_HA_LGTDuvhREIv8Rf50TTikN7JMEH0Drw2Duaf4sjdy0mdMfw2Mkj5AXVTR1pGyqgywhpqo_6E4tJzTNR83W1QkVqpgCIyB8wbHMyLt3p7czLMpJJ8KQcL0Npxaz0Ti6T6D9AMlFLcZ-swE9kX7qxbj-0lnZOZ42KrkJIPFiJMqY-ejNVTEjsnslphqThou7iTA')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/20 backdrop-blur-md rounded-xl border border-white/30">
+<h4 class="font-headline-lg-mobile text-[24px] text-white mb-1">Men's Editorial</h4>
+<p class="font-body-md text-white/90 text-sm">Explore the rugged frontier.</p>
+</div>
+</a>
+<!-- Gateway 2 -->
+<a class="block relative h-96 w-full rounded-2xl overflow-hidden group" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="An elegant, modern still-life featuring women's frontier fashion accessories—a wide-brimmed hat and silver jewelry—arranged on an abstract white pedestal. The lighting creates deep, soft shadows, evoking timeless luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAT_RDMjhhGS1vVBb_BpVAggLCKkDtVEgW1MeDx-crGD8yTULHo6WtQvmOONEL1-shJ7WkmKWD58-HEgRMPqJwMnZFcasTfM9LwwWckCixcsoXM0ikZuw1WIRj54HNxnOsMluz2dPkGzf-eSCPkukoGZhm9rSdrnfvoMnD_-tWaPW3trswLgYHWCJku5smy683fqPDpir3z9Nhg72KKaCw5El7R8sy5F7UFzirK-uBquN_djHZxDbfIA')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/20 backdrop-blur-md rounded-xl border border-white/30">
+<h4 class="font-headline-lg-mobile text-[24px] text-white mb-1">Women's Collection</h4>
+<p class="font-body-md text-white/90 text-sm">Refined utility and grace.</p>
+</div>
+</a>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant/20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] font-label-caps text-label-caps text-primary dark:text-on-surface">
+<a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:bg-surface-container-high scale-90 duration-150 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high p-2 rounded-lg transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">explore</span>
+<span>Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high p-2 rounded-lg transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">architecture</span>
+<span>Custom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high p-2 rounded-lg transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person_pin_circle</span>
+<span>Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high p-2 rounded-lg transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+<span>Bag</span>
+</a>
+</nav>
+</body></html>

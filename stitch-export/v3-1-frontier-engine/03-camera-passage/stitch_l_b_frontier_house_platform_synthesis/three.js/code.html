@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_54 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_54" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_54');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  (function() {
+  const container = document.getElementById('threejs-container-CAMERA_PASSAGE');
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 2000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  // Lighting - Dynamic Cinematic
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+  scene.add(ambientLight);
+  const pointLight = new THREE.PointLight(0x4466ff, 2, 100);
+  pointLight.position.set(0, 0, 10);
+  scene.add(pointLight);
+
+  // Geometry: The Expansion Rings
+  const ringGroup = new THREE.Group();
+  
+  const createRing = (radius, thickness, color, materialType) => {
+    const geom = new THREE.TorusGeometry(radius, thickness, 16, 100);
+    const mat = new THREE.MeshPhongMaterial({ color: color, shininess: 80 });
+    return new THREE.Mesh(geom, mat);
+  };
+
+  const silverRing = createRing(5, 0.2, 0xa7a6a2);
+  const leatherRing = createRing(4.6, 0.3, 0x5E4033);
+  const denimRing = createRing(4.2, 0.1, 0x1B2B45);
+  
+  ringGroup.add(silverRing, leatherRing, denimRing);
+  scene.add(ringGroup);
+
+  // Warehouse Rails (Appearing in distance)
+  const railGroup = new THREE.Group();
+  const railMat = new THREE.MeshPhongMaterial({ color: 0x333333 });
+  for(let i = 0; i < 20; i++) {
+    const rail = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 50), railMat);
+    rail.position.x = (Math.random() - 0.5) * 40;
+    rail.position.y = (Math.random() - 0.5) * 40;
+    rail.position.z = -100 - (i * 10);
+    railGroup.add(rail);
+  }
+  scene.add(railGroup);
+
+  camera.position.z = 15;
+
+  // Animation Loop - Simulation of Scroll Passage
+  let scrollProgress = 0;
+  const animate = () => {
+    requestAnimationFrame(animate);
+    
+    // Auto-progress for preview
+    scrollProgress += 0.002;
+    if (scrollProgress > 1) scrollProgress = 0;
+
+    // Stage 2: Rings Expand
+    const scale = 1 + (scrollProgress * 15);
+    ringGroup.scale.set(scale, scale, 1);
+    ringGroup.position.z = scrollProgress * 10;
+    
+    // Stage 3/4: Camera moves through
+    camera.position.z = 15 - (scrollProgress * 150);
+    camera.fov = 35 + (scrollProgress * 60);
+    camera.updateProjectionMatrix();
+
+    // Stage 5: Rails drift
+    railGroup.children.forEach((rail, i) => {
+      rail.rotation.z += 0.001 * i;
+    });
+
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  });
+})();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_54 -->
+</body>
+</html>

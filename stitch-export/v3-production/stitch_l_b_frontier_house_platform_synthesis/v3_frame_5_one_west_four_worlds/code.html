@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - One West, Four Worlds</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#f7f3f2",
+                        "on-primary-container": "#858383",
+                        "surface-bright": "#fdf8f8",
+                        "outline-variant": "#c4c7c7",
+                        "secondary-container": "#e2dfdb",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "background": "#fdf8f8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "on-primary-fixed": "#1c1b1b",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "surface": "#fdf8f8",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474744",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#444748",
+                        "on-surface": "#1c1b1b",
+                        "inverse-primary": "#c9c6c5",
+                        "secondary": "#5f5e5b",
+                        "on-tertiary-container": "#7584a3",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f1edec",
+                        "primary-fixed": "#e5e2e1",
+                        "outline": "#747878",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#636260",
+                        "tertiary-container": "#0a1c35",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e5e2de",
+                        "surface-variant": "#e5e2e1",
+                        "primary": "#000000",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#000000",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-background": "#1c1b1b",
+                        "inverse-on-surface": "#f4f0ef",
+                        "surface-tint": "#5f5e5e",
+                        "primary-container": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd9d8",
+                        "tertiary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "inverse-surface": "#313030",
+                        "surface-container-high": "#ebe7e6",
+                        "on-error-container": "#93000a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "container-max-width": "1440px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-hero-mobile": ["Playfair Display"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-hero": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "ui-button": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg": ["48px", { lineHeight: "56px", fontWeight: "600" }],
+                        "display-hero-mobile": ["48px", { lineHeight: "52px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "display-hero": ["84px", { lineHeight: "90px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+                        "ui-button": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .split-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        .split-pane {
+            position: relative;
+            height: 100%;
+            transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+            cursor: pointer;
+            overflow: hidden;
+            border-right: 1px solid rgba(196, 199, 199, 0.3);
+        }
+        .split-pane:last-child {
+            border-right: none;
+        }
+        /* BUILT BY YOU is expanded */
+        .pane-collapsed {
+            flex: 0 0 15%;
+            filter: grayscale(80%) brightness(0.8);
+        }
+        .pane-expanded {
+            flex: 0 0 55%;
+            filter: grayscale(0%) brightness(1);
+        }
+        
+        .pane-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 10s ease-out;
+            transform: scale(1.05);
+        }
+        .split-pane:hover .pane-bg {
+            transform: scale(1.1);
+        }
+        
+        .pane-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.3) 100%);
+            transition: opacity 0.5s ease;
+        }
+        
+        .pane-collapsed .pane-overlay {
+            opacity: 0.8;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+        }
+
+        .pane-title {
+            position: absolute;
+            bottom: 4rem;
+            left: 2rem;
+            color: #ffffff;
+            white-space: nowrap;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform-origin: bottom left;
+        }
+        
+        .pane-collapsed .pane-title {
+            transform: rotate(-90deg) translateX(4rem) translateY(-2rem);
+            opacity: 0.7;
+            letter-spacing: 0.2em;
+        }
+
+        .expanded-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+            position: absolute;
+            inset: 0;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            pointer-events: none; /* Let clicks pass to pane */
+        }
+        
+        .pane-expanded .expanded-content {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .vellum-overlay {
+            background-color: rgba(253, 248, 248, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        
+        .metallic-border {
+            border: 1px solid rgba(196, 199, 199, 0.5); /* Oxidized Silver approximation */
+        }
+        
+        .ambient-shadow {
+            box-shadow: 0 20px 40px rgba(115, 79, 54, 0.05); /* Tobacco tint */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden">
+<!-- Top Navigation (Hidden in this specific immersive view based on task intent, but providing a subtle back/close or logo as an anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 p-margin-desktop flex justify-between items-center pointer-events-none">
+<div class="pointer-events-auto">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-on-primary drop-shadow-md">L&amp;B</span>
+</div>
+<div class="pointer-events-auto flex gap-8 items-center">
+<span class="font-label-caps text-label-caps text-on-primary drop-shadow-md tracking-[0.2em]">ONE WEST, FOUR WORLDS</span>
+<button class="w-10 h-10 rounded-full vellum-overlay metallic-border flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</header>
+<main class="split-container">
+<!-- FOR HER (Collapsed) -->
+<div aria-label="Explore For Her" class="split-pane pane-collapsed">
+<div class="pane-bg" data-alt="A cinematic, editorial fashion shot of rugged yet elegant womenswear. A model wearing a tailored denim and silk jacket stands against a stark, sunlit desert horizon. High contrast, sharp shadows, minimalist composition. Soft bone-white highlights over deep earthy tones. Modern luxury western aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaOD7ZNVpHAVxb6QNeyO6xvn0BZho9ulpjBaBRmpTR6kpJlbuV-C5R4f59-lqtYwli--VlbpJWJe1gHH_xmjs9Obtc7y86L8b5j7ol7jhD39ywRalimWoz03I8BMAechMdUj5GM0En0O7x6WYY0sHm0J0YtrvGWtX5rfNNtqoEIZuV_ChPIuSgcPM2OWW57iKfmYGwLC2SLY4oC2xb7ny7Gn_Ww-5vmS09lexmZPQNrHnYLvh3u4CZXQ')"></div>
+<div class="pane-overlay"></div>
+<h2 class="pane-title font-headline-md text-headline-md tracking-widest">FOR HER</h2>
+</div>
+<!-- FOR HIM (Collapsed) -->
+<div aria-label="Explore For Him" class="split-pane pane-collapsed">
+<div class="pane-bg" data-alt="A close-up, tactile shot of premium menswear. Focus on the raw texture of a heavy wool jacket collar and a brushed silver snap button. The lighting is moody and directional, emphasizing the weave of the fabric and the sturdy craftsmanship. Deep charcoal and tobacco color palette. High-end bespoke editorial style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsRtPC88bI58iSkOkXY80Rm3arM814E4Gobst3VQXp_yUgKEZOJZkYws-b9ID2MTaLCpukYG5uXg_NaoUhEdyvVY9IhSODpv7lpma8ymNij4MbuJvb-OPdJoQlX5EVdRO6zmiobnHIYwbO070Elg6t24h9dAKwQ8_VU50WMg69lQWi0DtJKQPqm5mRLTbGqwxmitdS8tFNVA3UEy7Jbf4-svrYFlpL9tuI_N02tOPH0b0-aUXN63gWdQ')"></div>
+<div class="pane-overlay"></div>
+<h2 class="pane-title font-headline-md text-headline-md tracking-widest">FOR HIM</h2>
+</div>
+<!-- BUILT BY YOU (Expanded) -->
+<div aria-label="Built By You Atelier" class="split-pane pane-expanded cursor-default">
+<div class="pane-bg" data-alt="An immersive view inside a high-end bespoke atelier. Hands working carefully on a piece of raw denim fabric, surrounded by spools of vibrant embroidery thread, tailor's chalk, and a drafted garment map. The lighting is focused and warm, creating a private, intense atmosphere of craftsmanship. Rich textures, deep shadows, and cinematic depth of field." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAT2tGRRl8rOrQfGE2RW9VfX4BuQqExzH_q3OYdEiE41ppRKfsrkBBcQ8tYMDiEeadk1EmXgMi1Nu1odEtIKB5naMAz9US5dAv6AMMqIWREWKRI9BRviVFjK1UDfQ2IiO3tu6kL2JezqD5qDR6wti2k6zAyPy6CWjxVb-wJI3asCb6oAs6ojjazPGmpR3lx8DP59dJEMnQObjNI8hBAPKXowWY2VvFU9R8lKFYrUCy5K9D9eLhlL8ReTA')"></div>
+<div class="pane-overlay" style="background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%);"></div>
+<h2 class="pane-title font-display-hero text-display-hero tracking-tighter" style="bottom: auto; top: 15%; left: 8%;">BUILT BY YOU</h2>
+<div class="expanded-content">
+<div class="max-w-2xl ml-auto mr-12 mt-32 vellum-overlay p-12 metallic-border ambient-shadow relative">
+<!-- Decor element -->
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-4">THE ATELIER EXPERIENCE</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-6">Craft Your Legacy</h3>
+<p class="font-body-lg text-body-lg text-on-surface mb-10">
+                        Step into the digital atelier. Select your canvas, weave your narrative through bespoke embroidery, and define the hardware that anchors your journey. Every stitch is a deliberate act of creation.
+                    </p>
+<div class="grid grid-cols-2 gap-6 mb-12">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<div>
+<span class="font-ui-button text-ui-button block text-primary">Garment Mapping</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm block">Draft your silhouette</span>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<div>
+<span class="font-ui-button text-ui-button block text-primary">Hardware Selection</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm block">Brushed silver to raw brass</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary font-ui-button text-ui-button px-8 py-4 uppercase tracking-widest hover:bg-surface-tint transition-colors flex items-center gap-3 group">
+                        Enter the Studio
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+<!-- Floating interface elements to suggest tools -->
+<div class="absolute bottom-12 right-12 flex gap-4">
+<div aria-label="View Thread Options" class="w-16 h-16 vellum-overlay metallic-border rounded-full flex items-center justify-center ambient-shadow cursor-pointer hover:scale-105 transition-transform">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A close-up macro shot of a spool of indigo embroidery thread. Crisp detail on the twisted fibers. Stark white background. Minimalist styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCglaTC6PWTW22nh2V0gdLuxcJBXHeexKdNDr0PmFQlCy5GDbsu6qhOe5E6Dk1YY1Yrz57PU88gqXxyBZiv45XiZpi8v77dY7KcCgmUJ4mKUQiinqIXwdGkPG-cdDySyvZgi7m9Mpwo76LHXZz_sse7zDke_FE2O1fXkgd3hfYbBArQlqRrd1ufT-m0yhVqYFiahpy9UgNBVHM49pmwE-3F15gnfTQNWqWd3ZfXj12seOHmOtrnx3xk-g"/>
+</div>
+<div aria-label="View Fabric Options" class="w-16 h-16 vellum-overlay metallic-border rounded-full flex items-center justify-center ambient-shadow cursor-pointer hover:scale-105 transition-transform">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A close-up macro shot of rugged tan canvas fabric texture. Showing the complex diagonal weave. Stark white background. Minimalist styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqVvotgryP8ABRarg7ea7UrT87yaJvQCnLOshsjTo3LA3rLQldU4hAY-wxu56ARgZTRr9aCCTYUqNw1timXlvViR4WobQacJ6N9tq9o2pJ3R7PH1Esrl24g7N3GK5QXVOC7AjYJL-xPuWCXoLElrAnU3qIk5_J2GuUgSxove9uDyLO-G0d7ZwMsSGCPSHA0lFiHKbc_xUltAJ0j-pM31WRZjnOirs_Gdz3tuWh-RrOla5d1dxOZNBxA"/>
+</div>
+</div>
+</div>
+</div>
+<!-- BUY FOR YOUR STORE (Collapsed) -->
+<div aria-label="Wholesale Inquiries" class="split-pane pane-collapsed">
+<div class="pane-bg" data-alt="A wide, architectural shot of a meticulously curated luxury retail space. Racks of premium denim and leather jackets are displayed against raw concrete walls and minimalist wooden fixtures. Cool, diffused light filters through large windows. The aesthetic is clean, industrial, and high-end." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCw8V4rRHIIkjOiEolMwADU93y503rCq8BhxkuHg2qOUfeEL5cx7c-_q_vnTvyQLQseS_BzZu6czn_-wBlkweDyspHEmfCaSmLE4I6is03Vebr1YmUnsdEUgiyEtl7HoOAriDgRDOClPbw3wpkdnF4jbbhSTyexN58w3jCy0U6mL8cT3iu8Hr6J_JaT2qh0a0CFEh7-T7g6rq8ttNgx_4P3zuzqWWsV7609Mj8SuhK4BT9IALL9ArkNsA')"></div>
+<div class="pane-overlay"></div>
+<h2 class="pane-title font-headline-md text-headline-md tracking-widest">WHOLESALE</h2>
+</div>
+</main>
+</body></html>

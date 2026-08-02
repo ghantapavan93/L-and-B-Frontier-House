@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Cinematic Western Craftsmanship</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f7f3f2",
+                        "on-primary-container": "#858383",
+                        "surface-bright": "#fdf8f8",
+                        "outline-variant": "#c4c7c7",
+                        "secondary-container": "#e2dfdb",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "background": "#fdf8f8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "on-primary-fixed": "#1c1b1b",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "surface": "#fdf8f8",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474744",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#444748",
+                        "on-surface": "#1c1b1b",
+                        "inverse-primary": "#c9c6c5",
+                        "secondary": "#5f5e5b",
+                        "on-tertiary-container": "#7584a3",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f1edec",
+                        "primary-fixed": "#e5e2e1",
+                        "outline": "#747878",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#636260",
+                        "tertiary-container": "#0a1c35",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e5e2de",
+                        "surface-variant": "#e5e2e1",
+                        "primary": "#000000",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#000000",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-background": "#1c1b1b",
+                        "inverse-on-surface": "#f4f0ef",
+                        "surface-tint": "#5f5e5e",
+                        "primary-container": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd9d8",
+                        "tertiary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "inverse-surface": "#313030",
+                        "surface-container-high": "#ebe7e6",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max-width": "1440px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-hero-mobile": ["Playfair Display"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-hero": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "ui-button": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "fontWeight": "600" }],
+                        "display-hero-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-hero": ["84px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "ui-button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .vellum-overlay { background-color: rgba(253, 248, 248, 0.85); backdrop-filter: blur(4px); }
+        .oxidized-border { border: 1px solid #747878; }
+        .ambient-shadow { box-shadow: 0 20px 40px -10px rgba(115, 79, 54, 0.05); }
+        .nav-underline { position: relative; }
+        .nav-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; transform: translateX(-50%); background-color: #000; transition: width 0.5s ease; }
+        .nav-underline:hover::after, .nav-underline.active::after { width: 100%; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf8f8; }
+        ::-webkit-scrollbar-thumb { background: #c4c7c7; }
+        ::-webkit-scrollbar-thumb:hover { background: #747878; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation from JSON -->
+<nav class="fixed z-50 docked full-width top-0 w-full border-b border-outline-variant/30 bg-surface/80 backdrop-blur-md dark:bg-primary/80 transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<!-- Links -->
+<div class="hidden md:flex gap-8 items-center font-label-caps text-label-caps">
+<a class="nav-underline text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 uppercase" href="#">Cinema</a>
+<a class="nav-underline text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 uppercase" href="#">Balanced</a>
+<a class="nav-underline text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 uppercase" href="#">Instant</a>
+</div>
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-surface-bright absolute left-1/2 transform -translate-x-1/2" href="#">
+                L&amp;B Frontier House
+            </a>
+<!-- Actions -->
+<div class="flex gap-6 items-center">
+<button aria-label="shopping_bag" class="text-on-surface-variant/60 hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button aria-label="person" class="text-on-surface-variant/60 hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center pt-20">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A stunning high-fashion editorial photograph of a rugged western landscape at dawn. The light is soft and cinematic, casting long shadows over minimalist architecture. A solitary figure wearing a tailored, premium leather jacket and subtle silver hardware stands in the distance. The overall aesthetic is modern, tactile luxury, dominated by deep blacks, crisp whites, and warm tobacco leather tones, perfectly suited for a high-end lookbook background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx7-MxdIQ0zCMDDYk6MifANnnOeHq6SQ80Px8RPvF788AbQXgroAKYFGphlJWEZWc_kJ9EWQZ2-uJWIn-6DyCpGevIASR619ZOnWXRhy9RVkV1aGUw5lo425ZnME5gwPMxulsoKwPpGe9XbEsZ_dyXZH3dHxWdZrBjYZLRPC6Yc2OR7zbrVm49EvPT-HQctrz2F0PnGJ0ItMGMWexEIDlK_Qj_UQWiObvRJzAzjhCzexXg9Te6b53ItA"/>
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<div class="relative z-10 text-center text-on-primary px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center gap-8">
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero uppercase tracking-widest mix-blend-overlay opacity-90">The Modern Horizon</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto opacity-80">Cinematic Western Craftsmanship for the untamed spirit. Precision tailoring meets raw materiality.</p>
+<button class="bg-on-primary text-primary font-ui-button text-ui-button px-8 py-3 rounded-DEFAULT hover:bg-surface-dim transition-colors uppercase tracking-widest mt-4 flex items-center gap-2 group">
+                    Explore The Collection
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Product Anatomy - Minimalist -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-12 pr-0 lg:pr-12">
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-[0.2em]">Product Anatomy</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">The Heritage Boot</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Constructed from hand-selected tobacco leather, featuring an oxidized silver buckle that catches the light like a memory of the old west. Built for the modern frontier, designed to age with cinematic grace.
+                    </p>
+<ul class="space-y-6 border-l border-outline-variant/30 pl-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">check</span>
+<div>
+<h3 class="font-ui-button text-ui-button text-primary uppercase">Full-Grain Tobacco Leather</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Sourced ethically, tanned slowly.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">check</span>
+<div>
+<h3 class="font-ui-button text-ui-button text-primary uppercase">Oxidized Silver Hardware</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Bespoke detailing that resists the elements.</p>
+</div>
+</li>
+</ul>
+<a class="inline-block font-headline-md text-headline-md text-primary underline decoration-1 underline-offset-8 hover:text-secondary transition-colors text-lg italic" href="#">View Details</a>
+</div>
+<div class="relative h-[600px] w-full bg-surface-container rounded-DEFAULT overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A close-up, highly detailed product shot of a premium leather western boot. The focus is on the rich texture of the tobacco-colored full-grain leather and the subtle, oxidized silver buckle. The lighting is studio quality, creating sharp contrasts and highlighting the craftsmanship. The background is a minimalist bone-white surface, emphasizing tactile materiality and editorial elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkvVrQo83wzETtlgWU4YYlQcYZqaeWlRvWox9ie8sf--BtaZ90PC8w3MbyWw8RuT6XT9Oh3kxnUHlQ9GafV-4lV4ho1MgGifBc83mKazMBacDyrDmn6cNCgJaYfzELUKNdSrrUcci3a2T7SoEVKklKSQL6czV3vSSLBKMxdGda5QLZbN_WrN5YFVsgQr__54tJ3mvpzXiW96c7ocNVHYrWSVlozzPyr6h5vGAMiy5u-QiKaEYrezyzw"/>
+<div class="absolute bottom-6 left-6 right-6 vellum-overlay p-6 rounded-DEFAULT ambient-shadow border border-outline-variant/20 flex justify-between items-center backdrop-blur-md">
+<div>
+<span class="font-label-caps text-label-caps text-primary uppercase block mb-1">The Heritage Boot</span>
+<span class="font-body-md text-body-md text-on-surface-variant">$850 USD</span>
+</div>
+<button class="w-10 h-10 rounded-full border border-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full relative bottom-0 bg-primary dark:bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="w-full px-margin-desktop py-16 flex flex-col items-center gap-8 max-w-container-max-width mx-auto">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-primary tracking-tighter">
+                L&amp;B Frontier House
+            </div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4 font-label-caps text-label-caps">
+<a class="text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out uppercase" href="#">The Cinema</a>
+<a class="text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out uppercase" href="#">Bespoke Services</a>
+<a class="text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out uppercase" href="#">Terms of Craft</a>
+<a class="text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out uppercase" href="#">Privacy</a>
+</div>
+<div class="font-body-md text-body-md text-on-primary/40 mt-8 text-center text-sm">
+                © 2024 L&amp;B Frontier House. Crafted for the Modern Horizon.
+            </div>
+</div>
+</footer>
+<script>
+        // Simple nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+                nav.classList.replace('py-4', 'py-2');
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.classList.replace('py-2', 'py-4');
+            }
+        });
+    </script>
+</body></html>

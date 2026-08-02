@@ -1,0 +1,75 @@
+import type { Metadata, Viewport } from 'next'
+import { Inter, Libre_Caslon_Text } from 'next/font/google'
+import './globals.css'
+
+/**
+ * The typefaces the live Stitch project's applied theme specifies — Libre Caslon Text for
+ * display, Inter for UI and body.
+ *
+ * `next/font` downloads them at build time and serves them from this origin: no CDN, no
+ * runtime request to a third party, and no layout shift because the metrics are known. Both
+ * are OFL, which also clears the "zero licensed font files" blocker in docs/production/14.
+ */
+const display = Libre_Caslon_Text({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-display-loaded',
+})
+
+const ui = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-ui-loaded',
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Lucky & Blessed — Western apparel for approved retailers',
+    template: '%s · Lucky & Blessed',
+  },
+  description:
+    'Lucky & Blessed is a Texas-based manufacturer and designer of western apparel, selling ' +
+    'to approved retailers.',
+  // No price appears in any title or description. Restricted values never reach metadata.
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
+
+/*
+  EXPERIENCE STATES ARE NOT RESOLVED HERE, AND THE REASON IS MEASURED.
+
+  Reading the experience cookie in a layout forces every route to render per request. That
+  was implemented, built and tested in this pass, and it cost two guarantees that are worth
+  more than the feature:
+
+    1. The designed 404 stopped being server-rendered. With dynamic routing, `notFound()`
+       streams its boundary as RSC payload and the body is empty without JavaScript — the
+       exact defect fixed as D-2 in the browser pass.
+    2. Public product, category and size-and-fit routes lost static prerendering and began
+       responding `private, no-cache, no-store`.
+
+  The selector, the cookie action and the three CSS presentation states are all built and
+  covered by styles; what is missing is a way to apply the attribute per visitor without
+  per-request rendering. That needs either a small client script or Partial Prerendering, and
+  both are decisions for the next pass rather than something to slip in here.
+*/
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" data-experience="balanced" className={`${display.variable} ${ui.variable}`}>
+      <body>
+        {/* First focusable element in the DOM. */}
+        <a className="skip-link" href="#main">
+          Skip to main content
+        </a>
+        {children}
+      </body>
+    </html>
+  )
+}

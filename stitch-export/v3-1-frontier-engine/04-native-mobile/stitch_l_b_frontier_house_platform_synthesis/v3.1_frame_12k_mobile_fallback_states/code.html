@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {},
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Public Sans"
+                    ],
+                    "display": [
+                            "Public Sans"
+                    ],
+                    "body": [
+                            "Public Sans"
+                    ],
+                    "label": [
+                            "Public Sans"
+                    ]
+            },
+            "fontSize": {}
+    },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-200/50 shadow-sm transition-transform duration-300">
+<div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
+<div class="flex-1 md:hidden">
+<!-- Mobile Menu Spacer -->
+</div>
+<!-- Brand Logo -->
+<a class="font-extrabold text-2xl tracking-tighter text-gray-900 flex-1 md:flex-none text-center md:text-left" href="#">
+                L&amp;B Frontier House
+            </a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex flex-1 justify-center space-x-8">
+<a class="text-gray-900 font-bold border-b-2 border-gray-900 pb-1 text-sm uppercase tracking-wide" href="#">Women</a>
+<a class="text-gray-500 hover:text-gray-900 transition-colors text-sm uppercase tracking-wide" href="#">Men</a>
+<a class="text-gray-500 hover:text-gray-900 transition-colors text-sm uppercase tracking-wide" href="#">Custom</a>
+<a class="text-gray-500 hover:text-gray-900 transition-colors text-sm uppercase tracking-wide" href="#">Wholesale</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex flex-1 justify-end items-center space-x-4">
+<button class="text-gray-900 hover:opacity-80 transition-opacity p-2">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-gray-900 hover:opacity-80 transition-opacity p-2 hidden md:block">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="text-gray-900 hover:opacity-80 transition-opacity p-2 relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Low Power State / WebGL Fallback) -->
+<main class="flex-grow pt-24 pb-24 md:pb-12 px-4 md:px-8 max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-8 items-center justify-center min-h-[80vh]">
+<!-- Graphic / Poster Side (Fallback for WebGL) -->
+<div class="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+<div class="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="A highly detailed, high-fidelity static 3D rendering of a complex mechanical engine piece, representing the 'Frontier Engine'. The rendering is set against a clean, light studio background with soft, diffused white lighting that highlights the metallic textures, brushed steel, and polished brass accents. The overall aesthetic is modern, industrial, and premium, suitable for a light-mode high-end e-commerce interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFEbJofZVFwc36Mlu7wdG0cO5wVeWTkgTlx6M7CoDraGSHv23RPVBFaa-EH4Qa6wELhokIuFgJjRq15J1ON7OWQVfkCzTDgIm8i3Vpq_h25B2gvEv_LRPO09UbLC_NQaug4AvkuYlsWFrmF2242OZ0Us6IDP5nBck9xS85O3auEsY8JyaVL7Qg5px0xRmBRQ84-ygzUinNGMGJb-9oqssLlwh_2e3mOHSjvlNrMq5_V3smpiGpgtQdKw"/>
+<!-- Overlay subtle badge -->
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-2 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                    Power Saving Mode
+                </div>
+</div>
+</div>
+<!-- Messaging & Action Side -->
+<div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left order-2 md:order-1 space-y-8">
+<div class="space-y-4">
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                    Frontier Engine<br/>
+<span class="text-gray-400">Static Preview</span>
+</h1>
+<p class="text-lg text-gray-600 max-w-md">
+                    Experience optimized for your device. Advanced interactive 3D features have been disabled to conserve battery and ensure a smooth shopping experience.
+                </p>
+</div>
+<!-- Primary Action -->
+<button class="bg-gray-900 text-white font-bold py-4 px-10 rounded-full hover:bg-gray-800 transition-transform active:scale-95 shadow-lg flex items-center gap-3 text-lg">
+                Enter Shop
+                <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+</button>
+<!-- Accessible Category List (Fallback Navigation) -->
+<div class="w-full max-w-md mt-12 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+<h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Browse Categories</h3>
+<ul class="space-y-3">
+<li>
+<a class="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="font-semibold text-gray-800 group-hover:text-black">Women's Collection</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-gray-900">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="font-semibold text-gray-800 group-hover:text-black">Men's Collection</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-gray-900">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="font-semibold text-gray-800 group-hover:text-black">Custom Orders</span>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-gray-900">chevron_right</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="flex gap-4 text-sm text-gray-500 font-semibold pt-4">
+<a class="hover:text-gray-900 flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[16px]">search</span> Search</a>
+<span class="text-gray-300">|</span>
+<a class="hover:text-gray-900 flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[16px]">store</span> Wholesale Access</a>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-white/90 backdrop-blur-md border-t border-gray-200/50 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] pb-safe">
+<div class="flex justify-around items-center h-20 px-4">
+<a class="flex flex-col items-center justify-center text-gray-900 font-bold active:bg-gray-100 rounded-lg p-2 transition-transform active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-wide">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 active:bg-gray-100 rounded-lg p-2 transition-transform active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] mt-1 uppercase tracking-wide">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 active:bg-gray-100 rounded-lg p-2 transition-transform active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="text-[10px] mt-1 uppercase tracking-wide">Custom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 active:bg-gray-100 rounded-lg p-2 transition-transform active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined">person_pin_circle</span>
+<span class="text-[10px] mt-1 uppercase tracking-wide">Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 active:bg-gray-100 rounded-lg p-2 transition-transform active:scale-90 w-16 relative" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] mt-1 uppercase tracking-wide">Bag</span>
+<span class="absolute top-1 right-2 bg-red-600 w-2 h-2 rounded-full"></span>
+</a>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="w-full bg-gray-50 border-t border-gray-200 mt-auto hidden md:block">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 px-8 py-12 max-w-7xl mx-auto">
+<div class="md:col-span-4 flex flex-col space-y-4">
+<span class="font-extrabold text-xl text-gray-900">L&amp;B Frontier House</span>
+<p class="text-sm text-gray-500">© 2024 L&amp;B Frontier House. Crafted for the Modern West.</p>
+</div>
+<div class="md:col-span-8 flex justify-end items-end space-x-6">
+<a class="text-gray-500 hover:text-gray-900 hover:underline transition-all text-sm font-semibold" href="#">Brand Story</a>
+<a class="text-gray-500 hover:text-gray-900 hover:underline transition-all text-sm font-semibold" href="#">Wholesale</a>
+<a class="text-gray-500 hover:text-gray-900 hover:underline transition-all text-sm font-semibold" href="#">Privacy</a>
+<a class="text-gray-500 hover:text-gray-900 hover:underline transition-all text-sm font-semibold" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

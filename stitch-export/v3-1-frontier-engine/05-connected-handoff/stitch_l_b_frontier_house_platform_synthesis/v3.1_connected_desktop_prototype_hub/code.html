@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Cinema Mode Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#474744",
+                        "on-primary-container": "#858383",
+                        "secondary-fixed": "#e5e2de",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary-container": "#e2dfdb",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "tertiary-container": "#0a1c35",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary": "#5f5e5b",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "surface-container": "#f0eded",
+                        "surface-tint": "#5f5e5e",
+                        "tertiary": "#000000",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c7c7",
+                        "on-surface": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface": "#fcf9f8",
+                        "on-surface-variant": "#444748",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-surface": "#313030",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed": "#d6e3ff",
+                        "primary-container": "#1c1b1b",
+                        "inverse-primary": "#c9c6c5",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f8",
+                        "outline": "#747878",
+                        "on-secondary-container": "#636260",
+                        "surface-container-high": "#eae7e7",
+                        "on-tertiary-container": "#7584a3",
+                        
+                        "electric-cobalt": "#0047AB" 
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Chivo"],
+                        "headline-xl": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "button-text": ["Chivo"],
+                        "label-caps": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Chivo"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["60px", {"lineHeight": "68px", "fontWeight": "400"}],
+                        "display-lg": ["84px", {"lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .bg-cinematic {
+            background: radial-gradient(circle at center, rgba(0, 71, 171, 0.15) 0%, rgba(0,0,0,1) 70%);
+            background-color: #000;
+        }
+
+        /* Garment Portal Transitions */
+        .garment-portal-enter {
+            opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .garment-portal-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Tonal Layers & Textures */
+        .texture-grain {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Silver Reflections */
+        .silver-gradient {
+            background: linear-gradient(135deg, #f5f5f5 0%, #c8c6c2 50%, #e5e2e1 100%);
+            color: #1c1b1b;
+        }
+        .silver-text {
+            background: linear-gradient(135deg, #ffffff 0%, #c8c6c2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Orbital Layout Styles */
+        .orbit-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .orbit-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transition: all 0.5s ease;
+        }
+        
+        .orbit-item:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-300px) rotate(0deg); }
+        .orbit-item:nth-child(2) { transform: translate(-50%, -50%) rotate(90deg) translateY(-300px) rotate(-90deg); }
+        .orbit-item:nth-child(3) { transform: translate(-50%, -50%) rotate(180deg) translateY(-300px) rotate(-180deg); }
+        .orbit-item:nth-child(4) { transform: translate(-50%, -50%) rotate(270deg) translateY(-300px) rotate(-270deg); }
+        
+        /* Aperture Center */
+        .aperture-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 480px;
+            border-radius: 200px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        
+        .aperture-center:hover {
+            transform: translate(-50%, -50%) scale(1.02);
+            box-shadow: 0 0 80px rgba(0, 71, 171, 0.3), inset 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        .aperture-center::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-cinematic text-surface-container-lowest h-screen overflow-hidden flex flex-col font-body-md selection:bg-surface-container-lowest selection:text-primary">
+<div class="texture-grain"></div>
+<!-- Top Navigation (Hybrid approach using some JSON anchors but styled for this dark cinematic view) -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-8 max-w-container-max z-20 relative top-0 mix-blend-difference">
+<div class="flex-1 flex justify-start">
+<span class="material-symbols-outlined text-surface-container-lowest hover:text-outline-variant cursor-pointer transition-colors" data-icon="menu">menu</span>
+</div>
+<div class="flex-1 flex justify-center text-center">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-surface-container-lowest">L&amp;B Frontier House</h1>
+</div>
+<div class="flex-1 flex justify-end gap-6">
+<span class="material-symbols-outlined text-surface-container-lowest hover:text-outline-variant cursor-pointer transition-colors" data-icon="search">search</span>
+<span class="material-symbols-outlined text-surface-container-lowest hover:text-outline-variant cursor-pointer transition-colors" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined text-surface-container-lowest hover:text-outline-variant cursor-pointer transition-colors" data-icon="person">person</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow relative flex flex-col items-center justify-center z-10 w-full px-margin-desktop py-gutter">
+<!-- Experience Selector (Persistent at top center of canvas) -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-8 border-b border-outline-variant/30 pb-4 z-30">
+<button class="font-label-caps text-label-caps text-surface-container-lowest border-b-2 border-surface-container-lowest pb-1 transition-all duration-500 flex items-center gap-2">
+<span class="material-symbols-outlined fill text-[16px]" style="font-variation-settings: 'FILL' 1;">trip_origin</span>
+                Cinema
+            </button>
+<button class="font-label-caps text-label-caps text-surface-container-lowest/50 hover:text-surface-container-lowest transition-colors duration-300">
+                Balanced
+            </button>
+<button class="font-label-caps text-label-caps text-surface-container-lowest/50 hover:text-surface-container-lowest transition-colors duration-300">
+                Instant
+            </button>
+</div>
+<!-- Central Orbit Layout -->
+<div class="orbit-container garment-portal-enter garment-portal-enter-active">
+<!-- Orbital Labels -->
+<div class="orbit-item group cursor-pointer">
+<div class="flex flex-col items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest transition-colors"></div>
+<span class="font-label-caps text-label-caps text-surface-container-lowest/60 group-hover:text-surface-container-lowest transition-colors uppercase tracking-[0.2em]">Women</span>
+</div>
+</div>
+<div class="orbit-item group cursor-pointer">
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-caps text-label-caps text-surface-container-lowest/60 group-hover:text-surface-container-lowest transition-colors uppercase tracking-[0.2em]">Plus</span>
+<div class="w-2 h-2 rounded-full bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest transition-colors"></div>
+</div>
+</div>
+<div class="orbit-item group cursor-pointer">
+<div class="flex flex-col items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest transition-colors"></div>
+<span class="font-label-caps text-label-caps text-surface-container-lowest/60 group-hover:text-surface-container-lowest transition-colors uppercase tracking-[0.2em]">Girls</span>
+</div>
+</div>
+<div class="orbit-item group cursor-pointer">
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-caps text-label-caps text-surface-container-lowest/60 group-hover:text-surface-container-lowest transition-colors uppercase tracking-[0.2em]">Wholesale</span>
+<div class="w-2 h-2 rounded-full bg-surface-container-lowest/30 group-hover:bg-surface-container-lowest transition-colors"></div>
+</div>
+</div>
+<!-- Central Aperture -->
+<a class="aperture-center block relative group" href="{{DATA:SCREEN:SCREEN_34}}">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="A highly detailed close-up shot of a bespoke silver belt buckle on distressed dark leather, cinematic dramatic lighting with deep shadows and subtle cobalt blue rim light, emphasizing craftsmanship and materiality, high fashion editorial style photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNa7mHzIJiN9m-o9uElpR2Wsw5UxBpcoVwKHIz3Z7esMGL5DssY6u1TXRv8Gc4isR39dKOMLGOR00clbL0FG5xoJ6Zg0O66-p0SiG1kqlM13p2siuRwNBfu3mEXw492XqqacXKreuLUe5VLvI_5Ynrk2MamvI6RdxPY7QxCufTTr4GvgZ-7a3uZ5UmXSG98HFpxOt8Ab4_1coRFDloXmFgp7ZclPIiguVeeBuIrJdcAt9gmiuEAw7y8A')"></div>
+<!-- Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+<!-- Inner Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-between py-12 px-6">
+<div class="text-center">
+<span class="font-label-caps text-[10px] text-surface-container-lowest/80 uppercase tracking-[0.3em] mb-2 block">Selected Realm</span>
+<h2 class="font-display-lg text-[42px] leading-[48px] font-bold text-surface-container-lowest text-center silver-text">Accessories<br/>&amp; Home</h2>
+</div>
+<div class="w-12 h-12 rounded-full border border-surface-container-lowest/30 flex items-center justify-center backdrop-blur-sm group-hover:bg-surface-container-lowest/10 transition-colors duration-300">
+<span class="material-symbols-outlined text-surface-container-lowest font-light">arrow_forward</span>
+</div>
+</div>
+</a>
+</div>
+<!-- Bottom Actions -->
+<div class="absolute bottom-gutter left-0 w-full flex flex-col items-center gap-6 z-20 px-margin-desktop">
+<button class="font-button-text text-button-text uppercase tracking-widest silver-gradient text-primary px-12 py-4 rounded-sm flex items-center gap-4 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">adjust</span>
+                Start Journey
+            </button>
+<button class="font-label-caps text-label-caps text-surface-container-lowest/50 hover:text-surface-container-lowest uppercase tracking-widest border-b border-surface-container-lowest/20 hover:border-surface-container-lowest transition-all pb-1">
+                Skip to Shop
+            </button>
+</div>
+</main>
+<script>
+        // Simple entrance animation trigger
+        document.addEventListener('DOMContentLoaded', () => {
+            const portals = document.querySelectorAll('.garment-portal-enter');
+            setTimeout(() => {
+                portals.forEach(el => el.classList.add('garment-portal-enter-active'));
+            }, 100);
+        });
+    </script>
+</body></html>

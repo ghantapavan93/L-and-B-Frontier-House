@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Frontier Seal Reveal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-variant": "#e5e2e1",
+                "primary-fixed-dim": "#c9c6c5",
+                "primary-fixed": "#e5e2e1",
+                "surface-container-highest": "#e5e2e1",
+                "on-secondary-fixed-variant": "#474744",
+                "on-background": "#1c1b1b",
+                "tertiary-fixed-dim": "#b7c7e8",
+                "on-tertiary-container": "#7584a3",
+                "inverse-primary": "#c9c6c5",
+                "surface": "#fcf9f8",
+                "tertiary-fixed": "#d6e3ff",
+                "error": "#ba1a1a",
+                "on-primary-fixed-variant": "#474646",
+                "on-primary": "#ffffff",
+                "surface-container": "#f0eded",
+                "surface-bright": "#fcf9f8",
+                "secondary-fixed-dim": "#c8c6c2",
+                "on-primary-container": "#858383",
+                "surface-container-low": "#f6f3f2",
+                "surface-container-high": "#eae7e7",
+                "error-container": "#ffdad6",
+                "on-surface-variant": "#444748",
+                "secondary-fixed": "#e5e2de",
+                "outline-variant": "#c4c7c7",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#1c1b1b",
+                "inverse-on-surface": "#f3f0ef",
+                "on-error": "#ffffff",
+                "secondary": "#5f5e5b",
+                "inverse-surface": "#313030",
+                "outline": "#747878",
+                "on-tertiary-fixed-variant": "#384763",
+                "on-secondary-fixed": "#1c1c1a",
+                "tertiary-container": "#0a1c35",
+                "surface-dim": "#dcd9d9",
+                "secondary-container": "#e2dfdb",
+                "on-tertiary-fixed": "#0a1c35",
+                "surface-container-lowest": "#ffffff",
+                "background": "#fcf9f8",
+                "primary": "#000000",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface-tint": "#5f5e5e",
+                "on-secondary-container": "#636260",
+                "on-surface": "#1c1b1b",
+                "tertiary": "#000000",
+                "primary-container": "#1c1b1b"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1440px",
+                "unit": "4px",
+                "gutter": "24px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "headline-md": [
+                        "Playfair Display"
+                ],
+                "body-lg": [
+                        "Chivo"
+                ],
+                "body-md": [
+                        "Chivo"
+                ],
+                "display-lg-mobile": [
+                        "Playfair Display"
+                ],
+                "button-text": [
+                        "Chivo"
+                ],
+                "label-caps": [
+                        "JetBrains Mono"
+                ],
+                "headline-xl": [
+                        "Playfair Display"
+                ],
+                "headline-lg": [
+                        "Playfair Display"
+                ],
+                "display-lg": [
+                        "Playfair Display"
+                ]
+        },
+        "fontSize": {
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "52px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "button-text": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-xl": [
+                        "60px",
+                        {
+                                "lineHeight": "68px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "84px",
+                        {
+                                "lineHeight": "92px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>body {
+    background-color: theme("colors.background");
+    color: theme("colors.on-background");
+    overflow: hidden;
+    /* Prevent scrolling for this cinematic reveal */
+    }
+/* Custom styling for the aperture effect */
+.aperture-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px
+    }
+/* Background textures layers */
+.texture-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    }
+.denim-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBD8uTv4YEU7mmCX3e8gv0w2k3rghNgFeq2vE2qvfy_lpKN4yPH80WXmgtEIBGiU3rSPGeTIcNyDOm_mwqjIOzxeMKpi9jJ4LhWeMAchHA8h1vjNg3tnTygQSJs874vuqkdJUhRDSTaLSLRsoQbRyhnhiVnsb487h1CMy-Roz1xByO4sNoNXV70ONXHL2_j90b2oPMmAznrQHdi7LVqmoGRJn9p0wOHYqTx1FlS5Pxq13KCiPhT5LOuQQ);
+    /* Fallback linear gradient mimicking denim */
+    background: linear-gradient(to bottom, #1E293B, #0F172A)
+    }
+/* The actual buckle / seal element */
+.frontier-seal {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(13, 148, 136, 0.3);
+    /* Subtle petrol-blue edge lighting */
+    background: linear-gradient(135deg, #e5e2e1 0%, #c8c6c2 50%, #5f5e5b 100%);
+    /* Brushed silver look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 10
+    }
+.frontier-seal::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCM8F29qPSrKPnN-w16PhJcs8oYg7kmT2tUlpMvXou_WJzBR_gZIfrTAznsXjZcUOTGfKpyT73y9DHgipV-seKUOKLaUEs1f4Ty-6Be_66zWSfhh6s8D_iiACvwlErNBnf9_3i5FnRM-L5iyTRuJg8jpvkY2MR9U_FVih0RIFLOrKikOTs37kM9olEhm81GvM-7SEP4LMR1iOjzmIvUFbrOp2tLJiYHOAOZPTjd-k28cnqsFf6aWreNVQ);
+    /* Fallback tooled leather look */
+    background-color: #4A3018;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9)
+    }
+/* Aperture inner rings */
+.aperture-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1)
+    }
+.ring-1 {
+    width: 80%;
+    height: 80%;
+    border-color: rgba(229, 226, 225, 0.4)
+    }
+.ring-2 {
+    width: 60%;
+    height: 60%;
+    border-width: 1px
+    }
+.ring-3 {
+    width: 40%;
+    height: 40%;
+    background: #1c1b1b
+    }
+/* Brand Mark inside */
+.brand-mark {
+    position: relative;
+    z-index: 20;
+    color: theme("colors.on-primary");
+    text-align: center;
+    pointer-events: none
+    }
+/* Bottom UI Actions */
+.actions-container {
+    position: absolute;
+    bottom: theme("spacing.margin-mobile");
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: theme("spacing.gutter");
+    z-index: 20;
+    padding: 0 theme("spacing.margin-mobile")
+    }
+.primary-action {
+    background-color: theme("colors.primary");
+    color: theme("colors.on-primary");
+    padding: 16px 32px;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: theme("borderRadius.DEFAULT");
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+    }
+.primary-action:active {
+    transform: scale(0.98)
+    }
+.secondary-action {
+    color: theme("colors.on-background");
+    background: transparent;
+    border: none;
+    padding: 8px;
+    opacity: 0.8
+    }
+.pearl-snap {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #c8c6c2 60%, #5f5e5b 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+    }
+/* Subtle floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+        } 50% {
+        transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
+        } 100% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+        }
+    }
+.floating {
+    animation: float 6s ease-in-out infinite
+    }</style>
+</head>
+<body>
+<div class="aperture-container" id="interactive-area">
+<!-- Background Texture -->
+<div class="texture-layer denim-texture" data-alt="Close up macro shot of heavy raw indigo denim fabric. Deep rich blue tones with pronounced diagonal twill weave texture visible. Cinematic moody lighting emphasizing the rugged textile quality. Minimalist framing, light mode overall feel despite deep blues."></div>
+<!-- Subtle edge lighting overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-teal-900/30 to-transparent pointer-events-none mix-blend-overlay"></div>
+<!-- The Seal / Buckle -->
+<div class="frontier-seal floating" data-alt="Macro close-up of a premium circular belt buckle. The outer rim is brushed silver metal with a subtle gleam. The center inset features deeply tooled, rich brown western leather with intricate geometric patterns. Subtle cinematic lighting with a hint of petrol-blue rim light." id="seal">
+<div class="aperture-ring ring-1"></div>
+<div class="aperture-ring ring-2"></div>
+<div class="aperture-ring ring-3 flex justify-center items-center">
+<span class="material-symbols-outlined text-surface-variant text-4xl font-light" style="font-variation-settings: 'FILL' 0;">
+          star
+        </span>
+</div>
+<div class="brand-mark hidden">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary-fixed">L&amp;B</h1>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="actions-container">
+<button class="primary-action font-button-text text-button-text uppercase tracking-widest">
+<span>Enter Shop</span>
+<div class="pearl-snap"></div>
+</button>
+<button class="secondary-action font-label-caps text-label-caps uppercase tracking-widest text-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">
+          tune
+        </span>
+        Experience Mode
+      </button>
+</div>
+</div>
+<script>
+    // Simple script to handle device orientation / touch movement for the 3D effect
+    const seal = document.getElementById('seal');
+    const container = document.getElementById('interactive-area');
+
+    // Mouse movement
+    container.addEventListener('mousemove', (e) => {
+      if(!seal) return;
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+      
+      seal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateZ(20px)`;
+      seal.style.boxShadow = `
+        inset 0 0 40px rgba(0,0,0,0.8), 
+        ${-xAxis}px ${yAxis}px 40px rgba(0,0,0,0.5),
+        0 0 15px rgba(13, 148, 136, 0.3)
+      `;
+      // Pause floating animation during interaction
+      seal.classList.remove('floating');
+    });
+
+    // Reset on leave
+    container.addEventListener('mouseleave', () => {
+      if(!seal) return;
+      seal.style.transform = `rotateY(0deg) rotateX(0deg) translateZ(0px)`;
+      seal.style.boxShadow = `
+        inset 0 0 40px rgba(0,0,0,0.8), 
+        0 20px 40px rgba(0,0,0,0.5),
+        0 0 15px rgba(13, 148, 136, 0.3)
+      `;
+      // Resume floating
+      setTimeout(() => seal.classList.add('floating'), 500);
+    });
+
+    // Touch support for mobile devices
+    container.addEventListener('touchmove', (e) => {
+      if(!seal || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const xAxis = (window.innerWidth / 2 - touch.pageX) / 10;
+      const yAxis = (window.innerHeight / 2 - touch.pageY) / 10;
+      
+      seal.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateZ(10px) scale(0.98)`;
+      seal.classList.remove('floating');
+    }, {passive: true});
+
+    container.addEventListener('touchend', () => {
+      if(!seal) return;
+      seal.style.transform = `rotateY(0deg) rotateX(0deg) translateZ(0px) scale(1)`;
+      setTimeout(() => seal.classList.add('floating'), 500);
+    });
+  </script>
+</body></html>

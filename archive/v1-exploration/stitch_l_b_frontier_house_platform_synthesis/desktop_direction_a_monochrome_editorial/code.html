@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3f0207",
+                        "on-background": "#1c1c1a",
+                        "surface-tint": "#5f5e5e",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f6f3ef",
+                        "secondary-container": "#ffcdad",
+                        "background": "#fcf9f5",
+                        "outline": "#747878",
+                        "inverse-primary": "#c9c6c5",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fcf9f5",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#2e1503",
+                        "on-surface": "#1c1c1a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#ebe8e4",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#3f0207",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#ffdcc6",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#edbd9d",
+                        "outline-variant": "#c4c7c7",
+                        "surface-container-highest": "#e5e2de",
+                        "on-secondary-fixed-variant": "#613f27",
+                        "on-tertiary-container": "#c66867",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "surface-dim": "#dcdad6",
+                        "surface": "#fcf9f5",
+                        "secondary": "#7b563d",
+                        "surface-container": "#f0ede9",
+                        "on-tertiary-fixed-variant": "#7a2d2e",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e2de",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#444748",
+                        "inverse-on-surface": "#f3f0ec",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary-container": "#858383",
+                        "inverse-surface": "#31302e",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#7a553c",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Libre Caslon Text"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg-mobile": ["Libre Caslon Text"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Libre Caslon Text"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "ui-button": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-xl": ["84px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "ui-button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #fcf9f5; }
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<div class="film-grain"></div>
+<!-- TopNavBar -->
+<nav class="hidden md:flex bg-surface/70 dark:bg-surface-container-lowest/70 backdrop-blur-xl fixed top-0 w-full z-50 shadow-sm flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-6">
+<span class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-surface">L&amp;B Frontier House</span>
+<div class="hidden lg:flex items-center gap-4 bg-surface-container-lowest border border-outline-variant/30 rounded-full px-4 py-1">
+<button class="font-label-caps text-label-caps text-primary border-b border-primary">Cinema</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Balanced</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Instant</button>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<ul class="flex items-center gap-6">
+<li><a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Women</a></li>
+<li><a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Men</a></li>
+<li><a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Custom</a></li>
+<li><a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Wholesale</a></li>
+</ul>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span></button>
+<button class="text-primary hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span></button>
+</div>
+</div>
+</nav>
+<!-- BottomNavBar -->
+<nav class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant/20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+<button class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:bg-surface-container-high transition-transform active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">explore</span>
+<span class="font-label-caps text-label-caps">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">architecture</span>
+<span class="font-label-caps text-label-caps">Custom</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person_pin_circle</span>
+<span class="font-label-caps text-label-caps">Passport</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform active:scale-90 duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Bag</span>
+</button>
+</nav>
+<main class="pt-24 pb-32">
+<!-- Hero Stage 1-3: Monochrome Fastening -->
+<section class="min-h-[921px] flex flex-col items-center justify-center relative overflow-hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-90">
+<img class="w-full h-full object-cover object-center scale-105" data-alt="A macro black and white photograph of a silver pearl snap being fastened on a dark denim shirt. The lighting is harsh and cinematic, casting deep shadows that emphasize the texture of the denim and the metallic gleam of the snap. The composition is extremely close-up, focusing entirely on the tactile action of closing the garment, evoking a sense of raw utility and modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDConlFEryCtI8IxfBxzNyvOQ38Ccv7a9WdKclHIP7KtoRpvdIuaRQty83fDD3Ds_5p_6KnDVBTpyBBxQROvkIUQH79Wnbox94LulWGD9iVhIcBlnhfWt4tUP4S_-Q8HiSz5VUHesNH7tGlvawxSYtVdYUlrzO-09v8-DPXpAlgmSKHrPc4RtQx29Rqfwqgoj4dkg7DNfceTOzQ7px5WPRPGmGeb_Prf9rgS8CY8fN33mfwXU2NBsW48Q"/>
+</div>
+<div class="relative z-10 text-center mix-blend-difference mt-auto mb-24">
+<h1 class="font-display-xl text-display-xl md:text-[120px] md:leading-[110px] text-on-primary tracking-tighter uppercase max-w-5xl mx-auto">
+                    NOT THE WEST YOU REMEMBER.
+                </h1>
+</div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 mix-blend-difference text-on-primary">
+<span class="font-label-caps text-label-caps">SCROLL TO DISCOVER</span>
+<span class="material-symbols-outlined animate-bounce">arrow_downward</span>
+</div>
+</section>
+<!-- Hero Stage 4-7: Living Contact Sheet -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
+<div class="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-gutter">
+<div class="aspect-square relative group overflow-hidden bg-primary">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105" data-alt="Black and white textural close-up of raw indigo denim twill. Focus on the diagonal weave and subtle slub variations. High contrast, studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrZhP9nh-XBMC0GDoscFhrnEcxiCjyAzRf-rsjlxyjnqV175y4jb4CJKgkwHwBzk_3D-LV1zkOMtQHyaPs6xRIsIsoTEPAuvF5dVj9EB3O6oFhLPnDzJGHniG7KJtiKUMiU5lNWzT-YkEuQT2G26LnIMRzYBufxuZEBKixlLQkoypG4FQWrqvmarMo79m5MtXER7Pw3Iebph0rMHo91IBa1xrblnplKJqowGwjHhyA9Engm1LV6X2XGw"/>
+</div>
+<div class="aspect-square relative group overflow-hidden bg-primary md:col-span-2 md:row-span-2">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700" data-alt="A fashion model in silhouette against a stark white background, wearing a structured leather jacket. High-contrast black and white editorial style, emphasizing dramatic shapes and negative space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWYK6TJZTyyj7C_f2mOjPzXRC18g032PzAzP7MyDSvt8gdqotaYeAJ8QXhOFidr_57Qo1-Dy5E90c0-NGK0u0eEJ11v2lJh1v1lFkprft8pNZgMZk-EJ5_uStd9ITNgyOlnGCYSIPTC0H8UQzhSYam8wdkrLSYUBRBkK0SYyQWfclQj6lD-E6Dzy-ovq6HHTZ78-txJIpL0qbUqOcQ2Qd3UEzaSXceVxBBZQvkcG-3A-NhZGfQEPMhfA"/>
+</div>
+<div class="aspect-square relative group overflow-hidden bg-primary">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105" data-alt="A moody, high-contrast black and white photograph of the Dallas skyline at dusk. The architecture is stark and geometric, establishing a modern, urban frontier context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2qLHnhqB8W6xsrTg9DMM_-XQ3-DV0ToRoZuZKWiFQL3bQ_Ie5MkBhsCjbbYzW-S3wMrVZ8cSFnoqakAIUrP4iWLmm2oN9_b997JErMneUbNvoSZyN5kLgqbzUv1qaO7_qxYA5aSrABlqsqo1kCT-EL-jVRMvPeOgbdfsi72SUaYBapnnVC0vippAOYRr5Vkg9_2tIGqMwWY9H4Xl4rh08sj4GNSaCzXJH4Nswy46s6ZSmYQGG7bKAiQ"/>
+</div>
+<div class="aspect-square relative group overflow-hidden bg-primary">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105" data-alt="Close-up black and white shot of a cobbler's workbench. Tools like an awl, heavy thread, and leather scraps are scattered. High texture, cinematic lighting focusing on the craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrlkB_wkjcM7sJEdqpRLkUh8hjpIq-TaBUIagNTKtN1hn5bzzP1SI7vQUKORhmmInj9DGLzcVkqELXtj9EEG6ZDNeMCXKMJRrZzWjiTlM3M78BYA30vseqBiD02oxu5EQSKJZWSKBo78dIltmEEy_CDUXdb1eLYrYt3EbXceyfxloj4t9qulS8HfzsclQfSGhZZGlrlpNQCoj7AiVQwzfJPGbZ89MWe6eh4WhFhRoDiuQQfqWBzirIOQ"/>
+</div>
+<div class="aspect-square relative group overflow-hidden bg-primary">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105" data-alt="Black and white abstract detail of a silver concho or belt buckle. Dramatic macro lighting highlighting the engraved patterns and oxidized metal finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHbS7717L0mhZxGsoLAvyz8IkZ2a8RiT2dXu7kmnJ5815RnxoK2DL5A1eheGZLInLjTk8q4pj_nMTDaup0g5CqLHjcBKZxxfyXV9QzBkAfXSUcyLJTZqgcrgzEw_B7lBJe7SX6ctf2VXyvnIUTUaC-t5Dx1iXoremaBQmbJHIdMdapVmeIbvlVzs94UOWJ8CTNdlQiKbbVB2bKHZHoQNL2yyv6wg5JLQoJl0JbCHuZcvIdeS29r4JR5w"/>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-tertiary-container w-full mt-section-gap border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="md:col-span-4 flex flex-col gap-6">
+<span class="font-display-lg text-headline-lg text-primary dark:text-on-surface">L&amp;B Frontier House</span>
+<p class="font-body-md text-body-md text-on-surface dark:text-on-tertiary-container max-w-sm">
+                        Crafting the modern western narrative. Precision, utility, and timeless design from the heart of Texas.
+                    </p>
+</div>
+<div class="md:col-span-2 md:col-start-7 flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant">Explore</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Brand Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Wholesale</a>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant">Legal</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms</a>
+</div>
+<div class="md:col-span-12 mt-12 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-body-md text-body-md text-on-surface dark:text-on-tertiary-container text-sm">
+                        © 2024 L&amp;B Frontier House. Crafted for the Modern West.
+                    </span>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

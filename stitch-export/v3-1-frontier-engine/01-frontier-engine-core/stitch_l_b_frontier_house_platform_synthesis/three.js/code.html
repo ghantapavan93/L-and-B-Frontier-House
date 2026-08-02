@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_41 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_41" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_41');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  (function() {
+  const container = document.getElementById('threejs-container-FRONTIER_ENGINE');
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+  scene.add(ambientLight);
+  const spotLight = new THREE.SpotLight(0x4444ff, 2);
+  spotLight.position.set(10, 10, 10);
+  scene.add(spotLight);
+
+  // The L&B Frontier Engine: Warehouse Visualization
+  const warehouseGroup = new THREE.Group();
+  
+  // Structural Rails (Brushed Metal)
+  const railMaterial = new THREE.MeshPhongMaterial({ color: 0x333333, specular: 0x666666, shininess: 100 });
+  for(let i = 0; i < 8; i++) {
+    const railGeom = new THREE.BoxGeometry(20, 0.05, 0.05);
+    const rail = new THREE.Mesh(railGeom, railMaterial);
+    rail.position.y = (i - 4) * 1.5;
+    rail.position.z = -5;
+    warehouseGroup.add(rail);
+  }
+
+  // Floating Category World (Denim Orb Example)
+  const denimOrbGeom = new THREE.SphereGeometry(1, 64, 64);
+  const denimOrbMat = new THREE.MeshPhongMaterial({ 
+    color: 0x1B2B45, 
+    bumpScale: 0.02,
+    shininess: 10
+  });
+  const denimOrb = new THREE.Mesh(denimOrbGeom, denimOrbMat);
+  denimOrb.position.set(-4, 0, 0);
+  warehouseGroup.add(denimOrb);
+
+  // Buckle Aperture (The Portal)
+  const buckleGroup = new THREE.Group();
+  const ringGeom = new THREE.TorusGeometry(2, 0.1, 16, 100);
+  const silverMat = new THREE.MeshPhongMaterial({ color: 0xa7a6a2, shininess: 100 });
+  const ring = new THREE.Mesh(ringGeom, silverMat);
+  buckleGroup.add(ring);
+  buckleGroup.position.z = 5;
+  scene.add(buckleGroup);
+
+  scene.add(warehouseGroup);
+  camera.position.z = 15;
+
+  // Animation Loop
+  const animate = () => {
+    requestAnimationFrame(animate);
+    warehouseGroup.rotation.y += 0.001;
+    denimOrb.rotation.y += 0.01;
+    buckleGroup.rotation.z += 0.005;
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  });
+})();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_41 -->
+</body>
+</html>

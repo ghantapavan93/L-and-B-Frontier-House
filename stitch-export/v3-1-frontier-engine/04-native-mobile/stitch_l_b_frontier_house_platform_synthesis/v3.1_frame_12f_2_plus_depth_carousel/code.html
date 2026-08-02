@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Plus Collection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#474744",
+                        "on-background": "#1c1b1b",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "on-tertiary-container": "#7584a3",
+                        "inverse-primary": "#c9c6c5",
+                        "surface": "#fcf9f8",
+                        "tertiary-fixed": "#d6e3ff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "on-primary-container": "#858383",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-high": "#eae7e7",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444748",
+                        "secondary-fixed": "#e5e2de",
+                        "outline-variant": "#c4c7c7",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5b",
+                        "inverse-surface": "#313030",
+                        "outline": "#747878",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "tertiary-container": "#0a1c35",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-container": "#e2dfdb",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fcf9f8",
+                        "primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#5f5e5e",
+                        "on-secondary-container": "#636260",
+                        "on-surface": "#1c1b1b",
+                        "tertiary": "#000000",
+                        "primary-container": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Chivo"],
+                        "body-md": ["Chivo"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "button-text": ["Chivo"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "button-text": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-xl": ["60px", { "lineHeight": "68px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .translate-z-back { transform: translateZ(-200px) scale(0.8) translateX(-40%); opacity: 0.5; filter: blur(4px); }
+        .translate-z-front { transform: translateZ(0) scale(1) translateX(0); z-index: 10; }
+        .translate-z-right { transform: translateZ(-200px) scale(0.8) translateX(40%); opacity: 0.5; filter: blur(4px); z-index: 1; }
+        
+        .transition-transform-slow { transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, filter 0.8s ease; }
+        
+        /* Ink Black Background with Bone White Text overrides for this specific view */
+        body {
+            background-color: #1c1b1b; /* Ink Black / on-background */
+            color: #fcf9f8; /* Bone White / surface */
+            overflow: hidden; /* Prevent scrolling in depth carousel */
+        }
+        
+        /* Silver reflection gradient for pearl snap buttons */
+        .silver-reflection {
+            background: linear-gradient(135deg, #e5e2e1 0%, #c9c6c5 50%, #f6f3f2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-body-md h-screen w-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Top Navigation (Mobile Hidden, Web Visible - though this is a mobile focused view, we include it per rules but hide on md per JSON) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface-container-lowest/70 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm text-primary dark:text-on-surface">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-surface">L&amp;B Frontier House</div>
+<nav class="flex gap-gutter font-ui-button text-ui-button">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Women</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Men</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:opacity-80 transition-opacity" href="#">Custom</a> <!-- Active intent fallback since Plus implies Custom/Inclusive sizing in this context or general browsing -->
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-opacity" href="#">Wholesale</a>
+</nav>
+<div class="flex gap-4">
+<span class="material-symbols-outlined hover:opacity-80 transition-opacity cursor-pointer">shopping_bag</span>
+<span class="material-symbols-outlined hover:opacity-80 transition-opacity cursor-pointer">person</span>
+</div>
+</header>
+<!-- Experience Selector (Top Center) -->
+<div class="absolute top-12 left-1/2 -translate-x-1/2 z-40 flex items-center bg-surface-container-highest/20 backdrop-blur-sm rounded-full p-1 border border-surface/10">
+<button class="px-4 py-2 font-label-caps text-label-caps text-surface/60 hover:text-surface transition-colors">CINEMA</button>
+<button class="px-4 py-2 font-label-caps text-label-caps text-surface flex items-center gap-2 bg-surface/10 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] silver-reflection" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+            BALANCED
+        </button>
+<button class="px-4 py-2 font-label-caps text-label-caps text-surface/60 hover:text-surface transition-colors">INSTANT</button>
+</div>
+<!-- Main Depth Carousel Canvas -->
+<main class="w-full h-full relative perspective-1000 flex items-center justify-center pt-16">
+<!-- Left Plane (Women) -->
+<div class="absolute w-[80vw] md:w-[40vw] h-[65vh] rounded-xl overflow-hidden translate-z-back transition-transform-slow cursor-pointer" onclick="shiftCarousel('left')">
+<div class="absolute inset-0 bg-primary/40 z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A striking digital fashion editorial featuring a slender female model in rugged high-end western wear. She wears a tailored heavy-denim jacket and artisanal leather boots. The setting is a minimalist studio with high-contrast, dramatic cinematic lighting casting deep shadows. The color palette relies on deep blacks, crisp whites, and rich saddle brown leather accents. The mood is confident, grounded, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfkjwomGd8b57ygA7E0CN_eMNnHwhlsldiaqPDeUZoNr2feEXLmU1vqVsAu2vLmi5Vf-2O8JK2mzV4-ggy4dE7ixG-FiWsK0ftM1UDny05-vQ0d6c_YRGp34Lapm7mYpxgLshIaho0eI1YA4HHJnNva3Vk541M_8uxZ0fuKUreI6SVdlbGMEs_TfNGOSo9GlMVkdRtag0N5AYuqzpgFaWFbycnWoVWZy_5JxmcQvAlx_tCehpgR7Y5pw"/>
+<div class="absolute bottom-8 left-8 z-20">
+<h3 class="font-headline-md text-headline-md text-surface/80">Women</h3>
+</div>
+</div>
+<!-- Center Plane (PLUS - Active) -->
+<div class="absolute w-[85vw] md:w-[45vw] h-[70vh] rounded-xl overflow-hidden translate-z-front shadow-2xl transition-transform-slow border border-surface/5 bg-primary">
+<!-- Subtle denim/leather grain overlay -->
+<div class="absolute inset-0 z-10 opacity-20 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+<img class="w-full h-full object-cover" data-alt="A breathtaking cinematic fashion editorial portrait of a confident plus-size model wearing premium, bespoke western fashion. She is dressed in a structured, impeccably tailored dark indigo denim coat with artisanal silver hardware and fine leather trim. The lighting is high-end studio style, illuminating her features with a soft yet striking light against a deep ink-black background. The aesthetic is luxurious, modern, and embodies grounded elegance. Colors are rich deep blues, blacks, and stark whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFkJE8Px6DetRAOw-3M9tl8aCxs88lXGPKKw1gVOCddhQ95H48It10PRiRks9ETbMi0d55zSvJxJgbi8fpYGTnZLNYpQlW_EoI6BoiPOFZ01g8YTrShHPu3WPwNON-Kmv7i0Cky5I9a1n75svFzeXGOd8yd_7usGoex7IAzt4vy8So4S4GGyNPOgovMDu4nD7EozIX4tusXvRvWcx3CZwrmBsmmcescoFINhpJDfdPhFov6E7eOXypVA"/>
+<!-- Gradient Overlay for Text Readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent z-20"></div>
+<div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-margin-desktop z-30 flex flex-col justify-end h-full">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface mb-2 tracking-tighter">PLUS</h1>
+<p class="font-body-lg text-body-lg text-surface-variant/90 mb-8 max-w-sm">Every world, every silhouette. Uncompromising artisanal quality crafted for the modern frontier.</p>
+<button class="bg-surface text-primary font-button-text text-button-text py-4 px-6 rounded flex items-center justify-between w-full md:w-auto hover:bg-surface-variant transition-colors group">
+<span class="tracking-widest uppercase">Enter Collection</span>
+<span class="material-symbols-outlined ml-4 group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+</div>
+<!-- Custom Tag Indicator -->
+<div class="absolute top-4 right-4 z-30 bg-primary/80 backdrop-blur px-3 py-1 border border-surface/20 rounded">
+<span class="font-label-caps text-label-caps text-surface">BESPOKE SIZING</span>
+</div>
+</div>
+<!-- Right Plane (Accessories) -->
+<div class="absolute w-[80vw] md:w-[40vw] h-[65vh] rounded-xl overflow-hidden translate-z-right transition-transform-slow cursor-pointer" onclick="shiftCarousel('right')">
+<div class="absolute inset-0 bg-primary/40 z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A still-life minimalist photograph of high-end western accessories. A meticulously crafted saddle leather bag and a heavy sterling silver belt buckle rest on a dark, textured surface. The lighting is focused and dramatic, highlighting the rich patina of the leather and the brilliant shine of the silver hardware against an ink-black background. The mood is premium, rugged, and artisanal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQR-W_7byjJVH3PD17Z1wdNDlZURAEX9wF1C2Sq03bGO-MoF76Icy1r2X5rFdfEd_xMa9PXFqun8VP_R7-mgJQWpEwF0jP4LshIpNWdtuioy85-GJJ72G8IFckWuD3RKnbNMqDAsGFyrlRaPtmyUqk2GIgKIsVwUtuV-G-EMYQ_vkvHyiQj0Hen9RU_0jK7eOguGi7n0EEpNrZXOrbPGDsMiYUEcRQxYFaFVv8RpiStdji93T7P2RYvg"/>
+<div class="absolute bottom-8 right-8 z-20 text-right">
+<h3 class="font-headline-md text-headline-md text-surface/80">Accessories</h3>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant/20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] text-primary dark:text-on-surface font-label-caps text-label-caps">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span>Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:bg-surface-container-high scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span>Custom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined mb-1">person_pin_circle</span>
+<span>Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span>Bag</span>
+</a>
+</nav>
+<script>
+        // Lightweight interaction script for the carousel concept
+        function shiftCarousel(direction) {
+            // In a full implementation, this would rotate classes or manage state.
+            // For this static generation, it provides a visual cue that it's interactive.
+            const centerPlane = document.querySelector('.translate-z-front');
+            centerPlane.style.transform = 'translateZ(0) scale(0.98)';
+            setTimeout(() => {
+                centerPlane.style.transform = 'translateZ(0) scale(1)';
+            }, 150);
+        }
+    </script>
+</body></html>

@@ -1,0 +1,30 @@
+# Broken and Missing Reference Report — design-source audit
+
+## 1. Assets named in manifests but absent from disk
+V3 design.md:      hero_still_01.png | midnight_pearl_snap_3D.glb | denim_texture_grain.jpg  -> 0 of 3 exist
+V3.1 manifest GLB: Frontier_Thread_V3_1.glb | Buckle_Aperture_V3_1.glb | Warehouse_Kit_V3_1.glb -> 0 of 3 exist
+V3.1 manifest GLSL: Frontier_Thread_Ignition.glsl | Buckle_Edge_Fresnel.glsl | Warehouse_Atmo_Fog.glsl -> 0 of 3 exist
+V3.1 media briefs: Media_01 Hero Film | Media_02 Denim Macro 8K | Media_03 Wholesale Distribution -> 0 of 3 exist
+
+## 2. Unresolved template placeholders in route/manifest docs
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:15:- **Cinema Start:** {{DATA:SCREEN:SCREEN_38}}
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:16:- **Buckle Portal:** {{DATA:SCREEN:SCREEN_34}}
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:17:- **Warehouse Passage:** {{DATA:SCREEN:SCREEN_23}}
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:18:- **Mobile Carousel:** {{DATA:SCREEN:SCREEN_14}}
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:19:- **Commerce Arrival:** {{DATA:SCREEN:SCREEN_9}}
+v3-1-frontier-engine/05-connected-handoff/stitch_l_b_frontier_house_platform_synthesis/v3_1_route_and_state_map.md:20:- **Fallback:** {{DATA:SCREEN:SCREEN_5}}
+
+## 3. Broken Three.js container reference (02-belt-buckle-aperture)
+  -> outer resolves ANIMATION_44 (exists); inner resolves BUCKLE_APERTURE (does not exist) -> TypeError
+
+## 4. Remote runtime dependencies (count of files)
+  cdn.tailwindcss.com : 48 / 48 files
+  fonts.googleapis.com : 42 / 48 files
+  ajax.googleapis.com : 5 / 48 files
+  lh3.googleusercontent.com : 37 / 48 files
+
+## 3b. Broken Three.js container reference — verbatim lines
+25:  const container = document.getElementById('threejs-container-ANIMATION_44');
+28:  const container = document.getElementById('threejs-container-BUCKLE_APERTURE');
+29:  const width = container.clientWidth || window.innerWidth;
+99:    const w = container.clientWidth || window.innerWidth;

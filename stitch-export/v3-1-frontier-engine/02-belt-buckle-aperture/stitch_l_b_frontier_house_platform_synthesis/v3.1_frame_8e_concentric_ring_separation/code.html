@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Chapter 08: Separation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dcd9d9",
+                    "tertiary-container": "#0a1c35",
+                    "on-tertiary-fixed-variant": "#384763",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "on-tertiary-container": "#7584a3",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-primary-fixed-variant": "#474646",
+                    "background": "#fcf9f8",
+                    "tertiary-fixed-dim": "#b7c7e8",
+                    "surface-tint": "#5f5e5e",
+                    "secondary-container": "#e2dfdb",
+                    "on-surface": "#1c1b1b",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary-fixed": "#d6e3ff",
+                    "on-secondary-fixed-variant": "#474744",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e5b",
+                    "inverse-primary": "#c9c6c5",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#eae7e7",
+                    "surface-container": "#f0eded",
+                    "surface": "#fcf9f8",
+                    "surface-container-highest": "#e5e2e1",
+                    "outline": "#747878",
+                    "secondary-fixed": "#e5e2de",
+                    "outline-variant": "#c4c7c7",
+                    "on-background": "#1c1b1b",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#313030",
+                    "primary-container": "#1c1b1b",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#636260",
+                    "secondary-fixed-dim": "#c8c6c2",
+                    "on-primary-container": "#858383",
+                    "on-tertiary-fixed": "#0a1c35",
+                    "on-surface-variant": "#444748",
+                    "tertiary": "#000000",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#1c1c1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-mobile": "20px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Chivo"],
+                    "headline-xl": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Chivo"],
+                    "label-caps": ["JetBrains Mono"],
+                    "display-lg": ["Playfair Display"],
+                    "button-text": ["Chivo"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["60px", {"lineHeight": "68px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg": ["84px", {"lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .portal-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .ring-1 { width: 90vw; height: 90vw; max-width: 800px; max-height: 800px; margin-top: calc(-45vw); margin-left: calc(-45vw); z-index: 6; }
+        .ring-2 { width: 75vw; height: 75vw; max-width: 650px; max-height: 650px; margin-top: calc(-37.5vw); margin-left: calc(-37.5vw); z-index: 5; }
+        .ring-3 { width: 60vw; height: 60vw; max-width: 500px; max-height: 500px; margin-top: calc(-30vw); margin-left: calc(-30vw); z-index: 4; }
+        .ring-4 { width: 45vw; height: 45vw; max-width: 350px; max-height: 350px; margin-top: calc(-22.5vw); margin-left: calc(-22.5vw); z-index: 3; }
+        .ring-5 { width: 30vw; height: 30vw; max-width: 200px; max-height: 200px; margin-top: calc(-15vw); margin-left: calc(-15vw); z-index: 2; }
+        .ring-6 { width: 15vw; height: 15vw; max-width: 100px; max-height: 100px; margin-top: calc(-7.5vw); margin-left: calc(-7.5vw); z-index: 1; }
+
+        @media (min-width: 1024px) {
+            .ring-1 { margin-top: -400px; margin-left: -400px; }
+            .ring-2 { margin-top: -325px; margin-left: -325px; }
+            .ring-3 { margin-top: -250px; margin-left: -250px; }
+            .ring-4 { margin-top: -175px; margin-left: -175px; }
+            .ring-5 { margin-top: -100px; margin-left: -100px; }
+            .ring-6 { margin-top: -50px; margin-left: -50px; }
+        }
+
+        .perspective-container {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+        }
+
+        .separation-active .ring-1 { transform: translateZ(300px); box-shadow: 0 40px 60px rgba(0,0,0,0.5); }
+        .separation-active .ring-2 { transform: translateZ(150px); box-shadow: 0 30px 50px rgba(0,0,0,0.4); }
+        .separation-active .ring-3 { transform: translateZ(0px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .separation-active .ring-4 { transform: translateZ(-150px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .separation-active .ring-5 { transform: translateZ(-300px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .separation-active .ring-6 { transform: translateZ(-450px); }
+
+        .texture-metal { background: radial-gradient(circle, #e2dfdb 0%, #c9c6c5 50%, #5f5e5b 100%); }
+        .texture-leather { background: radial-gradient(circle, #384763 0%, #0a1c35 100%); }
+        .texture-denim { background: radial-gradient(circle, #474744 0%, #1c1c1a 100%); }
+        .texture-mech { background: repeating-linear-gradient(45deg, #747878 0px, #747878 10px, #5f5e5e 10px, #5f5e5e 20px); }
+        .texture-light { background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); border: 2px solid #ffffff; }
+        .texture-core { background: #000000; box-shadow: inset 0 0 50px #ffffff; }
+    </style>
+</head>
+<body class="bg-primary text-on-primary min-h-screen overflow-hidden flex flex-col font-body-md selection:bg-surface-dim selection:text-primary relative perspective-container" id="main-container">
+<!-- Ambient Background -->
+<div class="absolute inset-0 bg-primary z-0 opacity-90">
+<div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" data-alt="A highly detailed, cinematic background image of a vast, dark, mechanical industrial space with subtle cinematic lighting. Deep blacks and moody shadows are prominent, creating a dramatic, high-contrast light-mode aesthetic. The atmosphere is tense and structurally complex, serving as a backdrop for a glowing mechanical portal." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZ71oz74AOqLTXETwEqDU1WIHQSmFwFUsErvATNJkMSWe0dgEvCRsqdVYyn0cZFayYPMfOLeO5R-_h2etAAw7Dii4l8BXdRlfrIxiF95qgrIv1VXcm-mgk0snYL9vCc_rCNwg_z_JJ3usHfyR2eLfVR7cAkLMzxNHTb0sjynl8I9q_eKj9To5ZkhN8jCTW2I62DD_N9fFIHrbiYDyByJyyTvOsNAggHKmQm17SawneYCEOPa03G0eYhQ')"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow relative z-10 w-full h-screen flex items-center justify-center">
+<!-- Concentric Portal Rings -->
+<div class="relative w-full h-full">
+<!-- 1. Outer engraved brushed-metal ring -->
+<div class="portal-ring ring-1 rounded-full texture-metal border-4 border-surface-dim/20 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-black/40 rounded-full"></div>
+</div>
+<!-- 2. Tooled-leather ring -->
+<div class="portal-ring ring-2 rounded-full texture-leather border-2 border-surface-bright/10 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-multiply" data-alt="A close-up macro texture of intricately tooled, dark artisanal leather. The lighting is dramatic, highlighting the deep grooves and craftsmanship of the leatherwork. The aesthetic is rugged luxury, with deep indigo and charcoal tones blending into the dark cinematic environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYZ3wydkVwaCGaCjQOAslyzDJOk-wheTCV1OHtdJRNQfGFXCvqE8yxDvtUTgQah6tYkbuU05I9yh-4_h6sIKD2RxCQsH8oF4TWjW_2wkLerVSEQKh_R44bItCqce0EjzpSbbXXD3OPkg8RNfqiT_UIbXdT_uXcdxNtAUC1av-d-h608hh0_tovbTwW7TzC1evRo0ADhBULb4gw6IOmtbYZmR-N_FMwKKRWTU7n2z59ec8k39kJS_gYRg')"></div>
+</div>
+<!-- 3. Indigo-denim textile ring -->
+<div class="portal-ring ring-3 rounded-full texture-denim border-2 border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-overlay" data-alt="A highly detailed texture of heavy, premium indigo denim fabric. The weave is visible and robust, illuminated by striking, high-key directional light that creates harsh shadows within the threads. The aesthetic is industrial fashion, deeply textured and rich in dark blue and black hues." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAf-oJt1bsUuqd1chG8P4po3NDjUXWS9ToFP_Fcy9eN5WA87ublng5nwN3Q2hpOEd0lEKNR-Om7DzhhZWJH1KzjNXj3Tdsm7tKYBtkXob1MjWOmA_3u1StR6yQ3MR19a_xUcvuVHtn8YPh6GRToQgCwkdIY49NPcTT9oMKIqpevlfwnsRraW7zQ65IEatZHeShPsoMJkJFVjc9tAXmmTAANmiBddSxbDoxs7JAVHKGtse8-ctoeaM9lDg')"></div>
+</div>
+<!-- 4. Mechanical warehouse-routing ring -->
+<div class="portal-ring ring-4 rounded-full texture-mech flex items-center justify-center border border-surface-dim">
+<div class="absolute inset-0 border-[10px] border-dashed border-primary/50 rounded-full animate-[spin_60s_linear_infinite]"></div>
+</div>
+<!-- 5. Spectral-light ring -->
+<div class="portal-ring ring-5 rounded-full texture-light flex items-center justify-center animate-[pulse_3s_ease-in-out_infinite]">
+</div>
+<!-- 6. Inner Frontier Engine aperture -->
+<div class="portal-ring ring-6 rounded-full texture-core flex items-center justify-center shadow-[0_0_100px_rgba(255,255,255,0.2)]">
+<span class="material-symbols-outlined text-surface-bright/80 font-bold" style="font-size: 48px; font-variation-settings: 'FILL' 1;">trip_origin</span>
+</div>
+</div>
+<!-- UI Overlays -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none p-margin-mobile md:p-margin-desktop flex flex-col justify-between z-50">
+<!-- Top Nav Overlay Area (Simulated) -->
+<div class="flex justify-between items-start w-full">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-surface-bright">L&amp;B</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-surface-bright pointer-events-auto cursor-pointer hover:text-outline-variant transition-colors">menu</span>
+</div>
+</div>
+<!-- Chapter Indicator -->
+<div class="flex flex-col items-center justify-center pointer-events-auto">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface-bright mix-blend-difference opacity-90 tracking-widest text-center">
+                    08: SEPARATION
+                </h1>
+<p class="font-label-caps text-label-caps text-surface-bright/70 mt-4 tracking-[0.2em] uppercase">
+                    The Frontier Engine Initiates
+                </p>
+</div>
+<!-- Bottom Experience Selector (Simulated) -->
+<div class="flex justify-center w-full pointer-events-auto pb-8">
+<div class="flex items-center gap-8 bg-surface/10 backdrop-blur-md px-8 py-3 rounded-full border border-surface-bright/20">
+<span class="font-label-caps text-label-caps text-surface-bright opacity-50 hover:opacity-100 cursor-pointer transition-opacity">Cinema</span>
+<span class="material-symbols-outlined text-surface-bright" style="font-size: 16px; font-variation-settings: 'FILL' 1;">lens</span>
+<span class="font-label-caps text-label-caps text-surface-bright opacity-50 hover:opacity-100 cursor-pointer transition-opacity">Instant</span>
+</div>
+</div>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('main-container');
+            
+            // Trigger separation animation after a brief delay
+            setTimeout(() => {
+                container.classList.add('separation-active');
+            }, 500);
+
+            // Add subtle mouse parallax effect for depth
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                
+                const rings = document.querySelectorAll('.portal-ring');
+                rings.forEach((ring, index) => {
+                    const depth = 6 - index;
+                    ring.style.transform = `
+                        translateZ(${ring.style.transform.match(/translateZ\((.*?)\)/)?.[1] || '0px'})
+                        rotateX(${-y * depth}deg) 
+                        rotateY(${x * depth}deg)
+                    `;
+                });
+            });
+        });
+    </script>
+</body></html>

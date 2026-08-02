@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#474744",
+                        "on-background": "#1c1b1b",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "on-tertiary-container": "#7584a3",
+                        "inverse-primary": "#c9c6c5",
+                        "surface": "#fcf9f8",
+                        "tertiary-fixed": "#d6e3ff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "on-primary-container": "#858383",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-high": "#eae7e7",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444748",
+                        "secondary-fixed": "#e5e2de",
+                        "outline-variant": "#c4c7c7",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5b",
+                        "inverse-surface": "#313030",
+                        "outline": "#747878",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "tertiary-container": "#0a1c35",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-container": "#e2dfdb",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fcf9f8",
+                        "primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#5f5e5e",
+                        "on-secondary-container": "#636260",
+                        "on-surface": "#1c1b1b",
+                        "tertiary": "#000000",
+                        "primary-container": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Chivo"],
+                        "body-md": ["Chivo"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "button-text": ["Chivo"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "button-text": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-xl": ["60px", { "lineHeight": "68px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Reduced motion setup */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Hardware texture simulation */
+        .hardware-texture {
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden selection:bg-tertiary-container selection:text-on-tertiary-container fade-in">
+<!-- Top Navigation (Web Only) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm transition-colors duration-300">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">L&amp;B Frontier House</div>
+<nav class="flex space-x-8 items-center">
+<a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Women</a>
+<a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Men</a>
+<a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Custom</a>
+<a class="font-ui-button text-ui-button text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Wholesale</a>
+</nav>
+<div class="flex space-x-6 items-center">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200 text-primary">
+<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+</button>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200 text-primary">
+<span class="material-symbols-outlined text-2xl">person</span>
+</button>
+</div>
+</header>
+<!-- Mobile Top Brand (replaces nav structure on mobile) -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md px-margin-mobile py-4 flex justify-center items-center border-b border-outline-variant/10">
+<div class="font-display-lg-mobile text-headline-md tracking-tighter text-primary">L&amp;B Frontier House</div>
+</header>
+<main class="w-full pt-[80px] md:pt-[120px] pb-32">
+<!-- Hero Static Poster -->
+<section class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16">
+<div class="relative w-full aspect-[4/5] md:aspect-[21/9] overflow-hidden rounded-lg">
+<div class="w-full h-full bg-cover bg-center absolute inset-0" data-alt="A striking editorial fashion photograph showcasing a premium leather jacket and heavy denim jeans on a model standing against a rugged, minimalist concrete wall. The lighting is high-contrast cinematic, creating deep shadows and highlighting the rich textures of the leather and fabric. The mood is grounded elegance and rugged sophistication, adhering to a color palette of deep blacks, bone whites, and rich earth tones. Shot with a sharp focus to emphasize artisanal craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAsWGLUJ1qD9nGV3DTF163j0AYkAvM7XskEwt5gkWopIhus3LcZeFfOycZ1EvfMJ3hWmePpEvllC4S5gn97E15nO61cvyREEi3kyBx7v4oPIvVOWe22F0GIq0UlLaAqZNnXbc5Apn6lJO6iQtITbjkq6bV8sufNpRYijrAPVDWwSZomX9z7V7cqKoH9RqGYU89Y95a-kE0z2-SNKfh66gDYdHiuYe61AtFmrP7kM1-LQqmObZNOH6bSQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 md:p-12 flex flex-col items-start">
+<span class="font-label-caps text-label-caps text-surface-variant mb-2 tracking-widest uppercase">The Heritage Collection</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-6 leading-tight">Forged for the<br/>Frontier.</h1>
+<button class="bg-primary text-on-primary font-button-text text-button-text px-8 py-4 rounded hardware-texture flex items-center justify-center space-x-2 active:scale-95 transition-transform">
+<span>Shop Heritage</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Category Grid (Bento style) -->
+<section class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Large Category -->
+<a class="group relative col-span-1 md:col-span-8 aspect-square md:aspect-[16/9] overflow-hidden rounded-lg bg-surface-container block active:scale-[0.98] transition-transform" href="#">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="Close-up editorial shot of bespoke leatherwork on a custom saddle or bag, focusing on heavy stitching and oxidized silver hardware. The lighting is warm and directional, emphasizing the rich patina of the brown leather and the tactile quality of the craftsmanship. The composition is asymmetrical, leaving negative space for sophisticated typography. The aesthetic aligns with high-fashion minimalism and cinematic luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4q-LBOBr4VZKzCcYz5IDVA104D2MjTERPgL4w1_LrJ6kSQPDISWJAG67ni7NjOsiNIsW8Od2NRONyUPFlrAKBZiI_RVGbPBE_u4d0UJV5HN6dq_bSTWqBOwB9y8cyhn7BtD3ezH5wiatRIel-P8sN7b87FtKJLxKeKCc6oRuY_JF535jlcCs0bhlgSfHPuJr8UjlwJtHcCSJ84IFGY7SelIVA_F9DBX0a3U_-4lVwCYedRTmlXLBh8w')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-500"></div>
+<div class="absolute top-4 right-4 bg-surface text-primary px-3 py-1 font-label-caps text-label-caps">Bespoke</div>
+<div class="absolute bottom-6 left-6">
+<h2 class="font-headline-md text-headline-md text-on-primary">Custom Leathercraft</h2>
+</div>
+</a>
+<!-- Tall Category -->
+<a class="group relative col-span-1 md:col-span-4 aspect-[3/4] md:aspect-auto overflow-hidden rounded-lg bg-surface-container block active:scale-[0.98] transition-transform" href="#">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A fashion portrait of a model wearing high-end, heavy-denim workwear with a refined silhouette, standing in an expansive, minimalist white studio space. The mood is confident and grounded. The lighting is soft but high-key, highlighting the stark contrast between the deep indigo denim and the pristine bone-white background. The image evokes a sense of modern Western wear meeting contemporary high fashion." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDS1AQfMnTTLbrBYDxRVIKBuYQ-gUsm_RsgcgdgtN1cFiwvt6Cw7kLBIn7Dn__d-SDMGzYG8NC3AnfRMAo6Tkj16UOzQLRu3SUxaDeIIDJNcFb5WVNDxvvA5s3QF1GaEpSP5d4sTpkwj1BkmYF9byYMl6KWomcImZe-hH7PctRVWgSwig4I4nTPYLrAue23UQ2HCzifZWz8MQ1ABYfuLIFDQtzosO7UlLAowzW2_t1YzZzBF3xgI9utQw')"></div>
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6">
+<h2 class="font-headline-md text-headline-md text-on-primary">Heavy Denim</h2>
+</div>
+</a>
+<!-- Small Category 1 -->
+<a class="group relative col-span-1 md:col-span-6 aspect-[4/3] overflow-hidden rounded-lg bg-surface-container block active:scale-[0.98] transition-transform" href="#">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A detailed flat-lay product shot of premium silver jewelry and belt buckles resting on a slab of dark, textured slate. The metallic surfaces feature high-gloss silver gradients, simulating hardware reflections. The lighting is crisp and precise, creating a sharp, structural hierarchy. The overall aesthetic is grounded elegance and cinematic luxury, emphasizing the materiality of the metal against the raw stone." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBt9WnMW17iWwiZx-Ear55JX4UcRrx89V5iWIsB8cUWSwNv-BmS7CNRPk0dHSV4qHDAQmAh3DfPKw5tl8beZRHvsufkhVwojIxZVbuDNL7U1Zhdm-x_lIzPQ7mIYlBV8FdoJiOfCE3R05TuHAAMTePK9wuIpF3gst60a_fCNCxa7JKwGtfXzjytbeGJBh3IktPbhmvxvP1PaWDGwrnc_9ELunX9Ac8BWXhHMTHEkTrL-HhG39v6pgjORg')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6">
+<h2 class="font-headline-md text-headline-md text-on-primary">Silver Hardware</h2>
+</div>
+</a>
+<!-- Small Category 2 -->
+<a class="group relative col-span-1 md:col-span-6 aspect-[4/3] overflow-hidden rounded-lg bg-surface-container block active:scale-[0.98] transition-transform" href="#">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A lifestyle shot of premium leather boots resting on a dusty wooden floorboards in a dimly lit, rustic setting. A sliver of dramatic, natural light cuts across the boots, highlighting the artisanal quality and rugged durability. The color palette focuses on deep blacks, rich browns, and sepia tones, evoking a timeless frontier heritage viewed through a modern, high-contrast editorial lens." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDf6X-My3eiVwi2cIajbXawL7TaIpkS8RFmSMcNuWK1Q4e310dySg8agJ77Fbqf7LUbpzTXOqKezCvfyBa5KYc_T9d9XXLyperKppSdKdawp1djdo4-FPU-HXJaF6f10AOzhGGjUwfNOO48eKwODZi1ZLaBFm2H3cEx3BFokwr03MNBRyO0Tn2jzVsJ1WCfsX3bhD4p_mvBu5HPdWQPR62vWEvu7uAGzZJR1ZQS73_5H8neHJvQLn-e3A')"></div>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6">
+<h2 class="font-headline-md text-headline-md text-on-primary">Footwear</h2>
+</div>
+</a>
+</div>
+</section>
+<!-- Commerce Access (Horizontal Scroll) -->
+<section class="w-full py-section-gap">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-6 flex justify-between items-end">
+<h3 class="font-headline-md text-headline-md text-primary">New Arrivals</h3>
+<a class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors" href="#">View All</a>
+</div>
+<div class="w-full overflow-x-auto hide-scrollbar pl-margin-mobile md:pl-margin-desktop pb-8">
+<div class="flex space-x-6 w-max pr-margin-mobile md:pr-margin-desktop">
+<!-- Product Card 1 -->
+<div class="w-[280px] md:w-[320px] group flex flex-col">
+<div class="relative w-full aspect-[3/4] mb-4 bg-surface-container overflow-hidden rounded">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A clean, minimalist product shot of a black leather jacket hanging against a stark bone-white background. The jacket is meticulously crafted with silver zipper details and heavy stitching. The lighting is even and bright, ensuring all product details are visible, typical of a high-end e-commerce gallery. The composition is straightforward and focused on the garment's structural hierarchy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtE-ZCHFAeWflwXa9TUVWrEQwpNFVzsXMBVCHUkOPspKpCYHq-X9A21xGTyUtjoIwil__Act0xAvvJniCrYzXb_O8WNAIw4CSS0mgPACOJgad-1F2d2G6qWGquoGWaVTX87eGXi1yxQCPFpcqyxW1qVLEX6UAD1k8yZLGTrGp0D0EulJA_nW0eAA-QMWkgkBTHNNwh-P1NIERLgLhtf_OYCGWxyGKKpfN5wr9GefGbUp1VavED1v6tqQ')"></div>
+<!-- Quick Add overlay -->
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface/90 text-primary font-button-text text-button-text px-6 py-3 rounded backdrop-blur-sm transition-all duration-300 translate-y-4 group-hover:translate-y-0 w-[90%] hardware-texture">
+                                Quick Add
+                            </button>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Frontier Jacket</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Ink Black</span>
+</div>
+<span class="font-body-md text-body-md text-primary">$850</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="w-[280px] md:w-[320px] group flex flex-col">
+<div class="relative w-full aspect-[3/4] mb-4 bg-surface-container overflow-hidden rounded">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist product image of a pair of heavy raw denim jeans, folded neatly on a bone-white surface. The texture of the indigo denim is highly detailed, showing the weave and stiffness of the fabric. Small oxidized silver rivets are visible. The lighting is sophisticated and bright, creating a premium digital gallery feel. The image embodies grounded elegance and artisanal quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkqr03XXKLPSs6aetTf8JktzQSmkH_znmMH7zfp3L5HQ_xzweFbPzUSJpH9EiWKbfRJtYRrGhgBOkmR3s_eUprczmHc40k2EoaDoTI5iS9qRqL77VqM9KrGN-CgREIlGIc9rWk4q1UyeVOhJ-viZhvK69rrTw4lAy7XcJUZfCAuK1hCYpQ6HRQqVKpXqSHsdjj1VZRKSC6xwTe6vl8H5KRzuxkYeL3qHOtodmLfSsrEJmZQGIE-Q3dfQ')"></div>
+<div class="absolute top-3 right-3 bg-primary text-on-primary px-2 py-1 font-label-caps text-label-caps text-[10px]">NEW</div>
+<!-- Quick Add overlay -->
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface/90 text-primary font-button-text text-button-text px-6 py-3 rounded backdrop-blur-sm transition-all duration-300 translate-y-4 group-hover:translate-y-0 w-[90%] hardware-texture">
+                                Quick Add
+                            </button>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Raw Selvedge Denim</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Heavy Indigo</span>
+</div>
+<span class="font-body-md text-body-md text-primary">$280</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="w-[280px] md:w-[320px] group flex flex-col">
+<div class="relative w-full aspect-[3/4] mb-4 bg-surface-container overflow-hidden rounded">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A close-up product photograph of a meticulously crafted leather belt featuring an intricate, hand-engraved silver buckle. The belt is laid flat on a pristine white background. The focus is sharp on the metallic hardware, which catches the light to create a tactile, high-gloss reflection. The overall tone is minimalist, luxurious, and distinctly Western in heritage." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdDeaBRnrLXAuO6IO-MG7VsGjYLgS37vy3LqJtN3ZF0yDDyysvD7aog_qVss9qStyziG8TvKM1RCo2mQReFEWodRIzhFxkIb4syIMph6akur9G8KQ8gMpWoCnk7fWr758eb6TlEsFIbmKX5ULzSJP0Uk8yoNzRo2aWqXkJYb0D3ZYBPsNh5BANb-1AULM6GANoGS2KjMycf6CoIe8ieKxUNInLUJEm9o3ypLWfh-XD1es20c1CVypRwg')"></div>
+<!-- Quick Add overlay -->
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface/90 text-primary font-button-text text-button-text px-6 py-3 rounded backdrop-blur-sm transition-all duration-300 translate-y-4 group-hover:translate-y-0 w-[90%] hardware-texture">
+                                Quick Add
+                            </button>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Artisan Belt</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Bespoke Silver</span>
+</div>
+<span class="font-body-md text-body-md text-primary">$195</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="w-[280px] md:w-[320px] group flex flex-col">
+<div class="relative w-full aspect-[3/4] mb-4 bg-surface-container overflow-hidden rounded">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist product shot of a simple, rugged canvas and leather tote bag positioned against a pure white background. The bag displays heavy stitching and sturdy leather handles. The lighting is stark and clear, highlighting the utilitarian yet premium nature of the materials. The aesthetic is clean, modern, and aligned with high-end, functional fashion." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTktIfMW_LXyHBY1rXGlRUY-sEKSZupdU744kTSsYF8il3lo21T5H3VPY7jRTiC5WmjEMCdEfAP7LrTknIns5smOVJizv0FqA8oz3YnHwcYjjYbl5BKai3B9T_Gafdkag5SVycKBbRFrx-rxk0o5d4oXcVLuDFfMmWxnfO7uvoT-kbFobcPv-6EdyH5bOV34wBPDsjp0-wHmMOEZpgjTaUd3Auv5geYB0OK2spORIMv2syMm9j3sWTTA')"></div>
+<!-- Quick Add overlay -->
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface/90 text-primary font-button-text text-button-text px-6 py-3 rounded backdrop-blur-sm transition-all duration-300 translate-y-4 group-hover:translate-y-0 w-[90%] hardware-texture">
+                                Quick Add
+                            </button>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-primary">Canvas Field Tote</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Earth / Leather</span>
+</div>
+<span class="font-body-md text-body-md text-primary">$320</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md border-t border-outline-variant/20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+<a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:scale-90 duration-150 active:bg-surface-container-high w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px] leading-tight">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150 active:bg-surface-container-high w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-label-caps text-[10px] leading-tight">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150 active:bg-surface-container-high w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">architecture</span>
+<span class="font-label-caps text-[10px] leading-tight">Custom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150 active:bg-surface-container-high w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">person_pin_circle</span>
+<span class="font-label-caps text-[10px] leading-tight">Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150 active:bg-surface-container-high w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-label-caps text-[10px] leading-tight">Bag</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-lowest dark:bg-tertiary-container border-t border-outline-variant pb-24 md:pb-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-6 mb-8 md:mb-0">
+<div class="font-display-lg text-headline-lg text-primary dark:text-on-surface mb-6">L&amp;B Frontier House</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Crafting heritage quality goods for the modern frontier. Combining rugged materiality with cinematic luxury.</p>
+</div>
+<div class="col-span-1 md:col-span-6 flex flex-col md:flex-row gap-12 md:justify-end">
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary tracking-widest">Explore</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Brand Story</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Wholesale</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary tracking-widest">Legal</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms</a>
+</div>
+</div>
+<div class="col-span-1 md:col-span-12 mt-16 pt-8 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant text-sm">© 2024 L&amp;B Frontier House. Crafted for the Modern West.</span>
+<div class="flex space-x-4">
+<!-- Social icons could go here -->
+</div>
+</div>
+</div>
+</footer>
+</body></html>

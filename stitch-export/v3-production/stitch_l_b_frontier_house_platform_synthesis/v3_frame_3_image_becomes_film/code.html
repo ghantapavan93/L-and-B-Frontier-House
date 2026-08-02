@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Cinematic Expansion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f7f3f2",
+                      "on-primary-container": "#858383",
+                      "surface-bright": "#fdf8f8",
+                      "outline-variant": "#c4c7c7",
+                      "secondary-container": "#e2dfdb",
+                      "on-tertiary-fixed-variant": "#384763",
+                      "background": "#fdf8f8",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#0a1c35",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c8c6c2",
+                      "surface": "#fdf8f8",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#474744",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#444748",
+                      "on-surface": "#1c1b1b",
+                      "inverse-primary": "#c9c6c5",
+                      "secondary": "#5f5e5b",
+                      "on-tertiary-container": "#7584a3",
+                      "tertiary-fixed-dim": "#b7c7e8",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#f1edec",
+                      "primary-fixed": "#e5e2e1",
+                      "outline": "#747878",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#636260",
+                      "tertiary-container": "#0a1c35",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e5e2de",
+                      "surface-variant": "#e5e2e1",
+                      "primary": "#000000",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-background": "#1c1b1b",
+                      "inverse-on-surface": "#f4f0ef",
+                      "surface-tint": "#5f5e5e",
+                      "primary-container": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#ddd9d8",
+                      "tertiary-fixed": "#d6e3ff",
+                      "on-secondary-fixed": "#1c1c1a",
+                      "inverse-surface": "#313030",
+                      "surface-container-high": "#ebe7e6",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max-width": "1440px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-hero-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-hero": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "ui-button": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-hero-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-hero": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "ui-button": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Film Grain Overlay */
+        .film-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            z-index: 10;
+            opacity: 0.3;
+            animation: noise 0.2s infinite;
+        }
+        @keyframes noise {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); }
+            30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 15%); }
+            50% { transform: translate(-10%, 5%); }
+            60% { transform: translate(15%, 0); }
+            70% { transform: translate(0, 10%); }
+            80% { transform: translate(-15%, 0); }
+            90% { transform: translate(10%, 5%); }
+        }
+
+        /* Cinematic Expansion Animation */
+        .expanding-frame {
+            transition: all 1.5s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        /* Horizontal Scroll Hide */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 top-0">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="#">L&amp;B Frontier House</a>
+<!-- Navigation Links (Hidden on Mobile) -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-primary border-b-2 border-primary pb-1 transition-all duration-500 font-label-caps text-label-caps hover:text-primary transition-colors duration-300 scale-95 duration-200 ease-in-out" href="#">Cinema</a>
+<a class="text-on-surface-variant/60 font-body-md font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">Balanced</a>
+<a class="text-on-surface-variant/60 font-body-md font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">Instant</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex space-x-4 items-center">
+<button class="text-primary hover:text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-primary hover:text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[80px] relative w-full flex flex-col">
+<!-- Expanding Cinematic Area -->
+<section class="relative w-full h-[716px] md:h-[870px] flex items-center justify-center overflow-hidden bg-primary">
+<!-- Expanding Image/Video Container -->
+<div class="expanding-frame relative w-full h-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8" id="cinemaContainer">
+<div class="relative w-full h-full border border-surface-dim/30 overflow-hidden">
+<div class="film-grain"></div>
+<!-- Transitioning Background -->
+<div class="absolute inset-0 bg-cover bg-center transition-all duration-[2000ms] ease-in-out filter grayscale-0 hover:scale-105" data-alt="A highly detailed cinematic still of a master craftsman in a dimly lit, luxurious workshop, intensely focused on hand-stitching a premium leather piece. The scene transitions dramatically from a moody, textural monochrome silver-gelatin style on the edges into a rich, warm, color-graded center featuring deep tobacco browns, burnished brass, and striking cinematic rim lighting. The aesthetic blends rugged western authenticity with high-fashion editorial polish." id="heroVisual" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLnrufgEcwII9V5lPhrBbu2QlzHg2ggjJFcvp_BxV4qNIGSWTajecM2Q00TeoGVkvF0Ti05SZ8AY_XVXK1PcDkMNeuLXuzXbxbHcIOV8ZGMi-Dd8kQRIQkvBL0k9oxypIBV-lXhQ_q7WQbEI3opPoT-fgWffHQbcrQTDUE7zvoRDjGTUUMy5ew044vuXiuIUN-XzcsGamAJNyCrcxWcaZT_7cpS1oR_q18OtBpUvjG6A0l39Vy6k9a3A')"></div>
+<!-- Vellum Overlay (Stacking) -->
+<div class="absolute inset-0 bg-surface/10 pointer-events-none"></div>
+<!-- Centered Title Overlay -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mix-blend-overlay z-20">
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-primary text-center opacity-80 uppercase tracking-widest" style="font-variation-settings: 'wght' 700;">The Process</h1>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizontal Film Strip -->
+<section class="w-full bg-surface-container-low py-16 relative border-t border-outline-variant/20">
+<div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-md text-headline-md text-primary mb-8 border-b border-outline-variant/30 pb-4 inline-block">Chapter Progression</h2>
+<div class="flex overflow-x-auto hide-scroll gap-6 pb-8 snap-x snap-mandatory cursor-grab active:cursor-grabbing" id="filmStrip">
+<!-- Chapter 1 -->
+<div class="snap-center shrink-0 w-64 md:w-80 group">
+<div class="relative aspect-video mb-4 overflow-hidden border border-outline-variant/50">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
+<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="A close-up, monochromatic editorial shot of architectural sketches and fabric swatches pinned to a worn wooden drafting table. Soft natural light spills across the textured paper, emphasizing the minimalist, bespoke design process of the modern frontier aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMww67wlGMW2mRWcDAcEmYPvj5lRoTmITsH03vTUP_2cwexLhlyytMvpUtZP0ETzOVdRrcT0pXgdZuyf84EWBdEHVPwa1WUKHSpJx28cWNGxrVfGaUk4kcZqtO-zueDDVbUR3VYZ-UmVhIdCGtB47ftbi1GnLS8u6ViQhmLjtbGjTmImgciDIwVFt2gMczkkMrh5_JFyVeBKkcKcqKBjF25AD6Kw9INwhfU84DVI46n2Bg6dXeMc5uWg')"></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">01</span>
+<div class="h-[1px] w-8 bg-on-surface-variant/50"></div>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-primary">DESIGN</h3>
+</div>
+<!-- Chapter 2 -->
+<div class="snap-center shrink-0 w-64 md:w-80 group">
+<div class="relative aspect-video mb-4 overflow-hidden border border-outline-variant/50">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
+<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="A striking cinematic shot of rugged hands carefully inspecting a large roll of raw, indigo selvedge denim in a sunlit, dusty warehouse. The transition from monochrome shadows to rich indigo and amber highlights captures the essence of tactile materiality and sourcing premium goods." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOIK3_2I80rVrL40O0D79RtVvOQqimfYtCQt9fZRprmsxThEq3Pg-2mzCaAvF1EcxAuB__TMOk2i1HYrvEL2kefApCEZC-tWH6I6Umo4yK_vEGyoF1X6ON4g5ecTtCogufZ9-NAfjjsOo4lvyhPT0REOz3N5GlDWFSO1E1gxva63nZtG_kqQjgBnaJ58b7oswkHmEZXuBWpVyl0LOPfIhoXyzD4rPd2x5KWgZ2D3o_Yz4rS7u_XFSp2w')"></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">02</span>
+<div class="h-[1px] w-8 bg-on-surface-variant/50"></div>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-primary">SOURCE</h3>
+</div>
+<!-- Chapter 3 -->
+<div class="snap-center shrink-0 w-64 md:w-80 group">
+<div class="relative aspect-video mb-4 overflow-hidden border border-outline-variant/50">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
+<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="Dynamic editorial macro photography of a vintage sewing machine needle punching through heavy canvas, capturing motion blur and flying dust particles. The lighting is high-contrast, moody, and focuses intensely on the raw mechanical craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5PhxGGJ36AXf_A6NIj28-6UWEUZDiPEST3oZwCPdXaBWh4YnncA8gsuglfLfjCb9EHm9EbAgj1XZXkl5Rkts0HeEhXjcZsmk6ny6dm3XCiGmqZVfcx8rTk4pT3kEPWaYYFopi0wBRkh3RC-vRPjQYLmVKkt_g6MsFrWWDVGrvkoRGnWyQWUpg4KovPZIynJtLXdcN4Jsung-gEZhxSAHDggX4bEy7Hrm3uFt8VFUpy-Pah8YgSsFQTA')"></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">03</span>
+<div class="h-[1px] w-8 bg-on-surface-variant/50"></div>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-primary">CRAFT</h3>
+</div>
+<!-- Chapter 4 -->
+<div class="snap-center shrink-0 w-64 md:w-80 group">
+<div class="relative aspect-video mb-4 overflow-hidden border border-outline-variant/50">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
+<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="A sophisticated silhouette of a model standing before an antique trifold mirror in a high-end bespoke atelier. The focus is on the flawless drape and structural fit of a modern western-inspired jacket. The tone is deeply elegant, using deep blacks and soft ambient reflections." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZ_cY_btBwrmutz-_OvOf0e3ZWkQR8x_4PDq5T4ptS1OohkVXj0zd96RJmPadmRfDNo3dTXVL9at7rjRotQ2GMWjecs56hj-XUNhqm__ia7yc8LtAUW0bVap-q1ONkPHMDhADOWnqFwzF7pbLZ26m_InnxO2wrsh5-e7kCoyq0Ns0LRzaTcB7dUuJzqReR5iGX9-Ci_kEUnnBlxYhJ6lepQ-1sw5hOz59NdcpFUNHswIiNAJTjCWhg_A')"></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">04</span>
+<div class="h-[1px] w-8 bg-on-surface-variant/50"></div>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-primary">FIT</h3>
+</div>
+<!-- Chapter 5 -->
+<div class="snap-center shrink-0 w-64 md:w-80 group">
+<div class="relative aspect-video mb-4 overflow-hidden border border-outline-variant/50">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
+<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" data-alt="A wide, sweeping landscape shot of a figure wearing the finished garments, walking away across a vast, minimal desert salt flat under a harsh midday sun. The image is mostly negative space, conveying luxury, isolation, and rugged durability against the elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC69_Afe1x1xcivhXeE-kfinD0Oa7iWV36KiTf2YHax53dveCeC39SRzNRuCspauJuI8C2pzc1ts7skRCBKAL9Pq005ioLd_8li_NwuEYASb90cLpWE_PbMtshSfiTD5cT1Vd5c7LTrp6WU47Rp2vtN0_ryuUCc3QGHwxs7TgqD-Dps3tMt6gb163sMKD57kUufhLdfVv1I8RHVu73sIbmElSxjPrayjRHWHxzTprfH88f275waJxeszw')"></div>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">05</span>
+<div class="h-[1px] w-8 bg-on-surface-variant/50"></div>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-primary">WEAR</h3>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full relative bottom-0 bg-primary px-margin-mobile md:px-margin-desktop py-16 flex flex-col items-center gap-8 border-t border-outline-variant/10">
+<div class="font-headline-md text-headline-md text-on-primary">L&amp;B Frontier House</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-label-caps text-label-caps text-on-primary/60 hover:text-surface-bright transition-colors duration-500 ease-in-out" href="#">The Cinema</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 hover:text-surface-bright transition-colors duration-500 ease-in-out" href="#">Bespoke Services</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 hover:text-surface-bright transition-colors duration-500 ease-in-out" href="#">Terms of Craft</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 hover:text-surface-bright transition-colors duration-500 ease-in-out" href="#">Privacy</a>
+</nav>
+<div class="font-body-md text-body-md text-on-primary/60 text-center">
+            © 2024 L&amp;B Frontier House. Crafted for the Modern Horizon.
+        </div>
+</footer>
+<script>
+        // Simple interaction to simulate the "grid expanding to full screen" concept
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('cinemaContainer');
+            const hero = document.getElementById('heroVisual');
+            
+            // Start slightly constrained to simulate the 'grid' origin
+            setTimeout(() => {
+                container.classList.remove('px-margin-mobile', 'md:px-margin-desktop', 'py-8', 'max-w-container-max-width');
+                container.classList.add('px-0', 'py-0', 'max-w-none');
+                hero.classList.remove('grayscale-0');
+            }, 500);
+
+            // Drag to scroll for film strip
+            const slider = document.getElementById('filmStrip');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll-fast
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" data-experience="cinema" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House V3 - Interactive Prototype</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#c4c7c7",
+                        "surface-bright": "#fdf8f8",
+                        "surface": "#111111", /* Darker surface for cinema feel */
+                        "on-surface": "#ffffff"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-hero-mobile": ["Playfair Display"],
+                        "display-hero": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "ui-button": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "display-hero": ["84px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-hero-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .mix-blend-difference { mix-blend-mode: difference; }
+        .text-outline-silver {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        
+        /* Experience Modes */
+        html[data-experience="instant"] .cinematic-anim { transition: none !important; transform: none !important; opacity: 1 !important; animation: none !important; }
+        html[data-experience="balanced"] .cinematic-anim { transition-duration: 0.3s !important; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Screen transitions */
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .screen.active {
+            display: flex;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-primary text-on-primary overflow-x-hidden w-full h-screen relative font-body-md">
+<!-- Global Navigation -->
+<header class="fixed top-0 w-full z-50 bg-primary/40 backdrop-blur-md border-b border-outline-variant/20">
+<div class="flex justify-between items-center w-full px-6 md:px-16 py-4 max-w-[1440px] mx-auto">
+<!-- Brand -->
+<a class="font-headline-md text-2xl md:text-[32px] font-bold tracking-tighter text-on-primary z-20 cursor-pointer" onclick="navigateTo('ignition')">
+                L&amp;B Frontier House
+            </a>
+<!-- Global Nav Links -->
+<nav class="hidden lg:flex space-x-8">
+<a class="font-label-caps text-xs uppercase text-on-primary/70 hover:text-on-primary transition-colors cursor-pointer tracking-widest" onclick="navigateTo('ignition')">Ignition</a>
+<a class="font-label-caps text-xs uppercase text-on-primary/70 hover:text-on-primary transition-colors cursor-pointer tracking-widest" onclick="navigateTo('homepage')">Homepage</a>
+<a class="font-label-caps text-xs uppercase text-on-primary/70 hover:text-on-primary transition-colors cursor-pointer tracking-widest" onclick="navigateTo('atelier')">Custom Atelier</a>
+<a class="font-label-caps text-xs uppercase text-on-primary/70 hover:text-on-primary transition-colors cursor-pointer tracking-widest" onclick="navigateTo('wholesale')">Wholesale</a>
+</nav>
+<!-- Experience Selector -->
+<nav class="hidden md:flex space-x-6 items-center bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+<button class="exp-btn font-label-caps text-[10px] text-on-primary border-b-2 border-on-primary pb-0.5 tracking-widest" data-mode="cinema" onclick="setExperience('cinema')">Cinema</button>
+<button class="exp-btn font-label-caps text-[10px] text-on-primary/50 hover:text-on-primary tracking-widest" data-mode="balanced" onclick="setExperience('balanced')">Balanced</button>
+<button class="exp-btn font-label-caps text-[10px] text-on-primary/50 hover:text-on-primary tracking-widest" data-mode="instant" onclick="setExperience('instant')">Instant</button>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-6 text-on-primary z-20">
+<button class="hover:text-surface-bright transition-colors duration-300"><span class="material-symbols-outlined">search</span></button>
+<button class="hover:text-surface-bright transition-colors duration-300"><span class="material-symbols-outlined">shopping_bag</span></button>
+</div>
+</div>
+</header>
+<!-- Prototype Container -->
+<div class="w-full h-full pt-[72px] overflow-y-auto overflow-x-hidden relative" id="app-container">
+<!-- SCREEN: Ignition (Frame 1) -->
+<main class="screen active relative w-full h-[calc(100vh-72px)] flex-col items-center justify-center px-6 md:px-16 max-w-[1440px] mx-auto cinematic-anim" id="screen-ignition">
+<!-- Background Shader -->
+
+<div class="relative w-full max-w-5xl flex flex-col items-start justify-center h-full z-10 pointer-events-none flex-grow">
+<h1 class="font-display-hero-mobile md:font-display-hero text-outline-silver z-0 translate-y-12 md:translate-y-24 opacity-80 cinematic-anim">
+                    NOT THE WEST
+                </h1>
+<h1 class="font-display-hero-mobile md:font-display-hero text-on-primary mix-blend-difference z-30 -translate-y-4 md:-translate-y-8 cinematic-anim">
+                    YOU REMEMBER.
+                </h1>
+</div>
+<div class="absolute inset-0 flex items-center justify-center md:justify-end md:pr-32 z-20 pointer-events-none">
+
+</div>
+<div class="absolute bottom-12 md:bottom-16 w-full px-6 md:px-16 flex flex-col md:flex-row justify-between items-center z-40 max-w-[1440px] left-1/2 -translate-x-1/2">
+<button class="group flex items-center gap-4 bg-transparent border-b-2 border-on-primary pb-2 font-ui-button text-[14px] text-on-primary uppercase tracking-widest hover:border-surface-variant transition-all duration-500 mb-8 md:mb-0 cinematic-anim" onclick="scrollToNextSection('contact-sheet-section')">
+<span class="material-symbols-outlined transform group-hover:translate-x-2 transition-transform duration-300">arrow_downward</span>
+                    ENTER THE FRONTIER
+                </button>
+<a class="font-label-caps text-[12px] text-on-primary/60 hover:text-on-primary uppercase tracking-widest transition-colors duration-300 underline underline-offset-4 decoration-1 decoration-on-primary/30 hover:decoration-on-primary cursor-pointer" onclick="navigateTo('homepage')">
+                    SKIP TO SHOP
+                </a>
+</div>
+<!-- Scrollable content below fold (Frame 2: Contact Sheet) -->
+<div class="absolute top-[100vh] left-0 w-full min-h-screen bg-surface flex flex-col items-center py-24 px-6 z-30" id="contact-sheet-section">
+<h2 class="font-headline-lg text-4xl md:text-5xl mb-16 text-center">The Living Contact Sheet</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+<!-- Left -->
+<div class="flex flex-col gap-8 opacity-70 cinematic-anim hover:opacity-100 transition-opacity">
+<img alt="Desert landscape" class="w-full h-64 object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuvgZ8ZcTPcaw00zhLzYiRGo0OqnUwxGU-36DlvSFawpPjppiaj1CqN6WS4nTHTUu4v2Xij8p3nn7E0iIXa0tBUtNzdvWRB0qxw5d3s24JcyMElid9kgKMOjpYDvzt2XLXsVopuxVj5mOelqLOn3adew2-3qkE7wK9HM76-B-5bwWZdBdAhfMKrzolBt75I-xNnn23-2j7UP60wBGtcX0PqcuMBF3K9YHgz6oev5Oq6inNPmh2jMUMRA"/>
+<img alt="Leather detail" class="w-full h-96 object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFvxbPMllPKGrICnH-eNEU9vLH2PyhjoFFuKnakOmRzGBp2GCpHNh4_2zYCDbIetakuZtRn8k0iM5NspbxNZgfav0GW0fZ5Pfpcr-PJBGHb_HRwdqaIxYX7tiHdtr6eU4Bb2ofrohXqnJDNBGypsVW6YNCcG-eKtIasIWFExPPmudR5WQR1gTeA0mA0IFLYNwZ645o3Pn16NgsKOqOTusO5VVSQHGbbj40A-MF6xqw9G5DZy39J-WoMQ"/>
+</div>
+<!-- Center (Interactive trigger for Frame 4) -->
+<div class="flex flex-col items-center justify-center relative group cursor-pointer" onclick="navigateTo('shoppable-film')">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10 cinematic-anim"></div>
+<img alt="Main editorial" class="w-full h-[600px] object-cover border-4 border-surface-variant/30 cinematic-anim group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWObSZKlouk7aO6tMF6W8f6IZGg1hps0z9Re4W1esS5Nc0c96bV8TQt8CSDAW8P7duYjZQ1O389MARSuu5_CuFSmFiQClld45ZCoYGWGIi4rxxwQ9zvg-oKepQ61aaAKe3o8HhzlYWaL8Ce9AO8J3dazA3JPvVpF63ZiaJt2cjXmpEMGKGP2DfRoeF3aSFCnNVP5MUHeub3F_yFuHfpdE4KhyHZOFDL-IrGy9vF9d2sdaCC_rP7bLcNg"/>
+<div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+<div class="w-20 h-20 rounded-full border border-white/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform cinematic-anim">
+<span class="material-symbols-outlined text-4xl">play_arrow</span>
+</div>
+</div>
+<p class="absolute bottom-8 font-label-caps tracking-widest z-20 text-center w-full uppercase">Watch &amp; Shop</p>
+</div>
+<!-- Right -->
+<div class="flex flex-col gap-8 opacity-70 cinematic-anim hover:opacity-100 transition-opacity mt-12">
+<img alt="Western wear" class="w-full h-80 object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHFw4FZi6k-7Ao1wltoUd7kpIB3eOS0iyfrDnnznVfs6AIfWBrVQrdFLy5R_ALI9KiKTKEnw9nIr0qrFOGTg3l93ALDUTRYd2R_tNCtVR1UUHTK4PhNvD00yFFGhJRuD8qAnbV8iKMAJSqpu-UDQWQgjPP7hivgg21kGYwIL_FyIvIA7ylYsoO19C5K6-6ekN0sny3jpkFSQU01ejErRHzlQUdqexgIhrQwpTgTLjvyw8B_ENP8qVs0Q"/>
+<img alt="Silver hardware" class="w-full h-48 object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9C3xxVd2ECVB7ZSQuWRnj7WavUQJdVPgqn9SFQZPFCQd8tkgvvIWUb-D5COs3KSb-C_Ou8fbVS5qxxyBX-gn7crEHz1-1bI2M8ghlPEwIIu3YlgQ1h3iCJMMuoUnYctuGyHY-xtFllYDmlveggx79EnfwkoZ254ilrEYeD9wFirp8qzwdxJgd8WpQ0PkNdp2aPAKT5Mvuy_c6UUJ1ZLShaZJRW8uoThHV41TvMyI8Xun1NpegaGA7jQ"/>
+</div>
+</div>
+</div>
+</main>
+<!-- SCREEN: Homepage (Stand-in for standard browse) -->
+<main class="screen w-full min-h-full flex-col px-6 md:px-16 py-12 max-w-[1440px] mx-auto bg-surface" id="screen-homepage">
+<h1 class="font-headline-lg text-4xl md:text-6xl mb-12">The Collection</h1>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Product Card triggering PDP -->
+<div class="group cursor-pointer" onclick="navigateTo('pdp')">
+<div class="aspect-[3/4] overflow-hidden mb-4 bg-zinc-900">
+<img alt="The Frontier Jacket" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cinematic-anim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIHAyravn1DgAw7PQapwegJsX-agcm3KC9sBwfyzY-gs1-SXIcFP1QCluEFmRuv7nLLCn3RNc1mGE9gSPmtyXWh8vhuldlqQY3t_2IWk4vX7K-afvJGyJmO6bwGJQQUwm6FpAUYmQk7RsA0ahXGleUYV-u058LDcACp09OYxAdtRc4u9G83QxXkvlRwd-mtnL_6-yM9uVpott8gyPJfvz6PWw36nrh8yi_obtDS7fns3z67ImY1R-qlg"/>
+</div>
+<h3 class="font-ui-button uppercase tracking-wide">The Frontier Jacket</h3>
+<p class="text-on-primary/60 text-sm mt-1">$450</p>
+</div>
+<!-- Dummy cards -->
+<div class="opacity-50"><div class="aspect-[3/4] bg-zinc-800 mb-4"></div><h3 class="font-ui-button">Item 2</h3></div>
+<div class="opacity-50"><div class="aspect-[3/4] bg-zinc-800 mb-4"></div><h3 class="font-ui-button">Item 3</h3></div>
+<div class="opacity-50"><div class="aspect-[3/4] bg-zinc-800 mb-4"></div><h3 class="font-ui-button">Item 4</h3></div>
+</div>
+</main>
+<!-- SCREEN: Shoppable Film (Frame 4) -->
+<main class="screen w-full h-[calc(100vh-72px)] bg-black relative flex items-center justify-center overflow-hidden" id="screen-shoppable-film">
+<!-- Simulated Video Background -->
+<img alt="Film Background" class="absolute inset-0 w-full h-full object-cover opacity-60 cinematic-anim scale-105 animate-[pulse_10s_ease-in-out_infinite]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa2Jn3WctUz8_AqPoTn0ubI208pkDtHWRoCHih7csZ2HtXtK5raFqqKd8bxLEQGUaTkduEyi1mx0LsAJb1y7SKgFvziU44qtRrR1-gJ5iWcyfb0GuW88uL7WDdSR95csJJ5ChVbdI0W3TGfgIBwoBQZdlRrHsWP6iMin05EW_jNSDR6EfGr-tJ5kbtaENMEm9khbOiJ2h6s3ccdNTKRfMe6bBDj-Mj3swLH3izBBQQYIQDfhi4DjzhXg"/>
+<!-- Video Controls overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Interactive Hotspot -->
+<div class="absolute top-1/3 left-1/3 group cursor-pointer cinematic-anim" onclick="navigateTo('pdp')">
+<div class="w-4 h-4 bg-white rounded-full animate-ping absolute"></div>
+<div class="w-4 h-4 bg-white rounded-full relative z-10 border-2 border-black"></div>
+<div class="absolute left-8 top-0 bg-black/80 backdrop-blur border border-white/20 p-3 w-48 opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-ui-button text-xs uppercase mb-1">Featured Item</p>
+<p class="font-headline-md text-sm mb-2">Frontier Overcoat</p>
+<p class="text-xs underline underline-offset-2">View Details</p>
+</div>
+</div>
+<div class="absolute bottom-12 w-full px-12 flex justify-between items-end z-20">
+<div>
+<h2 class="font-display-hero-mobile text-3xl mb-2">CHAPTER I: DUST</h2>
+<p class="font-body-md text-on-primary/70 max-w-md">The modern frontier isn't a place, it's a state of tension between raw materials and precise execution.</p>
+</div>
+<button class="w-12 h-12 border border-white/30 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors" onclick="navigateTo('ignition')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</main>
+<!-- SCREEN: PDP (Frame 10) -->
+<main class="screen w-full min-h-full flex-col md:flex-row bg-surface" id="screen-pdp">
+<!-- Image Gallery -->
+<div class="w-full md:w-1/2 h-[50vh] md:h-[calc(100vh-72px)] sticky top-0 overflow-hidden">
+<img alt="Product Detail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6KYLzwQEgtFfGGZ1dKi9iTmEfuNYt9sJcz3sWlX7xHf5O1O23F3VfbStBh1EM8mmj8fLwiLXvFhoJ03Smq2IuHNbBfewZWgJqaoB9uTBCBZrZh_Yq47bSbfRD9YU47T43qYFQ8JmHirC6L8_tLFS4SpK3VAKJaQ9EbPFGAparA8c7I5dtGj-wQ2SfQ1gGl83tmCJqdxhINTddfjHzWAQudqw0onmsy3MqG2Q4X48PwUJo9tgwj4Z0pA"/>
+</div>
+<!-- Details -->
+<div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+<p class="font-label-caps text-xs text-on-primary/50 mb-4">Outerwear / Series 03</p>
+<h1 class="font-headline-lg text-4xl md:text-5xl mb-6">The Frontier Jacket</h1>
+<p class="font-body-lg text-xl mb-8">$450.00</p>
+<p class="font-body-md text-on-primary/80 mb-12 leading-relaxed max-w-lg">
+                    Constructed from heavyweight waxed canvas sourced from heritage mills. Featuring oxidized silver hardware that develops a unique patina over time. Not just built to last, built to evolve.
+                </p>
+<div class="flex flex-col gap-4 max-w-md">
+<button class="w-full py-4 bg-on-primary text-primary font-ui-button uppercase tracking-widest hover:bg-surface-variant transition-colors cinematic-anim">
+                        Add to Cart
+                    </button>
+<!-- Link to Atelier (Frame 9) -->
+<button class="w-full py-4 bg-transparent border border-on-primary/30 text-on-primary font-ui-button uppercase tracking-widest hover:border-on-primary transition-colors flex items-center justify-center gap-2 cinematic-anim group" onclick="navigateTo('atelier')">
+<span class="material-symbols-outlined text-sm group-hover:rotate-90 transition-transform">tune</span>
+                        Customize in Atelier
+                    </button>
+</div>
+</div>
+</main>
+<!-- SCREEN: Built by You Atelier (Frame 9) -->
+<main class="screen w-full h-[calc(100vh-72px)] flex bg-[#1a1a1a]" id="screen-atelier">
+<!-- 3D Configurator Area -->
+<div class="w-2/3 h-full relative flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+<!-- Placeholder for 3D garment -->
+<div class="w-96 h-96 border border-white/10 flex items-center justify-center relative cinematic-anim animate-pulse">
+<span class="font-label-caps tracking-widest text-white/30">Interactive 3D Garment Model</span>
+<!-- Hardware detail marker -->
+<div class="absolute top-1/4 right-1/4 w-3 h-3 bg-zinc-300 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+</div>
+<div class="absolute top-8 left-8">
+<h2 class="font-headline-md text-2xl">Built By You</h2>
+<p class="font-label-caps text-xs text-on-primary/50 mt-1">Frontier Jacket Base</p>
+</div>
+</div>
+<!-- Configuration Panel -->
+<div class="w-1/3 h-full bg-black border-l border-white/10 p-8 flex flex-col overflow-y-auto">
+<h3 class="font-ui-button uppercase border-b border-white/20 pb-4 mb-8">Hardware Specification</h3>
+<div class="space-y-8 flex-grow">
+<!-- Option Group -->
+<div>
+<p class="font-label-caps text-xs mb-4 text-white/60">Select Finish</p>
+<div class="grid grid-cols-2 gap-4">
+<button class="border-2 border-white p-4 flex flex-col items-center gap-2 bg-white/5">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-gray-300 to-gray-500"></div>
+<span class="font-label-caps text-[10px]">Oxidized Silver</span>
+</button>
+<button class="border border-white/20 p-4 flex flex-col items-center gap-2 hover:border-white/50 transition-colors">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-600 to-yellow-800"></div>
+<span class="font-label-caps text-[10px]">Aged Brass</span>
+</button>
+</div>
+</div>
+<!-- Option Group -->
+<div>
+<p class="font-label-caps text-xs mb-4 text-white/60">Thread Weight</p>
+<div class="space-y-2">
+<button class="w-full text-left py-3 px-4 border border-white/20 hover:bg-white/5 font-body-md text-sm flex justify-between">
+                                Standard Poly-Core <span>+ $0</span>
+</button>
+<button class="w-full text-left py-3 px-4 border-2 border-white bg-white/10 font-body-md text-sm flex justify-between">
+                                Heavy Kevlar Blend <span>+ $45</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/20 mt-8">
+<div class="flex justify-between font-headline-md text-xl mb-6">
+<span>Total</span>
+<span>$495</span>
+</div>
+<button class="w-full py-4 bg-white text-black font-ui-button uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                        Finalize Build
+                    </button>
+</div>
+</div>
+</main>
+<!-- SCREEN: Wholesale -->
+<main class="screen w-full min-h-full flex flex-col items-center justify-center p-12 bg-surface text-center" id="screen-wholesale">
+<span class="material-symbols-outlined text-6xl mb-6 text-white/20">storefront</span>
+<h1 class="font-headline-lg text-4xl mb-4">Retail Partner Portal</h1>
+<p class="font-body-md text-white/60 max-w-md mb-8">Access line sheets, order history, and exclusive bulk inventory configurations.</p>
+<button class="border-b border-white pb-1 font-label-caps uppercase tracking-widest hover:text-white/70 transition-colors">Request Access</button>
+</main>
+</div>
+<script>
+        // --- Navigation Logic ---
+        function navigateTo(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Reset scroll on container
+            document.getElementById('app-container').scrollTo(0, 0);
+            
+            // Show target
+            const target = document.getElementById('screen-' + screenId);
+            if(target) {
+                target.classList.add('active');
+            }
+        }
+
+        function scrollToNextSection(id) {
+            const section = document.getElementById(id);
+            const container = document.getElementById('app-container');
+            if (section && container) {
+                container.scrollTo({
+                    top: section.offsetTop - 72, // account for header
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // --- Experience Selector Logic ---
+        function setExperience(mode) {
+            // Update global attribute
+            document.documentElement.setAttribute('data-experience', mode);
+            
+            // Update UI buttons
+            document.querySelectorAll('.exp-btn').forEach(btn => {
+                if(btn.dataset.mode === mode) {
+                    btn.classList.add('border-b-2', 'border-on-primary', 'pb-0.5');
+                    btn.classList.remove('text-on-primary/50');
+                    btn.classList.add('text-on-primary');
+                } else {
+                    btn.classList.remove('border-b-2', 'border-on-primary', 'pb-0.5');
+                    btn.classList.add('text-on-primary/50');
+                    btn.classList.remove('text-on-primary');
+                }
+            });
+        }
+
+        // Mouse movement parallax for Ignition intro text
+        document.addEventListener('mousemove', (e) => {
+            // Only apply if we are on the ignition screen and it's visible
+            const ignitionScreen = document.getElementById('screen-ignition');
+            if (!ignitionScreen.classList.contains('active')) return;
+            
+            // Check experience mode - disable parallax on instant
+            if (document.documentElement.getAttribute('data-experience') === 'instant') return;
+
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            
+            const bgText = ignitionScreen.querySelector('.text-outline-silver');
+            const fgText = ignitionScreen.querySelector('.mix-blend-difference');
+            
+            if(bgText) bgText.style.transform = `translate(${x}px, calc(3rem + ${y}px))`; 
+            if(fgText) fgText.style.transform = `translate(${-x}px, calc(-1rem + ${-y}px))`; 
+        });
+    </script>
+</body></html>

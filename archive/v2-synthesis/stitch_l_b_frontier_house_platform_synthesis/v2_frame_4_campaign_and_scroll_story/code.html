@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Midnight Rodeo Campaign - L&amp;B Frontier House</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600&amp;family=Playfair+Display:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1c1c1a",
+                        "secondary-container": "#e2dfdb",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "surface": "#fcf9f8",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000000",
+                        "outline-variant": "#c4c7c7",
+                        "on-primary-container": "#858383",
+                        "on-secondary-container": "#636260",
+                        "on-secondary-fixed-variant": "#474744",
+                        "tertiary-container": "#0a1c35",
+                        "tertiary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c9c6c5",
+                        "secondary-fixed": "#e5e2de",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "inverse-surface": "#313030",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#444748",
+                        "surface-variant": "#e5e2e1",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed": "#d6e3ff",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#5f5e5e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#7584a3",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "outline": "#747878",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary": "#5f5e5b",
+                        "tertiary-fixed-dim": "#b7c7e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Chivo"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-xl": ["Playfair Display"],
+                        "body-lg": ["Chivo"],
+                        "button-text": ["Chivo"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "headline-xl": ["60px", { "lineHeight": "68px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "button-text": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .parallax-layer { transition: transform 0.1s ease-out; }
+    </style>
+</head>
+<body class="bg-primary text-on-primary font-body-md min-h-screen overflow-x-hidden selection:bg-surface-container-highest selection:text-primary">
+<!-- Suppressed Top Nav as this is a focused cinematic journey, but adding a minimal back/close intent -->
+<header class="fixed top-0 w-full z-50 px-margin-desktop py-4 flex justify-between items-center pointer-events-none">
+<div class="pointer-events-auto">
+<a class="font-display-lg text-headline-md tracking-tighter text-on-primary opacity-80 hover:opacity-100 transition-opacity" href="#">L&amp;B</a>
+</div>
+<div class="pointer-events-auto">
+<button class="w-12 h-12 rounded-full bg-surface/10 backdrop-blur-md flex items-center justify-center border border-outline-variant/20 hover:bg-surface/20 transition-all text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</div>
+</header>
+<!-- Chapter 1: The Entrance (Cinematic Hero) -->
+<section class="relative h-[1536px] w-full bg-primary" id="ch1">
+<div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 scale-105 parallax-bg" data-alt="Cinematic high-contrast editorial photography of a rugged fashion model emerging from deep shadows into harsh spotlight. Western heritage meets high-fashion minimalism. Stark lighting, dramatic chiaroscuro. Grainy film texture, sharp focus on the heavy denim texture and silver hardware details." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEmETWhJtT4qiyf0CzY66fb2mmHMEWXaHFTj_k1-aKlaBzxxDKkIhw4gIZK5GIk4WHsQFMljIz2KZNQp95G20ymeGW-hAvzCr99QY422xVJTfVTOcdk5Rwj1L5Jrqle1oKD-6RI9zJAfojTSWKUzJ78fwpkZWwZFn3fEJlNUuOmfZHCmKKgha-M8WZKaNBLlqB-pPCXIg1x5vNxqvoWdpS7T1pGTZCot_4z5Lkie7zgXfmmMpZs_vCVA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent"></div>
+</div>
+<div class="relative z-10 text-center flex flex-col items-center parallax-fg mt-32">
+<h1 class="font-display-lg text-[12vw] leading-none tracking-tighter text-on-primary opacity-90 mix-blend-overlay">MIDNIGHT</h1>
+<h1 class="font-display-lg text-[12vw] leading-none tracking-tighter text-on-primary mt-[-4vw]">RODEO</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-8 tracking-[0.2em] uppercase">Scroll to descend</p>
+<span class="material-symbols-outlined mt-4 text-on-surface-variant animate-bounce" style="font-variation-settings: 'FILL' 0;">arrow_downward</span>
+</div>
+</div>
+</section>
+<!-- Chapter 2: Product Anatomy (Deep Scroll) -->
+<section class="relative h-[2048px] w-full bg-primary" id="ch2">
+<div class="sticky top-0 h-screen w-full overflow-hidden flex">
+<!-- Split Universe style layout but integrated into scroll -->
+<div class="w-1/2 h-full flex items-center justify-center relative px-margin-desktop z-10">
+<div class="max-w-md text-left parallax-text opacity-0 transform translate-y-12 transition-all duration-1000">
+<h2 class="font-headline-xl text-headline-xl text-on-primary mb-6">The Architecture<br/>of Dust</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Hand-lasted in the Frontier House workshop. The Frontier Boot features a structurally reinforced heel and Goodyear welt construction, designed not just to withstand the elements, but to age alongside them.</p>
+<ul class="space-y-4 font-label-caps text-label-caps text-on-primary opacity-70">
+<li class="flex items-center gap-3"><span class="w-8 h-[1px] bg-outline-variant"></span> Oak-tanned leather sole</li>
+<li class="flex items-center gap-3"><span class="w-8 h-[1px] bg-outline-variant"></span> Stacked leather heel</li>
+<li class="flex items-center gap-3"><span class="w-8 h-[1px] bg-outline-variant"></span> Oxidized silver hardware</li>
+</ul>
+</div>
+</div>
+<div class="w-1/2 h-full relative">
+<!-- Anatomy layers that parallax differently -->
+<div class="absolute inset-0 flex items-center justify-center p-20 z-0 opacity-20">
+<div class="w-full h-full bg-contain bg-no-repeat bg-center parallax-layer-back" data-alt="Technical blueprint style drawing of a highly detailed western boot. White lines on a stark black background. Architectual and precise. Minimalist presentation of fashion craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaPJ6q8YQRN8Bgxl1l7pvu7xT93djrF0oFhQ7nylnqxU4wwoCAdMr6Hcbq4OngkrYbdxqOrJ9FowFRKI-6JQ2Uqm7D8tFbvlQ6E7rpU8-IKYw8e7CDuzRk4WWjH-9FY8rWjCwfYv-hhC8_Wa71UQ16nW4VpihQnnyI-clD0ztfMI4UyelMeEm_SNd_1vPiNJZGxnzgpXAwk7Jjgur6e7UfvSuGNEnSXDC-uCnDKG1es1oULd6_qPf5Ow')"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center p-12 z-20">
+<img class="w-full h-full object-contain drop-shadow-2xl parallax-layer-front" data-alt="High-end studio photography of a single, premium artisanal western leather boot floating in black void space. Stark rim lighting highlighting the roughout leather texture and silver hardware. Cinematic and luxurious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzSG3udwdCK4JlWu6gen9dz-BJbC9Twba3EaulYC5k2ul-3gzkLaHHVkVo_uFU00G3ctgCfX9Ts9Yp6p1C9keEafbTnObJ1HDx_E6o3w4JGQrvq9nLtSydNFp5Vo27iGA5epOJR6O33iK-4ZnLtTL3mfHAQPX5nX7sy9gyNOL3AMIUR27VhfdwUGdshK3xYV_BcjOyXkAaC2Mzggt1bUOrwKcp79QG4_3U70R4IchnkBJWwMLmZRcv-g"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Chapter 3: The Transformation (Scrubbed Sequence) -->
+<section class="relative min-h-screen py-32 bg-primary px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-end justify-between mb-16 border-b border-surface-tint pb-8">
+<h3 class="font-headline-lg text-headline-lg text-on-primary">Frontier Garments</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Chapter 03</span>
+</div>
+<!-- Bento-style transformation grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-[819px]">
+<div class="md:col-span-8 relative overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-1000 group-hover:scale-105" data-alt="Full body shot of a model wearing high-end heavy denim and a tailored leather jacket in motion. Cinematic night lighting, motion blur effect conveying speed and urgency. Grounded elegance aesthetic, deep blacks, subtle silver reflections." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0ZIYp7pazZ1rSYJySiFSXCApO4OwWCqi5WMFmC4cPnP2TL1X-SebLZHsWYBmOQSaAobdHbAnPK_OWC3bE181pvM-gPs18cdnJtbhwrQYLWVGVOwv1QkNYoKjhhpG_98_0jQsZBkTvA4HWkYAYJPY6uusvVcq2_TvgvpcnEf1JgLu46z6fUQglTxriDes059Lj6gPgPAslB6ziGG8wuHI7F5SPEgyP98STIM0xEaWED4kSjeSUqkkqvQ')"></div>
+<div class="absolute bottom-8 left-8 z-10 mix-blend-difference">
+<p class="font-label-caps text-label-caps text-on-error tracking-widest mb-2">Look 01</p>
+<h4 class="font-headline-md text-headline-md text-on-error">Midnight Rider</h4>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="flex-1 relative overflow-hidden group bg-surface-container-highest">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-110" data-alt="Close up macro detail shot of a heavy, raw denim jacket cuff with an oxidized silver pearl snap button. Cinematic lighting emphasizing the weave of the fabric and the metallic sheen. Luxury materiality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChvxlOCJ28EgzsTkMrUBP4dogHphNISz7VjPQQKF5-poN-2MdeHFEWeRm5eUSfu_9tL_MGSjLpBlGelcyokh2HYk32QKToRxEnYsNJHfcmOQ6swlWIDqg5AXrQT_uvrX-iuyJpn80EcOHqKEar9RzohvWfkk2K1lr1ZbTBIjNwnR737oPkxNx85nkMGUza9c-R7Ty0h_GfPlfW4tdi5sLq64FGtOjoIuUq62qrlLqPTtaGOAyQf2JZfg')"></div>
+</div>
+<div class="flex-1 relative overflow-hidden group bg-surface-container-highest">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-700 group-hover:scale-110" data-alt="Detail shot of hands adjusting a thick leather belt with a minimalist silver buckle over dark denim. The mood is raw yet refined. Sharp focus, high contrast, cinematic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDj7vthya3RI3hrt1Mkz8rP-Y3FTRexzobTFG3IZ9DYQNX8SJK761It3fCFNW4boOPircNPGYOJOOPLsVPxbJ9VPB7rbKi6cfpRJ57V14g2uyR-W1DCHzRa-SR4sANniO2fVV_Oxu7kAfeNIa8Z_Lz_W9fIqh76N40iUWgaoVJoNuGZqIzqYw6jPv_Ecf3wxve80kqvoYXdvBd2DHu9MlBrlfGhc8zHOTeUfLsgDzgPBKISB8oSaI-dEg')"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Chapter 4: Shoppable Arrangement -->
+<section class="relative min-h-screen py-32 bg-primary px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-24">
+<h2 class="font-display-lg text-headline-xl text-on-primary mb-4">The Collection</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Secure your piece of the frontier</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-container-lowest">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Flat lay style high-fashion product photography of a black heavy canvas chore coat. Clean white bone background. Sharp shadows, emphasizing the rigid structure and premium construction of the garment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjJUQb-4ThO8t3H5oA8jdJL6yIzDm9eOEMqqo8_MFDcprN2LBcEuaCNqnQ6hvt4JUXcRyCTn92-wyc2PiyDn8NTOiNlg7DYJrr3d3gZW8b2lfUvn45qtvxZJ13wLRQvoP6vM_KZDCxaX4-tyv6l7ZPybIn5xwiFCncRenK94no_nGycJZuHw-xuH8TpOEpu5yt_mr5S2B8y_k4hgxKaIIgIq8BbDgkn3OrAktTgQU7skAqbpoLAPU7aA')"></div>
+<div class="absolute top-4 right-4 bg-primary text-on-primary font-label-caps text-xs px-3 py-1 tracking-widest">CUSTOM</div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="w-full py-4 bg-primary text-on-primary font-button-text text-button-text flex items-center justify-center gap-2 border border-outline-variant/30 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">add</span> Quick Add
+                            </button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">The Frontier Coat</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Heavy Canvas</p>
+</div>
+<span class="font-body-md text-body-md text-on-primary">$450</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-container-lowest">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Studio shot of premium dark indigo raw denim jeans folded perfectly on a clean surface. High contrast lighting highlighting the rigid texture and silver rivets. Luxury western wear aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCIqyQkNewj1MKvX0TG3Ul643XigR2jpsLjMl7iXWFd8ouUmT52ViVDiT17Iug_vCBVXpYuJc-fMSvW_7I1bcCJ6dknWj9hFI1Z_Ur6pcDlisFGpw0U4MOyuFum9VTy6BtGkZR7sZhVo0K8Thw82IPG4UhfAdEW1Wzjq5G30xIVUkj67Okb-aS4sNQX5rzuHH6_P23uPUodoJcVUg5d6S0orf-ggebRjJvxD4OXkp6uv6WRmcJaw3UeA')"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="w-full py-4 bg-primary text-on-primary font-button-text text-button-text flex items-center justify-center gap-2 border border-outline-variant/30 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">add</span> Quick Add
+                            </button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">Selvedge Rider</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Raw Indigo 14oz</p>
+</div>
+<span class="font-body-md text-body-md text-on-primary">$285</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-container-lowest">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist product shot of a black wide-brimmed western hat sitting on a stark background. Sharp, architectural lighting emphasizing the structural integrity of the felt and the subtle leather hatband." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO7akVYFyO2X2vngvEW7Iy5J6BxwCV4CsVP-xSU-wNei3aRPLQCyZH5MUcVIWCvs3N7LdN92EAZE7AW-lpBhCd_BvxZu9LYEpZPxdxKDIHi3P3zTFRA-lVJrOJho8k4n2zkJmUV74ND0JiYqiQAyEWdq7ZGL4liLPfFfYx1lgh_ntvgBwHhodAKmGaHKmptEBlT6lECLwEgDF6NFJx2m67R7RQckv-Dm_Gn4KhMiq4baN36NEoqi7OMg')"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="w-full py-4 bg-primary text-on-primary font-button-text text-button-text flex items-center justify-center gap-2 border border-outline-variant/30 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">add</span> Quick Add
+                            </button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-primary">Midnight Brim</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Beaver Felt</p>
+</div>
+<span class="font-body-md text-body-md text-on-primary">$320</span>
+</div>
+</div>
+</div>
+<div class="mt-24 text-center">
+<button class="px-12 py-4 bg-surface-container-lowest text-on-surface font-button-text text-button-text inline-flex items-center gap-4 hover:opacity-80 transition-opacity">
+                    Explore Full Campaign
+                    <span class="w-2 h-2 rounded-full bg-surface-tint shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+</button>
+</div>
+</div>
+</section>
+<script>
+        // Simple parallax logic for scroll story
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            
+            // Chapter 1 Parallax
+            const ch1 = document.getElementById('ch1');
+            if(scrolled < ch1.offsetHeight) {
+                const bg = ch1.querySelector('.parallax-bg');
+                const fg = ch1.querySelector('.parallax-fg');
+                bg.style.transform = `translateY(${scrolled * 0.3}px) scale(1.05)`;
+                fg.style.transform = `translateY(${scrolled * 0.15}px)`;
+            }
+
+            // Chapter 2 Anatomy Animation
+            const ch2 = document.getElementById('ch2');
+            const ch2Top = ch2.offsetTop;
+            if(scrolled > ch2Top - window.innerHeight && scrolled < ch2Top + ch2.offsetHeight) {
+                const relativeScroll = scrolled - ch2Top;
+                
+                // Text fade in
+                const text = ch2.querySelector('.parallax-text');
+                if(relativeScroll > 0) {
+                    text.style.opacity = Math.min(1, relativeScroll / 500);
+                    text.style.transform = `translateY(${Math.max(0, 48 - (relativeScroll * 0.1))}px)`;
+                }
+
+                // Layer separation effect
+                const backLayer = ch2.querySelector('.parallax-layer-back');
+                const frontLayer = ch2.querySelector('.parallax-layer-front');
+                
+                if(relativeScroll > 0) {
+                    backLayer.style.transform = `scale(${1 + relativeScroll * 0.0002}) translateX(${-relativeScroll * 0.05}px)`;
+                    frontLayer.style.transform = `scale(${1 + relativeScroll * 0.0005}) translateX(${relativeScroll * 0.02}px) translateY(${relativeScroll * 0.05}px) rotate(${relativeScroll * 0.01}deg)`;
+                }
+            }
+        });
+    </script>
+</body></html>

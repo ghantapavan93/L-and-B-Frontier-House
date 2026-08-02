@@ -1,0 +1,1704 @@
+@import './tokens.css';
+
+/**
+ * V3 is the visual authority.
+ *
+ * The register it sets, and that this stylesheet implements:
+ *   - a warm ground with RAISED WHITE PANELS and hairline rules, not flat stacked text
+ *   - a high-contrast display serif at editorial scale, set against small-caps labels
+ *   - generous vertical rhythm; sections breathe rather than abut
+ *   - full-bleed media with the headline centred over it
+ *   - label/value rows for commercial data, with the value right-aligned
+ *   - outlined controls by default; solid black reserved for the single primary action
+ *   - a dark footer with the wordmark centred
+ */
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: var(--body-md);
+  line-height: var(--body-md-leading);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  "Apply a subtle, low-opacity monochromatic noise overlay (2-3%) across all background
+  surfaces to simulate the texture of high-grade paper or fine-grain leather."
+
+  Fixed and pointer-transparent, so it costs one composited layer and never intercepts a
+  click or a focus target.
+*/
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23g)"/></svg>');
+}
+
+/*
+  `body` is a flex column, and a flex item's automatic minimum size is its content's
+  min-content width. Without this, a wide table inside `main` widened `main`, which widened
+  the body, which meant the scroll container around the table never needed to scroll — the
+  page scrolled sideways instead. Measured at 173px on order history at 320px.
+*/
+body > * {
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(var(--headline-lg-mobile), 5vw, var(--headline-lg));
+  line-height: var(--headline-lg-leading);
+}
+
+h2 {
+  font-size: clamp(var(--headline-md), 3vw, var(--headline-lg));
+  line-height: var(--headline-lg-leading);
+}
+
+/* Section labels are sans, uppercase and letterspaced — the V3 counterpoint to the serif. */
+h3 {
+  font-family: var(--font-ui);
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: from-font;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Every interactive element gets a conformant ring. `:focus` appears in 0 of 48
+   source files — the entire focus system is new work. */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-default);
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: max(var(--margin-mobile), var(--safe-left), var(--safe-right));
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: calc(var(--margin-desktop) + max(var(--safe-left), var(--safe-right)));
+  }
+}
+
+/* Editorial rhythm. V3's sections are far apart; crowding them is what made this read
+   like a wireframe. */
+/* "Section Gaps of 120px or more are encouraged between major content blocks to create
+   Cinematic Scale." */
+.section {
+  padding-block: var(--space-8);
+}
+
+@media (min-width: 62rem) {
+  .section {
+    padding-block: var(--section-gap);
+  }
+}
+
+.section--tight {
+  padding-block: var(--space-6);
+}
+
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+.stack > * + * {
+  margin-block-start: var(--space-4);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.page-main {
+  flex: 1 0 auto;
+}
+
+/* A section header: small-caps eyebrow, serif title, optional trailing link. */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  margin: 0 0 var(--space-3);
+}
+
+.lede {
+  font-size: var(--text-base);
+  line-height: 1.5;
+  max-width: 46ch;
+}
+
+.meta {
+  color: var(--color-text-meta);
+  font-size: var(--text-xs);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Skip link — first element in the DOM
+
+   Revealed synchronously, with no transition and no off-screen position. Browser testing
+   measured the sliding version as off-screen AND obscured at the moment it received focus:
+   a skip link that animates into view is not there when it is needed.
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  z-index: var(--z-skip-link);
+  left: var(--space-4);
+  top: calc(var(--safe-top) + var(--space-4));
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link:focus {
+  clip-path: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Header — centred wordmark over centred navigation, per V3
+   ========================================================================== */
+
+/*
+  "The primary header uses a Backdrop Blur effect (20px blur) with a 70% opacity Bone White
+  tint. This allows the cinematic product photography to bleed behind the UI."
+
+  Sticky rather than fixed, and paired with `scroll-margin-top` on every focusable element
+  below, so a keyboard user is never scrolled to a control that sits under it (WCAG 2.4.11).
+*/
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  padding-top: calc(var(--space-4) + var(--safe-top));
+  padding-bottom: var(--space-3);
+  text-align: center;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header {
+    background: var(--surface-page);
+  }
+}
+
+/* Nothing is ever scrolled under the sticky header. */
+:where(a, button, input, select, textarea, [tabindex], h1, h2, h3, main) {
+  scroll-margin-top: calc(9rem + var(--safe-top));
+}
+
+.site-header__wordmark {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .site-header__wordmark {
+    font-size: 1.5rem;
+  }
+}
+
+.site-header__rows {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  justify-content: center;
+  align-items: center;
+}
+
+.site-nav a {
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--color-text);
+}
+
+.site-nav--secondary a {
+  color: var(--color-text-meta);
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+.site-nav a[aria-current='page'] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   Footer — dark, wordmark centred, per V3
+   ========================================================================== */
+
+.site-footer {
+  margin-top: var(--space-9);
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  padding-block: var(--space-8);
+  padding-bottom: calc(var(--space-8) + var(--safe-bottom));
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.site-footer__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-7);
+  color: var(--text-on-inverse);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  text-align: left;
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.site-footer .eyebrow {
+  color: var(--text-meta-on-inverse);
+}
+
+.site-footer .meta {
+  color: var(--text-meta-on-inverse);
+}
+
+.site-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.site-footer a {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--text-on-inverse);
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer__colophon {
+  padding-top: var(--space-6);
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--color-sandstone);
+}
+
+/* ==========================================================================
+   Hero — full bleed, headline centred over media
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  min-height: min(78vh, 44rem);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--space-9) var(--margin-mobile);
+  padding-top: calc(var(--space-9) + var(--safe-top));
+  overflow: hidden;
+}
+
+/*
+  The atmosphere layer, in CSS rather than an invented photograph.
+
+  V1 specified "CSS backdrops using subtle denim grain or leather texture noise rather than
+  flat hex colors", and the production blueprint restores that as a token-level concern. This
+  is that: a warm horizon wash plus a fine grain, with no claim to be a real place. Real
+  photography drops in behind it and this layer becomes the scrim.
+*/
+.hero__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 90% at 50% 108%, rgb(115 79 54 / 0.55) 0%, transparent 62%),
+    radial-gradient(90% 70% at 50% -10%, rgb(217 197 178 / 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, #14120f 0%, var(--color-ink) 55%, #17130f 100%);
+}
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.42"/></svg>');
+}
+
+.hero__inner {
+  max-width: 58rem;
+}
+
+/* Sized to break over two or three lines at the widths that matter, the way V3's does.
+   The earlier 8.5vw step ran to five lines on a laptop and swamped the page. */
+.hero h1 {
+  font-size: clamp(2.125rem, 5.6vw, 4.75rem);
+  /* display-xl is 84/90 — a ratio of 1.07. Without this the headline inherits h1's fixed
+     48px leading and the lines overlap each other at hero scale. */
+  line-height: 1.07;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-5);
+  color: var(--text-on-inverse);
+}
+
+.hero p {
+  font-size: var(--text-base);
+  max-width: 44ch;
+  margin-inline: auto;
+  color: var(--text-on-inverse);
+}
+
+.hero .eyebrow {
+  color: var(--text-meta-on-inverse);
+}
+
+.hero .cluster {
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.hero :focus-visible {
+  outline-color: var(--color-sandstone);
+}
+
+/*
+  The photographic hero. The image sits behind a scrim heavy enough to hold the headline at
+  4.5:1 — V3 Frame 1 rendered its headline near-invisible over media and V2 did not, and the
+  token system takes V2's side.
+*/
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__media picture,
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.hero--photographic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(10 10 10 / 0.72) 0%,
+      rgb(10 10 10 / 0.5) 42%,
+      rgb(10 10 10 / 0.82) 100%
+    ),
+    radial-gradient(80% 60% at 50% 50%, rgb(10 10 10 / 0.35) 0%, transparent 70%);
+}
+
+/* A full-bleed editorial band between sections. */
+.editorial-band {
+  margin: 0;
+}
+
+.editorial-band img {
+  width: 100%;
+  height: clamp(14rem, 34vw, 26rem);
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.editorial-band figcaption {
+  padding-top: var(--space-4);
+}
+
+/* One product at double scale, the rest supporting it — V3's editorial rhythm. */
+.feature-row {
+  display: grid;
+  gap: var(--space-7) var(--gutter);
+}
+
+@media (min-width: 62rem) {
+  .feature-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.feature-row > * {
+  min-width: 0;
+}
+
+.product-grid--supporting {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--gutter);
+}
+
+.feature-row__lead .product-card__name {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+/* Category tiles carry photography, with the label beneath. */
+.category-card__link {
+  text-decoration: none;
+  display: block;
+}
+
+.category-card__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-default);
+  background: var(--surface-sunken);
+  margin-bottom: var(--space-4);
+}
+
+.category-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-base) var(--ease-entrance);
+}
+
+.category-card__link:hover .category-card__media img {
+  transform: scale(1.02);
+}
+
+.category-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.category-card__link:hover h3 {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* A wide banner introducing a category or the wholesale journey. */
+.page-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-default);
+  background: var(--surface-sunken);
+  margin-bottom: var(--space-7);
+}
+
+.page-banner img {
+  width: 100%;
+  height: clamp(12rem, 26vw, 20rem);
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+/* Marks the hero as awaiting photography without pretending otherwise. */
+.hero__pending {
+  position: absolute;
+  inset-block-end: var(--space-4);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-meta-on-inverse);
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   Panels — the raised white card V3 builds nearly everything on
+   ========================================================================== */
+
+.panel {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .panel {
+    padding: var(--space-7);
+  }
+}
+
+.panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.panel__head h2 {
+  margin: 0;
+}
+
+/* A quiet inset used for pack breakdowns and secondary data. */
+.inset {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  color: var(--color-chip-text);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Notices
+   ========================================================================== */
+
+.notice {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  background: var(--surface-raised);
+}
+
+.notice--fixture {
+  border-style: dashed;
+  background: var(--surface-raised);
+}
+
+.notice--error {
+  border-color: var(--color-error);
+  border-left-width: 3px;
+  color: var(--color-error);
+  background: var(--surface-raised);
+}
+
+.notice__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Buttons — outlined by default, solid for the single primary action
+   ========================================================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  min-width: var(--target-min);
+  padding: 0 var(--space-6);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-default);
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+  font: inherit;
+  font-size: var(--ui-button);
+  font-weight: var(--ui-button-weight);
+  letter-spacing: var(--ui-button-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-entrance),
+    color var(--duration-fast) var(--ease-entrance),
+    border-color var(--duration-fast) var(--ease-entrance);
+}
+
+.button:hover {
+  background: var(--color-tobacco);
+  border-color: var(--color-tobacco);
+  color: var(--text-on-inverse);
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-ink);
+}
+
+.button--secondary:hover {
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+}
+
+.button--quiet {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--rule-strong);
+}
+
+.button--quiet:hover {
+  background: var(--surface-sunken);
+  border-color: var(--color-ink);
+  color: var(--color-text);
+}
+
+.button--block {
+  width: 100%;
+}
+
+.button--small {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  letter-spacing: var(--tracking-wide);
+}
+
+.button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hero .button--secondary {
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+.hero .button--secondary:hover {
+  background: var(--text-on-inverse);
+  color: var(--color-ink);
+}
+
+/* A text link that reads as editorial rather than as chrome. */
+.text-link {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  max-width: 32rem;
+}
+
+.field label {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/*
+  Control sizing is global, not scoped to `.field`. Browser testing measured the order-line
+  quantity input at 80 × 21px — below the WCAG 2.2 AA 24 × 24 minimum — because it sits in a
+  table cell. Styling the element means a control cannot fall below the target size by being
+  placed somewhere new.
+*/
+/* "Inputs: bottom-border only (1px Ink Black) to maintain the minimalist, high-end
+   stationery feel." */
+input:not([type='hidden']):not([type='checkbox']):not([type='radio']),
+select {
+  font: inherit;
+  min-height: 48px;
+  padding: var(--space-2) 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+}
+
+input:hover,
+select:hover,
+input:focus,
+select:focus {
+  border-bottom-color: var(--color-ink);
+}
+
+.field__hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+}
+
+fieldset {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  padding: var(--space-5) 0 0;
+  margin: 0 0 var(--space-6);
+}
+
+legend {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  padding: 0 var(--space-3) 0 0;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+}
+
+.checkbox-row input {
+  width: var(--target-min);
+  height: var(--target-min);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Product grid and card
+   ========================================================================== */
+
+.product-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-7) var(--gutter);
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.product-grid > * {
+  min-width: 0;
+}
+
+.category-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-base) var(--ease-entrance);
+}
+
+.product-card__link {
+  text-decoration: none;
+  display: block;
+}
+
+.product-card__link:hover .product-card__media img {
+  transform: scale(1.02);
+}
+
+/* Product names are set in sentence case, not the uppercase the global `h3` rule applies:
+   V3 sets garment names as titles, and reserves uppercase for labels. */
+.product-card__name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-text);
+  margin: var(--space-4) 0 0;
+}
+
+.product-card__link:hover .product-card__name {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.product-card__spec {
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  /* "Chips styled to look like leather patches or denim labels… a stitched 1px dashed
+     border." Sharp, per the shape rule. */
+  border: 1px dashed var(--rule-strong);
+  background: var(--surface-sunken);
+  padding: 3px var(--space-3);
+}
+
+.badge--quiet {
+  border-color: var(--rule);
+  color: var(--color-text-meta);
+}
+
+/* ==========================================================================
+   Facets
+   ========================================================================== */
+
+.layout-with-facets {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .layout-with-facets {
+    grid-template-columns: 15rem 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.layout-with-facets > * {
+  min-width: 0;
+}
+
+.facet-panel form {
+  margin: 0;
+}
+
+.facet-panel .field {
+  margin-bottom: 0;
+}
+
+.facet-group {
+  margin-bottom: var(--space-5);
+  border: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-4);
+}
+
+.facet-group:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* ==========================================================================
+   Product detail
+   ========================================================================== */
+
+.pdp {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 62rem) {
+  .pdp {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: var(--space-9);
+    align-items: start;
+  }
+}
+
+.pdp > * {
+  min-width: 0;
+}
+
+.pdp__gallery {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.pdp__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+}
+
+.pdp__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdp__media .product-card__media {
+  aspect-ratio: auto;
+  height: 100%;
+  border-radius: 0;
+}
+
+.pdp__title {
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  margin-bottom: var(--space-2);
+}
+
+.spec-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+  overflow-wrap: anywhere;
+  margin-bottom: var(--space-4);
+}
+
+/* Label/value rows — V3's treatment for commercial and spec data. */
+.definition-list {
+  display: grid;
+  grid-template-columns: minmax(6rem, auto) 1fr;
+  /* No column gap: the row rule has to run unbroken across both cells, or it reads as two
+     dashes rather than one line. Separation comes from padding instead. */
+  gap: 0;
+  margin: 0;
+  font-size: var(--text-xs);
+}
+
+.definition-list dt {
+  color: var(--color-text-meta);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  padding: var(--space-3) var(--space-5) var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.definition-list dd {
+  margin: 0;
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.definition-list dt:first-of-type,
+.definition-list dt:first-of-type + dd {
+  border-top: 0;
+}
+
+/* Commercial data reads as label-left / value-right, the way a line sheet does.
+   The value column is `minmax(0, 1fr)` rather than `auto` so a long terms string wraps
+   instead of sizing the column to its own max-content and overflowing at 320px. */
+.definition-list--split {
+  grid-template-columns: minmax(5rem, auto) minmax(0, 1fr);
+}
+
+.definition-list--split dd {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   Tables — size and fit, prepack, orders. Structured text, never an image.
+   ========================================================================== */
+
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+  /*
+    Required, not cosmetic. Without a containing block here the table's overflow still grew
+    the ROOT scroller even though it was visually clipped: measured 173px of real horizontal
+    page scroll on order history at 320px. `overflow: hidden`, `overflow: scroll`,
+    `display: flow-root` and `contain: inline-size` were each measured and none fixed it.
+  */
+  position: relative;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--text-xs);
+}
+
+caption {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  padding-bottom: var(--space-3);
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+tfoot th,
+tfoot td {
+  border-bottom: 0;
+  border-top: 1px solid var(--rule-strong);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Authorised surfaces
+   ========================================================================== */
+
+.price-panel {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  background: var(--surface-raised);
+}
+
+.price-panel__price {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  line-height: 1;
+  margin: 0 0 var(--space-2);
+}
+
+.price-panel__price span {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}
+
+.price-panel__msrp {
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+  margin: 0 0 var(--space-5);
+}
+
+.gate {
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  background: var(--surface-sunken);
+}
+
+.gate h2 {
+  margin-bottom: var(--space-3);
+}
+
+.progress {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.progress__track {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  background: var(--color-tobacco);
+  transition: width var(--duration-base) var(--ease-entrance);
+}
+
+.status-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.status-timeline li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+}
+
+.status-timeline li[aria-current='step'] {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Empty, error and denial states
+   ========================================================================== */
+
+.state-block {
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  background: var(--surface-raised);
+}
+
+.state-block h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  text-transform: none;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-3);
+}
+
+/* ==========================================================================
+   Fixture flag — a placeholder must never be able to pass as real
+   ========================================================================== */
+
+.fixture-flag {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-start: var(--space-3);
+  z-index: var(--z-base);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  background: rgb(10 10 10 / 0.82);
+  color: var(--color-bone);
+  padding: 3px 8px;
+  border-radius: var(--radius-default);
+}
+
+/* Reduced motion is handled once, in tokens.css, so it applies to token values and to any
+   stylesheet that consumes them. Nothing is repeated here. */
+
+/* ==========================================================================
+   LIVING CONTACT SHEET
+
+   V3 Frame 2, in the stronger V2 Frame 2 expression the audit identified: a
+   photographer's contact sheet rather than a catalogue grid. Nine cells on an
+   asymmetric grid, sprocket strips top and bottom, frame numbers in label-caps.
+
+   Every cell is a real product link, so the composition is also the navigation.
+   ========================================================================== */
+
+.contact-sheet {
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  padding-block: var(--space-8);
+  position: relative;
+}
+
+/* The film sprockets. Decorative, so aria-hidden in the markup. */
+.contact-sheet__perf {
+  height: 14px;
+  background-image: radial-gradient(
+    circle at 10px 7px,
+    var(--surface-page) 0 3px,
+    transparent 3.5px
+  );
+  background-size: 20px 14px;
+  opacity: 0.28;
+}
+
+.contact-sheet__grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .contact-sheet__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 62rem) {
+  .contact-sheet__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+  }
+
+  /* Asymmetry: two frames break scale, the way a marked-up contact sheet does. */
+  .contact-sheet__cell:nth-child(1),
+  .contact-sheet__cell:nth-child(6) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+.contact-sheet__cell {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+}
+
+.contact-sheet__cell a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-sheet__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #16130f;
+}
+
+.contact-sheet__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.04);
+  transition:
+    transform var(--duration-base) var(--ease-entrance),
+    filter var(--duration-base) var(--ease-entrance);
+}
+
+.contact-sheet__cell a:hover .contact-sheet__frame img,
+.contact-sheet__cell a:focus-visible .contact-sheet__frame img {
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1);
+}
+
+.contact-sheet__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--text-meta-on-inverse);
+}
+
+.contact-sheet__cell a:hover .contact-sheet__caption,
+.contact-sheet__cell a:focus-visible .contact-sheet__caption {
+  color: var(--text-on-inverse);
+}
+
+.contact-sheet :focus-visible {
+  outline-color: var(--color-sandstone);
+}
+
+/* ==========================================================================
+   THREAD TO TRADE
+
+   Vertical integration told as a drawn line rather than as a claim. Every stage
+   is a VERIFIED fact; nothing here asserts a manufacturing location.
+   ========================================================================== */
+
+.thread {
+  position: relative;
+}
+
+.thread__line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.thread__line path {
+  fill: none;
+  stroke: var(--color-tobacco);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+/* Progressive enhancement: the line stitches itself as the section scrolls past.
+   Without support, or under reduced motion, it is simply drawn. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .thread__line path {
+      stroke-dashoffset: 240;
+      animation: stitch linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 60%;
+    }
+  }
+}
+
+@keyframes stitch {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.thread__stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-7);
+  position: relative;
+}
+
+@media (min-width: 62rem) {
+  .thread__stages {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+}
+
+.thread__stage h3 {
+  margin-bottom: var(--space-2);
+}
+
+.thread__stage p {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+}
+
+.thread__index {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: 1;
+  color: var(--color-tobacco);
+  margin-bottom: var(--space-3);
+}
+
+/* ==========================================================================
+   EXPERIENCE STATES — Cinema · Balanced · Instant Shop
+
+   A presentation context, never a routing branch. Content, prices, packs,
+   availability, URLs and accessibility guarantees are identical in all three:
+   the state changes only how much editorial scale wraps the same markup.
+
+   Resolved on the server from a cookie, so switching costs no client JavaScript
+   and the choice survives a reload.
+   ========================================================================== */
+
+.experience-selector {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.experience-selector__label {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.experience-selector form {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--hairline);
+}
+
+.experience-selector button {
+  font: inherit;
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-meta);
+  padding: 0 var(--space-3);
+  min-height: var(--target-min);
+  cursor: pointer;
+}
+
+.experience-selector button[aria-pressed='true'] {
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+}
+
+/* Cinema: more scale, more bleed. Instant Shop: denser, faster to scan. */
+[data-experience='cinema'] .hero {
+  min-height: 100svh;
+}
+
+[data-experience='cinema'] .section {
+  padding-block: var(--section-gap);
+}
+
+[data-experience='instant'] .hero {
+  min-height: 42svh;
+}
+
+[data-experience='instant'] .section {
+  padding-block: var(--space-7);
+}
+
+[data-experience='instant'] .product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: var(--space-5) var(--space-4);
+}
+
+[data-experience='instant'] .contact-sheet,
+[data-experience='instant'] .editorial-band {
+  display: none;
+}
+
+[data-experience='instant'] .feature-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ==========================================================================
+   2.5D DEPTH — CSS only, no WebGL, no library
+
+   Layers move at different rates against the scroll. Progressive enhancement:
+   without scroll-driven animation support, or under reduced motion, every layer
+   is simply in its resting position and the composition is complete.
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .depth-near,
+    .depth-far {
+      animation: depth-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    .depth-far {
+      --depth-shift: 4%;
+    }
+
+    .depth-near {
+      --depth-shift: -2%;
+    }
+  }
+}
+
+@keyframes depth-drift {
+  from {
+    transform: translate3d(0, calc(var(--depth-shift, 0%) * -1), 0);
+  }
+  to {
+    transform: translate3d(0, var(--depth-shift, 0%), 0);
+  }
+}
+
+/* ==========================================================================
+   EDITORIAL ASYMMETRY — offset blocks that break the grid deliberately
+   ========================================================================== */
+
+.editorial-split {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .editorial-split {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-8);
+  }
+
+  .editorial-split--reverse {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .editorial-split--reverse > *:first-child {
+    order: 2;
+  }
+
+  /* The offset that makes it read as bespoke rather than as a two-column layout. */
+  .editorial-split__figure {
+    margin-block-start: calc(var(--space-8) * -1);
+  }
+}
+
+.editorial-split > * {
+  min-width: 0;
+}
+
+.editorial-split__figure {
+  margin: 0;
+  position: relative;
+}
+
+.editorial-split__figure img {
+  width: 100%;
+  height: auto;
+}
+
+.editorial-split figcaption {
+  padding-top: var(--space-3);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}

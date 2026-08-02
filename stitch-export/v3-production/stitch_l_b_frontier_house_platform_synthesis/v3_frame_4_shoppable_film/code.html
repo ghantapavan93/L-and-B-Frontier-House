@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Shoppable Film</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f7f3f2",
+                      "on-primary-container": "#858383",
+                      "surface-bright": "#fdf8f8",
+                      "outline-variant": "#c4c7c7",
+                      "secondary-container": "#e2dfdb",
+                      "on-tertiary-fixed-variant": "#384763",
+                      "background": "#fdf8f8",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#0a1c35",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c8c6c2",
+                      "surface": "#fdf8f8",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#474744",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#444748",
+                      "on-surface": "#1c1b1b",
+                      "inverse-primary": "#c9c6c5",
+                      "secondary": "#5f5e5b",
+                      "on-tertiary-container": "#7584a3",
+                      "tertiary-fixed-dim": "#b7c7e8",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#f1edec",
+                      "primary-fixed": "#e5e2e1",
+                      "outline": "#747878",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#636260",
+                      "tertiary-container": "#0a1c35",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e5e2de",
+                      "surface-variant": "#e5e2e1",
+                      "primary": "#000000",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-background": "#1c1b1b",
+                      "inverse-on-surface": "#f4f0ef",
+                      "surface-tint": "#5f5e5e",
+                      "primary-container": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#ddd9d8",
+                      "tertiary-fixed": "#d6e3ff",
+                      "on-secondary-fixed": "#1c1c1a",
+                      "inverse-surface": "#313030",
+                      "surface-container-high": "#ebe7e6",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max-width": "1440px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-hero-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-hero": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "ui-button": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-hero-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-hero": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "ui-button": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Pearl Snap Hotspot Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .hotspot-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid theme('colors.surface-bright');
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        /* Ambient Shadow for floating elements */
+        .ambient-shadow {
+            box-shadow: 0 24px 48px -12px rgba(115, 79, 54, 0.15); /* Tobacco tint */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 z-50 w-full transition-all duration-300 bg-surface/80 backdrop-blur-md dark:bg-primary/80 border-b border-outline-variant/30 docked full-width top-0 flat no shadows">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<!-- Navigation Links -->
+<div class="flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-primary dark:text-surface-bright border-b-2 border-primary dark:border-surface-bright pb-1 transition-all duration-500 hover:text-primary dark:hover:text-surface-bright active:scale-95 ease-in-out" href="#">
+                    Cinema
+                </a>
+<a class="font-body-md text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 active:scale-95 ease-in-out" href="#">
+                    Balanced
+                </a>
+<a class="font-body-md text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 active:scale-95 ease-in-out" href="#">
+                    Instant
+                </a>
+</div>
+<!-- Brand Logo -->
+<div class="absolute left-1/2 -translate-x-1/2">
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-surface-bright" href="#">
+                    L&amp;B Frontier House
+                </a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-6 text-primary dark:text-on-primary">
+<button aria-label="shopping_bag" class="hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 active:scale-95 ease-in-out">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button aria-label="person" class="hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 active:scale-95 ease-in-out">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Content Area: The Interactive Frame -->
+<main class="flex-grow w-full relative mt-[72px] h-[calc(100vh-72px)] overflow-hidden bg-surface-container-low group">
+<!-- The "Film" Canvas -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[20s] ease-linear group-hover:scale-105" data-alt="A cinematic, wide-angle fashion editorial shot of a stylish man and woman standing in a stark, beautifully lit modern architectural pavilion in the high desert. They are wearing premium coordinated modern western attire—tailored raw denim, a structured suede jacket, and hand-tooled leather belts. The lighting is dramatic and directional, creating high contrast and highlighting the rich textures of the fabrics. The mood is sophisticated, cinematic, and captures the essence of tactile luxury and wide-open spaces." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDy0VY7Hm2VTmSvYMaanIQCqeCP3ZcgoqqMftFvxwS0ZX0-bMdVuX9K2DXlBtFllJqxXYD48or-9PtxKtbj3-6Flt6MhgtdwRG7oDT0uLxF-Co5goJ-lO_vgzEnIbAlpTfeXs6nLm0loHXmLrMnUldqboNGJZbacczEObYVmkHWsGNlb-i9ju0FM60G4ufwja7lkYERGHIRWTQnFiTMi7cQyFXvhRT7PF-RgDm5Y4iXuniretC3Nb-AVA')">
+</div>
+<!-- Subtle Vellum Overlay for depth -->
+<div class="absolute inset-0 bg-surface-bright/5 pointer-events-none mix-blend-overlay"></div>
+<!-- Interactive Hotspots Container -->
+<div class="absolute inset-0 w-full max-w-container-max-width mx-auto px-margin-desktop relative">
+<!-- Hotspot 1: Men's Jacket -->
+<div class="absolute top-[35%] left-[32%] -translate-x-1/2 -translate-y-1/2 z-10 group/hotspot">
+<!-- The Pearl Snap -->
+<button aria-label="View Jacket Details" class="relative w-5 h-5 rounded-full bg-surface-bright border border-outline-variant shadow-sm hover:scale-110 transition-transform duration-300 focus:outline-none flex items-center justify-center hotspot-ring" onclick="toggleProductPanel('panel-jacket')">
+<div class="w-2 h-2 rounded-full bg-outline/20 inner-shadow"></div>
+</button>
+<!-- Product Panel (Restrained, Embedded) -->
+<div class="absolute top-8 left-1/2 -translate-x-1/2 w-72 bg-surface-bright border border-outline-variant ambient-shadow rounded opacity-0 pointer-events-none translate-y-2 transition-all duration-300 p-6 flex flex-col gap-4" id="panel-jacket">
+<div class="flex justify-between items-start border-b border-outline-variant/30 pb-3">
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">The High Plains Suede Jacket</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Oxidized Silver Hardware</p>
+</div>
+<span class="font-body-md text-body-md text-primary">$1,250</span>
+</div>
+<div class="flex gap-4">
+<div class="flex-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Color</span>
+<div class="flex gap-2">
+<button aria-label="Tobacco" class="w-6 h-6 rounded-full bg-[#734F36] border border-outline ring-1 ring-offset-2 ring-primary focus:outline-none"></button>
+<button aria-label="Ink Black" class="w-6 h-6 rounded-full bg-primary border border-outline hover:ring-1 hover:ring-offset-2 hover:ring-primary focus:outline-none transition-all"></button>
+</div>
+</div>
+<div class="flex-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Size</span>
+<select class="w-full bg-transparent border-b border-outline-variant py-1 font-body-md text-sm focus:border-primary focus:ring-0 text-on-surface">
+<option>40 Regular</option>
+<option>42 Regular</option>
+<option>44 Tall</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<button class="w-full py-3 bg-primary text-on-primary font-ui-button text-ui-button rounded hover:bg-surface-tint transition-colors uppercase tracking-widest">Quick Add</button>
+<button class="w-full py-2 bg-transparent text-primary font-ui-button text-ui-button border border-transparent hover:border-outline-variant hover:bg-surface-container-low transition-all uppercase tracking-widest rounded">Customize Finish</button>
+</div>
+</div>
+</div>
+<!-- Hotspot 2: Women's Hat -->
+<div class="absolute top-[15%] right-[38%] -translate-x-1/2 -translate-y-1/2 z-10 group/hotspot">
+<button aria-label="View Hat Details" class="relative w-5 h-5 rounded-full bg-surface-bright border border-outline-variant shadow-sm hover:scale-110 transition-transform duration-300 focus:outline-none flex items-center justify-center hotspot-ring" onclick="toggleProductPanel('panel-hat')">
+<div class="w-2 h-2 rounded-full bg-outline/20 inner-shadow"></div>
+</button>
+<!-- Product Panel -->
+<div class="absolute top-8 left-1/2 -translate-x-1/2 w-64 bg-surface-bright border border-outline-variant ambient-shadow rounded opacity-0 pointer-events-none translate-y-2 transition-all duration-300 p-6 flex flex-col gap-4" id="panel-hat">
+<div class="flex justify-between items-start border-b border-outline-variant/30 pb-3">
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Atelier Stiff Brim Felt</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Bone White</p>
+</div>
+<span class="font-body-md text-body-md text-primary">$480</span>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-ui-button text-ui-button rounded hover:bg-surface-tint transition-colors uppercase tracking-widest mt-2">Quick Add</button>
+</div>
+</div>
+</div>
+<!-- Bottom Control Bar (Overlay on Canvas) -->
+<div class="absolute bottom-0 w-full bg-gradient-to-t from-black/40 to-transparent pt-24 pb-8 px-margin-desktop flex flex-col gap-8 z-20">
+<!-- Actions Group -->
+<div class="flex justify-between items-end max-w-container-max-width mx-auto w-full">
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-surface-bright text-primary font-ui-button text-ui-button rounded flex items-center gap-2 hover:bg-surface transition-colors shadow-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+                        Shop This Frame
+                    </button>
+<button class="px-8 py-3 bg-transparent text-surface-bright border border-surface-bright/30 font-ui-button text-ui-button rounded flex items-center gap-2 hover:bg-surface-bright/10 backdrop-blur-sm transition-all uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]" data-icon="bookmark">bookmark</span>
+                        Save The Look
+                    </button>
+</div>
+<button class="text-surface-bright font-headline-md text-[18px] border-b border-surface-bright pb-1 hover:text-outline-variant hover:border-outline-variant transition-colors italic tracking-wide">
+                    View The Story
+                </button>
+</div>
+<!-- Timeline Scrubber -->
+<div class="w-full max-w-container-max-width mx-auto flex items-center gap-4">
+<span class="font-label-caps text-label-caps text-surface-bright/80 w-8">04</span>
+<div class="flex-grow h-[1px] bg-surface-bright/20 relative flex items-center cursor-pointer group/timeline">
+<!-- Progress Fill -->
+<div class="absolute left-0 h-full bg-surface-bright w-[40%] transition-all"></div>
+<!-- Markers -->
+<div class="absolute left-0 w-1.5 h-1.5 rounded-full bg-surface-bright/50"></div>
+<div class="absolute left-[20%] w-1.5 h-1.5 rounded-full bg-surface-bright/50"></div>
+<div class="absolute left-[40%] w-2.5 h-2.5 rounded-full bg-surface-bright shadow-[0_0_8px_rgba(253,248,248,0.5)] transform -translate-x-1/2"></div>
+<div class="absolute left-[60%] w-1.5 h-1.5 rounded-full bg-surface-bright/50"></div>
+<div class="absolute left-[80%] w-1.5 h-1.5 rounded-full bg-surface-bright/50"></div>
+<div class="absolute right-0 w-1.5 h-1.5 rounded-full bg-surface-bright/50"></div>
+<!-- Hover interaction -->
+<div class="absolute inset-y-[-10px] inset-x-0 bg-transparent"></div>
+</div>
+<span class="font-label-caps text-label-caps text-surface-bright/80 w-8 text-right">12</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full relative bottom-0 bg-primary dark:bg-surface-container-lowest border-t border-outline-variant/10 flat no shadows w-full px-margin-desktop py-16 flex flex-col items-center gap-8 z-10">
+<!-- Links -->
+<div class="flex flex-wrap justify-center gap-8 md:gap-12 text-on-primary/60 dark:text-primary/60 font-body-md text-body-md">
+<a class="hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out font-label-caps text-label-caps tracking-widest uppercase" href="#">The Cinema</a>
+<a class="hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out font-label-caps text-label-caps tracking-widest uppercase" href="#">Bespoke Services</a>
+<a class="hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out font-label-caps text-label-caps tracking-widest uppercase" href="#">Terms of Craft</a>
+<a class="hover:text-surface-bright dark:hover:text-primary transition-colors duration-500 ease-in-out font-label-caps text-label-caps tracking-widest uppercase" href="#">Privacy</a>
+</div>
+<!-- Brand Mark -->
+<div class="font-headline-md text-headline-md text-on-primary dark:text-primary font-bold tracking-tighter mt-4">
+            L&amp;B
+        </div>
+<!-- Copyright -->
+<div class="font-label-caps text-label-caps text-on-primary/40 dark:text-primary/40 mt-8 tracking-widest">
+            © 2024 L&amp;B Frontier House. Crafted for the Modern Horizon.
+        </div>
+</footer>
+<!-- Interactive Logic -->
+<script>
+        function toggleProductPanel(panelId) {
+            const panel = document.getElementById(panelId);
+            const allPanels = document.querySelectorAll('[id^="panel-"]');
+            
+            // Close others
+            allPanels.forEach(p => {
+                if (p.id !== panelId && !p.classList.contains('opacity-0')) {
+                    p.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                    p.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    p.closest('.group\\/hotspot').style.zIndex = '10';
+                }
+            });
+
+            // Toggle target
+            if (panel.classList.contains('opacity-0')) {
+                panel.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+                panel.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                panel.closest('.group\\/hotspot').style.zIndex = '50';
+            } else {
+                panel.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                panel.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                panel.closest('.group\\/hotspot').style.zIndex = '10';
+            }
+        }
+
+        // Close panels when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.group\\/hotspot')) {
+                const allPanels = document.querySelectorAll('[id^="panel-"]');
+                allPanels.forEach(p => {
+                    p.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                    p.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    p.closest('.group\\/hotspot').style.zIndex = '10';
+                });
+            }
+        });
+    </script>
+</body></html>

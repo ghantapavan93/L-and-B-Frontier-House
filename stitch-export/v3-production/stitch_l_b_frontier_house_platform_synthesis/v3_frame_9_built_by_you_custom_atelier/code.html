@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Built by You Custom Atelier - L&amp;B Frontier House</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f7f3f2",
+                      "on-primary-container": "#858383",
+                      "surface-bright": "#fdf8f8",
+                      "outline-variant": "#c4c7c7",
+                      "secondary-container": "#e2dfdb",
+                      "on-tertiary-fixed-variant": "#384763",
+                      "background": "#fdf8f8",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#0a1c35",
+                      "on-primary-fixed": "#1c1b1b",
+                      "secondary-fixed-dim": "#c8c6c2",
+                      "surface": "#fdf8f8",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#474744",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#444748",
+                      "on-surface": "#1c1b1b",
+                      "inverse-primary": "#c9c6c5",
+                      "secondary": "#5f5e5b",
+                      "on-tertiary-container": "#7584a3",
+                      "tertiary-fixed-dim": "#b7c7e8",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#f1edec",
+                      "primary-fixed": "#e5e2e1",
+                      "outline": "#747878",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#636260",
+                      "tertiary-container": "#0a1c35",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e5e2de",
+                      "surface-variant": "#e5e2e1",
+                      "primary": "#000000",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "on-background": "#1c1b1b",
+                      "inverse-on-surface": "#f4f0ef",
+                      "surface-tint": "#5f5e5e",
+                      "primary-container": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#ddd9d8",
+                      "tertiary-fixed": "#d6e3ff",
+                      "on-secondary-fixed": "#1c1c1a",
+                      "inverse-surface": "#313030",
+                      "surface-container-high": "#ebe7e6",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max-width": "1440px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display", "serif"
+                      ],
+                      "display-hero-mobile": [
+                              "Playfair Display", "serif"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "display-hero": [
+                              "Playfair Display", "serif"
+                      ],
+                      "headline-md": [
+                              "Playfair Display", "serif"
+                      ],
+                      "ui-button": [
+                              "Hanken Grotesk", "sans-serif"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-hero-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-hero": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "ui-button": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Styles for Ambient Depth and Interactions */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .ambient-shadow {
+            box-shadow: 0 20px 40px -10px rgba(115, 79, 54, 0.05); /* Tobacco tint */
+        }
+        
+        .vellum-overlay {
+            background-color: rgba(255, 255, 255, 0.8); /* Bone White equivalent */
+            backdrop-filter: blur(4px);
+        }
+        
+        .silver-border {
+            border: 1px solid theme('colors.outline-variant'); /* Oxidized Silver analog */
+        }
+        
+        .recessed-well {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+            border: 1px solid theme('colors.outline-variant');
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: theme('colors.outline-variant');
+            border-radius: 4px;
+        }
+        
+        .atelier-preview-bg {
+            background: radial-gradient(circle at center, theme('colors.surface-container-high') 0%, theme('colors.surface-container-lowest') 100%);
+        }
+        
+        /* Interactive Nav Link Underline */
+        .nav-link-underline {
+            position: relative;
+        }
+        .nav-link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: theme('colors.primary');
+            transform-origin: bottom right;
+            transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+        .nav-link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-primary/80 border-b border-outline-variant/30 hidden md:block">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<nav class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300" href="#">Cinema</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300" href="#">Balanced</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant/60 dark:text-on-primary-container/60 hover:text-primary dark:hover:text-surface-bright transition-colors duration-300" href="#">Instant</a>
+</nav>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-surface-bright">
+                L&amp;B Frontier House
+            </div>
+<div class="flex gap-6 text-primary dark:text-on-primary">
+<button class="hover:text-primary dark:hover:text-surface-bright transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:text-primary dark:hover:text-surface-bright transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[88px] flex flex-col md:flex-row w-full max-w-container-max-width mx-auto">
+<!-- Atelier Side Nav / Sequence Progress -->
+<aside class="w-full md:w-80 flex-shrink-0 md:fixed md:left-0 md:top-[88px] md:h-[calc(100vh-88px)] bg-surface-container-lowest border-r border-outline-variant/20 z-40 p-8 flex flex-col justify-between custom-scrollbar overflow-y-auto">
+<div>
+<div class="mb-12">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">The Bespoke Atelier</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Built by You Custom Process</p>
+</div>
+<nav class="space-y-6 relative">
+<!-- Progress Line -->
+<div class="absolute left-[11px] top-4 bottom-4 w-px bg-outline-variant/30 z-0"></div>
+<!-- Sequence Steps -->
+<div class="relative z-10 flex items-start gap-4 group cursor-pointer">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-on-primary" data-icon="check" data-weight="fill">check</span>
+</div>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Step 01</span>
+<span class="block font-body-lg text-body-lg text-primary">Garment Selection</span>
+</div>
+</div>
+<div class="relative z-10 flex items-start gap-4 group cursor-pointer">
+<div class="w-6 h-6 rounded-full border border-primary bg-surface flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-surface-container-high transition-colors">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div>
+<span class="block font-label-caps text-label-caps text-primary font-bold mb-1">Step 02</span>
+<span class="block font-body-lg text-body-lg text-primary font-bold">Craft &amp; Artwork</span>
+</div>
+</div>
+<div class="relative z-10 flex items-start gap-4 group cursor-pointer">
+<div class="w-6 h-6 rounded-full border border-outline-variant bg-surface flex items-center justify-center flex-shrink-0 mt-0.5">
+</div>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant/60 mb-1">Step 03</span>
+<span class="block font-body-lg text-body-lg text-on-surface-variant/60">Placement &amp; Size</span>
+</div>
+</div>
+</nav>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant/20">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-4">Production Journey</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 opacity-100">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="edit_document">edit_document</span>
+<span class="font-body-md text-body-md text-primary font-bold">Draft</span>
+</div>
+<div class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="preview">preview</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Craft Review</span>
+</div>
+<div class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Your Approval</span>
+</div>
+<div class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="font-body-md text-body-md text-on-surface-variant">In Production</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace (Editor + Preview) -->
+<section class="flex-grow md:ml-80 flex flex-col lg:flex-row min-h-[calc(100vh-88px)]">
+<!-- Editor Panel -->
+<div class="w-full lg:w-[400px] flex-shrink-0 bg-surface border-r border-outline-variant/20 p-8 flex flex-col gap-12 overflow-y-auto custom-scrollbar">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Artwork Selection</h2>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<button class="aspect-square silver-border rounded flex flex-col items-center justify-center gap-2 bg-surface-container-lowest hover:bg-surface-container-high transition-colors group p-4 relative">
+<div class="absolute top-2 right-2 w-3 h-3 rounded-full bg-primary"></div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="star">star</span>
+<span class="font-label-caps text-label-caps text-center">Ranch Emblem</span>
+</button>
+<button class="aspect-square silver-border rounded flex flex-col items-center justify-center gap-2 bg-surface hover:bg-surface-container-high transition-colors group p-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant" data-icon="psychiatry">psychiatry</span>
+<span class="font-label-caps text-label-caps text-center text-on-surface-variant">Desert Flora</span>
+</button>
+<button class="aspect-square silver-border rounded flex flex-col items-center justify-center gap-2 bg-surface hover:bg-surface-container-high transition-colors group p-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant" data-icon="cruelty_free">cruelty_free</span>
+<span class="font-label-caps text-label-caps text-center text-on-surface-variant">Stallion</span>
+</button>
+<button class="aspect-square silver-border rounded flex flex-col items-center justify-center gap-2 bg-surface hover:bg-surface-container-high transition-colors group p-4 border-dashed">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant" data-icon="add">add</span>
+<span class="font-label-caps text-label-caps text-center text-on-surface-variant">Upload Custom</span>
+</button>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">Thread Palette</h3>
+<span class="font-body-md text-body-md text-primary">Oxidized Silver</span>
+</div>
+<div class="flex gap-3 flex-wrap">
+<button class="w-10 h-10 rounded-full bg-[#1c1b1b] border-2 border-transparent hover:border-outline-variant transition-all focus:outline-none"></button>
+<button class="w-10 h-10 rounded-full bg-[#c4c7c7] border-2 border-primary ring-2 ring-transparent transition-all focus:outline-none relative flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="check">check</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-[#734F36] border-2 border-transparent hover:border-outline-variant transition-all focus:outline-none"></button>
+<button class="w-10 h-10 rounded-full bg-[#fdf8f8] border-2 border-outline-variant hover:border-primary transition-all focus:outline-none"></button>
+</div>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant/20">
+<div class="bg-surface-container-low p-4 rounded silver-border flex items-start gap-3 mb-6">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5" data-icon="info">info</span>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Feasibility Warning: Fine details in the 'Ranch Emblem' may merge at sizes under 3 inches.</p>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-ui-button text-ui-button rounded hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                        Continue to Placement
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Preview Canvas -->
+<div class="flex-grow atelier-preview-bg relative flex flex-col items-center justify-center p-8 overflow-hidden min-h-[600px]">
+<!-- Background Environment / Cinematic Image -->
+<div class="absolute inset-0 z-0 opacity-20">
+<img class="w-full h-full object-cover grayscale mix-blend-multiply" data-alt="A moody, high-end tailoring workshop interior with dark wooden tables, scattered fabric samples, and silver tailoring tools illuminated by warm directional lighting. The aesthetic is bespoke, cinematic, and deeply textured." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1GWtMd1HwECFpmeuQirF1EpVNyOgZq-0qDXBgoMzuqPXBcDqkJOqYaGQ1eXo81JYcBJg_KlBoRypYfxf7FeDDmFWMI2QqdnwCTdQm-Az6js5RSnHZy2ifKDGP3b2P8YYNxEKRvRV7MOaRe2egNibZHdpa5YVCh9PRXbaiYTMDK2O0Oz1sNPWtONrBsDK1gfjYp33Uowpy-YMk73rGVuQAAv7HNph1H_IDquwih86D1AY6B3o41U0jtw"/>
+</div>
+<!-- View Controls (Floating) -->
+<div class="absolute top-8 right-8 z-20 flex gap-2 bg-surface-container-lowest/80 backdrop-blur rounded p-1 silver-border ambient-shadow">
+<button class="px-4 py-2 font-label-caps text-label-caps bg-primary text-on-primary rounded">Front</button>
+<button class="px-4 py-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Back</button>
+<button class="px-4 py-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors border-l border-outline-variant/30 pl-4 ml-2">Detail</button>
+</div>
+<!-- Product Preview -->
+<div class="relative z-10 max-w-[600px] w-full aspect-[3/4] flex items-center justify-center">
+<!-- Base Garment Image -->
+<img class="w-full h-auto object-contain drop-shadow-2xl" data-alt="A premium heavy-weight cotton work jacket in charcoal black, laid flat on a tailor's table. High resolution, tactile fabric texture, dramatic overhead lighting emphasizing the seams and structure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw4PzA09wQsir4PA8S-1Hj83PbJh6zX09ntUJWR0L7ZnXxZirx2ZgcN3tU-AU45PD7CFuRWAn1-5FoMfVk_zOoo0sCXDMyuexpwUG0lhqTh8kSOMNKuvuCO8zNKjFL8t0EPdAuGSo3HxtEjFu82LRSH8j0HWaMRDemdL65hBfmCL_8s9DSLHozTV9qgI5q3hIWquAjki7O3Va1wqPepGXDEx3qZsFYHw9VYm1QVg7FFfTEoGR7WRtKQA"/>
+<!-- Overlay Artwork (Simulated Embroidery) -->
+<div class="absolute top-[30%] left-[65%] w-24 h-24 border border-dashed border-outline-variant/50 flex items-center justify-center group cursor-move">
+<img class="w-20 h-20 object-contain opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A highly detailed vector illustration of a bespoke ranch emblem, featuring crossed tailoring shears and a horseshoe, rendered in a metallic oxidized silver thread embroidery effect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBENnkfovFK2W1deOtPSDeNJjNQXGrm7ya7T1x0Vkg5tUBDI83P1pvtC__pyITHMcEO4eUI4gGEiMlsINn_aI5nUi3Upwi7t_mLwCS3T59NO_kQpJ_o72jLHSOc1lQ7X9oqmGWC2Io9oR4cI7juEunWkNS5ZYCoHk-Ls8nakHkU-P0Qt2U7QZqXc-Y1RybM_zcCvcy5q_fV2ffd8QCFTuv7wwry5kSzKZ_VjJjNL-qptlSYYu_dC6FE3w"/>
+<!-- Transform Handles (visible on hover/active) -->
+<div class="absolute -top-1 -left-1 w-2 h-2 bg-primary hidden group-hover:block"></div>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-primary hidden group-hover:block"></div>
+<div class="absolute -bottom-1 -left-1 w-2 h-2 bg-primary hidden group-hover:block"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 bg-primary hidden group-hover:block"></div>
+</div>
+</div>
+<!-- Zoom/Pan Controls -->
+<div class="absolute bottom-8 right-8 z-20 flex flex-col gap-2 bg-surface-container-lowest/80 backdrop-blur rounded p-1 silver-border ambient-shadow">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<div class="w-full h-px bg-outline-variant/30"></div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

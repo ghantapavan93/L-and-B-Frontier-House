@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Mobile Presentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&amp;family=Playfair+Display:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1c1c1a",
+                        "secondary-container": "#e2dfdb",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "surface": "#fcf9f8",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000000",
+                        "outline-variant": "#c4c7c7",
+                        "on-primary-container": "#858383",
+                        "on-secondary-container": "#636260",
+                        "on-secondary-fixed-variant": "#474744",
+                        "tertiary-container": "#0a1c35",
+                        "tertiary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c9c6c5",
+                        "secondary-fixed": "#e5e2de",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "inverse-surface": "#313030",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#444748",
+                        "surface-variant": "#e5e2e1",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed": "#d6e3ff",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#5f5e5e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#7584a3",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "outline": "#747878",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary": "#5f5e5b",
+                        "tertiary-fixed-dim": "#b7c7e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "safe": "env(safe-area-inset-bottom, 20px)"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Chivo"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-xl": ["Playfair Display"],
+                        "body-lg": ["Chivo"],
+                        "button-text": ["Chivo"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "headline-xl": ["60px", { "lineHeight": "68px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "button-text": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen">
+<!-- Container for mobile frames (393px wide to simulate mobile presentation) -->
+<div class="flex flex-col md:flex-row gap-8 justify-center items-center py-12 px-4 bg-surface-container-low min-h-screen">
+<!-- FRAME 1: Mobile PDP -->
+<div class="w-[393px] h-[852px] bg-surface relative overflow-hidden rounded-[2.5rem] shadow-2xl border-[8px] border-surface-container-highest">
+<!-- Header -->
+<div class="absolute top-0 w-full z-50 flex justify-between items-center p-4 pt-12">
+<button class="w-10 h-10 bg-surface/50 backdrop-blur-md rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<button class="w-10 h-10 bg-surface/50 backdrop-blur-md rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+</div>
+<!-- Content Scroll -->
+<div class="h-full overflow-y-auto pb-32 no-scrollbar">
+<!-- Video/Image Hero -->
+<div class="h-[500px] w-full relative">
+<div class="bg-cover bg-center w-full h-full" data-alt="Cinematic macro shot of rugged raw denim fabric in a dimly lit, sophisticated studio. High contrast, focusing on the texture and premium stitching. Cinematic lighting, luxury Western aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkntuJ8lePvz2H2pP8s3fuv-B5buXwHa2tJHOgAfTj2qN-GCeWccbqp01j9DwsCKo0vlduk-ob8jBJU9-hGrd_Cqp5oXgkCRaDM_rAI-thvAVw9-PAWdZWN4fGQU9v1VuJC-EfrDgjWi2pMqKFhX3WRPk7ltNXpICgEcdiBWSlf5L6ugEb8wwelSW2tZ0o2zGv5i72GPsHeCOzvVUQ0z-r3NB2fBNVSWDTaJ7ZaNyE5jF-jNq9_JKjyQ')"></div>
+<div class="absolute bottom-4 left-0 w-full flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface/50"></div>
+<div class="w-2 h-2 rounded-full bg-surface/50"></div>
+</div>
+</div>
+<!-- Product Info -->
+<div class="px-margin-mobile pt-6">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">The Frontier Jacket</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">$345.00</p>
+<p class="font-body-md text-body-md text-on-surface mb-8">
+                        Heavyweight 14oz raw selvedge denim. Crafted for durability and detailed with oxidized silver hardware. A modern classic built for the rugged individual.
+                    </p>
+<!-- Size Selector -->
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Size</span>
+<span class="font-label-caps text-label-caps text-primary underline cursor-pointer">Size Guide</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<div class="h-12 border border-outline-variant flex items-center justify-center font-button-text text-button-text text-on-surface">S</div>
+<div class="h-12 bg-primary flex items-center justify-center font-button-text text-button-text text-on-primary">M</div>
+<div class="h-12 border border-outline-variant flex items-center justify-center font-button-text text-button-text text-on-surface">L</div>
+<div class="h-12 border border-outline-variant flex items-center justify-center font-button-text text-button-text text-on-surface">XL</div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 italic">Fit Prediction: True to size. We recommend Medium based on your past purchases.</p>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="absolute bottom-0 w-full bg-surface/90 backdrop-blur-xl p-margin-mobile pt-4 pb-safe border-t border-outline-variant/20">
+<button class="w-full h-14 bg-primary text-on-primary font-button-text text-button-text flex items-center justify-center gap-2 rounded-sm">
+                    Add to Bag <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+</button>
+</div>
+</div>
+<!-- FRAME 2: Customization Studio -->
+<div class="w-[393px] h-[852px] bg-surface relative overflow-hidden rounded-[2.5rem] shadow-2xl border-[8px] border-surface-container-highest">
+<!-- Header -->
+<div class="absolute top-0 w-full z-50 flex justify-between items-center p-4 pt-12">
+<button class="w-10 h-10 bg-surface/50 backdrop-blur-md rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">close</span>
+</button>
+<span class="font-label-caps text-label-caps text-primary">Custom Studio</span>
+<div class="w-10"></div>
+</div>
+<!-- 3D Canvas Area (Simulated) -->
+<div class="h-[55%] bg-surface-container-low w-full relative flex items-center justify-center">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 mix-blend-multiply opacity-80" data-alt="A clean, minimalist 3D rendering of a premium leather bag centered in a stark white studio environment. Soft diffused lighting highlighting the texture of the leather. High-end editorial photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSaIHDqhHPZkZEG2ZVfpkQf2HwN0oNQ9Zxj_m95MOON_Yo9INDDhLBonAqKLSj8LMq2qsz5fMUIc0k1ZUXB6Mn438zBAZZbmWsZR-an1e8cwTv-0xWFHLvap7f2Yv8vDBG4Rrxb6aYiRR_lc08qsyghMAKTHBTnWrNzrzsYYID4twxUwQZ90ODawAw4RwKj7_skLihjLH38vThyYoukRDlxQwPinirsRSBwgCaoQXr3TIBSXplr4nnPg')"></div>
+<!-- Interaction indicators -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-primary/20 rounded-full flex items-center justify-center animate-[spin_10s_linear_infinite]">
+<span class="material-symbols-outlined text-primary/40 text-sm">360</span>
+</div>
+<!-- Customization Tag -->
+<div class="absolute top-[40%] right-[30%] w-3 h-3 bg-primary rounded-full shadow-[0_0_0_4px_rgba(0,0,0,0.1)]"></div>
+<div class="absolute top-[40%] right-[10%] bg-surface px-3 py-1 text-xs font-label-caps border border-outline-variant">Monogram</div>
+</div>
+<!-- Controls Panel -->
+<div class="absolute bottom-0 w-full h-[45%] bg-surface rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.05)] flex flex-col">
+<div class="w-12 h-1 bg-outline-variant/30 rounded-full mx-auto mt-4 mb-6"></div>
+<div class="px-margin-mobile flex-1 overflow-y-auto no-scrollbar pb-safe">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Hardware</h2>
+<!-- Options -->
+<div class="flex gap-4 mb-8 overflow-x-auto no-scrollbar pb-2">
+<div class="w-20 h-20 shrink-0 border-2 border-primary rounded-full p-1 cursor-pointer">
+<div class="w-full h-full rounded-full bg-[#E5E2DE] shadow-inner"></div>
+</div>
+<div class="w-20 h-20 shrink-0 border border-outline-variant rounded-full p-1 cursor-pointer opacity-70">
+<div class="w-full h-full rounded-full bg-[#B0BEC5] shadow-inner"></div>
+</div>
+<div class="w-20 h-20 shrink-0 border border-outline-variant rounded-full p-1 cursor-pointer opacity-70">
+<div class="w-full h-full rounded-full bg-[#8D6E63] shadow-inner"></div>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-4 mt-4 text-xl">Monogram</h2>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent px-0 py-3 font-label-caps text-label-caps text-primary focus:ring-0 focus:border-primary placeholder-on-surface-variant/50" placeholder="Enter up to 3 initials" type="text"/>
+</div>
+<!-- Footer Action -->
+<div class="p-margin-mobile border-t border-outline-variant/20 bg-surface">
+<button class="w-full h-14 bg-primary text-on-primary font-button-text text-button-text flex items-center justify-between px-6 rounded-sm">
+<span>Review Design</span>
+<span>$550.00</span>
+</button>
+</div>
+</div>
+</div>
+<!-- FRAME 3: Passport (Profile) -->
+<div class="w-[393px] h-[852px] bg-surface relative overflow-hidden rounded-[2.5rem] shadow-2xl border-[8px] border-surface-container-highest">
+<div class="h-full overflow-y-auto pb-24 no-scrollbar">
+<!-- Header -->
+<div class="pt-16 px-margin-mobile pb-8 bg-surface-container-lowest">
+<h1 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Passport</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Member since 2022</p>
+</div>
+<!-- Content Tabs -->
+<div class="flex border-b border-outline-variant/20 px-margin-mobile mt-4">
+<div class="pb-3 border-b-2 border-primary font-label-caps text-label-caps text-primary mr-8">Wardrobe</div>
+<div class="pb-3 text-on-surface-variant font-label-caps text-label-caps">Orders</div>
+<div class="pb-3 text-on-surface-variant font-label-caps text-label-caps ml-8">Saved</div>
+</div>
+<!-- Grid -->
+<div class="p-margin-mobile grid grid-cols-2 gap-4">
+<!-- Item 1 -->
+<div class="flex flex-col group">
+<div class="aspect-[4/5] bg-surface-container-low mb-3 relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full mix-blend-multiply transition-transform duration-500 group-hover:scale-105" data-alt="A meticulously crafted leather satchel sitting on a dark wooden table. Soft natural light, high-end editorial product photography, cinematic luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnyvP0Vp9DR7qFNBRmQeBoiM7x9gUTslO9B9rKeDs15BeY7q4xXZ8seSC7BKk0bCjunHecnwXJtUKd3MFbMI72UljRfRMMBHSn6F3sRjy4CQ-18MSR22GU7r_f_1jNYLST_8Dql1fTocIeupItBzoawWbM5Pi0h9ijUPkFXZZ0UW2-q8T37DZSgX9INfv_A9VcelI4fNooRsWXfu2PgF1rGpuPEdldthOul7-yP2ExgMcumxLzD7cKrA')"></div>
+<div class="absolute top-2 right-2 bg-surface/90 px-2 py-1 text-[10px] font-label-caps border border-outline-variant/30">Custom</div>
+</div>
+<span class="font-button-text text-button-text text-primary">Nomad Satchel</span>
+<span class="font-body-md text-sm text-on-surface-variant">Delivered Oct 12</span>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col group">
+<div class="aspect-[4/5] bg-surface-container-low mb-3 relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full mix-blend-multiply transition-transform duration-500 group-hover:scale-105" data-alt="A close-up shot of a tailored denim jacket draped elegantly. Focus on the raw texture and silver buttons. Cinematic lighting, sophisticated Western mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpQvtrgsCOuClKh6vDT847xenjpa3PQuL3eu0SWnd3_mLmnximtQcTPxHH8fxQ0apfheoVFvIbrjaziKTYFzchHdX6h4990-_VYmDudbZ5z9h5svo1MF8drsSza4_AkZIO4eyOkxLUXQZrhYrH_ulqvpjfN7RZ4OaVaDvX8_FD0SiAx0Sxezi-sKDdj84YXUDHQT6-_DeoknAnt4210Mnu1BjIjdGxmKVGw0QV4tKxNO_QBJaFLxK7Tw')"></div>
+</div>
+<span class="font-button-text text-button-text text-primary">Frontier Jacket</span>
+<span class="font-body-md text-sm text-on-surface-variant">Delivered Sep 05</span>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col group">
+<div class="aspect-[4/5] bg-surface-container-low mb-3 relative overflow-hidden">
+<div class="bg-surface-dim w-full h-full flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">architecture</span>
+</div>
+<div class="absolute inset-0 bg-black/5 flex items-center justify-center backdrop-blur-[2px]">
+<span class="bg-surface px-3 py-1 font-label-caps text-[10px] text-primary">In Production</span>
+</div>
+</div>
+<span class="font-button-text text-button-text text-primary">Bespoke Boots</span>
+<span class="font-body-md text-sm text-on-surface-variant">Est. Delivery Nov 20</span>
+</div>
+</div>
+</div>
+<!-- Bottom Nav Bar (From JSON) -->
+<div class="md:hidden flex justify-around items-center h-20 px-margin-mobile pb-safe fixed bottom-0 w-[377px] z-50 rounded-t-xl border-t border-outline-variant/20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-md">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Discover</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Custom</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold">
+<span class="material-symbols-outlined fill">person_pin_circle</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Passport</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Bag</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

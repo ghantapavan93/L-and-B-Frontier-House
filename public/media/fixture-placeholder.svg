@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+  <title>Development fixture placeholder</title>
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#efe9e1"/>
+      <stop offset="55%" stop-color="#e6ded3"/>
+      <stop offset="100%" stop-color="#ddd3c5"/>
+    </linearGradient>
+    <pattern id="weave" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 0h16v16H0z" fill="none"/>
+      <path d="M0 8h16M8 0v16" stroke="#c9bdac" stroke-opacity="0.35" stroke-width="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#ground)"/>
+  <rect width="800" height="1000" fill="url(#weave)" opacity="0.5"/>
+
+  <g stroke="#b8a894" stroke-opacity="0.5" stroke-width="1" fill="none">
+    <rect x="60" y="60" width="680" height="880"/>
+  </g>
+
+  <text x="400" y="492" text-anchor="middle" font-family="ui-monospace, monospace" font-size="17" letter-spacing="5" fill="#8a7961">PHOTOGRAPHY</text>
+  <text x="400" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="17" letter-spacing="5" fill="#8a7961">PENDING</text>
+  <line x1="330" y1="552" x2="470" y2="552" stroke="#b8a894" stroke-width="1"/>
+</svg>

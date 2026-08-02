@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - The Belt Buckle Aperture</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#636260",
+                        "inverse-primary": "#c9c6c5",
+                        "surface-container": "#f0eded",
+                        "tertiary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c4c7c7",
+                        "on-background": "#1c1b1b",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dcd9d9",
+                        "surface-tint": "#5f5e5e",
+                        "secondary": "#5f5e5b",
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#c8c6c2",
+                        "tertiary-fixed": "#d6e3ff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c35",
+                        "primary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#444748",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#7584a3",
+                        "on-secondary-fixed-variant": "#474744",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary-fixed": "#1c1c1a",
+                        "tertiary-container": "#0a1c35",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-fixed-variant": "#384763",
+                        "primary-fixed": "#e5e2e1",
+                        "inverse-on-surface": "#f3f0ef",
+                        "error-container": "#ffdad6",
+                        "surface": "#fcf9f8",
+                        "secondary-container": "#e2dfdb",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#474646",
+                        "outline": "#747878",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed": "#e5e2de",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed-dim": "#b7c7e8",
+                        "background": "#fcf9f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "button-text": ["Chivo"],
+                        "body-md": ["Chivo"],
+                        "headline-xl": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Chivo"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "button-text": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["60px", { "lineHeight": "68px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .bg-obsidian { background-color: #121212; }
+        .text-obsidian { color: #121212; }
+        .bg-bone { background-color: #F8F5F2; }
+        .text-bone { color: #F8F5F2; }
+        .bg-cobalt { background-color: #2D4C8C; }
+        .text-cobalt { color: #2D4C8C; }
+        .bg-amber { background-color: #C07F00; }
+        .text-amber { color: #C07F00; }
+        .bg-indigo { background-color: #1C2841; }
+        .text-indigo { color: #1C2841; }
+        
+        .inter-font { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen">
+<!-- Top Navigation -->
+<nav class="bg-surface/80 backdrop-blur-md dark:bg-primary/80 border-b border-outline-variant/30 flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto docked full-width top-0 z-50 sticky">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-surface-bright">L&amp;B Frontier House</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant/60 dark:text-on-primary-container/60 font-body-md hover:text-primary dark:hover:text-surface-bright transition-colors duration-300" href="#">Cinema</a>
+<a class="text-primary dark:text-surface-bright border-b-2 border-primary dark:border-surface-bright pb-1 transition-all duration-500" href="#">Balanced</a>
+<a class="text-on-surface-variant/60 dark:text-on-primary-container/60 font-body-md hover:text-primary dark:hover:text-surface-bright transition-colors duration-300" href="#">Instant</a>
+</div>
+</div>
+<div class="flex gap-4 text-primary dark:text-on-primary">
+<span class="material-symbols-outlined hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 cursor-pointer">shopping_bag</span>
+<span class="material-symbols-outlined hover:text-primary dark:hover:text-surface-bright transition-colors duration-300 cursor-pointer">person</span>
+</div>
+</nav>
+<main class="w-full">
+<!-- Header -->
+<header class="w-full px-margin-desktop py-12 max-w-container-max-width mx-auto">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2">THE BELT BUCKLE APERTURE</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Study V3.1 - Technical Design Board</p>
+</header>
+<!-- Hero: 3D Buckle Aperture -->
+<section class="w-full h-[70vh] bg-obsidian relative flex items-center justify-center overflow-hidden border-y border-outline-variant/20">
+
+<div class="absolute bottom-8 left-8">
+<p class="font-label-caps text-label-caps text-bone opacity-70">FRAME 08: CINEMATIC DARKNESS / TRANSITION STATE 1-8</p>
+</div>
+</section>
+<div class="max-w-container-max-width mx-auto px-margin-desktop py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Section A: Material & Object Design Board -->
+<section class="lg:col-span-5 flex flex-col gap-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-4 border-b border-outline-variant/30 pb-2">8A. Materiality &amp; Form</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Close-up study of the physical-digital intersection. Textural depth informs the UI's tactile response.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Texture 1 -->
+<div class="relative aspect-square bg-surface-container-high rounded overflow-hidden group">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A hyper-realistic, macro close-up of brushed silver metal, displaying fine hairline scratches and a soft, diffused metallic sheen reflecting a studio light setup. High contrast, sharp focus, industrial luxury aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDobVDGaTFk-OqnRgtT3Vaamg_ahpreRfienInG4U_x_m_vf3U8ywI6d2O2uxXd28dOKNAeYinDQiirUsqLUg2tsc_mdY8HPapHjNOkFskVnhpXT-2biX7EGEgXksADfkjB0LFDAhTqzHDtFRTr5xMidEWGqQM3P7t5aq7kZnKe9Rte6ecc7ZSSgjVVipX_CVBSdJvZKoAUZtQ4CqnV2pmUlVwV0-5yJbsGL3jAx3te23G8BCqu3jLRbA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3">
+<p class="font-label-caps text-label-caps text-surface-bright">BRUSHED SILVER</p>
+<p class="text-[10px] text-surface-bright/70 font-mono">WAREHOUSE ROUTING GEOMETRY</p>
+</div>
+<div class="absolute top-2 right-2 bg-obsidian text-bone text-[9px] px-1.5 py-0.5 font-mono uppercase">Concept</div>
+</div>
+<!-- Texture 2 -->
+<div class="relative aspect-square bg-surface-container-high rounded overflow-hidden group">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A highly detailed macro photograph of rich, dark brown tooled leather. The intricate floral and geometric tooling patterns are deeply embossed, catching warm amber side-lighting that highlights the rugged, artisanal texture and natural grain. Western luxury aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAE7fHynVeKePHg5DPX5FrnVo54oj-8X-HvBVKk0jpXUc0hWaTOggVHx74KlDiJI8WZpCQzUy-v62L6oIOWSz43NLsDaA6lojVPqvO2JHIhXT2TCEgJJ_IOzM-LxfjtaEbr67ebZzWMmtOzsRX5SBki8lKTNnCZv6kAr1ZndEZtWP_0nrN7nafGY147CGxZrOdknBlf8Nyl1xdRo2BCeg1skv_zacEg7bKBmI8cpk0jPoMEhhtD2S7JnA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3">
+<p class="font-label-caps text-label-caps text-surface-bright">TOOLED LEATHER</p>
+<p class="text-[10px] text-surface-bright/70 font-mono">TACTILE FOUNDATION</p>
+</div>
+<div class="absolute top-2 right-2 bg-obsidian text-bone text-[9px] px-1.5 py-0.5 font-mono uppercase">Concept</div>
+</div>
+<!-- Texture 3 -->
+<div class="relative aspect-square bg-surface-container-high rounded overflow-hidden group col-span-2">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A sweeping close-up of premium raw indigo denim fabric. The heavy twill weave is clearly visible, with subtle variations in the deep blue dye. A sharp line of glowing, ethereal blue light cuts across the fabric, suggesting digital energy infusing physical material. Cinematic lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBQQYYpUUenXlNXzKu_LTNJnycj31k8jTmHWMIPwkc4DyPpvzseJ0AXhBUAwtdogSxu7DVNl9C90BeDYZSxuJqMy_KwOXkUqXcWkHoZUDUszttd2RIOQknayM93qEItYvDZaA0inizQa_DQBcv1Gw1rF9sTE21zqRC58k1eS5-9kRelSH-yGne6Yub_85iiVIGDp8N_TVg7SOGY8uOXx3m6S9KKD8w6XD9CX3l3t7lZiJCgL-RCDu3sA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-surface-bright">INDIGO DENIM</p>
+<p class="text-[10px] text-surface-bright/70 font-mono">OPERATIONAL AWAKENING ILLUMINATION</p>
+</div>
+<span class="material-symbols-outlined text-surface-bright">texture</span>
+</div>
+<div class="absolute top-2 right-2 bg-obsidian text-bone text-[9px] px-1.5 py-0.5 font-mono uppercase">Concept</div>
+</div>
+</div>
+</section>
+<!-- Section B: State Sequence & Section D: Production Specs -->
+<section class="lg:col-span-7 flex flex-col gap-12">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-4 border-b border-outline-variant/30 pb-2">8B-8H. Transformation Sequence</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Progression from dormant state to active camera passage. The aperture expands sequentially.</p>
+<div class="grid grid-cols-3 gap-4">
+<!-- State 1 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-2 h-2 rounded-full bg-surface-bright/20"></div>
+<div class="absolute top-1 right-1 bg-white/10 text-white/50 text-[8px] px-1 font-mono">8B</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px]">DORMANT</p>
+</div>
+<!-- State 2 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-8 h-2 rounded-full bg-surface-bright/40 border border-surface-bright/20"></div>
+<div class="absolute top-1 right-1 bg-white/10 text-white/50 text-[8px] px-1 font-mono">8C</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px]">IGNITION</p>
+</div>
+<!-- State 3 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-12 h-6 rounded-md bg-transparent border border-surface-bright/60 shadow-[0_0_10px_rgba(255,255,255,0.2)]"></div>
+<div class="absolute top-1 right-1 bg-white/10 text-white/50 text-[8px] px-1 font-mono">8D</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px]">APERTURE CRACK</p>
+</div>
+<!-- State 4 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-16 h-12 rounded-lg bg-transparent border-2 border-surface-bright/80 shadow-[0_0_15px_rgba(255,255,255,0.3)]"></div>
+<div class="absolute top-1 right-1 bg-white/10 text-white/50 text-[8px] px-1 font-mono">8E</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px]">EXPANSION</p>
+</div>
+<!-- State 5 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2 ring-1 ring-primary">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-24 h-16 rounded-xl bg-transparent border-2 border-surface-bright shadow-[0_0_20px_rgba(255,255,255,0.4)] flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-cobalt blur-[2px]"></div>
+</div>
+<div class="absolute top-1 right-1 bg-white/20 text-white text-[8px] px-1 font-mono">8F</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px] font-bold">ORBIT LOCK</p>
+</div>
+<!-- State 6 -->
+<div class="bg-surface-container rounded p-3 flex flex-col gap-2">
+<div class="w-full aspect-video bg-obsidian rounded flex items-center justify-center relative overflow-hidden">
+<div class="w-full h-full bg-transparent border-[8px] border-surface-bright shadow-[inset_0_0_30px_rgba(255,255,255,0.5)]"></div>
+<div class="absolute top-1 right-1 bg-white/10 text-white/50 text-[8px] px-1 font-mono">8H</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary text-center text-[10px]">CAMERA PASSAGE</p>
+</div>
+</div>
+</div>
+<!-- Section C: Navigation Orbit (Detail of 8F) -->
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/30">
+<h3 class="font-headline-md text-body-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">center_focus_strong</span>
+                        Section C: Navigation Orbit (8F)
+                    </h3>
+<div class="w-full h-64 bg-obsidian rounded-lg relative flex items-center justify-center overflow-hidden">
+<!-- Simulated Buckle -->
+<div class="w-32 h-24 border-4 border-bone/80 rounded-2xl shadow-[0_0_40px_rgba(248,245,242,0.15)] relative z-10 flex items-center justify-center">
+<div class="w-4 h-16 bg-bone/90 rounded-sm absolute right-4 shadow-lg"></div>
+</div>
+<!-- Floating Typography Orbit -->
+<div class="absolute w-full h-full flex items-center justify-center z-20 pointer-events-none">
+<span class="absolute top-[15%] left-[20%] text-bone/60 font-headline-md text-sm rotate-[-15deg] blur-[0.5px]">New Arrivals</span>
+<span class="absolute top-[20%] right-[25%] text-bone/90 font-headline-md text-base rotate-[10deg]">Women</span>
+<span class="absolute bottom-[25%] left-[15%] text-bone/80 font-headline-md text-base rotate-[5deg]">Plus</span>
+<span class="absolute bottom-[20%] right-[20%] text-bone/70 font-headline-md text-sm rotate-[-10deg] blur-[0.5px]">Accessories</span>
+<span class="absolute top-[45%] left-[10%] text-bone/50 font-headline-md text-xs rotate-[-25deg] blur-[1px]">Girls</span>
+<span class="absolute top-[50%] right-[10%] text-bone/40 font-headline-md text-xs rotate-[20deg] blur-[1px]">Wholesale</span>
+</div>
+<div class="absolute top-4 left-4 bg-black/50 backdrop-blur px-2 py-1 rounded text-[10px] text-bone font-mono border border-white/10 uppercase tracking-widest">Concept Render</div>
+</div>
+</div>
+<!-- Section D: Production Specs -->
+<div class="border-t border-outline-variant/30 pt-6">
+<h3 class="font-headline-md text-body-lg text-primary mb-4">Production Specifications</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 inter-font text-sm">
+<div class="bg-surface p-4 rounded border border-outline-variant/20">
+<h4 class="font-semibold text-primary mb-2 border-b border-outline-variant/10 pb-1">Three.js Geometry Layers</h4>
+<ul class="list-disc list-inside text-on-surface-variant space-y-1">
+<li>Base mesh: High-poly chamfered rectangle (seg: 64x64).</li>
+<li>Material: MeshPhysicalMaterial, roughness 0.2, metalness 0.9.</li>
+<li>Displacement map applied for 'tooled leather' base surround.</li>
+<li>Z-index layering critical for portal masking effect.</li>
+</ul>
+</div>
+<div class="bg-surface p-4 rounded border border-outline-variant/20">
+<h4 class="font-semibold text-primary mb-2 border-b border-outline-variant/10 pb-1">GLSL Edge Lighting</h4>
+<ul class="list-disc list-inside text-on-surface-variant space-y-1">
+<li>Custom shader material for inner aperture rim.</li>
+<li>Fresnel effect driven by camera angle vector.</li>
+<li>Color pulse uniform mapped to scroll velocity (Indigo -&gt; Bone).</li>
+<li>Volumetric light ray scattering on z-axis push.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-surface-container-lowest w-full relative bottom-0 border-t border-outline-variant/10">
+<div class="w-full px-margin-desktop py-16 flex flex-col items-center gap-8 max-w-container-max-width mx-auto">
+<span class="font-headline-md text-headline-md text-on-primary dark:text-primary">L&amp;B Frontier House</span>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-caps text-label-caps text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors" href="#">The Cinema</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors" href="#">Bespoke Services</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors" href="#">Terms of Craft</a>
+<a class="font-label-caps text-label-caps text-on-primary/60 dark:text-primary/60 hover:text-surface-bright dark:hover:text-primary transition-colors" href="#">Privacy</a>
+</div>
+<p class="font-body-md text-body-md text-on-primary/60 dark:text-primary/60 text-center text-sm">© 2024 L&amp;B Frontier House. Crafted for the Modern Horizon.</p>
+</div>
+</footer>
+</body></html>

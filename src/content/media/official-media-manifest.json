@@ -1,0 +1,1485 @@
+{
+  "$schema": "official-media-manifest/v2",
+  "notice": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT",
+  "generatedOn": "2026-08-02",
+  "officialOrigins": [
+    "https://landbapparel.com",
+    "https://landbw.co"
+  ],
+  "authorisation": {
+    "granted": false,
+    "grantedBy": null,
+    "grantedOn": null,
+    "evidence": null
+  },
+  "preflight": [
+    {
+      "origin": "https://landbapparel.com",
+      "allowed": false,
+      "matchedAgent": "claudebot",
+      "contentSignal": "search=yes,ai-train=no,use=reference",
+      "reason": "robots.txt disallows \"/\" for user-agent \"claudebot\""
+    },
+    {
+      "origin": "https://landbw.co",
+      "allowed": false,
+      "matchedAgent": "claudebot",
+      "contentSignal": null,
+      "reason": "robots.txt disallows \"/\" for user-agent \"ahrefsbot, mj12bot, blexbot, semrushbot, dataforseobot, dotbot, bytedance, bytespider, ccbot/2.0, claudebot, petalbot, yandex\""
+    }
+  ],
+  "importRan": false,
+  "assets": [],
+  "rejected": [],
+  "originalsPreservedAt": "assets/source/owner-approved/",
+  "optimisedTo": "public/media/catalog/approved/",
+  "ownerApproved": [
+    {
+      "original": "JE334-DW__1_360x.webp",
+      "slug": "dark-wash-flare-jean",
+      "styleCode": "JE334-DW",
+      "describes": "A model in dark wash high-rise flare jeans with a white western shirt, photographed full length on a sidewalk",
+      "sourcePath": "assets/source/owner-approved/JE334-DW__1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 66534,
+      "sha256": "75939662cb97b02bc60f7c2f345cb2f487c27625e215beb8d0011ad85fe6d720",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je334-dw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "dark-wash-flare-jean-360.avif",
+          "byteSize": 32255
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "dark-wash-flare-jean-360.webp",
+          "byteSize": 45728
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE322-DW3_z1ec-tc_360x.webp",
+      "slug": "dark-wash-bootcut-jean",
+      "styleCode": "JE322-DW",
+      "describes": "A model in dark wash bootcut jeans with a white pearl-snap western shirt, standing in front of a cactus and ivy wall",
+      "sourcePath": "assets/source/owner-approved/JE322-DW3_z1ec-tc_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 69794,
+      "sha256": "176b31d37deceea60681f772b138a5423b32ad59f176182be441ec6774070b03",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je322-dw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "dark-wash-bootcut-jean-360.avif",
+          "byteSize": 33889
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "dark-wash-bootcut-jean-360.webp",
+          "byteSize": 46572
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE305-DW__6_360x.webp",
+      "slug": "black-wash-wide-leg-jean",
+      "styleCode": "JE305-DW",
+      "describes": "Back view of a model in black wash wide leg jeans with a western-print tee, showing the rear yoke and pocket stitching",
+      "sourcePath": "assets/source/owner-approved/JE305-DW__6_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 44452,
+      "sha256": "276230ada3f827d4b485ef3c2f6e3546a7d936c0d780c81d5b3ac5a521a546f0",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je305-dw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-wash-wide-leg-jean-360.avif",
+          "byteSize": 21567
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-wash-wide-leg-jean-360.webp",
+          "byteSize": 28496
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE587-MWback_360x.webp",
+      "slug": "mid-wash-cuffed-wide-leg-jean",
+      "styleCode": "JE587-MW",
+      "describes": "Back view of a model in mid wash wide leg jeans with a turned-up cuff, worn with a pale green graphic tee",
+      "sourcePath": "assets/source/owner-approved/JE587-MWback_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 504,
+      "aspectRatio": "360 / 504",
+      "byteSize": 52382,
+      "sha256": "71871d380348bbc3dd0023b09dac81d96a022810eba3a48d0f9033a896c81840",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je587-mw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "mid-wash-cuffed-wide-leg-jean-360.avif",
+          "byteSize": 26262
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "mid-wash-cuffed-wide-leg-jean-360.webp",
+          "byteSize": 34880
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE274-LW-Xback_360x.webp",
+      "slug": "light-wash-straight-leg-jean",
+      "styleCode": "JE274-LW",
+      "describes": "Back view of a model in light wash straight leg jeans with a raw hem, worn with an aztec-print shirt against a brick wall",
+      "sourcePath": "assets/source/owner-approved/JE274-LW-Xback_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 51820,
+      "sha256": "d92323020c3ef9980ae6759ecbd71facc679b27c572c2c9f8c1e189d7d1387a3",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je274-lw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "light-wash-straight-leg-jean-360.avif",
+          "byteSize": 27001
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "light-wash-straight-leg-jean-360.webp",
+          "byteSize": 35818
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE386-LEO-2_360x.webp",
+      "slug": "leopard-print-jean",
+      "styleCode": "JE386-LEO",
+      "describes": "Back view of a model in leopard-print jeans with a plain white top, photographed against a corrugated shutter",
+      "sourcePath": "assets/source/owner-approved/JE386-LEO-2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 56502,
+      "sha256": "a1410aedcbd1942a954bc8f268b052a1109b61558bfa078c210a4fa3b1a51cf7",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je386-leo",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "leopard-print-jean-360.avif",
+          "byteSize": 27745
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "leopard-print-jean-360.webp",
+          "byteSize": 38166
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "je384-leo-2_7cci-gt_4098affd-aa7d-41c7-a80d-cdd295fb21aa_360x.jpg",
+      "slug": "leopard-print-tie-waist-flare-jean",
+      "styleCode": "JE384-LEO",
+      "describes": "Back view of a model in leopard-print flare trousers with a drawstring tie waist and a blush ribbed top",
+      "sourcePath": "assets/source/owner-approved/je384-leo-2_7cci-gt_4098affd-aa7d-41c7-a80d-cdd295fb21aa_360x.jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 79691,
+      "sha256": "753fc586c5db1f26e98588ba2035a7e97b1755cba28cb9f501c75a71df9d9e8b",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je384-leo",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "leopard-print-tie-waist-flare-jean-360.avif",
+          "byteSize": 40643
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "leopard-print-tie-waist-flare-jean-360.webp",
+          "byteSize": 55406
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE393-BTST1_1z2n-6l_360x.webp",
+      "slug": "western-swirl-printed-jean",
+      "styleCode": "JE393-BTST",
+      "describes": "A model in dark jeans with an all-over tonal western swirl print, worn with a white shirt and boots",
+      "sourcePath": "assets/source/owner-approved/JE393-BTST1_1z2n-6l_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 53750,
+      "sha256": "33c1e774a2485f6c7bc0b02fd5419fc2127bd9a3ccdbe5407aff3fb77ef82895",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je393-btst",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "western-swirl-printed-jean-360.avif",
+          "byteSize": 28213
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "western-swirl-printed-jean-360.webp",
+          "byteSize": 35466
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "CF4EA635-738C-4B7F-91A5-43CD07227BE9_uvbr-2l_360x.webp",
+      "slug": "embroidered-flare-leg-detail",
+      "styleCode": null,
+      "describes": "Close crop of the lower leg of dark wash flare jeans with a white embroidered swirl motif, worn with boots",
+      "sourcePath": "assets/source/owner-approved/CF4EA635-738C-4B7F-91A5-43CD07227BE9_uvbr-2l_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 45808,
+      "sha256": "f175b470e0a248547fedca0714d952831317e567174e1a3a8af5b1cb47bfa424",
+      "placement": {
+        "kind": "editorial",
+        "slot": "craft-detail"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "embroidered-flare-leg-detail-360.avif",
+          "byteSize": 24000
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "embroidered-flare-leg-detail-360.webp",
+          "byteSize": 31814
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "DR047-BLK1_360x.webp",
+      "slug": "black-one-shoulder-fringe-mini-dress",
+      "styleCode": "DR047-BLK",
+      "describes": "A model in a black one-shoulder mini dress with long fringe down the single sleeve, photographed against a brick wall",
+      "sourcePath": "assets/source/owner-approved/DR047-BLK1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 39540,
+      "sha256": "097b8aa7039809d90deab73d88dc1dbf4ebd6f38ab2da2ab3958453ad6524a2f",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr047-blk",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-one-shoulder-fringe-mini-dress-360.avif",
+          "byteSize": 19946
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-one-shoulder-fringe-mini-dress-360.webp",
+          "byteSize": 26526
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "DR381-AW_7_360x.webp",
+      "slug": "chambray-asymmetric-ruffle-midi-dress",
+      "styleCode": "DR381-AW",
+      "describes": "A model in a pale chambray strapless midi dress with tiered asymmetric ruffles and a high-low hem, worn with a concho belt",
+      "sourcePath": "assets/source/owner-approved/DR381-AW_7_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 50458,
+      "sha256": "a08c632b7ee939db1129b81567fc4fd02343defa743b4b430a03aec776c538ba",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr381-aw",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "chambray-asymmetric-ruffle-midi-dress-360.avif",
+          "byteSize": 27062
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "chambray-asymmetric-ruffle-midi-dress-360.webp",
+          "byteSize": 33136
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "dr505-blk-2_7xp9-wo_1_360x.webp",
+      "slug": "black-fringe-sleeve-embroidered-mini-dress",
+      "styleCode": "DR505-BLK",
+      "describes": "A model in a black collared mini dress with fringed short sleeves and a white embroidered swirl motif at the hem",
+      "sourcePath": "assets/source/owner-approved/dr505-blk-2_7xp9-wo_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 32766,
+      "sha256": "879d0032aa1b6fd1a6c43870049e6ad61fd09cf7702a62aef51a4f1f5b245d06",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr505-blk",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-fringe-sleeve-embroidered-mini-dress-360.avif",
+          "byteSize": 16961
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-fringe-sleeve-embroidered-mini-dress-360.webp",
+          "byteSize": 20394
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO390-BLK_360x.webp",
+      "slug": "black-long-fringe-vest",
+      "styleCode": "JO390-BLK",
+      "describes": "A model in a black long fringe vest over a tan top, worn with a straw hat and a concho belt",
+      "sourcePath": "assets/source/owner-approved/JO390-BLK_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 43030,
+      "sha256": "a9998bbd9eca1871bdb3cc0ebcb55b664d8e1597edf32ee69602db460a6defa8",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo390-blk",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-long-fringe-vest-360.avif",
+          "byteSize": 20332
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-long-fringe-vest-360.webp",
+          "byteSize": 27318
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO390-CML-3-1_oyl0-k0_1_360x.webp",
+      "slug": "camel-long-fringe-vest",
+      "styleCode": "JO390-CML",
+      "describes": "Close crop of a camel long fringe vest over a tan top, showing the full length of the fringe",
+      "sourcePath": "assets/source/owner-approved/JO390-CML-3-1_oyl0-k0_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 45250,
+      "sha256": "877ad272e7f5a69ff85938686c54581daa38297085d3ceef77e64ea938b9e8ef",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo390-cml",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "camel-long-fringe-vest-360.avif",
+          "byteSize": 20558
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "camel-long-fringe-vest-360.webp",
+          "byteSize": 28626
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO632 (5).jpg",
+      "slug": "studded-fringe-poncho",
+      "styleCode": "JO632",
+      "describes": "A dark brown suede-look fringed poncho with a horse-head appliqué and studded detailing, shown on a hanger against a wooden door",
+      "sourcePath": "assets/source/owner-approved/JO632 (5).jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 600,
+      "sourceHeight": 900,
+      "aspectRatio": "600 / 900",
+      "byteSize": 537406,
+      "sha256": "b657a65c3cce59e0e1ace507e096702a4b73f5722e88e07ee6f8dd113b78adbb",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo632",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "studded-fringe-poncho-360.avif",
+          "byteSize": 21307
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "studded-fringe-poncho-360.webp",
+          "byteSize": 26710
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "studded-fringe-poncho-480.avif",
+          "byteSize": 34286
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "studded-fringe-poncho-480.webp",
+          "byteSize": 42926
+        },
+        {
+          "width": 600,
+          "format": "avif",
+          "file": "studded-fringe-poncho-600.avif",
+          "byteSize": 51905
+        },
+        {
+          "width": 600,
+          "format": "webp",
+          "file": "studded-fringe-poncho-600.webp",
+          "byteSize": 65364
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "KD039-SER-2_360x.webp",
+      "slug": "serape-stripe-fringe-vest",
+      "styleCode": "KD039-SER",
+      "describes": "Back view of a serape-striped fringe vest worn over a teal long-sleeve top, showing the woven stripe pattern and suede fringe",
+      "sourcePath": "assets/source/owner-approved/KD039-SER-2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 540,
+      "aspectRatio": "360 / 540",
+      "byteSize": 43316,
+      "sha256": "a9bed84f6c45688fdf744bf6e7cbd306feb81fe2018be9b9b71d0d0e0a784549",
+      "placement": {
+        "kind": "product",
+        "productId": "p-kd039-ser",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "serape-stripe-fringe-vest-360.avif",
+          "byteSize": 19733
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "serape-stripe-fringe-vest-360.webp",
+          "byteSize": 29490
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "TO1069-CMLAZT_2_1_360x.webp",
+      "slug": "camel-aztec-print-long-sleeve-top",
+      "styleCode": "TO1069-CMLAZT",
+      "describes": "A model in a camel aztec-print long sleeve top, worn with a turquoise squash blossom necklace and a coin belt",
+      "sourcePath": "assets/source/owner-approved/TO1069-CMLAZT_2_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 539,
+      "aspectRatio": "360 / 539",
+      "byteSize": 90250,
+      "sha256": "d09e2b2f9c42ff464b15a6f7282d01f42f3ab1cbc94ddeb5a439f808cd7d4d3f",
+      "placement": {
+        "kind": "product",
+        "productId": "p-to1069-cmlazt",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "camel-aztec-print-long-sleeve-top-360.avif",
+          "byteSize": 46682
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "camel-aztec-print-long-sleeve-top-360.webp",
+          "byteSize": 65614
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "to588-s-7_2_360x.webp",
+      "slug": "aztec-print-graphic-tee",
+      "styleCode": "TO588-S",
+      "describes": "A model in a cream tee with a large aztec geometric print in teal, orange and black across the chest",
+      "sourcePath": "assets/source/owner-approved/to588-s-7_2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 539,
+      "aspectRatio": "360 / 539",
+      "byteSize": 52904,
+      "sha256": "88e310ec08b2f0c442379dde9b34ee56976fab000443e5df36a6a524136806ad",
+      "placement": {
+        "kind": "product",
+        "productId": "p-to588-s",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "aztec-print-graphic-tee-360.avif",
+          "byteSize": 27862
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "aztec-print-graphic-tee-360.webp",
+          "byteSize": 36250
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "l-b-apparel-sleeveless-top-sleeveless-pearl-snap-top-curvy-size-1155907553_360x.webp",
+      "slug": "sleeveless-pearl-snap-western-top",
+      "styleCode": null,
+      "describes": "A model in a sleeveless pearl-snap western top in a pink and grey aztec print, worn with light wash jeans and a tooled belt",
+      "sourcePath": "assets/source/owner-approved/l-b-apparel-sleeveless-top-sleeveless-pearl-snap-top-curvy-size-1155907553_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 360,
+      "sourceHeight": 480,
+      "aspectRatio": "360 / 480",
+      "byteSize": 38890,
+      "sha256": "4802e1c5e0774020a6aa47315b973d0e70d0380cbee2783e6df7a3e9c1048b77",
+      "placement": {
+        "kind": "product",
+        "productId": "p-pearl-snap-sleeveless",
+        "order": 0
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "sleeveless-pearl-snap-western-top-360.avif",
+          "byteSize": 21073
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "sleeveless-pearl-snap-western-top-360.webp",
+          "byteSize": 27672
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "STYLES OF THE WEEK 2.jpg",
+      "slug": "lineup-editorial",
+      "styleCode": null,
+      "describes": "Five models photographed side by side in western looks — a white lace shirt dress, a tan printed shirt with denim shorts, a black leather shirt dress, a chambray shirt dress and a cream printed dress",
+      "sourcePath": "assets/source/owner-approved/STYLES OF THE WEEK 2.jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 1920,
+      "sourceHeight": 1066,
+      "aspectRatio": "1920 / 1066",
+      "byteSize": 908608,
+      "sha256": "631c855d989725fd8649c7e39a8ebb605f953afb7f8be69ef6413f38b5027c36",
+      "placement": {
+        "kind": "editorial",
+        "slot": "homepage-hero"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "lineup-editorial-360.avif",
+          "byteSize": 14645
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "lineup-editorial-360.webp",
+          "byteSize": 19018
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "lineup-editorial-480.avif",
+          "byteSize": 25258
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "lineup-editorial-480.webp",
+          "byteSize": 32216
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "lineup-editorial-640.avif",
+          "byteSize": 41906
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "lineup-editorial-640.webp",
+          "byteSize": 52496
+        },
+        {
+          "width": 960,
+          "format": "avif",
+          "file": "lineup-editorial-960.avif",
+          "byteSize": 92012
+        },
+        {
+          "width": 960,
+          "format": "webp",
+          "file": "lineup-editorial-960.webp",
+          "byteSize": 116662
+        },
+        {
+          "width": 1280,
+          "format": "avif",
+          "file": "lineup-editorial-1280.avif",
+          "byteSize": 159534
+        },
+        {
+          "width": 1280,
+          "format": "webp",
+          "file": "lineup-editorial-1280.webp",
+          "byteSize": 203262
+        },
+        {
+          "width": 1920,
+          "format": "avif",
+          "file": "lineup-editorial-1920.avif",
+          "byteSize": 338033
+        },
+        {
+          "width": 1920,
+          "format": "webp",
+          "file": "lineup-editorial-1920.webp",
+          "byteSize": 441722
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__54_.png",
+      "slug": "printed-midi-dress-portrait",
+      "styleCode": null,
+      "describes": "A model in a cream western-scenic printed long sleeve midi dress with a concho belt and a straw hat, photographed full length on a storefront street",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__54_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 1797654,
+      "sha256": "a432b82f8cd8239ffa88e2fc31272a5a1badffb8e8d7ef39d363abeb88f91cd5",
+      "placement": {
+        "kind": "editorial",
+        "slot": "homepage-hero-portrait"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "printed-midi-dress-portrait-360.avif",
+          "byteSize": 27664
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "printed-midi-dress-portrait-360.webp",
+          "byteSize": 33804
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "printed-midi-dress-portrait-480.avif",
+          "byteSize": 42736
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "printed-midi-dress-portrait-480.webp",
+          "byteSize": 52482
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "printed-midi-dress-portrait-640.avif",
+          "byteSize": 64839
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "printed-midi-dress-portrait-640.webp",
+          "byteSize": 76992
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "printed-midi-dress-portrait-850.avif",
+          "byteSize": 95646
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "printed-midi-dress-portrait-850.webp",
+          "byteSize": 109160
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "NEW ARRIVALS (5).jpg",
+      "slug": "new-arrivals-editorial",
+      "styleCode": null,
+      "describes": "A collage of recent western looks including a black corset bodysuit, a fringed pink top, printed shirts and a turquoise snap dress",
+      "sourcePath": "assets/source/owner-approved/NEW ARRIVALS (5).jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 1600,
+      "sourceHeight": 888,
+      "aspectRatio": "1600 / 888",
+      "byteSize": 586468,
+      "sha256": "8ca12314d66ab0fa60c4d565e0fe8ae40848e5b9236ca4c9785b9558936dadcd",
+      "placement": {
+        "kind": "editorial",
+        "slot": "new-arrivals"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "new-arrivals-editorial-360.avif",
+          "byteSize": 15585
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "new-arrivals-editorial-360.webp",
+          "byteSize": 21160
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "new-arrivals-editorial-480.avif",
+          "byteSize": 25224
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "new-arrivals-editorial-480.webp",
+          "byteSize": 33432
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "new-arrivals-editorial-640.avif",
+          "byteSize": 41869
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "new-arrivals-editorial-640.webp",
+          "byteSize": 55450
+        },
+        {
+          "width": 960,
+          "format": "avif",
+          "file": "new-arrivals-editorial-960.avif",
+          "byteSize": 85471
+        },
+        {
+          "width": 960,
+          "format": "webp",
+          "file": "new-arrivals-editorial-960.webp",
+          "byteSize": 111326
+        },
+        {
+          "width": 1280,
+          "format": "avif",
+          "file": "new-arrivals-editorial-1280.avif",
+          "byteSize": 138340
+        },
+        {
+          "width": 1280,
+          "format": "webp",
+          "file": "new-arrivals-editorial-1280.webp",
+          "byteSize": 183070
+        },
+        {
+          "width": 1600,
+          "format": "avif",
+          "file": "new-arrivals-editorial-1600.avif",
+          "byteSize": 204260
+        },
+        {
+          "width": 1600,
+          "format": "webp",
+          "file": "new-arrivals-editorial-1600.webp",
+          "byteSize": 268286
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__52_.png",
+      "slug": "denim-skirt-portrait",
+      "styleCode": null,
+      "describes": "A model in a light wash denim mini skirt with a horseshoe-print tank and white boots, photographed against a dark brick wall",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__52_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 1582817,
+      "sha256": "e806ffaa790fef264b789c0f4ca02461c976498a1daf36a371751c842d13863a",
+      "placement": {
+        "kind": "editorial",
+        "slot": "category-women"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "denim-skirt-portrait-360.avif",
+          "byteSize": 21664
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "denim-skirt-portrait-360.webp",
+          "byteSize": 24316
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "denim-skirt-portrait-480.avif",
+          "byteSize": 33243
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "denim-skirt-portrait-480.webp",
+          "byteSize": 35712
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "denim-skirt-portrait-640.avif",
+          "byteSize": 49076
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "denim-skirt-portrait-640.webp",
+          "byteSize": 52374
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "denim-skirt-portrait-850.avif",
+          "byteSize": 73045
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "denim-skirt-portrait-850.webp",
+          "byteSize": 75636
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__53_.png",
+      "slug": "category-tile-tops",
+      "styleCode": null,
+      "describes": "A model photographed full length in a western look on a storefront street",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__53_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 1600798,
+      "sha256": "32ed818670e09f2279923cf94007c609c4e1f1cd7d3f18a884f14039f5020541",
+      "placement": {
+        "kind": "editorial",
+        "slot": "wholesale"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "category-tile-tops-360.avif",
+          "byteSize": 24051
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "category-tile-tops-360.webp",
+          "byteSize": 27724
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "category-tile-tops-480.avif",
+          "byteSize": 36184
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "category-tile-tops-480.webp",
+          "byteSize": 39472
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "category-tile-tops-640.avif",
+          "byteSize": 52965
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "category-tile-tops-640.webp",
+          "byteSize": 57382
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "category-tile-tops-850.avif",
+          "byteSize": 76560
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "category-tile-tops-850.webp",
+          "byteSize": 83122
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__55_.png",
+      "slug": "category-tile-skirts",
+      "styleCode": null,
+      "describes": "A model photographed full length in a western look on a storefront street",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__55_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 1313289,
+      "sha256": "34fbfc8756c89e9f16db0e3b10120b1e265c30afc09066a2c0d5f5ebf7cac7f3",
+      "placement": {
+        "kind": "editorial",
+        "slot": "category-accessories"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "category-tile-skirts-360.avif",
+          "byteSize": 22250
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "category-tile-skirts-360.webp",
+          "byteSize": 27328
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "category-tile-skirts-480.avif",
+          "byteSize": 33014
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "category-tile-skirts-480.webp",
+          "byteSize": 39880
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "category-tile-skirts-640.avif",
+          "byteSize": 48132
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "category-tile-skirts-640.webp",
+          "byteSize": 55854
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "category-tile-skirts-850.avif",
+          "byteSize": 70891
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "category-tile-skirts-850.webp",
+          "byteSize": 76198
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__56_.png",
+      "slug": "category-tile-girls",
+      "styleCode": null,
+      "describes": "A model photographed full length in a western look on a storefront street",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__56_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 2255854,
+      "sha256": "80f84c0049e122d64e42388404c3c13d9d44070c4e2b57cf5f2961ea258a4c37",
+      "placement": {
+        "kind": "editorial",
+        "slot": "category-girls"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "category-tile-girls-360.avif",
+          "byteSize": 41393
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "category-tile-girls-360.webp",
+          "byteSize": 60018
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "category-tile-girls-480.avif",
+          "byteSize": 62308
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "category-tile-girls-480.webp",
+          "byteSize": 91980
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "category-tile-girls-640.avif",
+          "byteSize": 90097
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "category-tile-girls-640.webp",
+          "byteSize": 135548
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "category-tile-girls-850.avif",
+          "byteSize": 132428
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "category-tile-girls-850.webp",
+          "byteSize": 187612
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "main_page_photos__57_.png",
+      "slug": "extended-sizing-portrait",
+      "styleCode": null,
+      "describes": "A model photographed full length in a western look on a storefront street",
+      "sourcePath": "assets/source/owner-approved/main_page_photos__57_.png",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-02",
+      "sourceWidth": 850,
+      "sourceHeight": 1520,
+      "aspectRatio": "850 / 1520",
+      "byteSize": 1674995,
+      "sha256": "ab18b69317f09114dd685e3b81e1a59c4046545d0c766b15740f50eaaa0690d8",
+      "placement": {
+        "kind": "editorial",
+        "slot": "extended-sizing"
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "extended-sizing-portrait-360.avif",
+          "byteSize": 22159
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "extended-sizing-portrait-360.webp",
+          "byteSize": 26534
+        },
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "extended-sizing-portrait-480.avif",
+          "byteSize": 33223
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "extended-sizing-portrait-480.webp",
+          "byteSize": 37868
+        },
+        {
+          "width": 640,
+          "format": "avif",
+          "file": "extended-sizing-portrait-640.avif",
+          "byteSize": 47815
+        },
+        {
+          "width": 640,
+          "format": "webp",
+          "file": "extended-sizing-portrait-640.webp",
+          "byteSize": 55070
+        },
+        {
+          "width": 850,
+          "format": "avif",
+          "file": "extended-sizing-portrait-850.avif",
+          "byteSize": 68431
+        },
+        {
+          "width": 850,
+          "format": "webp",
+          "file": "extended-sizing-portrait-850.webp",
+          "byteSize": 80692
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "2700x1000_MainBanner_Summer_Sale.jpg",
+      "slug": "summer-sale-banner",
+      "styleCode": null,
+      "describes": "A promotional banner reading \"SUMMER SALE & TAX FREE WEEKEND, 40% OFF on all in-stock & clearance styles, valid August 1st–10th, use code SUMMER40\", alongside showroom details for the Dallas Apparel and Accessories Market",
+      "sha256": "0ad5da40e5f7ef97e2de587b95f2497e60fe2f738687895b5a50468126c3281a",
+      "byteSize": 1345654,
+      "placement": "withheld",
+      "withheldReason": "Embeds a dated promotional claim and a discount code. Publishing it would make a time-bound commercial offer this project has no authority to make, and the stated window (1–10 August) has effectively closed. The showroom details it carries do corroborate the verified #13656 / 18–21 August facts already in the footer.",
+      "published": false,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — WITHHELD FROM PUBLICATION"
+    },
+    {
+      "original": "BuyNowPayLater_2600x320px.jpg",
+      "slug": "buy-now-pay-later-banner",
+      "styleCode": null,
+      "describes": "A banner showing Afterpay, Sezzle and PayPal Credit logos under \"BUY NOW PAY LATER\"",
+      "sha256": "d01000f10ac44e7c6fe1883c92edabde1976c05b9fd5e5e46427443f6495ea0c",
+      "byteSize": 63044,
+      "placement": "withheld",
+      "withheldReason": "Third-party payment branding, not merchandise. Phase 1 has no consumer checkout, and this is the same financing widget the D-00 research found computing on an un-gated pack total.",
+      "published": false,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — WITHHELD FROM PUBLICATION"
+    },
+    {
+      "original": "JE322-DW3_z1ec-tc_360x (1).webp",
+      "slug": "dark-wash-bootcut-jean-duplicate",
+      "styleCode": "JE322-DW",
+      "describes": "Byte-identical duplicate of JE322-DW3_z1ec-tc_360x.webp",
+      "sha256": "176b31d37deceea60681f772b138a5423b32ad59f176182be441ec6774070b03",
+      "byteSize": 69794,
+      "placement": "withheld",
+      "withheldReason": "Duplicate — same SHA-256 as the retained copy.",
+      "published": false,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — WITHHELD FROM PUBLICATION"
+    },
+    {
+      "original": "video_6a36d58ece9146.64769701.mp4",
+      "slug": "campaign-video",
+      "styleCode": null,
+      "describes": "A campaign video file supplied by the owner",
+      "sha256": "2f7582064dc7257eee61034087ac21541db796b33b70759f3475fd1c704eb1a0",
+      "byteSize": 7455758,
+      "placement": "withheld",
+      "withheldReason": "Phase 1 ships no video. A looping hero film needs a visible pause control (WCAG 2.2.2), a poster frame and a captions track, and it belongs to Phase 2 media. Preserved as an original; not optimised or published.",
+      "published": false,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — WITHHELD FROM PUBLICATION"
+    }
+  ],
+  "withheld": [
+    {
+      "original": "2700x1000_MainBanner_Summer_Sale.jpg",
+      "reason": "Embeds a dated promotional claim and a discount code. Publishing it would make a time-bound commercial offer this project has no authority to make, and the stated window (1–10 August) has effectively closed. The showroom details it carries do corroborate the verified #13656 / 18–21 August facts already in the footer."
+    },
+    {
+      "original": "BuyNowPayLater_2600x320px.jpg",
+      "reason": "Third-party payment branding, not merchandise. Phase 1 has no consumer checkout, and this is the same financing widget the D-00 research found computing on an un-gated pack total."
+    },
+    {
+      "original": "JE322-DW3_z1ec-tc_360x (1).webp",
+      "reason": "Duplicate — same SHA-256 as the retained copy."
+    },
+    {
+      "original": "video_6a36d58ece9146.64769701.mp4",
+      "reason": "Phase 1 ships no video. A looping hero film needs a visible pause control (WCAG 2.2.2), a poster frame and a captions track, and it belongs to Phase 2 media. Preserved as an original; not optimised or published."
+    }
+  ]
+}

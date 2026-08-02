@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Operational Awakening</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Chivo:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dcd9d9",
+                      "tertiary-container": "#0a1c35",
+                      "on-tertiary-fixed-variant": "#384763",
+                      "surface-bright": "#fcf9f8",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-tertiary-container": "#7584a3",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-primary-fixed-variant": "#474646",
+                      "background": "#fcf9f8",
+                      "tertiary-fixed-dim": "#b7c7e8",
+                      "surface-tint": "#5f5e5e",
+                      "secondary-container": "#e2dfdb",
+                      "on-surface": "#1c1b1b",
+                      "primary-fixed": "#e5e2e1",
+                      "surface-variant": "#e5e2e1",
+                      "tertiary-fixed": "#d6e3ff",
+                      "on-secondary-fixed-variant": "#474744",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-primary": "#ffffff",
+                      "secondary": "#5f5e5b",
+                      "inverse-primary": "#c9c6c5",
+                      "primary": "#000000",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#eae7e7",
+                      "surface-container": "#f0eded",
+                      "surface": "#fcf9f8",
+                      "surface-container-highest": "#e5e2e1",
+                      "outline": "#747878",
+                      "secondary-fixed": "#e5e2de",
+                      "outline-variant": "#c4c7c7",
+                      "on-background": "#1c1b1b",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#313030",
+                      "primary-container": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#636260",
+                      "secondary-fixed-dim": "#c8c6c2",
+                      "on-primary-container": "#858383",
+                      "on-tertiary-fixed": "#0a1c35",
+                      "on-surface-variant": "#444748",
+                      "tertiary": "#000000",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#1c1c1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "margin-mobile": "20px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Chivo"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Chivo"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "button-text": [
+                              "Chivo"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "60px",
+                              {
+                                      "lineHeight": "68px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "84px",
+                              {
+                                      "lineHeight": "92px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "button-text": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0d0d0f; /* Cinematic carbon charcoal */
+            color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Subtle grain texture overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Central Buckle/Mechanical Awakening Area */
+        .awakening-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .buckle-core {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Simulating the engraved routes and glowing geometry */
+        .glowing-routes {
+            position: absolute;
+            inset: -50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: pulse-glow 4s infinite alternate ease-in-out;
+        }
+        
+        .route-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(163, 196, 243, 0.6), transparent);
+            height: 1px;
+            width: 150%;
+            top: 50%;
+            left: -25%;
+            transform-origin: center;
+            opacity: 0;
+            animation: draw-line 3s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .route-line-1 { transform: rotate(30deg); animation-delay: 0.5s; }
+        .route-line-2 { transform: rotate(150deg); animation-delay: 1.2s; }
+        .route-line-3 { transform: rotate(90deg); width: 120%; left: -10%; animation-delay: 2s; }
+
+        /* Central Identity Lock */
+        .identity-lock {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(163, 196, 243, 0.3);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: lock-in 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation-delay: 3s;
+            position: relative;
+            z-index: 20;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(163, 196, 243, 0.05) inset, 0 0 10px rgba(163, 196, 243, 0.05); }
+            100% { box-shadow: 0 0 40px rgba(163, 196, 243, 0.15) inset, 0 0 40px rgba(163, 196, 243, 0.15); }
+        }
+
+        @keyframes draw-line {
+            0% { opacity: 0; transform: scaleX(0) rotate(var(--rot)); }
+            100% { opacity: 1; transform: scaleX(1) rotate(var(--rot)); }
+        }
+
+        @keyframes lock-in {
+            0% { opacity: 0; transform: scale(0.9); letter-spacing: 10px; }
+            100% { opacity: 1; transform: scale(1); letter-spacing: 2px; }
+        }
+
+        /* Geometric background hints (hatch marks, vectors) */
+        .background-geometry {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            opacity: 0.2;
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px), 
+                linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+<div class="grain-overlay"></div>
+<div class="background-geometry"></div>
+<!-- Minimal Premium Top Nav (from JSON/System, heavily simplified for cinematic state) -->
+<header class="fixed top-0 w-full flex justify-between items-center px-margin-desktop py-8 z-50">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-surface-bright">
+            L&amp;B Frontier House
+        </div>
+<nav class="hidden md:flex gap-8">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60 tracking-[0.1em]">THE CINEMA</span>
+<span class="font-label-caps text-label-caps text-surface-bright tracking-[0.1em] border-b border-surface-bright pb-1">OPERATIONAL</span>
+</nav>
+</header>
+<!-- Main Cinematic Area -->
+<main class="relative w-full h-screen">
+<!-- Center Awakening Animation -->
+<div class="awakening-container">
+<div class="buckle-core">
+<div class="glowing-routes"></div>
+<!-- Mechanical lines -->
+<div class="route-line route-line-1" style="--rot: 30deg;"></div>
+<div class="route-line route-line-2" style="--rot: 150deg;"></div>
+<div class="route-line route-line-3" style="--rot: 90deg;"></div>
+<!-- Central Brand Identity -->
+<div class="identity-lock">L&amp;B</div>
+</div>
+</div>
+<!-- Chapter Indicator (Bottom Left) -->
+<div class="absolute bottom-margin-desktop left-margin-desktop z-50">
+<p class="font-label-caps text-label-caps text-surface-bright tracking-[0.2em] opacity-80 flex items-center gap-4">
+<span class="w-8 h-[1px] bg-surface-bright/50"></span>
+                08: AWAKENING
+            </p>
+</div>
+<!-- Subtle Scroll/Progress Indicator (Bottom Center) -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-50 opacity-50">
+<div class="w-[1px] h-12 bg-gradient-to-b from-transparent to-surface-bright"></div>
+</div>
+</main>
+</body></html>

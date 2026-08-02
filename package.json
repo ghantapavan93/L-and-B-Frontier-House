@@ -1,0 +1,47 @@
+{
+  "name": "lb-frontier-house",
+  "version": "0.1.0",
+  "private": true,
+  "description": "L&B Frontier House — Phase 1 wholesale platform for Lucky & Blessed",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:structural": "npm run build && vitest run --project structural",
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e:update": "npm run build && playwright test --update-snapshots",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run build && vitest run && playwright test",
+    "import:media": "node --experimental-strip-types scripts/import-official-media.ts",
+    "media:optimize": "node --experimental-strip-types scripts/optimize-approved-media.ts"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@eslint/eslintrc": "^3.3.6",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "cheerio": "^1.1.0",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "^15.5.0",
+    "prettier": "^3.5.0",
+    "sharp": "^0.35.3",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L&amp;B Frontier House - Category Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#b7c7e8",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#474646",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#1c1b1b",
+                      "surface": "#fcf9f8",
+                      "secondary-fixed": "#e5e2de",
+                      "outline-variant": "#c4c7c7",
+                      "surface-bright": "#fcf9f8",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#c8c6c2",
+                      "background": "#fcf9f8",
+                      "on-tertiary-fixed-variant": "#384763",
+                      "on-tertiary-fixed": "#0a1c35",
+                      "surface-dim": "#dcd9d9",
+                      "inverse-primary": "#c9c6c5",
+                      "tertiary-fixed": "#d6e3ff",
+                      "on-surface-variant": "#444748",
+                      "on-secondary-fixed-variant": "#474744",
+                      "surface-variant": "#e5e2e1",
+                      "on-secondary-container": "#636260",
+                      "on-surface": "#1c1b1b",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#858383",
+                      "error": "#ba1a1a",
+                      "tertiary": "#000000",
+                      "on-secondary-fixed": "#1c1c1a",
+                      "tertiary-container": "#0a1c35",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-tint": "#5f5e5e",
+                      "outline": "#747878",
+                      "surface-container": "#f0eded",
+                      "inverse-on-surface": "#f3f0ef",
+                      "surface-container-low": "#f6f3f2",
+                      "on-tertiary-container": "#7584a3",
+                      "secondary": "#5f5e5b",
+                      "secondary-container": "#e2dfdb",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#1c1b1b",
+                      "primary-fixed": "#e5e2e1",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-background": "#1c1b1b",
+                      "primary": "#000000",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#eae7e7",
+                      "inverse-surface": "#313030",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Chivo"
+                      ],
+                      "body-md": [
+                              "Chivo"
+                      ],
+                      "button-text": [
+                              "Chivo"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-xl": [
+                              "60px",
+                              {
+                                      "lineHeight": "68px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "button-text": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "84px",
+                              {
+                                      "lineHeight": "92px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Grain Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Electric Cobalt Glow */
+        .glow-cobalt {
+            box-shadow: 0 0 40px rgba(0, 71, 255, 0.4), inset 0 0 20px rgba(0, 71, 255, 0.2);
+            border-color: rgba(0, 71, 255, 0.8);
+        }
+        
+        .text-glow-cobalt {
+            text-shadow: 0 0 10px rgba(0, 71, 255, 0.6);
+        }
+
+        /* Garment Portal Transition */
+        @keyframes apertureSpin {
+            0% { transform: rotate(0deg) scale(0.95); opacity: 0; }
+            100% { transform: rotate(360deg) scale(1); opacity: 1; }
+        }
+        
+        .aperture-reveal {
+            animation: apertureSpin 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-primary dark:bg-[#050505] text-surface-bright min-h-screen flex flex-col overflow-hidden relative">
+<div class="grain-overlay"></div>
+<!-- Top Navigation (Hidden in this cinematic state, represented by controls) -->
+<header class="absolute top-0 w-full z-40 flex justify-between items-start px-margin-desktop py-8">
+<!-- Brand -->
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-surface-bright">
+            L&amp;B Frontier House
+        </div>
+<!-- Controls -->
+<div class="flex items-center gap-8">
+<!-- Experience Selector -->
+<div class="flex items-center gap-4 border border-surface-dim/30 rounded-full px-4 py-2 bg-primary/20 backdrop-blur-sm">
+<button class="font-label-caps text-label-caps text-surface-bright/50 hover:text-surface-bright transition-colors">CINEMA</button>
+<div class="w-px h-4 bg-surface-dim/30"></div>
+<button class="font-label-caps text-label-caps text-surface-bright flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">radio_button_checked</span>
+                    BALANCED
+                </button>
+<div class="w-px h-4 bg-surface-dim/30"></div>
+<button class="font-label-caps text-label-caps text-surface-bright/50 hover:text-surface-bright transition-colors">INSTANT</button>
+</div>
+<button class="font-label-caps text-label-caps text-surface-bright/70 hover:text-surface-bright border-b border-transparent hover:border-surface-bright transition-all">
+                SKIP INTRO
+            </button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative z-10 w-full h-screen">
+<!-- Category Selection Above Aperture -->
+<nav class="absolute top-1/4 w-full flex justify-center gap-12 z-20">
+<a class="font-headline-md text-headline-md text-surface-bright/30 hover:text-surface-bright/70 transition-colors" href="#">WOMEN</a>
+<a class="font-headline-md text-headline-md text-surface-bright/30 hover:text-surface-bright/70 transition-colors" href="#">MEN</a>
+<a class="font-headline-md text-headline-md text-surface-bright border-b-2 border-surface-bright pb-1 text-glow-cobalt" href="#">ACCESSORIES AND HOME</a>
+<a class="font-headline-md text-headline-md text-surface-bright/30 hover:text-surface-bright/70 transition-colors" href="#">PLUS</a>
+<a class="font-headline-md text-headline-md text-surface-bright/30 hover:text-surface-bright/70 transition-colors" href="#">WHOLESALE</a>
+</nav>
+<!-- The Belt Buckle Aperture -->
+<div class="relative w-[600px] h-[600px] flex items-center justify-center mt-32 aperture-reveal">
+<!-- Outer Ring - Silver hardware simulation -->
+<div class="absolute inset-0 rounded-full border border-surface-dim/20 bg-gradient-to-br from-surface-dim/10 to-transparent"></div>
+<!-- Inner Ring - Cobalt Glow Lock -->
+<div class="absolute inset-[20px] rounded-full border-[1px] glow-cobalt flex items-center justify-center">
+<!-- Central Element - Engraved Motif -->
+<div class="w-[300px] h-[300px] rounded-full border border-[rgba(0,71,255,0.3)] bg-black flex items-center justify-center relative overflow-hidden">
+<!-- Simulating the engraved lines glowing -->
+<div class="absolute inset-0 flex items-center justify-center opacity-80">
+<svg class="w-full h-full text-[#0047ff] animate-pulse" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="30" stroke="currentColor" stroke-width="1"></circle>
+<path d="M 50 10 L 50 90 M 10 50 L 90 50" stroke="currentColor" stroke-width="0.5"></path>
+</svg>
+</div>
+<!-- Inner Image Placeholder representing the "Home/Accessory" focus -->
+<div class="bg-cover bg-center w-[250px] h-[250px] rounded-full opacity-60 mix-blend-luminosity" data-alt="A highly detailed macro photograph of artisanal leatherwork and polished silver hardware, lit with stark, high-contrast studio lighting against an ink-black background. The mood is luxurious and rugged, emphasizing materiality. Deep cobalt blue light accents the metallic textures, highlighting craftsmanship in a cinematic, minimalist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJvR2SdQjE-QjEh78coimjS__R5p4yVG07y3gSFVSAyZxXt4qoTScPm9yCSR3l8EUPdO0tBKyHAFexReogoqKlBoOA0LyI3-wrPjA3xQx-iX0gZBCxLMOhgZwwqRk8w_TbXjsZZ2wyLZDEA6XJYHALQWGdeWH-unMGRLgdhO4juzK3juTwZy7MWn0RrrykqH_RlxVQ-2A2kq7fadSgXuOeO5jFQdkUVfU-zjRrs8qaz9FZnxinUbGMbg')"></div>
+</div>
+</div>
+<!-- Aperture Blades (Abstract representation) -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Top Left -->
+<div class="absolute top-0 left-0 w-1/2 h-1/2 border-r border-b border-surface-dim/10 rounded-br-[100px] transform origin-bottom-right -rotate-12 transition-transform duration-1000"></div>
+<!-- Bottom Right -->
+<div class="absolute bottom-0 right-0 w-1/2 h-1/2 border-l border-t border-surface-dim/10 rounded-tl-[100px] transform origin-top-left -rotate-12 transition-transform duration-1000"></div>
+</div>
+</div>
+<!-- Selected State Feedback -->
+<div class="absolute bottom-24 flex flex-col items-center gap-4 z-20">
+<p class="font-label-caps text-label-caps text-[#0047ff] tracking-[0.2em] animate-pulse">APERTURE LOCKED</p>
+<button class="bg-surface-bright text-primary px-8 py-4 flex items-center gap-3 font-button-text text-button-text hover:bg-surface-dim transition-colors group">
+<span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">diamond</span>
+                ENTER COLLECTION
+            </button>
+</div>
+</main>
+</body></html>
