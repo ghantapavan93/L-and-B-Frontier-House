@@ -1,9 +1,21 @@
 # LB — Video Generation Prompts
 
-Prompts for the generated continuation only. **Nothing here may be run until D-09
-(generated-media licensing) is answered**, and nothing produced from it renders
-until it carries `provenance: 'generated-campaign'` **and**
-`ownerApproval: 'approved'` **and** a recorded licence check.
+Prompts for the generated continuation only.
+
+**D-09 was answered on 2026-08-03.** Generated media is approved for the buckle
+continuation, abstract textile environments, illuminated thread transitions,
+atmospheric plates and non-literal material/lighting sequences — and is **not**
+approved for sellable product photography, fictional L&B garments, altered models
+or faces, showroom or facility claims, manufacturing claims, or fabric and
+construction evidence. Every shot below sits on the approved side by design; that
+is why the negative list is as long as it is.
+
+Nothing produced from these prompts renders until it carries
+`provenance: 'generated-campaign'`, `ownerApproval: 'approved'`, and the full
+generation record required by
+[LB_CAMPAIGN_MEDIA_MANIFEST.md](LB_CAMPAIGN_MEDIA_MANIFEST.md) §0 — platform,
+model version, date, prompt, negative prompt, source references, commercial-use
+licence status, route, section, both derivatives and a fallback still.
 
 **Method is image-to-video, always.** Every shot is conditioned on a Blender frame
 we rendered. The generator supplies motion and atmosphere; it never supplies the

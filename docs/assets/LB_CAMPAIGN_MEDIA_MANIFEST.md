@@ -6,6 +6,63 @@ product photography. It extends the existing
 
 ---
 
+## 0. D-09 — ANSWERED
+
+**Owner decision recorded 2026-08-03.** Generated campaign media is approved,
+with a closed list of permitted subjects.
+
+**Approved for:**
+
+- the Blender buckle continuation
+- abstract textile environments
+- illuminated thread transitions
+- atmospheric campaign plates
+- non-literal material and lighting sequences
+
+**Not approved for — and these do not become approvable by rewording a prompt:**
+
+- sellable product photography
+- fictional L&B garments
+- altered models or faces
+- showroom or facility claims
+- manufacturing claims
+- fabric or construction evidence
+
+The two lists divide on a single principle: generated media may carry
+**atmosphere**, and may never carry **evidence**. Anything a buyer could
+reasonably read as proof of what a garment is, how it is made, or where — is out,
+regardless of how abstract it looks.
+
+### Required record, per generated asset
+
+No generated asset renders publicly until every field below is filled. Missing
+fields are a blocker, not a warning.
+
+| Field | Notes |
+| :--- | :--- |
+| `generation.platform` | The service used |
+| `generation.modelVersion` | Where the platform exposes it; `null` where it does not |
+| `generation.date` | ISO |
+| `generation.prompt` | Verbatim |
+| `generation.negativePrompt` | Verbatim |
+| `generation.sourceReferences[]` | The conditioning assets — for us, always our own renders |
+| `licence.commercialUse` | Explicit status, not an assumption |
+| `ownerApproval` | `pending` until the owner approves the specific output |
+| `placement.route` | The route it renders on |
+| `placement.section` | The section within it |
+| `derivatives.desktop` / `derivatives.mobile` | Both required |
+| `fallback` | The still that renders when the asset does not |
+
+**No account credentials are stored** in the manifest, in the repository, or in
+any log. The record identifies the platform and the model; it never identifies
+the account or carries a key, and nothing in this pipeline needs one to be
+committed.
+
+`fallback` is not optional. Every generated asset is decoration over a surface
+that must already be complete without it — the same rule the buckle ships under.
+
+---
+
 ## 1. Provenance classes
 
 | Class | Meaning | Renders when |
