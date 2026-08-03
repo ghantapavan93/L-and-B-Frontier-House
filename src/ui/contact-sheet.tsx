@@ -1,6 +1,28 @@
 import Link from 'next/link'
 import { AVAILABILITY_LABELS, primaryMedia } from '@/domain/product'
 import type { PublicProduct } from '@/domain/product'
+import { SIZE_RANGE_LABELS } from '@/domain/size'
+
+function FrameLink({
+  stories,
+  slug,
+  displayName,
+  children,
+}: {
+  stories: boolean
+  slug: string
+  displayName: string
+  children: React.ReactNode
+}) {
+  if (stories) {
+    return (
+      <a href={`#story-${slug}`} aria-label={`Open the story for ${displayName}`}>
+        {children}
+      </a>
+    )
+  }
+  return <Link href={`/product/${slug}`}>{children}</Link>
+}
 
 /**
  * THE LIVING CONTACT SHEET.
@@ -20,17 +42,24 @@ export function ContactSheet({
   eyebrow,
   href,
   linkLabel = 'Open the full sheet',
+  stories = false,
 }: {
   products: readonly PublicProduct[]
   title: string
   eyebrow: string
   href: string
   linkLabel?: string
+  /**
+   * Phase 2: frames resolve into an inline editorial story via `:target` — the URL hash is
+   * the selection state, anchors are the keyboard path, and the page stays static with zero
+   * JavaScript. Off, frames link straight to the product (the Phase 1 behaviour).
+   */
+  stories?: boolean
 }) {
   if (products.length === 0) return null
 
   return (
-    <section className="contact-sheet" aria-labelledby="contact-sheet-heading">
+    <section className="contact-sheet" id="sheet" aria-labelledby="contact-sheet-heading">
       <div className="contact-sheet__perf" aria-hidden="true" />
 
       <div className="container">
@@ -53,7 +82,14 @@ export function ContactSheet({
             const media = primaryMedia(product)
             return (
               <li className="contact-sheet__cell" key={product.id}>
-                <Link href={`/product/${product.slug}`}>
+                {/* A native <a> when selecting a story: Next's client navigation uses
+                    pushState, which does NOT re-evaluate CSS :target — measured in the
+                    browser suite. A real hash navigation does. */}
+                <FrameLink
+                  stories={stories}
+                  slug={product.slug}
+                  displayName={product.displayName}
+                >
                   <div className="contact-sheet__frame">
                     {media ? (
                       <picture>
@@ -82,11 +118,70 @@ export function ContactSheet({
                     </span>
                     <span>{AVAILABILITY_LABELS[product.availability]}</span>
                   </p>
-                </Link>
+                </FrameLink>
               </li>
             )
           })}
         </ul>
+        {stories
+          ? products.map((product) => {
+              const media = primaryMedia(product)
+              const ranges = product.sizeRanges
+                .filter((r) => r.availability !== 'unavailable')
+                .map((r) => SIZE_RANGE_LABELS[r.kind])
+                .join(' · ')
+              return (
+                <article
+                  className="sheet-story"
+                  id={`story-${product.slug}`}
+                  key={`story-${product.id}`}
+                  aria-label={`${product.displayName} — editorial story`}
+                >
+                  <figure className="sheet-story__frame">
+                    {media ? (
+                      <picture>
+                        {(media.sources ?? []).map((source) => (
+                          <source
+                            key={source.type}
+                            type={source.type}
+                            srcSet={source.srcSet}
+                            sizes="(min-width: 62rem) 30vw, 80vw"
+                          />
+                        ))}
+                        <img
+                          src={media.poster}
+                          alt={media.alt}
+                          width={media.intrinsicWidth ?? 600}
+                          height={media.intrinsicHeight ?? 750}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    ) : null}
+                  </figure>
+                  <div className="sheet-story__copy">
+                    <p className="sheet-story__meta">
+                      {AVAILABILITY_LABELS[product.availability]}
+                      {ranges ? ` · ${ranges}` : ''}
+                    </p>
+                    <h3>{product.displayName}</h3>
+                    <p>{product.description}</p>
+                    <div className="cluster">
+                      <Link
+                        href={`/product/${product.slug}`}
+                        className="button button--secondary"
+                      >
+                        View product
+                      </Link>
+                      <a href="#sheet" className="text-link">
+                        Close story
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              )
+            })
+          : null}
       </div>
 
       <div className="contact-sheet__perf" aria-hidden="true" />

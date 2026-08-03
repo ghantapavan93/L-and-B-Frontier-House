@@ -2,11 +2,14 @@ import Link from 'next/link'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
+import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { ContactSheet } from '@/ui/contact-sheet'
+import { FrontierIgnition } from '@/ui/frontier-ignition'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard, ProductGrid } from '@/ui/product-card'
 import { EditorialMedia } from '@/ui/product-media'
-import { ThreadToTrade } from '@/ui/thread-to-trade'
+import { ProductWorlds } from '@/ui/product-worlds'
+import { ThreadToTrade, ThreadToTradeJourney } from '@/ui/thread-to-trade'
 
 /**
  * PUBLIC HOMEPAGE — cinematic, poster-first.
@@ -21,6 +24,7 @@ import { ThreadToTrade } from '@/ui/thread-to-trade'
  * entirely and the page is complete — which is the invariant Phase 3 must not break.
  */
 export default async function HomePage() {
+  const frontier = frontierEnabled()
   const newest = await listPublicProducts({ sort: 'newest' })
   const featured = newest.slice(0, 4)
   const [lead, ...supporting] = featured
@@ -39,7 +43,9 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className={hero ? 'hero hero--photographic' : 'hero'}>
+      {frontier ? <FrontierIgnition /> : null}
+
+      <section id="hero" className={hero ? 'hero hero--photographic' : 'hero'}>
         {hero ? (
           <div className="hero__media depth-far" aria-hidden="true">
             <EditorialMedia media={hero} portrait={heroPortrait} priority sizes="100vw" />
@@ -78,6 +84,7 @@ export default async function HomePage() {
         title="This week's sheet"
         href="/new-arrivals"
         linkLabel="Open the full sheet"
+        stories={frontier}
       />
 
       {craftDetail ? (
@@ -153,39 +160,43 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <ThreadToTrade />
+      {frontier ? <ThreadToTradeJourney /> : <ThreadToTrade />}
 
-      <section className="container section" aria-labelledby="shop-heading">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">The line</p>
-            <h2 id="shop-heading">Shop by category</h2>
+      {frontier ? (
+        <ProductWorlds />
+      ) : (
+        <section className="container section" aria-labelledby="shop-heading">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">The line</p>
+              <h2 id="shop-heading">Shop by category</h2>
+            </div>
           </div>
-        </div>
-        <ul className="category-grid">
-          {navigableCategories().map((category) => {
-            const tile = officialMediaForSlot(`category-${category.slug}`)
-            return (
-              <li key={category.slug}>
-                <article className="category-card">
-                  <Link href={`/shop/${category.slug}`} className="category-card__link">
-                    {tile ? (
-                      <div className="category-card__media">
-                        <EditorialMedia
-                          media={tile}
-                          sizes="(min-width: 62rem) 33vw, (min-width: 48rem) 50vw, 100vw"
-                        />
-                      </div>
-                    ) : null}
-                    <h3>{category.label}</h3>
-                  </Link>
-                  <p className="meta">{category.blurb}</p>
-                </article>
-              </li>
-            )
-          })}
-        </ul>
-      </section>
+          <ul className="category-grid">
+            {navigableCategories().map((category) => {
+              const tile = officialMediaForSlot(`category-${category.slug}`)
+              return (
+                <li key={category.slug}>
+                  <article className="category-card">
+                    <Link href={`/shop/${category.slug}`} className="category-card__link">
+                      {tile ? (
+                        <div className="category-card__media">
+                          <EditorialMedia
+                            media={tile}
+                            sizes="(min-width: 62rem) 33vw, (min-width: 48rem) 50vw, 100vw"
+                          />
+                        </div>
+                      ) : null}
+                      <h3>{category.label}</h3>
+                    </Link>
+                    <p className="meta">{category.blurb}</p>
+                  </article>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
 
       <section className="container section" aria-labelledby="ops-heading">
         <div className="section-head">

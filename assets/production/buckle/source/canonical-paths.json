@@ -1,0 +1,50 @@
+{
+  "$schema": "lb-buckle-canonical-paths/v1",
+  "notice": "Verbatim snapshot of the shipped SVG paths in src/ui/frontier-ignition.tsx. These are the canonical silhouette, frame, monogram and exit-thread. The build script IMPORTS these — it never redraws them. If the component's paths ever change, re-snapshot; do not edit here by hand.",
+  "sourceFile": "src/ui/frontier-ignition.tsx",
+  "viewBox": { "width": 320, "height": 240 },
+  "referenceScale": {
+    "buckleWidthUnits": 296,
+    "buckleWidthMm": 92,
+    "mmPerUnit": 0.3108108108108108,
+    "aspect": "1.64:1"
+  },
+  "paths": {
+    "silhouette": {
+      "closed": true,
+      "d": "M42 30 Q26 30 24 46 Q10 50 12 66 L12 174 Q10 190 24 194 Q26 210 42 210 L278 210 Q294 210 296 194 Q310 190 308 174 L308 66 Q310 50 296 46 Q294 30 278 30 Z"
+    },
+    "copperFrame": {
+      "closed": true,
+      "d": "M54 46 Q42 46 42 58 L42 182 Q42 194 54 194 L266 194 Q278 194 278 182 L278 58 Q278 46 266 46 Z"
+    },
+    "stitchRows": {
+      "closed": false,
+      "d": "M60 56 L260 56 M60 184 L260 184"
+    },
+    "monogram": {
+      "closed": false,
+      "d": "M96 158 C92 108 128 84 150 104 C168 120 150 152 122 150 M178 86 L178 158 M178 118 C204 104 226 118 214 134 C204 146 188 140 178 132 M178 132 C206 138 232 150 216 160 C204 167 188 160 178 152"
+    },
+    "exitThread": {
+      "closed": false,
+      "d": "M216 160 C250 178 240 206 200 214 C168 220 150 228 160 240"
+    }
+  },
+  "turquoiseStones": [
+    { "id": "W", "x": 42, "y": 120, "radiusUnits": 5 },
+    { "id": "E", "x": 278, "y": 120, "radiusUnits": 5 },
+    { "id": "N", "x": 160, "y": 52, "radiusUnits": 4 },
+    { "id": "S", "x": 160, "y": 188, "radiusUnits": 4 }
+  ],
+  "prohibited": [
+    "circular or coin geometry",
+    "sheriff badge styling",
+    "rifle-scope motifs",
+    "invented dates",
+    "EST. 1865",
+    "1870s language",
+    "automotive imagery",
+    "invented longhorn artwork"
+  ]
+}

@@ -15,3 +15,11 @@ Thumbs.db
 test-results/
 playwright-report/
 .playwright/
+.next-flagoff/
+
+# Offline asset production intermediates. The Blender master, the delivery encodes
+# and the QA proof renders are tracked; the frame sequences they were built from
+# are ~400 MB of regenerable PNGs and must never enter history.
+assets/production/**/motion-frames/
+assets/production/**/silhouette-alpha.png
+*.blend1

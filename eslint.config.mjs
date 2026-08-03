@@ -11,6 +11,7 @@ const config = [
   {
     ignores: [
       '.next/**',
+      '.next-flagoff/**',
       'node_modules/**',
       'e2e/__screenshots__/**',
       'test-results/**',
@@ -18,6 +19,9 @@ const config = [
       'archive/**',
       'stitch-export/**',
       'docs/**',
+      // Offline asset production (Blender, render QA). Not application code, not
+      // shipped, and not subject to the app's import or permission-boundary rules.
+      'assets/production/**',
       'coverage/**',
       'next-env.d.ts',
     ],

@@ -51,8 +51,20 @@ async function clippedText(page: Page): Promise<string[]> {
       'p, h1, h2, h3, td, th, li, label, span, a, button, caption, dd, dt',
     )
 
+    const inHorizontalScroller = (el: HTMLElement): boolean => {
+      let node: HTMLElement | null = el.parentElement
+      while (node) {
+        const overflowX = getComputedStyle(node).overflowX
+        if (overflowX === 'auto' || overflowX === 'scroll') return true
+        node = node.parentElement
+      }
+      return false
+    }
+
     for (const el of elements) {
-      if (el.closest('.table-scroll')) continue
+      // A deliberate horizontal scroller (tables, the worlds carousel, the rack) clips its
+      // off-screen slides by design; the page-level scroll check still guards the page.
+      if (inHorizontalScroller(el)) continue
       // `.visually-hidden` clips on purpose — it is the standard screen-reader-only
       // technique, and its 1px box always reports scrollWidth > clientWidth.
       if (el.closest('.visually-hidden')) continue

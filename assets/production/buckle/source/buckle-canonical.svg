@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  L&B buckle - canonical 2D truth, snapshotted verbatim from src/ui/frontier-ignition.tsx.
+  Used for silhouette overlay comparison against orthographic renders of the 3D master.
+  1 unit = 0.3108108 mm (silhouette spans 296 units = 92 mm). Aspect 1.64:1.
+  Never edit the path data here; re-snapshot from the component if it ever changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="1280" height="960">
+  <rect width="320" height="240" fill="#0c0b09"/>
+  <path id="silhouette"
+    d="M42 30 Q26 30 24 46 Q10 50 12 66 L12 174 Q10 190 24 194 Q26 210 42 210 L278 210 Q294 210 296 194 Q310 190 308 174 L308 66 Q310 50 296 46 Q294 30 278 30 Z"
+    fill="none" stroke="#8f8d88" stroke-width="1.5"/>
+  <path id="copper-frame"
+    d="M54 46 Q42 46 42 58 L42 182 Q42 194 54 194 L266 194 Q278 194 278 182 L278 58 Q278 46 266 46 Z"
+    fill="none" stroke="#c98a5e" stroke-width="1"/>
+  <path id="stitch-rows"
+    d="M60 56 L260 56 M60 184 L260 184"
+    fill="none" stroke="#d9c5b2" stroke-width="0.6" stroke-dasharray="5 6"/>
+  <g id="turquoise-stones" fill="none" stroke="#3d8f8a" stroke-width="0.8">
+    <circle cx="42" cy="120" r="5"/>
+    <circle cx="278" cy="120" r="5"/>
+    <circle cx="160" cy="52" r="4"/>
+    <circle cx="160" cy="188" r="4"/>
+  </g>
+  <path id="monogram"
+    d="M96 158 C92 108 128 84 150 104 C168 120 150 152 122 150 M178 86 L178 158 M178 118 C204 104 226 118 214 134 C204 146 188 140 178 132 M178 132 C206 138 232 150 216 160 C204 167 188 160 178 152"
+    fill="none" stroke="#7fe0d6" stroke-width="1.2"/>
+  <path id="exit-thread"
+    d="M216 160 C250 178 240 206 200 214 C168 220 150 228 160 240"
+    fill="none" stroke="#7fe0d6" stroke-width="0.8" stroke-dasharray="2 2"/>
+</svg>

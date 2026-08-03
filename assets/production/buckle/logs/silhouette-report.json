@@ -1,0 +1,20 @@
+{
+  "expected_px": {
+    "width": 890.2,
+    "height": 540.5
+  },
+  "measured_px": {
+    "width": 890,
+    "height": 540
+  },
+  "deviation_pct": {
+    "width": -0.025,
+    "height": -0.085
+  },
+  "aspect": {
+    "canonical": 1.6444,
+    "measured": 1.6481
+  },
+  "tolerance_pct": 1.0,
+  "pass": true
+}

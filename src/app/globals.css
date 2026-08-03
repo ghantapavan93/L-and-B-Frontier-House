@@ -1366,10 +1366,14 @@ tfoot td {
 }
 
 .contact-sheet__grid {
+  /* A <ul> for semantics; the bullets leaked into the mobile layout in review. */
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   gap: var(--space-2);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-block: var(--space-6);
+  margin-block: var(--space-6) 0;
 }
 
 @media (min-width: 48rem) {
@@ -1430,6 +1434,8 @@ tfoot td {
 .contact-sheet__caption {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 2px;
   gap: var(--space-3);
   padding-top: var(--space-2);
   font-size: 10px;
@@ -1460,10 +1466,12 @@ tfoot td {
 }
 
 .thread__line {
-  position: absolute;
-  inset: 0;
+  /* A band between the heading and the stages — never across the copy itself. Measured in
+     review: stretched over the whole section, the dashes crossed the stage text. */
+  display: block;
   width: 100%;
-  height: 100%;
+  height: clamp(56px, 8vw, 110px);
+  margin-block: calc(var(--space-4) * -1) var(--space-5);
   pointer-events: none;
   overflow: visible;
 }
@@ -1701,4 +1709,1009 @@ tfoot td {
   letter-spacing: var(--label-caps-tracking);
   text-transform: uppercase;
   color: var(--color-text-meta);
+}
+
+/* ==========================================================================
+   PHASE 2 — FRONTIER IGNITION
+
+   V3.1 Frame 3 / 12A / 8B-8C, inspected over Stitch MCP. An ink field, a ghost
+   display statement, the buckle artifact with the luminous drawn monogram, and
+   the three poster-first actions.
+   ========================================================================== */
+
+.ignition {
+  position: relative;
+  isolation: isolate;
+  min-height: 92svh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-6);
+  text-align: center;
+  padding: calc(var(--space-8) + var(--safe-top)) var(--margin-mobile) var(--space-8);
+  background:
+    radial-gradient(90% 70% at 50% 30%, #16130f 0%, transparent 70%),
+    linear-gradient(180deg, #0c0b09 0%, var(--color-ink) 60%, #14100c 100%);
+  color: var(--text-on-inverse);
+  overflow: hidden;
+}
+
+.ignition__grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.4"/></svg>');
+}
+
+/* The ghost statement behind the artifact — texture, not a heading. */
+.ignition__ghost {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgb(245 242 238 / 0.07);
+  text-wrap: balance;
+  pointer-events: none;
+  max-width: none;
+}
+
+.ignition__artifact {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.ignition__buckle {
+  width: min(320px, 72vw);
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgb(0 0 0 / 0.55));
+}
+
+.ignition__stage {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--text-meta-on-inverse);
+}
+
+/* The luminous fibre: a soft glow underlay and a dashed core, drawn once. */
+.ignition__thread-glow {
+  fill: none;
+  stroke: #7fe0d6;
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+.ignition__thread-core {
+  fill: none;
+  stroke: #d6fff9;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 2.5 3.5;
+}
+
+.ignition__thread-exit {
+  fill: none;
+  stroke: #7fe0d6;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 2.5 4;
+  opacity: 0.7;
+}
+
+/* Drawing happens only when motion is welcome; otherwise everything is drawn. */
+@media (prefers-reduced-motion: no-preference) {
+  .ignition__thread-glow,
+  .ignition__thread-core {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: ignition-draw 2.8s var(--ease-entrance) 0.3s forwards;
+  }
+
+  .ignition__thread-core {
+    animation-delay: 0.45s;
+  }
+
+  .ignition__thread-exit {
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: ignition-draw 1.2s var(--ease-entrance) 2.6s forwards;
+  }
+
+  .ignition__actions {
+    opacity: 0;
+    animation: ignition-rise 0.6s var(--ease-entrance) 2.2s forwards;
+  }
+}
+
+@keyframes ignition-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ignition-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ignition__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Both outlined buttons sit on the ink field: bone text and border, inverting on hover.
+   Found in visual review — the secondary button rendered ink-on-ink, and axe could not
+   flag it because it cannot resolve a gradient background. */
+.ignition .button--secondary {
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+.ignition .button--secondary:hover {
+  background: var(--text-on-inverse);
+  color: var(--color-ink);
+}
+
+.ignition .button--quiet {
+  color: var(--text-on-inverse);
+  border-color: rgb(245 242 238 / 0.35);
+}
+
+.ignition .button--quiet:hover {
+  background: rgb(245 242 238 / 0.12);
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+.ignition .text-link {
+  color: var(--text-meta-on-inverse);
+}
+
+.ignition :focus-visible {
+  outline-color: var(--color-sandstone);
+}
+
+/* ==========================================================================
+   PHASE 2 — THREAD-TO-TRADE JOURNEY
+
+   V3 Frame 3's chapter progression, vertical: five stages, alternating image
+   and text planes, one continuous routing thread down the spine.
+   ========================================================================== */
+
+.journey {
+  position: relative;
+}
+
+.journey__spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 62rem) {
+  .journey__spine {
+    display: block;
+  }
+}
+
+.journey__spine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--color-tobacco) 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.5;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .journey__spine::before {
+      transform-origin: top;
+      animation: journey-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 5% exit 80%;
+    }
+  }
+}
+
+@keyframes journey-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.journey__stage {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-7);
+}
+
+@media (min-width: 62rem) {
+  .journey__stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .journey__stage--reverse > .journey__media {
+    order: 2;
+  }
+
+  .journey__stage--reverse > .journey__copy {
+    text-align: right;
+    justify-items: end;
+  }
+}
+
+.journey__stage > * {
+  min-width: 0;
+}
+
+.journey__media {
+  margin: 0;
+  position: relative;
+}
+
+.journey__media img {
+  width: 100%;
+  height: auto;
+}
+
+.journey__media figcaption {
+  padding-top: var(--space-2);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+/* Honest art-directed material plane for stages with no photograph. Abstract
+   weave and routing marks — no place, no facility, no person implied. */
+.journey__swatch {
+  aspect-ratio: 4 / 3;
+  background:
+    repeating-linear-gradient(90deg, rgb(27 43 69 / 0.16) 0 3px, transparent 3px 7px),
+    repeating-linear-gradient(0deg, rgb(27 43 69 / 0.12) 0 3px, transparent 3px 7px),
+    linear-gradient(160deg, var(--surface-sunken), #e0d5c6);
+}
+
+.journey__swatch--route {
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0 34px,
+      rgb(115 79 54 / 0.5) 34px 36px,
+      transparent 36px 42px,
+      rgb(115 79 54 / 0.28) 42px 43px,
+      transparent 43px 96px
+    ),
+    linear-gradient(160deg, #efe8df, var(--surface-sunken));
+}
+
+.journey__copy {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+
+.journey__index {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: 1;
+  color: var(--color-tobacco);
+}
+
+.journey__proof {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* ==========================================================================
+   PHASE 2 — CONTACT SHEET STORIES
+
+   Frame selection resolves into an editorial story inside the sheet, driven by
+   `:target`. URL hash is the persistence; anchors are the keyboard path.
+   ========================================================================== */
+
+.sheet-story {
+  display: none;
+  margin-top: var(--space-6);
+  border-top: 1px solid rgb(245 242 238 / 0.16);
+  padding-top: var(--space-6);
+}
+
+.sheet-story:target {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-story:target {
+    animation: story-rise 0.3s var(--ease-entrance);
+  }
+}
+
+@keyframes story-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 62rem) {
+  .sheet-story:target {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+    gap: var(--space-8);
+  }
+}
+
+.sheet-story > * {
+  min-width: 0;
+}
+
+.sheet-story__frame {
+  margin: 0;
+  max-width: 26rem;
+}
+
+.sheet-story__frame img {
+  width: 100%;
+  height: auto;
+}
+
+.sheet-story__copy {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.sheet-story__copy h3 {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text-on-inverse);
+  margin: 0;
+}
+
+.sheet-story__copy p {
+  color: var(--text-meta-on-inverse);
+  margin: 0;
+}
+
+.sheet-story__meta {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--text-meta-on-inverse);
+}
+
+.sheet-story .button--secondary {
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+.sheet-story .button--secondary:hover {
+  background: var(--text-on-inverse);
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
+   PHASE 2 — ONE WEST, PRODUCT WORLDS
+
+   V3 Frame 5's layered gateway on desktop; V3.1 12F's depth carousel on
+   mobile. Prev/next and dots are anchors — operable without JS and never
+   swipe-only.
+   ========================================================================== */
+
+.worlds {
+  position: relative;
+}
+
+.worlds__track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 84%;
+  gap: var(--space-4);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: var(--space-3);
+  /* Contain the scroller; the page itself must never scroll sideways. */
+  min-width: 0;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .worlds__track {
+    scroll-behavior: auto;
+  }
+}
+
+@media (min-width: 62rem) {
+  .worlds__track {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+    gap: var(--gutter);
+  }
+
+  /* The gateway offsets — adjacent worlds sit on different horizons. */
+  .worlds__world:nth-child(2) {
+    margin-top: var(--space-7);
+  }
+  .worlds__world:nth-child(3) {
+    margin-top: var(--space-4);
+  }
+  .worlds__world:nth-child(4) {
+    margin-top: var(--space-8);
+  }
+}
+
+.worlds__world {
+  scroll-snap-align: center;
+  min-width: 0;
+}
+
+/* Mobile 2.5D: side slides recede. Progressive enhancement only. */
+@supports (animation-timeline: view(inline)) {
+  @media (prefers-reduced-motion: no-preference) and (max-width: 61.99rem) {
+    .worlds__world {
+      animation: world-depth linear both;
+      animation-timeline: view(inline);
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes world-depth {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+}
+
+.worlds__card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: var(--text-on-inverse);
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+.worlds__media {
+  aspect-ratio: 3 / 4;
+}
+
+.worlds__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform var(--duration-base) var(--ease-entrance),
+    filter var(--duration-base) var(--ease-entrance);
+  filter: saturate(0.95);
+}
+
+.worlds__card:hover .worlds__media img,
+.worlds__card:focus-visible .worlds__media img {
+  transform: scale(1.03);
+  filter: saturate(1);
+}
+
+.worlds__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgb(10 10 10 / 0.05) 40%, rgb(10 10 10 / 0.78) 100%);
+}
+
+.worlds__label {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-1);
+}
+
+.worlds__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text-on-inverse);
+  margin: 0;
+}
+
+.worlds__line {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-sandstone);
+}
+
+.worlds__enter {
+  margin-top: var(--space-2);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+.worlds__nav {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 62rem) {
+  .worlds__nav {
+    display: none;
+  }
+}
+
+.worlds__nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--target-min);
+  min-height: var(--target-min);
+  border: 1px solid var(--rule-strong);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--text-xs);
+  padding: 0 var(--space-3);
+}
+
+.worlds__nav a[aria-current='true'] {
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+  border-color: var(--color-ink);
+}
+
+/* ==========================================================================
+   PHASE 2 — PDP ARRIVAL AND ANATOMY
+   ========================================================================== */
+
+.pdp-arrival {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-carbon);
+  color: var(--text-on-inverse);
+  margin-bottom: var(--space-7);
+}
+
+.pdp-arrival__backdrop {
+  position: absolute;
+  inset: -6%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center 20%;
+  filter: blur(28px) saturate(0.9) brightness(0.55);
+  transform: scale(1.06);
+}
+
+.pdp-arrival__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--margin-mobile);
+  text-align: center;
+}
+
+.pdp-arrival__inner img {
+  width: min(320px, 64vw);
+  height: auto;
+  box-shadow: 0 32px 64px rgb(0 0 0 / 0.45);
+}
+
+.pdp-arrival__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--text-on-inverse);
+}
+
+.pdp-arrival__eyebrow {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-sandstone);
+}
+
+.anatomy {
+  position: relative;
+}
+
+.anatomy__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .anatomy__list {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-5) var(--gutter);
+  }
+}
+
+.anatomy__item {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-3);
+  position: relative;
+}
+
+.anatomy__item::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--color-tobacco);
+}
+
+.anatomy__term {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+/* ==========================================================================
+   PHASE 2 — WHOLESALE SHOWROOM
+   ========================================================================== */
+
+.showroom-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-carbon);
+  color: var(--text-on-inverse);
+  padding: var(--space-8) 0;
+  margin-bottom: var(--space-7);
+}
+
+.showroom-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.showroom-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.showroom-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(10 10 10 / 0.66), rgb(10 10 10 / 0.82));
+}
+
+.showroom-hero .container {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+.showroom-hero h1 {
+  color: var(--text-on-inverse);
+  margin: 0;
+}
+
+.showroom-hero p {
+  color: var(--color-sandstone);
+}
+
+.showroom-hero :focus-visible {
+  outline-color: var(--color-sandstone);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  counter-reset: step;
+}
+
+@media (min-width: 48rem) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+}
+
+.steps li {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-4);
+}
+
+.steps h3 {
+  margin-bottom: var(--space-2);
+}
+
+.steps .journey__index {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+/* The Virtual Rack: a rail with hooks over real merchandise. */
+.rack {
+  position: relative;
+  padding-top: var(--space-6);
+}
+
+.rack__rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+}
+
+.rack__rail line {
+  stroke: var(--color-border);
+  stroke-width: 3;
+}
+
+.rack__rail circle {
+  fill: var(--surface-page);
+  stroke: var(--color-border);
+  stroke-width: 2;
+}
+
+.rack__row {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2) 0 var(--space-3);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(11rem, 1fr);
+  gap: var(--space-4);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  min-width: 0;
+}
+
+.rack__row li {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.proof-band {
+  display: grid;
+  gap: var(--space-5);
+  border-block: 1px solid var(--rule-strong);
+  padding-block: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .proof-band {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+}
+
+.proof-band strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--headline-lg-mobile);
+  line-height: 1;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.proof-band span {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+/* ==========================================================================
+   PHASE 2 — COMPACT MOBILE CHROME
+
+   12A/12F-1: one row — Menu · wordmark · Account. The disclosure is a native
+   <details>, so it is keyboard-operable with zero JavaScript; its panel opens
+   full-width beneath the glass bar.
+   ========================================================================== */
+
+.site-header__bar {
+  display: contents;
+}
+
+.site-header__account-link,
+.nav-disclosure {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .site-header {
+    text-align: initial;
+    padding-top: calc(var(--space-3) + var(--safe-top));
+    padding-bottom: var(--space-3);
+  }
+
+  .site-header__rows {
+    display: block;
+    position: relative;
+  }
+
+  .site-header__bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .site-header__bar .site-header__wordmark {
+    margin: 0;
+    /* Fits a 320px viewport beside Menu and Account — measured, the fixed 1rem did not. */
+    font-size: clamp(0.78rem, 4.2vw, 1rem);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .site-nav--primary,
+  .site-nav--secondary {
+    display: none;
+  }
+
+  .site-header__account-link {
+    display: inline-flex;
+    justify-self: end;
+    align-items: center;
+    min-height: var(--target-min);
+    font-size: 10px;
+    font-weight: var(--label-caps-weight);
+    letter-spacing: var(--label-caps-tracking);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-disclosure {
+    display: block;
+    justify-self: start;
+  }
+
+  .nav-disclosure summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-min);
+    font-size: 10px;
+    font-weight: var(--label-caps-weight);
+    letter-spacing: var(--label-caps-tracking);
+    text-transform: uppercase;
+  }
+
+  .nav-disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-disclosure[open] summary {
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+  }
+
+  /* The open panel: full width beneath the bar, on the glass surface. */
+  .nav-disclosure__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + var(--space-3));
+    background: var(--glass-tint);
+    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    border-block: 1px solid var(--hairline);
+    padding: var(--space-3) var(--margin-mobile);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .nav-disclosure__panel {
+      background: var(--surface-page);
+    }
+  }
+
+  .nav-disclosure__panel ul {
+    flex-direction: column;
+    gap: 0;
+    align-items: start;
+  }
+
+  .nav-disclosure__panel a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }

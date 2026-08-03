@@ -22,11 +22,21 @@
     "jsx": "preserve",
     "incremental": true,
     "verbatimModuleSyntax": true,
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    ".next-flagoff/types/**/*.ts"
+  ],
   "exclude": ["node_modules", "archive", "stitch-export", ".next"]
 }

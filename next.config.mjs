@@ -3,6 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // The frontier flag is a BUILD-TIME boundary (public routes are prerendered), so the
+  // flag-off structural test builds into its own dist and boots that. See
+  // tests/structural/07-frontier-experience.test.ts.
+  distDir: process.env.LB_DIST_DIR ?? '.next',
+
   // The permission boundary is enforced per-request in `src/auth`. These headers are
   // defence in depth, not the control. See docs/production/08.
   async headers() {
