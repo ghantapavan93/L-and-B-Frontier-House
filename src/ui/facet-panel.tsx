@@ -29,14 +29,70 @@ export function FacetPanel({
   applied: AppliedFacets
   resultCount: number
 }) {
-  const hasFilters = Boolean(
-    applied.sizeRange ?? applied.availability ?? applied.fabric ?? applied.detail,
-  )
+  /**
+   * Applied filters, as removable chips.
+   *
+   * A buyer narrowing a category filters destructively and needs a cheap undo. Reading the
+   * `<select>` values back is not that: it requires opening each control to learn what is
+   * on. Naming each applied filter and giving it its own removal link makes the state
+   * countable at a glance and reversible one facet at a time — and because every chip is a
+   * plain link to the same URL minus one parameter, it works with JavaScript disabled and
+   * keeps the whole filter state shareable.
+   */
+  // Fabric and detail facets carry no `label` — their value is already the human string.
+  const labelFor = (
+    options: readonly { readonly value: string; readonly label?: string }[],
+    value: string,
+  ) => options.find((option) => option.value === value)?.label ?? value
+
+  const appliedChips = (
+    [
+      ['sizeRange', 'Size range', applied.sizeRange, facets.sizeRanges],
+      ['availability', 'Availability', applied.availability, facets.availability],
+      ['fabric', 'Fabric', applied.fabric, facets.fabric],
+      ['detail', 'Detail', applied.detail, facets.detail],
+    ] as const
+  ).flatMap(([key, label, value, options]) => {
+    if (!value) return []
+    const rest = new URLSearchParams()
+    for (const [otherKey, otherValue] of Object.entries(applied)) {
+      if (otherKey !== key && otherValue) rest.set(otherKey, otherValue)
+    }
+    const query = rest.toString()
+    return [
+      {
+        key,
+        label,
+        value: labelFor(options, value),
+        href: query ? `${action}?${query}` : action,
+      },
+    ]
+  })
+  const hasFilters = appliedChips.length > 0
 
   return (
     <div className="facet-panel">
       <form method="get" action={action}>
-        <h2 className="eyebrow">Filter</h2>
+        <h2 className="eyebrow">
+          Filter
+          {hasFilters ? <span className="facet-count">{appliedChips.length}</span> : null}
+        </h2>
+
+        {hasFilters ? (
+          <ul className="facet-applied" aria-label="Applied filters">
+            {appliedChips.map((chip) => (
+              <li key={chip.key}>
+                <Link href={chip.href} className="facet-chip">
+                  <span className="facet-chip__label">{chip.label}:</span> {chip.value}
+                  <span className="visually-hidden"> — remove this filter</span>
+                  <span aria-hidden="true" className="facet-chip__x">
+                    ×
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
         <fieldset className="facet-group">
           <legend>Size range</legend>

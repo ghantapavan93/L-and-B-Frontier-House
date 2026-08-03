@@ -2810,3 +2810,117 @@ tfoot td {
   display: grid;
   gap: var(--space-4);
 }
+
+/* ==========================================================================
+   Applied-filter chips
+
+   Filter state has to be legible without opening a control. The count sits in
+   the heading; each applied facet becomes a removable chip that is a plain link
+   to the same URL minus one parameter — so it survives with JavaScript off and
+   the whole filter state stays shareable.
+   ========================================================================== */
+
+.facet-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35em;
+  height: 1.35em;
+  margin-inline-start: var(--space-2);
+  padding-inline: 0.35em;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  letter-spacing: 0;
+}
+
+.facet-applied {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.facet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* 24 x 24 minimum target (WCAG 2.5.8); 32px here so it is comfortable on touch. */
+  min-height: 32px;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--rule-strong);
+  background: var(--surface-raised);
+  color: var(--color-chip-text);
+  font-size: var(--text-xs);
+  text-decoration: none;
+}
+
+.facet-chip:hover {
+  border-color: var(--color-tobacco);
+}
+
+.facet-chip__label {
+  color: var(--color-text-meta);
+}
+
+.facet-chip__x {
+  font-size: 1.15em;
+  line-height: 1;
+  color: var(--color-text-meta);
+}
+
+/* ==========================================================================
+   State surfaces — one house across every outcome
+
+   `.gate` (permission states), `.state-block` (empty states) and `.notice`
+   (advisories) previously each carried their own border, radius and ground, so a
+   pending buyer, an empty order history and a fixture warning read as three
+   different products.
+
+   They now share one treatment: raised paper, a hairline rule, and a single
+   tobacco edge that acts as the house mark. The edge is the only decoration
+   these surfaces get — operational screens are where clarity has to dominate,
+   and a denial state is the worst possible place to be cinematic.
+   ========================================================================== */
+
+.gate,
+.state-block {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-inline-start: 2px solid var(--color-tobacco);
+  border-radius: var(--radius-default);
+  padding: var(--space-6);
+}
+
+.state-block {
+  /* Empty is a designed outcome, not a failure — it gets the same paper as the
+     rest of the system rather than a dashed placeholder box. */
+  border-inline-start-color: var(--rule-strong);
+}
+
+.gate h2,
+.state-block h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  letter-spacing: -0.015em;
+  text-transform: none;
+  margin-bottom: var(--space-3);
+}
+
+/* The action in a state surface is the point of the surface. Give it room. */
+.gate .cluster,
+.state-block .cluster,
+.state-block .button {
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .gate,
+  .state-block {
+    padding: var(--space-7);
+  }
+}
