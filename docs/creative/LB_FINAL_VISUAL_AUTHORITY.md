@@ -31,7 +31,7 @@ this file is the only one that has been reconciled against all of them.
 | C-9 | V3 demotes *Skip to Shop* to grey text; **V2 gave it CTA parity** | Recover parity — a mechanic, not a style | 2 over 3 |
 | C-10 | **V3 removed MSRP**; V2 showed `$185 WHSL / MSRP $395` | Recover **when owner data exists**. Margin maths is the buyer's core decision | 2 over 3, gated on data |
 | C-11 | Three taxonomies exist; only `Wholesale` is common to all | Ship **Women · Girls · Accessories**, the verified set. Plus is a filter and a fit story pending **D-04** | 1 over 3/4 |
-| C-12 | Route-level `loading.tsx` breaks the 307/404 contract and the h1 invariants | Not shipped. In-page Suspense below the `h1` is the route through | 5 over 2 |
+| C-12 | Route-level `loading.tsx` breaks the 307/404 contract and the h1 invariants — and in-page Suspense, its proposed replacement, hides content from a no-JS visitor | **Closed, not pending.** No streamed loading state ships; CI Test 1B forbids the deferral markers. Measured — [LB_LOADING_STATES.md](../assets/LB_LOADING_STATES.md) §3 | 5 over 2, and §11 over both |
 | C-13 | V1's **Dallas skyline** is the only verified geography; V1's *"from the heart of Texas"* asserts identity without a manufacturing claim | Both re-adoptable — the phrase verbatim, the skyline only from owner-supplied photography | 1 permits; media blocks |
 
 ---
@@ -119,10 +119,12 @@ visible pause control.
 landscape frame is not an art direction**. No horizontal overflow; wide content
 scrolls inside its own container.
 
-**Loading, empty, error.** Branded, semantic, stable — never a bare spinner.
-Skeletons reserve the real boxes so arriving content shifts nothing. Empty states
-name the state and offer one action. Errors echo no restricted value; the digest
-is opaque. *Route-level `loading.tsx` is currently blocked — see C-12.*
+**Loading, empty, error.** Empty states name the state and offer one action.
+Errors echo no restricted value; the digest is opaque. *There is no loading state
+and there will not be one:* a streamed fallback leaves a no-JS visitor holding a
+skeleton with the real content parked in `<div hidden>`, which is the one thing
+§11 exists to forbid. The browser's own progress indicator is the honest
+affordance for a full-page load. See C-12.
 
 **Reduced motion.** Not a fourth mode and not a synonym for Instant Shop. Keep
 user-initiated interaction responsive; remove motion the user did not initiate.

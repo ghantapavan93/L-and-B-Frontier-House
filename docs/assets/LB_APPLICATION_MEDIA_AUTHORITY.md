@@ -28,7 +28,7 @@ photographs, video, logos, copy, source or distinctive branded compositions.
 | Source resolution | **360 × 540** — soft at editorial scale |
 | Verified categories in fixtures | `women`, `girls`, `accessories` |
 | Buyer states | `pending` · `approved` · `rejected` · `suspended` |
-| `loading.tsx` files | **0 — none exist anywhere** |
+| `loading.tsx` files | **0, and by rule** — a streamed fallback is unreachable without JavaScript |
 | Video elements shipped | 0, by design and by structural test |
 | Blender media delivered | Buckle ignition, 2 formats × 2 codecs, + posters |
 
@@ -74,7 +74,7 @@ P2 quality · P3 enhancement.
 
 | State | Current | Required | Src | Pri |
 | :--- | :--- | :--- | :--- | :--- |
-| **Loading** | **No `loading.tsx` anywhere.** Every route falls back to a blank document during navigation | Route-level skeletons that reserve the same boxes the content will occupy — protects CLS, which is a contractual budget | code | **P1** |
+| **Loading** | **No `loading.tsx` anywhere**, and none may be added | **Nothing.** Measured: a streamed fallback is what a no-JS visitor keeps, with the content parked in `<div hidden>`. CI Test 1B blocks it. [LB_LOADING_STATES.md](LB_LOADING_STATES.md) | — | **Closed** |
 | Empty | Text-only | Abstract plate + one action | B/G | P3 |
 | `error.tsx` | Exists, text-only | Keep text-first; add a quiet plate | B | P3 |
 | `not-found.tsx` | Exists, text-only | Same, plus a route back to shop | B | P3 |
@@ -99,9 +99,9 @@ P2 quality · P3 enhancement.
 
 ## 4. Implementation order
 
-**P1, in sequence:** route-level `loading.tsx` skeletons → hero poster from the
-delivered Blender master → owner re-shoot at editorial resolution → Girls and
-Accessories photography → PDP galleries.
+**P1, in sequence:** hero poster from the delivered Blender master → owner
+re-shoot at editorial resolution → Girls and Accessories photography → PDP
+galleries.
 
 **P2:** category headers, wholesale hero, order-builder thumbs, buyer-state
 plates, portrait art direction.

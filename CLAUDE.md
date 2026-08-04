@@ -317,7 +317,13 @@ or baked into an image. The accessibility rule and the security rule point the s
 ### The three tests that must exist
 
 1. **No-JS product assertion.** Fetch the built page with JavaScript disabled and assert
-   every product name and public price is present in the HTML.
+   every product name and public price is present in the HTML — **and reachable there**.
+   Present-in-the-bytes is not the property; visible-without-JavaScript is. A streaming
+   `<Suspense>` boundary satisfies the first and fails the second: it serves the fallback
+   in the shell and parks the real content in `<div hidden>` for a JavaScript swap, so a
+   no-JS visitor keeps a skeleton and no product. Assert the deferral markers are absent
+   too — `<!--$?-->` and `<div hidden id="S:`. Measured, not assumed:
+   [LB_LOADING_STATES.md](docs/assets/LB_LOADING_STATES.md) §3.
 2. **Unauthenticated crawl assertion.** Fetch every public route with no session and
    assert **zero** restricted price patterns in HTML, headers, inline JSON or metadata.
 3. **Slug purity assertion.** Assert no generated URL contains a numeric price pattern.
@@ -458,8 +464,8 @@ cinema. Each phase must ship complete and correct alone. **Zero WebGL bytes in P
 
 **The three CI tests gate every build**, from the first commit against an empty application:
 
-1. **No-JS product assertion** — every public product fact present in HTML with JavaScript
-   disabled.
+1. **No-JS product assertion** — every public product fact present *and reachable* in HTML
+   with JavaScript disabled. Nothing deferred behind a Suspense fallback (§11).
 2. **Unauthenticated crawl assertion** — zero restricted patterns on any public surface.
 3. **Slug purity assertion** — `/\/\d{1,3}-\d{2}-[a-z]/` matches nothing. **This is the test
    that prevents D-00 from recurring.**
