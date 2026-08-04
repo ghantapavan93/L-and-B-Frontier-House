@@ -3,6 +3,8 @@ import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
+import { populatedEdits } from '@/domain/edits'
+import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
 import { FixtureNotice } from '@/ui/notices'
@@ -77,6 +79,13 @@ export default async function HomePage() {
 
         {hero ? null : <p className="hero__pending">Campaign photography pending</p>}
       </section>
+
+      {/*
+        Identity before taxonomy. Someone arriving from a search or a post is asking "is
+        this for me", and a row of category tiles cannot answer that. The category grid
+        still ships below — this is a way in, never a replacement for it.
+      */}
+      <ChooseYourWest edits={populatedEdits(newest)} products={newest} />
 
       <ContactSheet
         products={sheet}
