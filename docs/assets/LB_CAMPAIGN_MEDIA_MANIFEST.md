@@ -117,6 +117,41 @@ non-looping, so it can autoplay without owing a pause control. **The 10-second
 hero film loops and therefore does owe one** — that obligation arrives with the
 continuation, not with this asset.
 
+## 3a. Registered — hero continuation, candidate 1 — **REJECTED ON VALIDATION**
+
+Both files below are registered so they are tracked, not so they are considered.
+They were validated frame by frame against
+[`LB_VIDEO_GENERATION_PROMPTS.md`](LB_VIDEO_GENERATION_PROMPTS.md) and **failed
+its hardest rule**. They render nowhere and must not be re-submitted without
+regeneration.
+
+| Field | `lb-hero-continuation-desktop.mp4` | `lb-hero-continuation-mobile.mp4` |
+| :--- | :--- | :--- |
+| `sourcePath` | `assets/source/campaign/lb-hero-continuation-desktop.mp4` | `assets/source/campaign/lb-hero-continuation-mobile.mp4` |
+| `provenance` | `generated-campaign` | `generated-campaign` |
+| `addedOn` | 2026-08-03 | 2026-08-03 |
+| Measured | 1280 × 720 · 144 frames · 24 fps · 6.000 s · 1.42 MB | 720 × 1280 · 121 frames · 24 fps · **5.042 s** · 4.19 MB |
+| Required | 1920 × 1080 · 6.00 s | 1080 × 1920 · 6.00 s |
+| `describes` | Turquoise thread travelling across denim **garments** | As desktop, portrait |
+| `ownerApproval` | **`withheld`** | **`withheld`** |
+| `withheldReason` | Depicts generated denim garments — a jacket and jeans, with pockets, plackets, belt loops, rivets and a branded shank button. D-09 does not approve generated media for fictional L&B garments, and the prompt contract's first rule is absolute: *"Never generate a garment. Not as hero, not as background, not blurred."* Also under-resolution and, on mobile, 0.96 s short. | Identical failure, more explicit: the opening frame is a denim jacket with an embossed metal shank button reading as branded hardware. |
+| `licence.checked` | `false` — not pursued; the asset fails before licensing matters | `false` |
+| Renders | **Never** | **Never** |
+
+**Why `withheld` rather than `pending`.** `pending` means *awaiting an owner
+decision*. The owner has already made this decision: D-09 excludes fictional L&B
+garments, and these clips are made of them. Filing them as `pending` would invite
+a second review of a question that is closed, and would leave assets one approval
+click away from rendering generated apparel beside real SKUs.
+
+**Private review edits** — for judging the defect in motion only, never for
+publication:
+`assets/production/buckle/renders/review/lb-hero-review-desktop.mp4` (10.000 s) ·
+`lb-hero-review-mobile.mp4` (9.042 s). QA stills:
+`assets/production/buckle/logs/qa-frames/`.
+
+---
+
 ## 4. Pending — campaign plates
 
 Every entry below is `ownerApproval: 'pending'` and `licence.checked: false`.

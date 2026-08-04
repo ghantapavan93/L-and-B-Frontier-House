@@ -23,3 +23,9 @@ playwright-report/
 assets/production/**/motion-frames/
 assets/production/**/silhouette-alpha.png
 *.blend1
+
+# Rejected generation candidates and their QA stills: tracked in the manifest,
+# never published, and large. Regenerate rather than resurrect.
+assets/source/campaign/
+assets/production/buckle/renders/review/
+assets/production/buckle/logs/qa-frames/
