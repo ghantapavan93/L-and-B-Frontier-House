@@ -636,6 +636,106 @@ def stage_hero(which):
     log("hero %s: %d frames = %.3fs" % (which, total, total / FPS))
 
 
+WEB_DIR = os.path.abspath(
+    os.path.join(ROOT, os.pardir, os.pardir, os.pardir, "public", "media", "hero")
+)
+
+# Web delivery resolution, and why it is this low.
+#
+# The review renders exist to be judged frame by frame at native size; the shipped
+# film exists to AUTOPLAY inside a page with a 4 MB budget, which means its bytes
+# are spent on arrival rather than on a click. Measured on the production build:
+# at 1280x720 the film alone was 2.47 MB of a 3.81 MB initial load — 65% of the
+# page — leaving almost no headroom for the photography still to come.
+#
+# Two levers exist — resolution and rate factor — and pulling both at once was
+# measurably too much: 960 wide at LOW landed at 1.07 MB, which bought 1.6 MB of
+# headroom the page had no other use for while upscaling 1.48x on a 1440 display.
+# Resolution is the lever that shows, so it goes back to 1280 and the rate factor
+# stays down. The poster beside it is full resolution regardless, and that is the
+# frame a reduced-motion or no-JavaScript visitor actually keeps.
+WEB_PROFILES = {
+    "desktop": (1280, 720),
+    "mobile": (720, 1280),
+}
+
+# Quality preset for the shipped encode. Blender's ladder is LOWEST < VERYLOW <
+# LOW < MEDIUM < HIGH; the review master uses HIGH and this deliberately does not.
+WEB_CRF = "LOW"
+
+
+def stage_web(which):
+    """The SHIPPED hero: buckle 4.00 s + continuation 6.00 s, at web weight.
+
+    Same straight cut at 4.00 s as `stage_hero` — that join is approved and this
+    stage must not re-time it. What differs is only delivery: half resolution, a
+    quality preset chosen for bytes rather than for review, and both containers,
+    written straight into `public/` where the application reads them.
+
+    Encoded once from the two approved MP4s rather than from frames, which is
+    what `stage_hero` already does; going back to frames would mean holding the
+    buckle's 97-frame sequence and the fibre field's 144 next to each other, and
+    the join is defined in terms of the encoded clips.
+    """
+    scene = bpy.context.scene
+    buckle = os.path.join(EXPORTS_DIR, "lb-buckle-ignition-%s.mp4" % which)
+    cont = os.path.join(CAMPAIGN_DIR, "lb-hero-continuation-%s.mp4" % which)
+    for path in (buckle, cont):
+        if not os.path.exists(path):
+            raise SystemExit("missing source: " + path)
+
+    width, height = WEB_PROFILES[which]
+    scene.render.fps, scene.render.fps_base = FPS, 1.0
+    scene.render.resolution_x, scene.render.resolution_y = width, height
+    scene.render.resolution_percentage = 100
+    scene.view_settings.view_transform = "Standard"
+    scene.render.use_compositing = False
+    scene.render.use_sequencer = True
+
+    editor = scene.sequence_editor_create()
+    strips = editor.strips if hasattr(editor, "strips") else editor.sequences
+    for existing in list(strips):
+        strips.remove(existing)
+
+    a = strips.new_movie(name="buckle", filepath=buckle, channel=1, frame_start=1)
+    b = strips.new_movie(name="cont", filepath=cont, channel=1,
+                         frame_start=1 + a.frame_final_duration)
+    total = a.frame_final_duration + b.frame_final_duration
+    scene.frame_start, scene.frame_end = 1, total
+
+    settings = scene.render.image_settings
+    if hasattr(settings, "media_type"):
+        settings.media_type = "VIDEO"
+    settings.file_format = "FFMPEG"
+
+    os.makedirs(WEB_DIR, exist_ok=True)
+    stem = "lb-hero-ignition-%s" % which
+    written = []
+
+    for container, codec, suffix in (("MPEG4", "H264", "mp4"), ("WEBM", "WEBM", "webm")):
+        ff = scene.render.ffmpeg
+        ff.format, ff.codec = container, codec
+        # Not HIGH. This is the whole reason the stage exists: the review master is
+        # graded for inspection, the shipped file is graded to fit a contractual
+        # page budget while autoplaying.
+        ff.constant_rate_factor, ff.ffmpeg_preset = WEB_CRF, "GOOD"
+        ff.gopsize, ff.audio_codec = 12, "NONE"
+        scene.render.filepath = os.path.join(WEB_DIR, stem + "-")
+        bpy.ops.render.render(animation=True)
+        made = [n for n in os.listdir(WEB_DIR)
+                if n.startswith(stem + "-") and n.endswith("." + suffix)]
+        if made:
+            final = os.path.join(WEB_DIR, "%s.%s" % (stem, suffix))
+            if os.path.exists(final):
+                os.remove(final)
+            os.rename(os.path.join(WEB_DIR, made[0]), final)
+            size = os.path.getsize(final) / 1024.0 / 1024.0
+            written.append("%s (%.2f MB)" % (os.path.basename(final), size))
+
+    log("web %s: %d frames = %.3fs -> %s"
+        % (which, total, total / FPS, ", ".join(written)))
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     args = dict(zip(argv[::2], argv[1::2]))
@@ -648,6 +748,8 @@ def main():
         stage_encode(args["--which"])
     elif stage == "hero":
         stage_hero(args["--which"])
+    elif stage == "web":
+        stage_web(args["--which"])
     else:
         raise SystemExit("unknown stage: " + stage)
 

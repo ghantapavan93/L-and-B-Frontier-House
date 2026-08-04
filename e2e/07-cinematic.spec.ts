@@ -29,33 +29,88 @@ test.describe('ignition and skip', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeInViewport()
   })
 
-  test('the ignition film is user-started, one-shot and pausable', async ({ page }) => {
+  test('the hero is one background film, ten seconds, one-shot', async ({ page }) => {
     await page.goto('/')
 
     const video = page.locator('video')
+    // One film. The section previously carried an SVG buckle AND a video of the same
+    // buckle, which read as a duplicate rather than as a fallback.
     await expect(video).toHaveCount(1)
+    await expect(page.locator('.ignition__buckle')).toHaveCount(0)
 
-    // WCAG 2.2.2 binds motion the user did not start. This starts on request, runs
-    // 4.00s once, and exposes native controls — so no obligation is owed and none is
-    // faked. Autoplay would also be unstoppable for a reduced-motion visitor, since
-    // the attribute cannot be gated from the server.
-    await expect(video).not.toHaveAttribute('autoplay', /.*/)
+    // A background surface, not an embedded player: no native chrome, never loops.
+    await expect(video).not.toHaveAttribute('controls', /.*/)
     await expect(video).not.toHaveAttribute('loop', /.*/)
-    await expect(video).toHaveAttribute('controls', /.*/)
-    await expect(video).toHaveAttribute('poster', /lb-buckle-poster/)
-    expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true)
 
-    // The film is an enhancement: the poster and the SVG proof carry the section alone.
-    await expect(page.locator('.ignition__buckle')).toBeVisible()
+    // No autoplay ATTRIBUTE — the attribute cannot be gated on a reduced-motion
+    // preference from the server, so playback is started by the inline controller
+    // instead. With JavaScript off nothing moves and the poster carries the section.
+    await expect(video).not.toHaveAttribute('autoplay', /.*/)
+
+    // Buckle ignition 4.00s + thread passage 6.00s, cut straight at the join.
+    await expect
+      .poll(async () => video.evaluate((v: HTMLVideoElement) => v.duration))
+      .toBeCloseTo(10, 1)
+
+    // The poster is a real, art-directed image rather than the `poster` attribute, so
+    // each aspect gets its own frame instead of a centre crop.
+    await expect(page.locator('.hero-film__poster img')).toHaveAttribute(
+      'src',
+      /lb-hero-poster/,
+    )
     await expect(page.locator('a[href="/transcript/buckle-ignition"]')).toBeVisible()
 
-    // The one-shot draw finishes; nothing on the page loops indefinitely.
-    const infinite = await page.evaluate(() => {
-      return [...document.querySelectorAll<HTMLElement>('.ignition *')].some(
+    // Nothing on the page loops indefinitely.
+    const infinite = await page.evaluate(() =>
+      [...document.querySelectorAll<HTMLElement>('.ignition *')].some(
         (el) => getComputedStyle(el).animationIterationCount === 'infinite',
-      )
-    })
+      ),
+    )
     expect(infinite).toBe(false)
+  })
+
+  test('it plays by itself and can be stopped — WCAG 2.2.2', async ({ page }) => {
+    await page.goto('/')
+
+    const video = page.locator('video')
+    const toggle = page.getByRole('button', { name: /the film/ })
+
+    // Ten seconds of automatic motion beside a headline is squarely inside 2.2.2, which
+    // is Level A. The control must be present and visible, not merely available.
+    await expect(toggle).toBeVisible()
+    await expect.poll(async () => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(false)
+
+    await toggle.click()
+    await expect.poll(async () => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true)
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false')
+
+    await toggle.click()
+    await expect.poll(async () => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(false)
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  test('under reduced motion it never starts, and the poster carries it', async ({
+    browser,
+  }) => {
+    const context = await browser.newContext({ reducedMotion: 'reduce' })
+    const page = await context.newPage()
+    await page.goto('/')
+
+    const video = page.locator('video')
+    // The whole reason playback is script-started rather than an attribute: a visitor who
+    // asked for no motion must get none, and `autoplay` cannot be withdrawn once served.
+    await expect
+      .poll(async () => video.evaluate((v: HTMLVideoElement) => v.paused), { timeout: 3000 })
+      .toBe(true)
+    await expect
+      .poll(async () => video.evaluate((v: HTMLVideoElement) => v.currentTime))
+      .toBe(0)
+
+    // Still offered, never imposed.
+    await expect(page.getByRole('button', { name: /Play the film/ })).toBeVisible()
+    await expect(page.locator('.hero-film__poster img')).toBeVisible()
+
+    await context.close()
   })
 })
 

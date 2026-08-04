@@ -1736,10 +1736,20 @@ tfoot td {
   overflow: hidden;
 }
 
+/*
+  Decorative, and therefore click-through.
+
+  Without `pointer-events: none` this full-bleed overlay swallows every click in the
+  section — which it did, silently, until the film gained a pause control underneath
+  it and the WCAG 2.2.2 test could not press the button. The body-level grain has
+  carried this rule and its own test since it shipped; this one was missed because
+  nothing interactive had ever sat beneath it.
+*/
 .ignition__grain {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
+  pointer-events: none;
   opacity: 0.5;
   mix-blend-mode: overlay;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.4"/></svg>');
@@ -1752,7 +1762,8 @@ tfoot td {
   display: grid;
   place-content: center;
   margin: 0;
-  z-index: -1;
+  /* Above the film, below the copy. Already click-through. */
+  z-index: 1;
   font-family: var(--font-display);
   font-size: clamp(3rem, 11vw, 8.5rem);
   line-height: 1.02;
@@ -1764,19 +1775,6 @@ tfoot td {
   max-width: none;
 }
 
-.ignition__artifact {
-  margin: 0;
-  display: grid;
-  justify-items: center;
-  gap: var(--space-3);
-}
-
-.ignition__buckle {
-  width: min(320px, 72vw);
-  height: auto;
-  filter: drop-shadow(0 24px 48px rgb(0 0 0 / 0.55));
-}
-
 .ignition__stage {
   font-size: 10px;
   font-weight: var(--label-caps-weight);
@@ -1785,60 +1783,16 @@ tfoot td {
   color: var(--text-meta-on-inverse);
 }
 
-/* The luminous fibre: a soft glow underlay and a dashed core, drawn once. */
-.ignition__thread-glow {
-  fill: none;
-  stroke: #7fe0d6;
-  stroke-width: 5;
-  stroke-linecap: round;
-  opacity: 0.5;
-}
-
-.ignition__thread-core {
-  fill: none;
-  stroke: #d6fff9;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-dasharray: 2.5 3.5;
-}
-
-.ignition__thread-exit {
-  fill: none;
-  stroke: #7fe0d6;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 2.5 4;
-  opacity: 0.7;
-}
-
-/* Drawing happens only when motion is welcome; otherwise everything is drawn. */
+/*
+  The actions rise once, when motion is welcome. This is the only CSS animation left
+  in the section: the thread that used to be drawn here in SVG is now drawn by the
+  film itself, so a second, stylised copy of the same gesture would be competing with
+  it rather than standing in for it.
+*/
 @media (prefers-reduced-motion: no-preference) {
-  .ignition__thread-glow,
-  .ignition__thread-core {
-    stroke-dasharray: 620;
-    stroke-dashoffset: 620;
-    animation: ignition-draw 2.8s var(--ease-entrance) 0.3s forwards;
-  }
-
-  .ignition__thread-core {
-    animation-delay: 0.45s;
-  }
-
-  .ignition__thread-exit {
-    stroke-dasharray: 180;
-    stroke-dashoffset: 180;
-    animation: ignition-draw 1.2s var(--ease-entrance) 2.6s forwards;
-  }
-
   .ignition__actions {
     opacity: 0;
     animation: ignition-rise 0.6s var(--ease-entrance) 2.2s forwards;
-  }
-}
-
-@keyframes ignition-draw {
-  to {
-    stroke-dashoffset: 0;
   }
 }
 
@@ -2831,69 +2785,6 @@ tfoot td {
 }
 
 /* ==========================================================================
-   Ignition film
-
-   The SVG buckle above is the structural floor; this is the richer telling of
-   the same four seconds. It is contained rather than full-bleed: a native
-   `<video controls>` dropped into a full-width slot overflows narrow viewports,
-   and its control bar is a focusable target that must stay inside the frame at
-   320px.
-   ========================================================================== */
-
-.hero-media {
-  width: min(100%, 34rem);
-  margin: var(--space-7) auto 0;
-  display: grid;
-  gap: var(--space-3);
-}
-
-.hero-media__video {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* Reserves the box before metadata loads, so the poster swap costs no shift. */
-  aspect-ratio: 16 / 9;
-  max-width: 100%;
-  background: var(--color-carbon);
-  border: 1px solid rgb(255 255 255 / 0.12);
-}
-
-@media (max-width: 47.99rem) {
-  .hero-media__video {
-    /* The mobile encoding is 9:16; reserving 16:9 here would letterbox it. */
-    aspect-ratio: 9 / 16;
-  }
-}
-
-.hero-media__transcript {
-  margin: 0;
-  text-align: center;
-}
-
-.hero-media__transcript a {
-  color: var(--color-sandstone);
-}
-
-/*
-  Keyboard focus on the player.
-
-  Tabbing through a native `<video controls>` moves focus INSIDE its shadow tree —
-  play, timeline, mute, fullscreen — so `document.activeElement` stays the host
-  and the host never matches `:focus-visible`. The global ring therefore never
-  fires, and the focus suite correctly reports four unringed stops. `:focus-within`
-  matches whenever focus is anywhere inside, shadow tree included, which is what
-  puts a visible ring around the player for every one of those stops.
-
-  Sandstone rather than tobacco: the ignition ground is ink, where tobacco is not
-  conformant. Sandstone measures 13.4:1 there.
-*/
-.hero-media__video:focus-visible,
-.hero-media__video:focus-within {
-  outline: var(--focus-ring-width) solid var(--color-sandstone);
-  outline-offset: var(--focus-ring-offset);
-}
-
-/* ==========================================================================
    Assortment builder
 
    A planning surface for approved buyers. The form is a plain GET form and the
@@ -3025,4 +2916,218 @@ tfoot td {
   margin-block-start: var(--space-2);
   min-inline-size: 1px;
   background: var(--color-tobacco);
+}
+
+/* ==========================================================================
+   Edits — "Choose your west"
+
+   Identity entrances above the category grid. Visually a sibling of
+   `.category-card`, deliberately: an edit is a different QUESTION, not a
+   different kind of thing, and giving it louder chrome than the taxonomy would
+   invert which of the two is load-bearing.
+
+   A 3:4 crop rather than the card grid's 4:5 — the tile carries a mood, not a
+   garment, and the shallower frame keeps four of them on one row without
+   pushing the category grid below the fold.
+   ========================================================================== */
+
+.edit-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.edit-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.edit-card__link {
+  text-decoration: none;
+  display: block;
+}
+
+.edit-card__media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-default);
+  background: var(--surface-sunken);
+  margin-bottom: var(--space-4);
+}
+
+.edit-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-base) var(--ease-entrance);
+}
+
+.edit-card__link:hover .edit-card__media img {
+  transform: scale(1.02);
+}
+
+.edit-card__name {
+  margin-bottom: 0;
+}
+
+.edit-card__link:hover .edit-card__name {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.edit-card__line {
+  margin: 0;
+}
+
+/* ==========================================================================
+   The hero film
+
+   A background surface, not an embedded player. It sits at the back of the
+   ignition section's stacking context and the copy sits over it, which is the
+   whole difference between "a video on the page" and "the page's own image".
+
+   The poster and the video occupy the same box. The poster paints first and
+   stays behind the video for the whole visit, so a refused autoplay, a blocked
+   request, an unsupported codec or a still-buffering first frame all resolve to
+   the same complete image rather than to black.
+   ========================================================================== */
+
+/*
+  No `z-index` here, deliberately.
+
+  Giving the film its own negative index made it a stacking context, which trapped
+  the pause control inside it: the control's `z-index: 3` was resolved against the
+  film rather than against the section, so the grain painted over it and ate its
+  clicks. Leaving `.hero-film` positioned but unindexed keeps it out of the stacking
+  order entirely, so its children compete at section level where they belong.
+
+  The layers, bottom to top: poster and video (0), darkening pass and grain (1),
+  the section's copy (2), the film's own controls (3).
+*/
+.hero-film {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-film__poster,
+.hero-film__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.hero-film__poster img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.hero-film__video {
+  object-fit: cover;
+  /*
+    The video is the upper layer of the pair and is transparent until it has a
+    frame to show, so the poster reads through it until playback actually
+    starts. No opacity transition: a fade would mean cross-dissolving two copies
+    of the same frame, which is visible as a flicker and buys nothing.
+  */
+  border: 0;
+}
+
+/*
+  Darkening pass. The film was graded for a cinema frame, not as a backdrop for
+  12px label-caps, and the ignition copy is bone-on-ink. Without this the
+  headline contrast rides on whatever the current frame happens to be doing,
+  which is not a contrast ratio anyone can guarantee.
+*/
+.hero-film::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(85% 65% at 50% 45%, rgb(10 9 7 / 0.25) 0%, rgb(10 9 7 / 0.68) 100%),
+    linear-gradient(
+      180deg,
+      rgb(10 9 7 / 0.55) 0%,
+      rgb(10 9 7 / 0.3) 45%,
+      rgb(12 10 8 / 0.85) 100%
+    );
+}
+
+/*
+  Controls sit bottom-right, out of the copy's way but inside the section and
+  always on screen. WCAG 2.2.2 asks for a mechanism, not a hidden one — a pause
+  control a visitor has to hunt for has not stopped anything.
+*/
+.hero-film__controls {
+  position: absolute;
+  inset-block-end: var(--space-5);
+  inset-inline-end: var(--space-5);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+  text-align: end;
+}
+
+.hero-film__toggle {
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--text-on-inverse);
+  background: rgb(10 9 7 / 0.55);
+  border: 1px solid rgb(245 242 238 / 0.35);
+  border-radius: var(--radius-default);
+  cursor: pointer;
+}
+
+.hero-film__toggle:hover {
+  background: rgb(10 9 7 / 0.8);
+  border-color: rgb(245 242 238 / 0.6);
+}
+
+.hero-film__transcript {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--text-meta-on-inverse);
+}
+
+/*
+  Sandstone rather than tobacco: the film's ground is ink, where tobacco is not
+  conformant. Sandstone measures 13.4:1 there. Same reasoning as the old player.
+*/
+.hero-film__toggle:focus-visible,
+.hero-film__transcript:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* The ignition's own copy, stacked over the film. */
+.ignition__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
+}
+
+@media (max-width: 47.99rem) {
+  .hero-film__controls {
+    inset-block-end: var(--space-4);
+    inset-inline-end: var(--space-4);
+  }
 }

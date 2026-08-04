@@ -27,31 +27,38 @@ describe('flag enabled (default) — cinematic specifics', () => {
     expect(body).toContain('id="hero"')
   })
 
-  it('draws the buckle proof as the 8B/8C form — and never the coin', async () => {
+  it('describes the buckle as the 8B/8C form — and never the coin', async () => {
     const { body } = await get('/')
 
-    expect(body).toContain('ignition__buckle')
-    // Engraved initials and restrained turquoise are present…
+    // The artifact used to be re-drawn here as inline SVG beside a video of itself. The
+    // film and its poster carry it alone now, so the description lives in the poster's
+    // alt text — which is also the only copy of it a screen reader ever hears.
     expect(body).toContain('scalloped rectangular western belt buckle')
-    // …and the dead fabrications stay dead.
+    // The dead fabrications stay dead.
     expect(body).not.toMatch(/EST\.?\s*1865/i)
     expect(body).not.toMatch(/1870s/i)
   })
 
-  it('runs the ignition draw once, well under the pause-control threshold', async () => {
+  it('leaves one short, one-shot CSS animation in the ignition', async () => {
     const { body } = await get('/')
     const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
     const { body: css } = await get(cssHref as string)
 
-    // WCAG 2.2.2 binds auto-motion that lasts over five seconds or loops. The draw is a
-    // one-shot ≤2.8s inside a no-preference media query, so no pause control is owed.
-    expect(css).toContain('ignition-draw')
-    expect(css).not.toMatch(/ignition-draw[^;}]*infinite/)
-    const durations = [...css.matchAll(/ignition-draw\s+([\d.]+)s/g)].map((m) =>
+    // The film is the motion now. What remains in CSS is the actions rising once, inside
+    // a no-preference query — well under the WCAG 2.2.2 five-second threshold and never
+    // looping, so it owes no control of its own. The film's control covers the film.
+    expect(css).toContain('ignition-rise')
+    expect(css).not.toMatch(/ignition-rise[^;}]*infinite/)
+
+    const durations = [...css.matchAll(/ignition-rise\s+([\d.]+)s/g)].map((m) =>
       Number.parseFloat(m[1] ?? '0'),
     )
     expect(durations.length).toBeGreaterThan(0)
     for (const d of durations) expect(d).toBeLessThanOrEqual(3)
+
+    // The SVG draw is gone with the SVG; a leftover keyframe would be dead bytes on
+    // every route, since this is one stylesheet.
+    expect(css).not.toContain('ignition-draw')
   })
 
   it('serves the contact-sheet stories as static, JS-free target panels', async () => {
@@ -96,26 +103,42 @@ describe('flag enabled (default) — cinematic specifics', () => {
   /**
    * The ignition film ships. The edit contract allows this assertion to change only in
    * the same commit that adds a poster, a captions track, a transcript route and pause
-   * behaviour — so the test now proves each of those rather than being deleted.
+   * behaviour — so the test proves each of those rather than being deleted.
+   *
+   * The film is now ten seconds: the buckle ignition cut straight into the thread passage.
+   * Past the WCAG 2.2.2 five-second threshold, and it starts by itself — so the pause
+   * control moves from "provided anyway by native chrome" to genuinely owed.
    */
-  it('ships the ignition film only with its poster, captions, transcript and controls', async () => {
+  it('ships the ignition film only with its poster, captions, transcript and a pause control', async () => {
     const { body } = await get('/')
 
-    expect(body, 'the film is missing').toContain(
-      '/media/buckle/lb-buckle-ignition-desktop.mp4',
-    )
-    expect(body, 'no mobile encoding').toContain('/media/buckle/lb-buckle-ignition-mobile.mp4')
+    expect(body, 'the film is missing').toContain('/media/hero/lb-hero-ignition-desktop')
+    expect(body, 'no portrait encoding').toContain('/media/hero/lb-hero-ignition-mobile')
     expect(body, 'no poster — the slot must be complete without the film').toContain(
-      '/media/buckle/lb-buckle-poster-desktop.webp',
+      '/media/hero/lb-hero-poster-desktop.webp',
     )
-    expect(body, 'no captions track').toContain('/media/buckle/lb-buckle-ignition.vtt')
+    expect(body, 'no art-directed portrait poster').toContain(
+      '/media/hero/lb-hero-poster-mobile.webp',
+    )
+    expect(body, 'no captions track').toContain('/media/hero/lb-hero-ignition.vtt')
     expect(body, 'no transcript route').toContain('/transcript/buckle-ignition')
-    expect(body, 'no pause affordance').toContain('controls')
 
-    // Four seconds, played once, started by the user: under the WCAG 2.2.2 threshold
-    // and never pushed at someone who asked for no motion.
-    expect(body, 'autoplays unrequested motion').not.toContain('autoplay')
+    // The control is server-rendered — hidden until the controller can act on it, but
+    // present in the HTML so its absence is a test failure rather than a silent
+    // regression.
+    expect(body, 'no pause control').toContain('data-hero-toggle')
+
+    // Never loops: the passage was authored to END in negative space sized for the copy
+    // that sits over it, and looping would drag the frame back to the buckle.
     expect(body, 'loops past the five-second threshold').not.toMatch(/<video[^>]*\sloop/)
+
+    // No autoplay ATTRIBUTE. It cannot be withdrawn for a reduced-motion visitor once
+    // served, so playback is started by the inline controller instead — which is also
+    // what keeps the no-JavaScript case motionless.
+    expect(body, 'ships an ungateable autoplay attribute').not.toMatch(/<video[^>]*\sautoplay/)
+
+    // A background surface, not an embedded player.
+    expect(body, 'ships native player chrome').not.toMatch(/<video[^>]*\scontrols/)
   })
 
   it('ships no video on any surface other than the homepage ignition', async () => {
