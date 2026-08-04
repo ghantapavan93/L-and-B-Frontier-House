@@ -31,6 +31,7 @@ export const TRADE_ROUTES: readonly string[] = [
   '/trade',
   '/trade/order',
   '/trade/orders',
+  '/trade/assortment',
   '/trade/product/dark-wash-high-rise-flare-jean',
 ]
 

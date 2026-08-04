@@ -73,9 +73,21 @@ suspended. **Fail closed on any session or lookup error.**
 $395`; V3 removed it. Margin maths is the buyer's core decision — recover it the
 day owner data exists.
 
-**Assortment builder** `P` — budget, region, store size, category mix, price band,
-launch month → a suggested rack with units, spend, suggested retail, size and
-colour distribution. **Every suggestion editable.** Never a locked recommendation.
+**Assortment builder** `A` — shipped at `/trade/assortment`. Budget, store size,
+category mix, price band and launch month → a rack with units, spend, suggested
+retail, blended margin and size and colour distribution. Every line carries its own
+editable pack count, and the whole rack lands in the ordinary draft order, so it is
+a starting point rather than a locked recommendation.
+
+**Region was specified here and is deliberately not built.** There is no
+sell-through, returns or regional performance data in this project. Distribution
+being Texas-concentrated is a verified fact about *where the brand sells*, not about
+*what sells where*, and weighting a rack by it would invent a merchandising claim
+about the buyer's own business — §12 and "no features without evidence" outrank this
+document. The surface names region, sell-through, return rate and size curve as
+inputs it does **not** use, because a budget-filling tool is indistinguishable from a
+demand predictor unless it says so. Launch month is honoured only against real
+pre-order ship windows.
 
 ## 5. Returning loyal customer `G` — blocked on D-01 and D-17
 

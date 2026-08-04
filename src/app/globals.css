@@ -2892,3 +2892,107 @@ tfoot td {
   outline: var(--focus-ring-width) solid var(--color-sandstone);
   outline-offset: var(--focus-ring-offset);
 }
+
+/* ==========================================================================
+   Assortment builder
+
+   A planning surface for approved buyers. The form is a plain GET form and the
+   output is tables — both already styled by the system — so this block only has
+   to lay out the input grid and the distribution bars.
+   ========================================================================== */
+
+.assortment-form {
+  border: 1px solid var(--rule);
+  background: var(--surface-raised);
+  padding: var(--space-6);
+}
+
+.assortment-form__grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .assortment-form__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 72rem) {
+  .assortment-form__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.assortment-form .field {
+  margin-bottom: 0;
+}
+
+/* A currency marker that reads as part of the control rather than as a label. */
+.field__prefixed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.field__prefixed > span {
+  color: var(--color-text-meta);
+  font-variant-numeric: tabular-nums;
+}
+
+.field__prefixed > input {
+  flex: 1;
+  min-width: 0;
+}
+
+.distribution-grid {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 48rem) {
+  .distribution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.distribution {
+  margin: 0;
+}
+
+.distribution__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(0, 2fr);
+  gap: var(--space-4);
+  align-items: baseline;
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--rule);
+}
+
+.distribution__row:first-child {
+  border-top: 0;
+}
+
+.distribution__row dt {
+  font-variant-numeric: tabular-nums;
+}
+
+.distribution__row dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+  The bar is decoration over a figure that is already stated in text, so it is
+  `aria-hidden` in the markup and carries no meaning of its own. It sits on its
+  own line beneath the number rather than behind it, which keeps the text at full
+  contrast at every width.
+*/
+.distribution__bar {
+  display: block;
+  block-size: 3px;
+  margin-block-start: var(--space-2);
+  min-inline-size: 1px;
+  background: var(--color-tobacco);
+}

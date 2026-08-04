@@ -64,9 +64,15 @@ export default async function PassportPage() {
         {draft.lines.length === 0 ? (
           <>
             <p>No order in progress.</p>
-            <Link href="/new-arrivals" className="button button--secondary">
-              Start with new arrivals
-            </Link>
+            <div className="cluster">
+              <Link href="/new-arrivals" className="button button--secondary">
+                Start with new arrivals
+              </Link>
+              {/* The other way in: a budget rather than a style. */}
+              <Link href="/trade/assortment" className="button button--secondary">
+                Build an assortment
+              </Link>
+            </div>
           </>
         ) : (
           <>
@@ -74,9 +80,14 @@ export default async function PassportPage() {
               {draft.lines.length} {draft.lines.length === 1 ? 'style' : 'styles'} ·{' '}
               {draftUnits} units · {formatMoney(orderSubtotal(draft))}
             </p>
-            <Link href="/trade/order" className="button">
-              Continue your order
-            </Link>
+            <div className="cluster">
+              <Link href="/trade/order" className="button">
+                Continue your order
+              </Link>
+              <Link href="/trade/assortment" className="button button--secondary">
+                Build an assortment
+              </Link>
+            </div>
           </>
         )}
       </section>

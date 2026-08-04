@@ -11,6 +11,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { getSession } from '@/auth/session'
+import { listVisibleProducts } from '@/data/catalog-repository'
 import {
   addToOrder,
   NotAuthorisedError,
@@ -18,6 +19,9 @@ import {
   setOrderLineQuantity,
   submitOrder,
 } from '@/data/order-repository'
+import { buildAssortment } from '@/domain/assortment'
+import { isAuthorisedProduct } from '@/domain/product'
+import { readAssortmentParams } from './assortment-params'
 
 function readString(form: FormData, field: string): string {
   const value = form.get(field)
@@ -82,6 +86,44 @@ export async function submitOrderAction(): Promise<void> {
 
   revalidatePath('/trade/orders')
   redirect(`/trade/orders/${encodeURIComponent(orderId)}?submitted=1`)
+}
+
+/**
+ * Adds a whole planned rack to the draft order.
+ *
+ * The form posts the PLAN INPUTS, not the planned lines, and the action re-derives the plan
+ * on the server. That keeps the rule the other actions keep — no quantity, price or product
+ * set is taken on the client's word — and it means a tampered form can only ask for a
+ * different valid plan, never for a line the planner would not have produced.
+ *
+ * The result lands in the ordinary draft order, where every line is editable and removable.
+ * That is what makes this a starting point rather than a locked recommendation.
+ */
+export async function addAssortmentToOrderAction(formData: FormData): Promise<void> {
+  const session = await getSession()
+
+  const input = readAssortmentParams({
+    budget: readString(formData, 'budget'),
+    storeSize: readString(formData, 'storeSize'),
+    mix: readString(formData, 'mix'),
+    band: readString(formData, 'band'),
+    launchMonth: readString(formData, 'launchMonth'),
+  })
+
+  const products = (await listVisibleProducts(session)).filter(isAuthorisedProduct)
+  const plan = buildAssortment(products, input)
+
+  try {
+    for (const line of plan.lines) {
+      await addToOrder(session, { productId: line.product.id, quantity: line.packs })
+    }
+  } catch (error) {
+    if (error instanceof NotAuthorisedError) denyToSignIn()
+    throw error
+  }
+
+  revalidatePath('/trade/order')
+  redirect('/trade/order')
 }
 
 export async function reorderAction(formData: FormData): Promise<void> {

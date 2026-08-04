@@ -10,7 +10,12 @@ import 'server-only'
  * shape. An error never widens access.
  */
 
-import { publicProduct, publicProducts, visibleProduct } from '@/auth/authorize'
+import {
+  publicProduct,
+  publicProducts,
+  visibleProduct,
+  visibleProducts,
+} from '@/auth/authorize'
 import { withOfficialMedia } from '@/content/media/official-media'
 import type { PublicProduct, VisibleProduct } from '@/domain/product'
 import type { Session } from '@/domain/session'
@@ -54,6 +59,26 @@ export async function getVisibleProduct(
     return record ? visibleProduct(withOfficialMedia(record), session) : null
   } catch {
     return null
+  }
+}
+
+/**
+ * The authorised LIST read. Same seam as `getVisibleProduct`, same fail-closed rule: an
+ * unapproved session, or any thrown error, yields public shapes with no wholesale field.
+ *
+ * Assortment planning is the caller that needs this — it prices a whole rack at once, and
+ * fetching each style individually would be one authorisation decision per product where
+ * one decision is correct.
+ */
+export async function listVisibleProducts(
+  session: Session,
+  query: ProductQuery = {},
+): Promise<VisibleProduct[]> {
+  try {
+    const records = await commerce.listProducts(query)
+    return visibleProducts(records.map(withOfficialMedia), session)
+  } catch {
+    return []
   }
 }
 
