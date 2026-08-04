@@ -152,6 +152,55 @@ publication:
 
 ---
 
+## 3b. Registered — hero continuation, candidate 2 — **BLENDER, PASSES CONTRACT**
+
+Candidate 1 was rejected because a generative model put garments in an abstract
+brief. Candidate 2 removes the possibility rather than re-forbidding it: the
+scene is authored geometry — 312 individual strands suspended in space with air
+between them — so there is **no cloth surface anywhere in it**. A pocket or a
+placket is not prohibited here, it is unrepresentable.
+
+| Field | Desktop | Mobile |
+| :--- | :--- | :--- |
+| `sourcePath` | `assets/source/campaign/lb-hero-continuation-desktop.{mp4,webm}` | `…-mobile.{mp4,webm}` |
+| `provenance` | **`blender-master`** | `blender-master` |
+| Measured | **1920 × 1080 · 144 frames · 24 fps · 6.000 s** · 4.36 MB / 2.34 MB | **1080 × 1920 · 144 frames · 24 fps · 6.000 s** · 4.83 MB / 3.15 MB |
+| Built from | `blender/lb-fibre-field.blend`, `scripts/build_fibre_field.py`, seed 20260803 | same scene, separate camera — **not a crop** |
+| `licence` | absent — we authored and rendered it | absent |
+| `ownerApproval` | `pending` | `pending` |
+
+**Provenance is `blender-master`, not `generated-campaign`.** No generative model
+touched it, so the D-09 licence record does not apply and there is nothing to
+license. This is the same class as the buckle.
+
+### Validation, frame by frame
+
+| Check | Result |
+| :--- | :--- |
+| Uninterrupted turquoise-thread continuity | **pass** — one strand, present in every frame |
+| No people, garments, facilities, text, logos, dates | **pass** — no such geometry exists in the scene |
+| No altered buckle or monogram | **pass** — neither appears; the cut hands off at 4.00 s |
+| No invented products | **pass** |
+| Premium textile atmosphere | **pass** — indigo field, restrained copper, 3200 K rake, cool rim |
+| Clean final negative space | **pass** — field clears by frame 144, fibre settles lower-centre |
+| Exactly one turquoise fibre | **pass** |
+| Duration 6.00 s / 24 fps | **pass**, both |
+| Native resolution, generated separately | **pass**, both |
+
+### Ten-second review edits
+
+`renders/review/lb-hero-10s-desktop.mp4` · `lb-hero-10s-mobile.mp4` — both
+**10.000 s**, straight cut at 4.00 s, no dissolve. Private review only.
+
+### Known limitations, honestly
+
+Strands are polyline-beveled, so at full resolution some read slightly angular
+rather than as spun fibre, and the luminous fibre still has a faint ribbon
+quality edge-on. Neither breaks a contract rule; both are refinable by raising
+spline resolution if the direction is approved.
+
+---
+
 ## 4. Pending — campaign plates
 
 Every entry below is `ownerApproval: 'pending'` and `licence.checked: false`.
