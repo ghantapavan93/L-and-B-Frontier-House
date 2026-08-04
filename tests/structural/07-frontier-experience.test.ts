@@ -93,12 +93,49 @@ describe('flag enabled (default) — cinematic specifics', () => {
     expect(body).not.toMatch(/kuroki|tannery|factory in|our mill/i)
   })
 
-  it('ships no video anywhere until a real film exists', async () => {
-    for (const route of ['/', '/wholesale', '/product/dark-wash-high-rise-flare-jean']) {
+  /**
+   * The ignition film ships. The edit contract allows this assertion to change only in
+   * the same commit that adds a poster, a captions track, a transcript route and pause
+   * behaviour — so the test now proves each of those rather than being deleted.
+   */
+  it('ships the ignition film only with its poster, captions, transcript and controls', async () => {
+    const { body } = await get('/')
+
+    expect(body, 'the film is missing').toContain(
+      '/media/buckle/lb-buckle-ignition-desktop.mp4',
+    )
+    expect(body, 'no mobile encoding').toContain('/media/buckle/lb-buckle-ignition-mobile.mp4')
+    expect(body, 'no poster — the slot must be complete without the film').toContain(
+      '/media/buckle/lb-buckle-poster-desktop.webp',
+    )
+    expect(body, 'no captions track').toContain('/media/buckle/lb-buckle-ignition.vtt')
+    expect(body, 'no transcript route').toContain('/transcript/buckle-ignition')
+    expect(body, 'no pause affordance').toContain('controls')
+
+    // Four seconds, played once, started by the user: under the WCAG 2.2.2 threshold
+    // and never pushed at someone who asked for no motion.
+    expect(body, 'autoplays unrequested motion').not.toContain('autoplay')
+    expect(body, 'loops past the five-second threshold').not.toMatch(/<video[^>]*\sloop/)
+  })
+
+  it('ships no video on any surface other than the homepage ignition', async () => {
+    for (const route of ['/wholesale', '/product/dark-wash-high-rise-flare-jean']) {
       const { body } = await get(route)
       expect(body, `${route} rendered a <video>`).not.toContain('<video')
       expect(body, `${route} autoplays something`).not.toContain('autoplay')
     }
+  })
+
+  it('serves the transcript as text, with no product or date claim', async () => {
+    const { body, status } = await get('/transcript/buckle-ignition')
+
+    expect(status).toBe(200)
+    expect(body).toContain('The ignition film')
+    expect(body).toContain('monogram')
+    expect(body).not.toMatch(/1865|1870|est\.\s*\d{4}/i)
+    // The repo's price shape, not a bare `$\d`: Next's RSC payload is full of `$1`/`$L2`
+    // flight markers, so the naive pattern matches every streamed page.
+    expect(body).not.toMatch(/\$\s?\d[\d,]*\.\d{2}/)
   })
 
   it('presents the wholesale showroom with the rack gated and price-free', async () => {

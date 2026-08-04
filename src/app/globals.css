@@ -2924,3 +2924,66 @@ tfoot td {
     padding: var(--space-7);
   }
 }
+
+/* ==========================================================================
+   Ignition film
+
+   The SVG buckle above is the structural floor; this is the richer telling of
+   the same four seconds. It is contained rather than full-bleed: a native
+   `<video controls>` dropped into a full-width slot overflows narrow viewports,
+   and its control bar is a focusable target that must stay inside the frame at
+   320px.
+   ========================================================================== */
+
+.hero-media {
+  width: min(100%, 34rem);
+  margin: var(--space-7) auto 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.hero-media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Reserves the box before metadata loads, so the poster swap costs no shift. */
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: var(--color-carbon);
+  border: 1px solid rgb(255 255 255 / 0.12);
+}
+
+@media (max-width: 47.99rem) {
+  .hero-media__video {
+    /* The mobile encoding is 9:16; reserving 16:9 here would letterbox it. */
+    aspect-ratio: 9 / 16;
+  }
+}
+
+.hero-media__transcript {
+  margin: 0;
+  text-align: center;
+}
+
+.hero-media__transcript a {
+  color: var(--color-sandstone);
+}
+
+/*
+  Keyboard focus on the player.
+
+  Tabbing through a native `<video controls>` moves focus INSIDE its shadow tree —
+  play, timeline, mute, fullscreen — so `document.activeElement` stays the host
+  and the host never matches `:focus-visible`. The global ring therefore never
+  fires, and the focus suite correctly reports four unringed stops. `:focus-within`
+  matches whenever focus is anywhere inside, shadow tree included, which is what
+  puts a visible ring around the player for every one of those stops.
+
+  Sandstone rather than tobacco: the ignition ground is ink, where tobacco is not
+  conformant. Sandstone measures 13.4:1 there.
+*/
+.hero-media__video:focus-visible,
+.hero-media__video:focus-within {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: var(--focus-ring-offset);
+}

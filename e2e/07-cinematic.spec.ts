@@ -29,9 +29,25 @@ test.describe('ignition and skip', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeInViewport()
   })
 
-  test('the ignition never renders a video or an unpausable loop', async ({ page }) => {
+  test('the ignition film is user-started, one-shot and pausable', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('video')).toHaveCount(0)
+
+    const video = page.locator('video')
+    await expect(video).toHaveCount(1)
+
+    // WCAG 2.2.2 binds motion the user did not start. This starts on request, runs
+    // 4.00s once, and exposes native controls — so no obligation is owed and none is
+    // faked. Autoplay would also be unstoppable for a reduced-motion visitor, since
+    // the attribute cannot be gated from the server.
+    await expect(video).not.toHaveAttribute('autoplay', /.*/)
+    await expect(video).not.toHaveAttribute('loop', /.*/)
+    await expect(video).toHaveAttribute('controls', /.*/)
+    await expect(video).toHaveAttribute('poster', /lb-buckle-poster/)
+    expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true)
+
+    // The film is an enhancement: the poster and the SVG proof carry the section alone.
+    await expect(page.locator('.ignition__buckle')).toBeVisible()
+    await expect(page.locator('a[href="/transcript/buckle-ignition"]')).toBeVisible()
 
     // The one-shot draw finishes; nothing on the page loops indefinitely.
     const infinite = await page.evaluate(() => {

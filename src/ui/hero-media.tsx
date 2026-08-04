@@ -8,12 +8,20 @@ import { EditorialMedia } from './product-media'
  * desktop and mobile sources, a poster that carries the message alone, muted +
  * `playsinline`, captions and transcript hooks, and failure-to-poster.
  *
- * TODAY IT RENDERS THE POSTER PATH ONLY. No film has been produced, "do not autoplay a
- * temporary low-quality video" is a hard instruction, and an auto-starting loop over five
- * seconds would owe a visible pause control (WCAG 2.2.2) — so the `<video>` branch renders
- * exclusively when real sources are supplied, ships a native-controls fallback, and pairs
- * with the visible pause affordance below. Until then: zero video bytes, zero JavaScript,
- * and a structural test asserts no `<video>` exists in any response.
+ * The `<video>` branch renders only when real sources are supplied. It is deliberately
+ * NOT autoplaying and NOT looping:
+ *
+ *   - Autoplay cannot be gated on `prefers-reduced-motion` from the server, and no
+ *     amount of CSS stops a video that carries the attribute. Shipping autoplay would
+ *     therefore push four seconds of unrequested motion at people who asked for none,
+ *     which is the one rule this project treats as non-negotiable. Doing it correctly
+ *     needs a few hundred bytes of client JavaScript against a 0 KB budget — a trade
+ *     worth making deliberately, not by accident.
+ *   - Without `loop`, the clip runs 4.00 s once. Under the WCAG 2.2.2 five-second
+ *     threshold, so no pause control is owed — and native `controls` provides one anyway.
+ *
+ * The poster carries the whole message alone, so a blocked, failed or unsupported video
+ * costs nothing.
  */
 
 export type HeroVideoSources = {
@@ -50,7 +58,6 @@ export function HeroMedia({
         poster={poster.poster}
         muted
         playsInline
-        loop
         controls
         preload="metadata"
         aria-label={poster.alt}
