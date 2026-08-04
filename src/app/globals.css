@@ -2927,6 +2927,24 @@ tfoot td {
 
 .assortment-form .field {
   margin-bottom: 0;
+  min-inline-size: 0;
+}
+
+/*
+  A `<select>` sizes itself to its longest `<option>`, and these options carry their
+  own arithmetic — "Denim-led — Women 80% · Girls 10% · Accessories 10%". Left alone
+  that intrinsic width blows straight through a `minmax(0, 1fr)` track and puts a
+  horizontal scrollbar on the document, which §8 forbids outright. The track is not
+  the problem; the control refusing to shrink inside it is.
+
+  The option text stays in full — it is how a buyer reads the split before choosing —
+  so the control clips to its column and the native dropdown shows the whole string.
+*/
+.assortment-form select,
+.assortment-form input:not([type='hidden']) {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 0;
 }
 
 /* A currency marker that reads as part of the control rather than as a label. */
@@ -2944,6 +2962,18 @@ tfoot td {
 .field__prefixed > input {
   flex: 1;
   min-width: 0;
+}
+
+/*
+  The rack carries eight columns, two of which hold real sentences — a style name and
+  a pack breakdown like "1 S · 2 M · 2 L · 1 XL". The system's other tables fit at any
+  width because their cells are short; this one does not, and left to compress it
+  breaks a style name onto one word per line, which is unreadable long before it is
+  narrow. A floor makes it scroll inside `.table-scroll` instead, which is the pattern
+  the constitution already asks for on wide content.
+*/
+.assortment-rack {
+  min-inline-size: 52rem;
 }
 
 .distribution-grid {

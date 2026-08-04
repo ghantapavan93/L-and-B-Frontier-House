@@ -244,6 +244,40 @@ test.describe('authorised surfaces are responsive', () => {
       expect(await smallTargets(page)).toHaveLength(0)
     })
   }
+
+  /*
+    The assortment builder gets its own pass because it is the only surface with a
+    multi-column control grid, and a `<select>` there sizes itself to its longest
+    `<option>` — text that carries the category split in full. That intrinsic width
+    ignores a `minmax(0, 1fr)` track and put a horizontal scrollbar on the document
+    until the control was told to shrink. Measured, not theorised.
+  */
+  for (const viewport of [VIEWPORTS[0], VIEWPORTS[2], VIEWPORTS[5]]) {
+    test(`assortment builder at ${viewport?.name}px`, async ({ page }) => {
+      await page.setViewportSize({
+        width: viewport?.width ?? 320,
+        height: viewport?.height ?? 640,
+      })
+      await signIn(page, BUYERS.approved)
+
+      // The empty form, then a built rack — the grid and the tables are different risks.
+      await page.goto('/trade/assortment')
+      expect(await horizontalOverflow(page)).toBeLessThanOrEqual(1)
+      expect(await clippedText(page)).toHaveLength(0)
+      expect(await smallTargets(page)).toHaveLength(0)
+
+      await page.goto('/trade/assortment?budget=2500&storeSize=established&mix=balanced')
+      await expect(page.getByRole('heading', { name: 'Suggested rack' })).toBeVisible()
+      expect(await horizontalOverflow(page)).toBeLessThanOrEqual(1)
+      expect(await clippedText(page)).toHaveLength(0)
+      expect(await smallTargets(page)).toHaveLength(0)
+
+      // Wide rack, narrow screen: the table scrolls in its own box, never the page.
+      const container = page.locator('.table-scroll').first()
+      await expect(container).toBeVisible()
+      expect(await container.evaluate((el) => getComputedStyle(el).overflowX)).toBe('auto')
+    })
+  }
 })
 
 test.describe('layout invariants', () => {

@@ -213,7 +213,7 @@ function CategorySummary({ plan }: { plan: AssortmentPlan }) {
 function Rack({ plan }: { plan: AssortmentPlan }) {
   return (
     <div className="table-scroll">
-      <table>
+      <table className="assortment-rack">
         <caption>Suggested rack — every line editable before it is added</caption>
         <thead>
           <tr>
