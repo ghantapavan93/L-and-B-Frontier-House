@@ -103,18 +103,23 @@ def build_materials():
     m = bpy.data.materials.new("fibre_indigo")
     tree, bsdf = _principled(m)
     _set(bsdf, ["Base Color"], hexc("22344f") + (1.0,))
-    _set(bsdf, ["Roughness"], 0.62)
-    _set(bsdf, ["Sheen Weight", "Sheen"], 0.75)
-    _set(bsdf, ["Sheen Roughness"], 0.35)
-    _set(bsdf, ["Specular IOR Level", "Specular"], 0.25)
+    _set(bsdf, ["Roughness"], 0.68)
+    _set(bsdf, ["Sheen Weight", "Sheen"], 1.0)
+    _set(bsdf, ["Sheen Roughness"], 0.28)
+    _set(bsdf, ["Sheen Tint"], (0.62, 0.70, 0.85, 1.0))
+    _set(bsdf, ["Specular IOR Level", "Specular"], 0.18)
+    _set(bsdf, ["Subsurface Weight", "Subsurface"], 0.12)
+    _set(bsdf, ["Subsurface Radius"], (0.0006, 0.0009, 0.0016))
     mats["fibre_indigo"] = m
 
     # A sparse bone strand keeps the field from reading as a single flat colour.
     m = bpy.data.materials.new("fibre_bone")
     tree, bsdf = _principled(m)
     _set(bsdf, ["Base Color"], hexc("d9c5b2") + (1.0,))
-    _set(bsdf, ["Roughness"], 0.58)
-    _set(bsdf, ["Sheen Weight", "Sheen"], 0.8)
+    _set(bsdf, ["Roughness"], 0.55)
+    _set(bsdf, ["Sheen Weight", "Sheen"], 1.0)
+    _set(bsdf, ["Subsurface Weight", "Subsurface"], 0.18)
+    _set(bsdf, ["Subsurface Radius"], (0.0018, 0.0014, 0.0010))
     mats["fibre_bone"] = m
 
     # Restrained copper warmth, a very small proportion of strands.
@@ -152,19 +157,61 @@ def build_materials():
 
 # ------------------------------------------------------------------------ geometry
 
-def strand(name, points, radius, material, collection):
+def strand(name, points, radius, material, collection, taper=True):
+    """A single fibre.
+
+    NURBS, not POLY. A poly spline renders its control points as literal corners,
+    which is what made the first field read as bent wire rather than spun thread —
+    the giveaway that says "computer graphics" before any other cue does. Order-4
+    NURBS interpolates through the same points as a smooth curve, so the strand
+    bends the way a suspended fibre bends.
+
+    Real thread is also not a constant-diameter rod: `taper` runs the radius down
+    toward each end so strands resolve into the dark instead of stopping dead.
+    """
     curve = bpy.data.curves.new(name, type="CURVE")
     curve.dimensions = "3D"
     curve.bevel_depth = radius
-    curve.bevel_resolution = 6
-    curve.resolution_u = 2
-    spline = curve.splines.new("POLY")
+    curve.bevel_resolution = 8
+    curve.resolution_u = 12
+    curve.use_fill_caps = True
+    spline = curve.splines.new("NURBS")
     spline.points.add(len(points) - 1)
     for i, p in enumerate(points):
         spline.points[i].co = (p[0], p[1], p[2], 1.0)
+    spline.order_u = 4
+    spline.use_endpoint_u = True
+    if taper:
+        curve.taper_object = _taper_profile()
+        curve.taper_radius_mode = "OVERRIDE"
     obj = bpy.data.objects.new(name, curve)
     obj.data.materials.append(material)
     collection.objects.link(obj)
+    return obj
+
+
+_TAPER_CACHE = {}
+
+
+def _taper_profile():
+    """One shared taper curve: full thickness through the middle, easing to a
+    point at both ends. Shared rather than duplicated so 300+ strands cost one
+    datablock, not 300."""
+    if "obj" in _TAPER_CACHE:
+        return _TAPER_CACHE["obj"]
+    curve = bpy.data.curves.new("fibre_taper", type="CURVE")
+    curve.dimensions = "3D"
+    spline = curve.splines.new("NURBS")
+    profile = [(0.0, 0.06, 0.0), (0.25, 1.0, 0.0), (0.75, 1.0, 0.0), (1.0, 0.06, 0.0)]
+    spline.points.add(len(profile) - 1)
+    for i, p in enumerate(profile):
+        spline.points[i].co = (p[0], p[1], p[2], 1.0)
+    spline.order_u = 3
+    spline.use_endpoint_u = True
+    obj = bpy.data.objects.new("fibre_taper", curve)
+    obj.hide_render = obj.hide_viewport = True
+    bpy.context.scene.collection.objects.link(obj)
+    _TAPER_CACHE["obj"] = obj
     return obj
 
 
@@ -257,7 +304,8 @@ def build_luminous_fibre(collection, mats):
         x = math.sin(t * 5.2) * 0.030 * (1.0 - settle)
         z = math.cos(t * 3.7) * 0.020 * (1.0 - settle)
         pts.append((x, y, z))
-    return strand("luminous_fibre", pts, 0.0011, mats["fibre_turquoise"], collection)
+    return strand("luminous_fibre", pts, 0.0011, mats["fibre_turquoise"],
+                  collection, taper=False)
 
 
 # --------------------------------------------------------------------- rig / motion

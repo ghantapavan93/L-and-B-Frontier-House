@@ -192,12 +192,34 @@ license. This is the same class as the buckle.
 `renders/review/lb-hero-10s-desktop.mp4` · `lb-hero-10s-mobile.mp4` — both
 **10.000 s**, straight cut at 4.00 s, no dissolve. Private review only.
 
-### Known limitations, honestly
+### Revision 2 — material fidelity pass (owner-approved to proceed)
 
-Strands are polyline-beveled, so at full resolution some read slightly angular
-rather than as spun fibre, and the luminous fibre still has a faint ribbon
-quality edge-on. Neither breaks a contract rule; both are refinable by raising
-spline resolution if the direction is approved.
+Candidate 2's first render passed the contract but not the quality bar. Three
+fixes, re-rendered at 80 samples:
+
+- **NURBS, not poly splines.** A poly spline renders its control points as
+  literal corners, so the field read as bent wire — the clearest "this is CGI"
+  tell in the frame. Order-4 NURBS interpolates a smooth curve through the same
+  points, and the strands now hang the way suspended fibre hangs.
+- **Tapered strands.** Real thread is not a constant-diameter rod. One shared
+  taper profile runs each strand's radius down toward both ends so fibres resolve
+  into the dark instead of stopping dead. Shared across all 312 strands, so it
+  costs one datablock rather than 312. The luminous fibre keeps its gauge — a
+  proportional taper would have thinned a quarter of its visible length.
+- **Fibre shading.** Full sheen with a cool tint plus a little subsurface on
+  indigo and bone. Flat diffuse on fine cylinders is what reads as plastic
+  tubing at macro scale.
+
+Measured after revision: desktop 3.82 MB / 1.92 MB, mobile 4.15 MB / 2.55 MB.
+Duration, frame rate, resolution and every contract check unchanged and still
+passing. Render 2040 s + 2007 s.
+
+### Remaining limitation
+
+The luminous fibre still reads slightly ribbon-like when close to edge-on, since
+it is a beveled curve rather than a lit volume. It does not breach any contract
+rule. If it matters at final grade, the fix is a thin emissive volume rather than
+more bevel segments.
 
 ---
 
