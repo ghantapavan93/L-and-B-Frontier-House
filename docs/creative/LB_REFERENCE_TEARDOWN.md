@@ -16,15 +16,40 @@ Nothing here is copied. These are **mechanisms** — how a page is composed and 
 
 ## 1. The finding that overturns our last two passes
 
-| Site | Motion library | Body | `h1` | `h2` | Ground | `<video>` |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Sézane** | **none** | Libre Baskerville **13px** | **30px** | 20px | `#fffcf8` | 1 block, 1426px tall |
-| **Double D Ranch** | jQuery only | Source Sans Pro 16px | **37px** | 25px | `#eeeee6` | **19** |
-| **GANNI** | jQuery only | Helvetica Neue 16px | **none** | 27px | transparent | 0 (lazy) |
+Thirteen sites measured. Every one the owner named, except SSENSE (behind a Cloudflare
+challenge) and the two gallery sites, which index other people's work rather than being
+work themselves.
 
-Three sites the owner named as the standard. **Not one runs GSAP, three.js or a smooth-scroll
-library.** Sézane, the closest match to L&B's actual price point, ships 92 CSS transitions and
-239 transforms and no motion library at all.
+| Site | Motion library | Body | `h1` | `h2` | Page height | `<video>` | canvas |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Sézane** | **none** | 13px serif | **30px** | 20px | — | 1 block, 1426px | 0 |
+| **Burberry** | **none** | 16px serif | **20px** | 20px | **11,424px** | 1 | 0 |
+| **Gucci** | jQuery | 16px | **absent** | **14px** | 6,353px | 3 | 0 |
+| **Prada** | Swiper, jQuery | 16px | **absent** | 20px | 5,109px | 1 | 0 |
+| **GANNI** | jQuery | 16px | **absent** | 27px | — | 0 | 0 |
+| **G-Star** | **none** | **13px** | 0px (hidden) | 40px | 4,515px | 0 | **0** |
+| **Double D Ranch** | jQuery | 16px | **37px** | 25px | **6,871px** | **19** | 0 |
+| **Tecovas** | jQuery | 16px | 42px | 42px | — | 1 | 0 |
+| **Kimes Ranch** | **none** | 16px | **16px** | 19px | — | 3 | 0 |
+| **Cavender's** | **none** | 16px | 30px | 22px | — | 0 | 0 |
+| **Sterling Kreek** | jQuery | 18px | 30px | — | 2,769px | 0 | 0 |
+| **Miss Me** | Swiper, jQuery | 16px | **absent** | 21px | 5,967px | 5 | 0 |
+| **Grace in LA** | Swiper | 16px | 13px | 58px | 4,548px | 2 | 0 |
+| **Myntra** | **none** | 16px | **14px** | — | 6,153px | 0 | 0 |
+| **Burberry × SSENSE** | **none** | — | — | — | — | 1 | **0** |
+
+**Not one of the fifteen runs GSAP, three.js, Lenis or PIXI.** Not Gucci, not Prada, not
+Burberry. The heaviest thing any of them loads is Swiper for a carousel. Sézane — the closest
+match to L&B's actual price point — ships 92 CSS transitions, 239 transforms and no motion
+library at all. **Zero canvas elements across every site measured.**
+
+**And the type is small everywhere.** Four of the fifteen have no `h1` on the homepage at
+all. Gucci's `h2` is 14px. Burberry's `h1` is 20px. Kimes Ranch's is 16px — the same size as
+its body copy. The largest `h1` in the entire set is Tecovas at 42px, still well under what
+this project shipped.
+
+**The pages are long.** Burberry's homepage is **11,424px**. Double D Ranch's is 6,871px,
+Gucci 6,353px, Myntra 6,153px, Miss Me 5,967px. These are editorial scrolls, not screens.
 
 **And every one of them sets type SMALL.** Sézane's `h1` is 30px on 13px serif body copy.
 GANNI's homepage has no `h1` whatsoever. Double D Ranch's is 37px, and it is a *sentence* —
@@ -75,6 +100,47 @@ starts at ~132 KB gzip before an asset loads. The references are evidence for re
 not against motion.
 
 ---
+
+## 2a. Inner pages — where the shop mechanisms actually live
+
+The homepage shows art direction. The category and product pages show how the shop *works*,
+and they are where the differences from this build are largest.
+
+**Sézane, category listing**
+
+| Property | Sézane | This build |
+| :--- | :--- | :--- |
+| Page height | **48,199px** | ~4,000px |
+| Products on one page | **953** | 18, paginated |
+| Column width | **244px** | ~320px |
+| Product image | **767 × 1282** — ratio **0.60** | 360 × 540 — ratio 0.67 |
+
+Two mechanisms here. Their product image is **3:5, not 4:5** — appreciably taller and
+narrower than ours, which is what lets a 244px column still read as a full-length garment
+shot. And they do not paginate: 953 products on one continuous scroll, so browsing never
+hits a wall and never costs a page load.
+
+Our grid went the other way in `98b55c1` — wider columns, fewer per row. Wider columns make
+a 360px source look worse, not better.
+
+**Sézane, product page**
+
+| Property | Value |
+| :--- | :--- |
+| Product name (`h1`) | **25px** |
+| Price | **20px** |
+| Gallery images | **40** |
+| Collapsible sections | **4** |
+| Page height | 2,782px |
+| Video | 0 |
+
+The product name is 25px. On the page where the garment is the entire subject, the type is
+smaller than this project's *body* copy in places. Forty images and four accordions carry
+the page; the type gets out of the way.
+
+Four accordions is the mechanism worth taking: specification, care, sizing and delivery
+collapsed by default rather than stacked as a flat list. Our PDP renders one open definition
+list, which is honest but long, and pushes the fit table below the fold.
 
 ## 3. The immersive reference, measured
 
