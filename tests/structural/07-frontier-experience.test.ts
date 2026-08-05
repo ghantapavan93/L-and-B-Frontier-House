@@ -1,7 +1,7 @@
 import { spawn, spawnSync } from 'node:child_process'
 import type { ChildProcess } from 'node:child_process'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { get } from '../helpers/http'
+import { get, stylesheetsFor } from '../helpers/http'
 
 /**
  * PHASE 2 — THE FRONTIER EXPERIENCE, BOTH SIDES OF THE FLAG.
@@ -49,9 +49,7 @@ describe('flag enabled (default) — cinematic specifics', () => {
   })
 
   it('leaves one short, one-shot CSS animation in the ignition', async () => {
-    const { body } = await get('/')
-    const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
-    const { body: css } = await get(cssHref as string)
+    const css = await stylesheetsFor('/')
 
     // The film is the motion now. What remains in CSS is the actions rising once, inside
     // a no-preference query — well under the WCAG 2.2.2 five-second threshold and never

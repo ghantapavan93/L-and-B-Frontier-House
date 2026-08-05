@@ -91,6 +91,30 @@ export function asBuyer(buyerId: string): RequestInit {
   return { headers: { cookie: buyerCookie(buyerId) } }
 }
 
+/**
+ * Every stylesheet the page loads, concatenated.
+ *
+ * Next splits CSS into chunks on its own schedule, and how many it emits is a function of
+ * total size — nothing the application controls. Tests used to read
+ * `body.match(/href="(…\.css)"/)` and assert against the FIRST match, which silently meant
+ * "assert against whichever chunk happens to be first". Growing `globals.css` past a
+ * threshold split one file into two, the token chunk sorted first, and two unrelated
+ * assertions failed while the rules they check were present the whole time.
+ *
+ * The property those tests actually want is "somewhere in the CSS this page loads", so that
+ * is what this returns.
+ */
+export async function stylesheetsFor(path: string): Promise<string> {
+  const { body } = await get(path)
+  const hrefs = [...body.matchAll(/href="(\/_next\/static\/css\/[^"]+\.css)"/g)].map(
+    (m) => m[1],
+  )
+  if (hrefs.length === 0) throw new Error(`no stylesheet linked from ${path}`)
+
+  const sheets = await Promise.all(hrefs.map((href) => get(href as string)))
+  return sheets.map((sheet) => sheet.body).join('\n')
+}
+
 /** Every URL emitted anywhere in a response body — hrefs, actions, sitemap entries. */
 export function extractUrls(body: string): string[] {
   const urls: string[] = []

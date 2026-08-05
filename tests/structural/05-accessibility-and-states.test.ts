@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asBuyer, get, PUBLIC_ROUTES } from '../helpers/http'
+import { asBuyer, get, PUBLIC_ROUTES, stylesheetsFor } from '../helpers/http'
 
 /**
  * ACCESSIBILITY, RESPONSIVE AND STATE COVERAGE.
@@ -53,11 +53,7 @@ describe('keyboard and focus foundations', () => {
   })
 
   it('ships a conformant focus ring and never the specified failing one', async () => {
-    const { body } = await get('/')
-    const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
-    expect(cssHref, 'no stylesheet found').toBeTruthy()
-
-    const { body: css } = await get(cssHref as string)
+    const css = await stylesheetsFor('/')
 
     expect(css).toContain(':focus-visible')
     // Tobacco Leather #734F36 — 6.49:1.
@@ -68,9 +64,7 @@ describe('keyboard and focus foundations', () => {
   })
 
   it('honours prefers-reduced-motion inside the stylesheet', async () => {
-    const { body } = await get('/')
-    const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
-    const { body: css } = await get(cssHref as string)
+    const css = await stylesheetsFor('/')
 
     expect(css).toContain('prefers-reduced-motion')
     expect(css).toContain('reduce')
@@ -84,9 +78,7 @@ describe('mobile and responsive', () => {
   })
 
   it('reserves safe-area insets in CSS', async () => {
-    const { body } = await get('/')
-    const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
-    const { body: css } = await get(cssHref as string)
+    const css = await stylesheetsFor('/')
 
     // env() appears 0 times across all 48 exported design files.
     expect(css).toContain('safe-area-inset')
@@ -107,9 +99,7 @@ describe('text is never truncated away', () => {
   })
 
   it('uses no CSS line clamping on product text', async () => {
-    const { body } = await get('/')
-    const cssHref = body.match(/href="(\/_next\/static\/css\/[^"]+\.css)"/)?.[1]
-    const { body: css } = await get(cssHref as string)
+    const css = await stylesheetsFor('/')
 
     expect(css).not.toContain('-webkit-line-clamp')
     expect(css).not.toContain('text-overflow:ellipsis')

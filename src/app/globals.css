@@ -86,10 +86,22 @@ h4 {
   is where the reference frames put a page's opening statement, and h2's 64px ceiling sits
   a full step below it.
 */
+/*
+  Back down to the size real shops actually use.
+  See docs/creative/LB_REFERENCE_TEARDOWN.md — fifteen sites measured.
+
+  Burberry sets its h1 at 20px. Gucci and GANNI have none on the homepage at all.
+  Kimes Ranch sets its at 16px, the same as body copy. The LARGEST h1 anywhere in
+  the reference set is Tecovas at 42px. This project shipped 72px, calibrated
+  against Stitch renders rather than working shops — and a generator makes type
+  large because type is the cheapest thing it can make impressive.
+
+  40px ceiling: at the top of the measured range, not past it.
+*/
 h1 {
-  font-size: clamp(2.25rem, 5.4vw, 4.5rem);
-  line-height: 1.06;
-  letter-spacing: var(--display-xl-tracking);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
@@ -104,10 +116,18 @@ h1 {
   `--display-lg` at 64px is the ceiling rather than `--display-xl`, so a section heading
   can never out-shout the page's own h1.
 */
+/*
+  A step below h1, and inside the measured range: Sézane 20px, Prada 20px,
+  Burberry 20px, Miss Me 21px, Cavender's 22px, GANNI 27px. Gucci's is 14px.
+
+  The 56px ceiling this replaces made every band below the hero shout, and it
+  was the change that forced h1 up to 72px to stay above it. Both come down
+  together.
+*/
 h2 {
-  font-size: clamp(var(--headline-md), 3.6vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: var(--display-lg-tracking);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -1003,15 +1023,27 @@ legend {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: var(--space-9) var(--space-6);
   /*
-    `min(20rem, 100%)` rather than a bare `20rem`. A fixed track minimum is a floor the
-    grid cannot go below, and 20rem IS the whole 320px viewport — so at the narrowest
-    supported width the column demanded more room than the page had and pushed the
-    document sideways. Wrapping it in `min()` lets the track collapse to the container
-    when there is no space, which is the only form of this rule that is safe at 320px.
+    Narrower columns, tighter rows — measured, not guessed.
+
+    Sézane runs 244px columns with 953 products on one 48,199px scroll. This build
+    went the other way in `98b55c1`: 320px columns with 120px between rows, on the
+    reasoning that fewer, larger cards read as more premium. The references say the
+    opposite, and there is a specific reason it matters here — a WIDER column makes a
+    360px source look WORSE, because it is scaled up further to fill it.
+
+    13rem rather than the 15rem that reads as the obvious translation of their 244px.
+    `auto-fill` only adds a column when the FULL minimum fits, then hands the leftover
+    to `1fr` — so a 15rem floor inside the facet layout's ~990px resolved to three
+    columns of 310px, wider than what we started with. 13rem admits a fourth, which
+    settles at ~230px: their density, arrived at by measuring the result rather than
+    by copying the number.
+
+    `min(…, 100%)` keeps the track able to collapse below its own floor, without which
+    the grid overflows a 320px viewport.
   */
-  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: var(--space-7) var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
 }
 
 /*
@@ -1032,14 +1064,9 @@ legend {
     gap: var(--space-7) var(--space-4);
   }
 
-  /*
-    The name scales with the column it sits in. At 22px in a 160px track every garment
-    wrapped to two lines and the type outweighed its own photograph — the card became a
-    label with a picture attached rather than a picture with a name under it.
-  */
+  /* One step down again in a 160px phone column. */
   .product-grid .product-card__name {
-    font-size: 1.125rem;
-    margin-top: var(--space-3);
+    font-size: 1rem;
   }
 }
 
@@ -1075,9 +1102,21 @@ legend {
   purpose; the same photograph stretched edge-to-edge in a sunken well reads as low
   resolution.
 */
+/*
+  2:3, which is the source's own ratio — so nothing is cropped at all.
+
+  The references run 3:5 (Sézane's 767x1282 is 0.60) and this build ran 4:5 (0.80).
+  Our catalogue is 360x540, which is 0.667. Against a 4:5 box `cover` scaled to the
+  width and threw away the top and bottom of every garment; against a 3:5 box it
+  would scale to the height and throw away the sides.
+
+  2:3 matches exactly, so every pixel the owner's camera captured survives to the
+  page. That is worth more than matching a reference number precisely, and it lands
+  inside their range anyway — taller and narrower than what we had.
+*/
 .product-card__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 2 / 3;
   background: var(--surface-raised);
   border: 1px solid var(--rule);
   padding: var(--space-2);
@@ -1115,14 +1154,20 @@ legend {
 
 /* Product names are set in sentence case, not the uppercase the global `h3` rule applies:
    V3 sets garment names as titles, and reserves uppercase for labels. */
+/*
+  22px in a 240px column wraps almost every garment name to two lines and starts
+  to outweigh its own photograph. Sézane sets the product name at 25px on the
+  PRODUCT PAGE, where the garment is the whole subject; in a listing cell it is
+  smaller still. 18px holds most names on one line here.
+*/
 .product-card__name {
   font-family: var(--font-display);
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-transform: none;
   color: var(--color-text);
-  margin: var(--space-4) 0 0;
+  margin: var(--space-3) 0 0;
 }
 
 .product-card__link:hover .product-card__name {
@@ -3412,8 +3457,18 @@ tfoot td {
   max-width: 58rem;
 }
 
+/*
+  The hero keeps more scale than the rest, and that is defensible where the
+  section headings were not: it sits over a full-bleed film with nothing else in
+  the frame, so it competes with no photograph of a garment. Sézane's homepage
+  video block is 1426px tall for the same reason — the opening statement is
+  allowed to be large because it is alone.
+
+  Still pulled back from 76px to 56px. The measured ceiling anywhere in the
+  reference set is 42px, and this is the one considered exception to it.
+*/
 .ignition__content h1 {
-  font-size: clamp(2.125rem, 5.6vw, 4.75rem);
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
   /* display-xl is 84/90 — a ratio of 1.07. Without this the headline inherits h1's
      fixed 48px leading and the lines overlap each other at hero scale. */
   line-height: 1.07;
