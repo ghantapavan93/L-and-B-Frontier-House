@@ -77,6 +77,23 @@ export function ContactSheet({
           </Link>
         </div>
 
+        {/*
+          The word behind the sheet.
+
+          Frame 2's signature composition is an oversized display word running the width of
+          the frame with the photographs laid across it — type as a graphic object rather
+          than as a label. It was the clearest thing missing from this build, and the one
+          piece of it that existed got deleted when the hero merged, because there it sat
+          behind a real headline and became a second one.
+
+          Here there is no headline to compete with: the section's own heading is small and
+          set to the left, and this runs beneath the collage as texture. `aria-hidden`
+          because it is a shape, not a reading order — the section is already titled.
+        */}
+        <p className="contact-sheet__word" aria-hidden="true">
+          Frontier
+        </p>
+
         <ul className="contact-sheet__grid">
           {products.map((product, index) => {
             const media = primaryMedia(product)

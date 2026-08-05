@@ -623,12 +623,36 @@ svg {
   display: block;
 }
 
+/*
+  Mounted like the product cards, and taller.
+
+  A category is a bigger promise than a single garment, so its tile gets a 3:4 frame
+  rather than 4:5 and the same print treatment — border, inset, shadow — so the two kinds
+  of card read as the same family of object rather than as two different components that
+  happen to sit on one page.
+*/
 .category-card__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: var(--radius-default);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
+  box-shadow:
+    0 1px 2px rgb(26 22 18 / 0.04),
+    0 12px 28px -12px rgb(26 22 18 / 0.16);
+  transition: box-shadow var(--duration-base) var(--ease-entrance);
+  margin-bottom: var(--space-5);
+}
+
+.category-card__link:hover .category-card__media {
+  box-shadow:
+    0 2px 4px rgb(26 22 18 / 0.06),
+    0 22px 44px -14px rgb(26 22 18 / 0.24);
+}
+
+.category-card__media img {
   background: var(--surface-sunken);
-  margin-bottom: var(--space-4);
 }
 
 .category-card__media img {
@@ -642,7 +666,18 @@ svg {
   transform: scale(1.02);
 }
 
+/*
+  A category name is a destination, not a label. The global `h3` rule sets these as small
+  uppercase sans — correct for a section marker, wrong for the one word that says where a
+  click goes. Display serif at title scale, matching the product card's name treatment.
+*/
 .category-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-text);
   margin-bottom: var(--space-2);
 }
 
@@ -1446,6 +1481,66 @@ tfoot td {
   opacity: 0.28;
 }
 
+/*
+  Type as a graphic object.
+
+  Frame 2 runs an oversized display word the full width of the frame and lays the
+  photographs across it. It reads as texture and scale rather than as a word anyone is
+  meant to stop and read, which is why it is `aria-hidden` in the markup and why the
+  colour sits barely above the ground.
+
+  `10vw` with no upper clamp is deliberate — this is one of the few places where type
+  SHOULD keep growing with the viewport, because its job is to fill the width. It is
+  centred on the grid's own optical middle rather than the section's, so the collage sits
+  across it rather than beside it.
+*/
+/*
+  In flow above the collage, not behind it.
+
+  Behind was the intent — the reference lays photographs across the word — but that
+  composition depends on a LOOSE arrangement with ground showing between the prints. This
+  sheet is nine frames on a six-column grid with 8px gutters; there is no ground, so a word
+  underneath was invisible at any opacity that did not also fight the photographs.
+
+  So it sits above them instead and the grid tucks up into its lower third. Same device —
+  oversized type as a graphic object, not a label — composed for the grid that actually
+  exists rather than the one the reference had.
+*/
+.contact-sheet__word {
+  margin: 0;
+  position: relative;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 13vw, 13rem);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  /*
+    0.06 was inherited from the old ghost statement, which sat behind a small SVG on a
+    near-black field. Here it disappeared entirely. The reference sets this word at full
+    contrast on a light ground; on an ink ground the equivalent presence is around 14% —
+    enough to read as a deliberate shape through the gaps between frames, not enough to
+    compete with the photographs laid over it.
+  */
+  /*
+    0.38, which measures 3.26:1 on this ink ground — over the 3:1 that large text owes.
+
+    The instinct was to set this as a near-invisible watermark, and axe was right to stop
+    it: at 0.16 it measured 1.48:1, and visible-but-illegible text is worse than either a
+    loud element or no element. `aria-hidden` does not exempt it, correctly — a sighted
+    low-vision reader still has to look at it.
+
+    Raising it turned out to be truer to the reference anyway. Frame 2 sets this word at
+    full contrast, black on cream; a word you can actually read is the design, and a
+    watermark was me hedging.
+  */
+  color: rgb(245 242 238 / 0.38);
+  pointer-events: none;
+  user-select: none;
+  margin-block-start: var(--space-6);
+}
+
 .contact-sheet__grid {
   /* A <ul> for semantics; the bullets leaked into the mobile layout in review. */
   list-style: none;
@@ -1454,7 +1549,11 @@ tfoot td {
   display: grid;
   gap: var(--space-2);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-block: var(--space-6) 0;
+  /* Negative top margin tucks the frames up into the word's lower third, so the two
+     overlap rather than stacking as two separate bands. */
+  margin-block: calc(var(--space-6) * -1) 0;
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 48rem) {
@@ -3056,8 +3155,24 @@ tfoot td {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: var(--radius-default);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
+  box-shadow:
+    0 1px 2px rgb(26 22 18 / 0.04),
+    0 12px 28px -12px rgb(26 22 18 / 0.16);
+  transition: box-shadow var(--duration-base) var(--ease-entrance);
+  margin-bottom: var(--space-5);
+}
+
+.edit-card__link:hover .edit-card__media {
+  box-shadow:
+    0 2px 4px rgb(26 22 18 / 0.06),
+    0 22px 44px -14px rgb(26 22 18 / 0.24);
+}
+
+.edit-card__media img {
   background: var(--surface-sunken);
-  margin-bottom: var(--space-4);
 }
 
 .edit-card__media img {
@@ -3071,7 +3186,14 @@ tfoot td {
   transform: scale(1.02);
 }
 
+/* Same family as the category and product names — an edit is a destination too. */
 .edit-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.1vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-text);
   margin-bottom: 0;
 }
 
