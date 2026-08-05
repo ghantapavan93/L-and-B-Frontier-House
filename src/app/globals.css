@@ -79,9 +79,18 @@ h4 {
   text-wrap: balance;
 }
 
+/*
+  A page title outranks a section title, and until h2 was raised to display scale this
+  rule quietly did not: h1 capped at 40px while h2 now reaches 64px, so every interior
+  route had its section headings shouting over its own name. h1 goes to display-xl, which
+  is where the reference frames put a page's opening statement, and h2's 64px ceiling sits
+  a full step below it.
+*/
 h1 {
-  font-size: clamp(var(--headline-lg-mobile), 5vw, var(--headline-lg));
-  line-height: var(--headline-lg-leading);
+  font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+  line-height: 1.06;
+  letter-spacing: var(--display-xl-tracking);
+  text-wrap: balance;
 }
 
 /*
@@ -96,8 +105,8 @@ h1 {
   can never out-shout the page's own h1.
 */
 h2 {
-  font-size: clamp(var(--headline-lg), 4.2vw, var(--display-lg));
-  line-height: 1.08;
+  font-size: clamp(var(--headline-md), 3.6vw, 3.5rem);
+  line-height: 1.1;
   letter-spacing: var(--display-lg-tracking);
   text-wrap: balance;
 }
@@ -225,10 +234,17 @@ svg {
   margin: 0 0 var(--space-3);
 }
 
+/*
+  The lede carries the weight between a display headline and body copy. At 18px it sat at
+  body size and the drop from a 84px title straight to it was a cliff; the reference frames
+  run a distinctly larger, looser opening paragraph. Still measured at 46ch — width is what
+  makes it readable, size is what makes it read as an opening.
+*/
 .lede {
-  font-size: var(--text-base);
-  line-height: 1.5;
+  font-size: clamp(var(--text-base), 1.6vw, 1.5rem);
+  line-height: 1.45;
   max-width: 46ch;
+  margin-top: var(--space-5);
 }
 
 .meta {
@@ -929,13 +945,32 @@ legend {
    Product grid and card
    ========================================================================== */
 
+/*
+  Fewer, larger cards with far more room between them.
+
+  A 16rem minimum packed five and six garments across a wide screen at the density of a
+  search results page. The reference frames put three or four across and let the
+  photography do the work, which is the difference between a catalogue and a shop window —
+  and it matters most here, where the source images are 360px and shrinking them further
+  wastes the only detail they have.
+
+  The row gap is deliberately much larger than the column gap: it is what separates one
+  row of garments from the next as a *band* rather than as a continuous mesh.
+*/
 .product-grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: var(--space-7) var(--gutter);
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-9) var(--space-6);
+  /*
+    `min(20rem, 100%)` rather than a bare `20rem`. A fixed track minimum is a floor the
+    grid cannot go below, and 20rem IS the whole 320px viewport — so at the narrowest
+    supported width the column demanded more room than the page had and pushed the
+    document sideways. Wrapping it in `min()` lets the track collapse to the container
+    when there is no space, which is the only form of this rule that is safe at 320px.
+  */
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
 }
 
 .product-grid > * {
@@ -958,18 +993,44 @@ legend {
   height: 100%;
 }
 
+/*
+  A print, not a tile.
+
+  The reference frames treat every photograph as a physical object — a white-bordered
+  print resting on the page with a real shadow under it. That mount is what gives the
+  frames their depth, and it costs nothing: a light border, a soft shadow, and the image
+  inset within it rather than bleeding to the edge of a grey box.
+
+  It also flatters a 360px source. A photograph presented as a print reads as small on
+  purpose; the same photograph stretched edge-to-edge in a sunken well reads as low
+  resolution.
+*/
 .product-card__media {
   position: relative;
   aspect-ratio: 4 / 5;
-  background: var(--surface-sunken);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
   border-radius: var(--radius-default);
   overflow: hidden;
+  box-shadow:
+    0 1px 2px rgb(26 22 18 / 0.04),
+    0 12px 28px -12px rgb(26 22 18 / 0.16);
+  transition: box-shadow var(--duration-base) var(--ease-entrance);
+}
+
+.product-card__link:hover .product-card__media {
+  box-shadow:
+    0 2px 4px rgb(26 22 18 / 0.06),
+    0 22px 44px -14px rgb(26 22 18 / 0.24);
 }
 
 .product-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Sits inside the mount, on the sunken ground, so the border reads as a paper margin. */
+  background: var(--surface-sunken);
   transition: transform var(--duration-base) var(--ease-entrance);
 }
 
@@ -1428,11 +1489,50 @@ tfoot td {
   color: inherit;
 }
 
+/*
+  Frames as physical prints, laid down slightly out of true.
+
+  This is the signature of the reference frames and the thing this grid was most obviously
+  missing: photographs presented as white-bordered prints resting on the page, each one a
+  fraction off-axis, with a real shadow beneath. Flush-edge images in a tidy grid read as a
+  results page; the same images mounted and tilted read as a contact sheet someone laid out
+  by hand — which is exactly what the section is called.
+
+  The rotation is tiny (under a degree) and alternates by position, so it registers as
+  hand-placed rather than as a broken layout. `--tilt` is set per cell below; nothing here
+  animates, so it costs nothing at runtime and survives reduced motion untouched.
+*/
 .contact-sheet__frame {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #16130f;
+  border: var(--space-2) solid var(--color-bone);
+  box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.62);
+  rotate: var(--tilt, 0deg);
+  transition:
+    rotate var(--duration-base) var(--ease-entrance),
+    box-shadow var(--duration-base) var(--ease-entrance);
+}
+
+/* Alternating lean, so no two neighbours tilt the same way. */
+.contact-sheet__cell:nth-child(3n + 1) .contact-sheet__frame {
+  --tilt: -0.7deg;
+}
+
+.contact-sheet__cell:nth-child(3n + 2) .contact-sheet__frame {
+  --tilt: 0.45deg;
+}
+
+.contact-sheet__cell:nth-child(3n) .contact-sheet__frame {
+  --tilt: 0.8deg;
+}
+
+/* Picking one up straightens it and lifts it off the page. */
+.contact-sheet__cell a:hover .contact-sheet__frame,
+.contact-sheet__cell a:focus-visible .contact-sheet__frame {
+  rotate: 0deg;
+  box-shadow: 0 28px 60px -18px rgb(0 0 0 / 0.75);
 }
 
 .contact-sheet__frame img {
