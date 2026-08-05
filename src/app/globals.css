@@ -402,12 +402,18 @@ svg {
   text-align: center;
 }
 
+/*
+  The closing signature, at the scale the reference gives it. 24px read as a heading in a
+  link list; the frames set the wordmark as the last statement on the page and let the
+  navigation sit small beneath it. Tracking eases off as it grows — 0.22em is right at
+  24px and gappy at 40.
+*/
 .site-footer__wordmark {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 0.22em;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0 0 var(--space-7);
+  margin: 0 0 var(--space-8);
   color: var(--text-on-inverse);
 }
 
@@ -1008,6 +1014,35 @@ legend {
   grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
 }
 
+/*
+  Two up on a phone, and a much tighter row gap.
+
+  `auto-fill` with a 20rem minimum resolves to a SINGLE column at 375px, which with the
+  desktop row gap put one garment on screen at a time and 120px of empty page between each
+  of eighteen — an enormous amount of scrolling to see a category. The generous gap earns
+  its place on a wide three-or-four column grid where it separates bands; on one column it
+  is just distance.
+
+  This audience is mostly on a phone, so the browsing density there matters more than the
+  rhythm does.
+*/
+@media (max-width: 47.99rem) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-4);
+  }
+
+  /*
+    The name scales with the column it sits in. At 22px in a 160px track every garment
+    wrapped to two lines and the type outweighed its own photograph — the card became a
+    label with a picture attached rather than a picture with a name under it.
+  */
+  .product-grid .product-card__name {
+    font-size: 1.125rem;
+    margin-top: var(--space-3);
+  }
+}
+
 .product-grid > * {
   min-width: 0;
 }
@@ -1196,12 +1231,27 @@ legend {
   gap: var(--space-3);
 }
 
+/*
+  The product page's own photograph is the largest image on the site and was the last one
+  still sitting flush in a grey well while every card around it had been mounted. Same
+  print treatment, scaled up: a wider paper margin and a deeper shadow, because the object
+  is bigger.
+*/
 .pdp__media {
   position: relative;
   aspect-ratio: 4 / 5;
-  background: var(--surface-sunken);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-3);
   border-radius: var(--radius-default);
   overflow: hidden;
+  box-shadow:
+    0 2px 4px rgb(26 22 18 / 0.05),
+    0 24px 56px -20px rgb(26 22 18 / 0.22);
+}
+
+.pdp__media img {
+  background: var(--surface-sunken);
 }
 
 .pdp__media img {
@@ -1230,29 +1280,37 @@ legend {
 }
 
 /* Label/value rows — V3's treatment for commercial and spec data. */
+/*
+  Product truth is the reason anyone is on this page, and at 14px in tight rows it read
+  as a settings table. The reference sets specification generously — the label stays a
+  small marker, the VALUE is the thing being read, so it moves up to body size and the
+  rows get real breathing room.
+*/
 .definition-list {
   display: grid;
-  grid-template-columns: minmax(6rem, auto) 1fr;
+  grid-template-columns: minmax(7rem, auto) 1fr;
   /* No column gap: the row rule has to run unbroken across both cells, or it reads as two
      dashes rather than one line. Separation comes from padding instead. */
   gap: 0;
   margin: 0;
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
 }
 
 .definition-list dt {
   color: var(--color-text-meta);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   font-weight: 600;
-  padding: var(--space-3) var(--space-5) var(--space-3) 0;
+  /* Nudged down so the label's cap-height aligns with the value's, rather than its
+     baseline sitting level with a larger line. */
+  padding: calc(var(--space-4) + 2px) var(--space-6) var(--space-4) 0;
   border-top: 1px solid var(--rule);
 }
 
 .definition-list dd {
   margin: 0;
-  padding-block: var(--space-3);
+  padding-block: var(--space-4);
   border-top: 1px solid var(--rule);
 }
 
