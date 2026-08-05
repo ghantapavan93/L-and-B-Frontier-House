@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { MATERIAL_PLATE, PLACE_PLATE } from '@/content/media/campaign-plates'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
@@ -40,8 +41,16 @@ export default async function HomePage() {
     'homepage-hero-portrait',
     'A model in a cream western-scenic printed midi dress with a concho belt and straw hat',
   )
-  const craftDetail = officialMediaForSlot('craft-detail')
-  const extendedSizing = officialMediaForSlot('extended-sizing')
+  /*
+    The editorial bands take campaign plates rather than catalogue shots.
+
+    Both slots wanted a full-bleed photograph and were being handed a 360x540 product image
+    upscaled to fill it — which is the single thing the audit says caps perceived quality
+    across the whole site. These are 1408px and were composed as photographs. Neither is a
+    product; both carry `generated-campaign` provenance.
+  */
+  const craftDetail = MATERIAL_PLATE
+  const extendedSizing = PLACE_PLATE
 
   return (
     <>
@@ -112,7 +121,10 @@ export default async function HomePage() {
           <div className="editorial-split">
             <figure className="editorial-split__figure depth-far">
               <EditorialMedia media={craftDetail} sizes="(min-width: 62rem) 55vw, 100vw" />
-              <figcaption>Embroidered flare · detail</figcaption>
+              {/* Names what the plate actually shows, and that it is generated. The old
+                  caption described a garment — which this image is not, and must not be
+                  read as. */}
+              <figcaption>Denim, leather and hardware · campaign imagery</figcaption>
             </figure>
             <div>
               <p className="eyebrow">The making</p>
@@ -163,7 +175,7 @@ export default async function HomePage() {
           <div className="editorial-split editorial-split--reverse">
             <figure className="editorial-split__figure depth-far">
               <EditorialMedia media={extendedSizing} sizes="(min-width: 62rem) 45vw, 100vw" />
-              <figcaption>Straight and extended, one line</figcaption>
+              <figcaption>The high desert · campaign imagery</figcaption>
             </figure>
             <div>
               <p className="eyebrow">Sizing</p>

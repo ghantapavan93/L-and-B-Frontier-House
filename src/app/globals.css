@@ -84,9 +84,22 @@ h1 {
   line-height: var(--headline-lg-leading);
 }
 
+/*
+  Section headings run to display scale, not headline scale.
+
+  The reference frames set a section title — "The Heritage Boot", "Frontier Passport" —
+  at roughly the size this project had reserved for a page's h1, and that single decision
+  is most of why they read as editorial and the build read as an admin panel. The old
+  40px ceiling made every band below the hero feel like a form label.
+
+  `--display-lg` at 64px is the ceiling rather than `--display-xl`, so a section heading
+  can never out-shout the page's own h1.
+*/
 h2 {
-  font-size: clamp(var(--headline-md), 3vw, var(--headline-lg));
-  line-height: var(--headline-lg-leading);
+  font-size: clamp(var(--headline-lg), 4.2vw, var(--display-lg));
+  line-height: 1.08;
+  letter-spacing: var(--display-lg-tracking);
+  text-wrap: balance;
 }
 
 /* Section labels are sans, uppercase and letterspaced — the V3 counterpoint to the serif. */
@@ -183,13 +196,20 @@ svg {
 }
 
 /* A section header: small-caps eyebrow, serif title, optional trailing link. */
+/*
+  Air between a section's title and its content.
+
+  32px read as a caption sitting on top of a grid. The reference frames leave roughly a
+  heading's own height of empty space beneath it, which is what lets the title register as
+  a statement rather than a label.
+*/
 .section-head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
 }
 
 .section-head h2 {

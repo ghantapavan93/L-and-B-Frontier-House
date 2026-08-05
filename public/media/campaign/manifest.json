@@ -1,0 +1,41 @@
+{
+  "note": "Generated campaign plates. Atmosphere and place only — never presented as real product (§12). Each entry carries the reason it was cleared.",
+  "plates": [
+    {
+      "slug": "material-denim-buckle",
+      "sourcePlate": "plate-4USxxx7M9BuzbO0g.jpg",
+      "provenance": "generated-campaign",
+      "justification": "Monochrome macro: worn denim, a scratched belt buckle, a hand. Material and wear, no garment offered for sale, no price, no name. This is precisely the \"weave and topstitch are legible\" photograph the Creative North Star asks for and the catalogue cannot supply at 360px.",
+      "alt": "A hand resting on a worn leather belt with a scratched silver buckle, over heavyweight indigo denim, photographed close in black and white",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 700,
+      "renditions": [
+        "material-denim-buckle-1408.avif",
+        "material-denim-buckle-1408.webp",
+        "material-denim-buckle-1024.avif",
+        "material-denim-buckle-1024.webp",
+        "material-denim-buckle-768.avif",
+        "material-denim-buckle-768.webp",
+        "material-denim-buckle-480.avif",
+        "material-denim-buckle-480.webp"
+      ]
+    },
+    {
+      "slug": "place-high-desert",
+      "sourcePlate": "plate-CzexXg9Te6b53ItA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "High desert at golden hour. Cropped to the LEFT of frame to remove the walking figure entirely — the figure reads male, and menswear does not exist (D-03). What remains is landscape and light: place, not product, and no capability claim of any kind.",
+      "alt": "A high desert at golden hour, low sun raking across pale rock and scrub toward distant hills",
+      "intrinsicWidth": 820,
+      "intrinsicHeight": 700,
+      "renditions": [
+        "place-high-desert-820.avif",
+        "place-high-desert-820.webp",
+        "place-high-desert-640.avif",
+        "place-high-desert-640.webp",
+        "place-high-desert-480.avif",
+        "place-high-desert-480.webp"
+      ]
+    }
+  ]
+}

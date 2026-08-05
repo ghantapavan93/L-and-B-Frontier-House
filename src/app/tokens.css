@@ -109,7 +109,13 @@
   --gutter: 24px;
   --margin-desktop: 64px;
   --margin-mobile: 20px;
-  --section-gap: 120px;
+  /*
+    Section rhythm. Raised from 120px: the reference frames run enormous vertical air
+    between bands, and at 120 the page read as a stack of panels rather than as a
+    sequence of separate statements. Whitespace is the cheapest premium signal there is
+    and the one this build was most obviously short of.
+  */
+  --section-gap: 168px;
 
   /*
     SHAPE: sharp, 0px, everywhere.

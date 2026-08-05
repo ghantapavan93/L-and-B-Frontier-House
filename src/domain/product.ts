@@ -38,8 +38,19 @@ export type ProductAttributes = {
 /**
  * `provenance` is load-bearing. Anything marked `generated-placeholder` is visually flagged
  * in development and fails the media-integrity test if referenced from a production route.
+ *
+ * `generated-campaign` is a distinct thing and the distinction matters. A placeholder is an
+ * apology for a photograph that has not been taken; a campaign plate is generated imagery
+ * published ON PURPOSE, as atmosphere or place, because it says something the catalogue
+ * cannot. It is never flagged as pending — but it may never carry a garment, a price or a
+ * product name either. §12: generated imagery is never presented as real product.
+ *
+ * A product's own media may only ever be `photography` or `owner-supplied`. The type does
+ * not enforce that; `campaign-plates.ts` is the only module that mints this value, and it
+ * is used exclusively by editorial bands.
  */
-export type MediaProvenance = 'photography' | 'generated-placeholder' | 'owner-supplied'
+export type MediaProvenance =
+  'photography' | 'generated-placeholder' | 'generated-campaign' | 'owner-supplied'
 
 /** One responsive encoding of an image, newest format first. */
 export type MediaSource = {
