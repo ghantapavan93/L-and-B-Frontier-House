@@ -21,12 +21,23 @@ test.describe('ignition and skip', () => {
     await expect(page.getByRole('heading', { name: /This week/ })).toBeInViewport()
   })
 
-  test('enter the frontier lands on the campaign hero', async ({ page }) => {
+  test('the ignition is the hero — one opening, headline in view immediately', async ({
+    page,
+  }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: 'Enter the frontier' }).click()
 
-    await expect(page).toHaveURL(/#hero$/)
-    await expect(page.getByRole('heading', { level: 1 })).toBeInViewport()
+    // The film and the headline share one section now. There used to be a second
+    // full-viewport hero below carrying the same statement over a photograph, reached by
+    // an "Enter the frontier" link; both are gone, so the h1 is visible on arrival
+    // without a scroll or a click.
+    const h1 = page.getByRole('heading', { level: 1 })
+    await expect(h1).toHaveCount(1)
+    await expect(h1).toBeInViewport()
+    await expect(page.locator('.hero--photographic')).toHaveCount(0)
+
+    // The headline sits over the film, inside the same section.
+    await expect(page.locator('.ignition #hero, #hero.ignition')).toHaveCount(1)
+    await expect(page.locator('.ignition h1')).toHaveCount(1)
   })
 
   test('the hero is one background film, ten seconds, one-shot', async ({ page }) => {

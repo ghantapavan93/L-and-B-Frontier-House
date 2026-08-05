@@ -45,40 +45,51 @@ export default async function HomePage() {
 
   return (
     <>
-      {frontier ? <FrontierIgnition /> : null}
+      {/*
+        ONE opening statement, not two.
 
-      <section id="hero" className={hero ? 'hero hero--photographic' : 'hero'}>
-        {hero ? (
-          <div className="hero__media depth-far" aria-hidden="true">
-            <EditorialMedia media={hero} portrait={heroPortrait} priority sizes="100vw" />
+        These were previously stacked: the ignition ran full-viewport, then handed over to
+        a second full-viewport hero carrying the headline over a photograph. Both said the
+        same thing, one after the other, and the photograph loaded eagerly behind a film
+        that covered it. The cinematic path now carries the headline itself; the
+        photographic hero is what ships when the flag is off, unchanged.
+      */}
+      {frontier ? (
+        <FrontierIgnition />
+      ) : (
+        <section id="hero" className={hero ? 'hero hero--photographic' : 'hero'}>
+          {hero ? (
+            <div className="hero__media depth-far" aria-hidden="true">
+              <EditorialMedia media={hero} portrait={heroPortrait} priority sizes="100vw" />
+            </div>
+          ) : (
+            <>
+              <div className="hero__atmosphere" aria-hidden="true" />
+              <div className="hero__grain" aria-hidden="true" />
+            </>
+          )}
+
+          <div className="hero__inner depth-near">
+            <p className="eyebrow">Wholesale · Texas</p>
+            <h1>Western apparel, made for the boutiques that sell it.</h1>
+            <p>
+              Howdy. We are a manufacturer and designer from the heart of Texas, and we sell to
+              approved retailers. Sign in to see your pricing, or apply for an account and be
+              approved in typically less than one business day.
+            </p>
+            <div className="cluster">
+              <Link href="/new-arrivals" className="button button--secondary">
+                See new arrivals
+              </Link>
+              <Link href="/wholesale" className="button button--secondary">
+                How wholesale works
+              </Link>
+            </div>
           </div>
-        ) : (
-          <>
-            <div className="hero__atmosphere" aria-hidden="true" />
-            <div className="hero__grain" aria-hidden="true" />
-          </>
-        )}
 
-        <div className="hero__inner depth-near">
-          <p className="eyebrow">Wholesale · Texas</p>
-          <h1>Western apparel, made for the boutiques that sell it.</h1>
-          <p>
-            Howdy. We are a manufacturer and designer from the heart of Texas, and we sell to
-            approved retailers. Sign in to see your pricing, or apply for an account and be
-            approved in typically less than one business day.
-          </p>
-          <div className="cluster">
-            <Link href="/new-arrivals" className="button button--secondary">
-              See new arrivals
-            </Link>
-            <Link href="/wholesale" className="button button--secondary">
-              How wholesale works
-            </Link>
-          </div>
-        </div>
-
-        {hero ? null : <p className="hero__pending">Campaign photography pending</p>}
-      </section>
+          {hero ? null : <p className="hero__pending">Campaign photography pending</p>}
+        </section>
+      )}
 
       {/*
         Identity before taxonomy. Someone arriving from a search or a post is asking "is

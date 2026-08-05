@@ -1755,26 +1755,6 @@ tfoot td {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.4"/></svg>');
 }
 
-/* The ghost statement behind the artifact — texture, not a heading. */
-.ignition__ghost {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  margin: 0;
-  /* Above the film, below the copy. Already click-through. */
-  z-index: 1;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 11vw, 8.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: rgb(245 242 238 / 0.07);
-  text-wrap: balance;
-  pointer-events: none;
-  max-width: none;
-}
-
 .ignition__stage {
   font-size: 10px;
   font-weight: var(--label-caps-weight);
@@ -3117,12 +3097,45 @@ tfoot td {
 }
 
 /* The ignition's own copy, stacked over the film. */
+/*
+  The ignition's copy, now that it carries the page's headline rather than sitting
+  above a second hero that did. Sized to match `.hero h1` exactly — this is the
+  same statement in the same position, so it must not change scale depending on
+  which of the two paths rendered it.
+*/
 .ignition__content {
   position: relative;
   z-index: 2;
   display: grid;
   justify-items: center;
-  gap: var(--space-6);
+  gap: var(--space-4);
+  max-width: 58rem;
+}
+
+.ignition__content h1 {
+  font-size: clamp(2.125rem, 5.6vw, 4.75rem);
+  /* display-xl is 84/90 — a ratio of 1.07. Without this the headline inherits h1's
+     fixed 48px leading and the lines overlap each other at hero scale. */
+  line-height: 1.07;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: var(--text-on-inverse);
+  text-wrap: balance;
+}
+
+.ignition__lede {
+  margin: 0;
+  max-width: 44rem;
+  color: var(--text-on-inverse);
+}
+
+.ignition__content .eyebrow {
+  color: var(--text-meta-on-inverse);
+}
+
+.ignition__actions {
+  margin-top: var(--space-4);
 }
 
 @media (max-width: 47.99rem) {

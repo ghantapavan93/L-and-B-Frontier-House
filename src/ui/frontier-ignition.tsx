@@ -45,25 +45,48 @@ const IGNITION_FILM: HeroFilmSources = {
  */
 export function FrontierIgnition() {
   return (
-    <section className="ignition" aria-label="Introduction">
+    /*
+      `id="hero"` because this IS the hero now.
+
+      The page used to open with this section and then hand over to a second, separate
+      full-viewport hero carrying the headline over a photograph — two opening statements
+      in a row, the first of which said nothing the second did not. Merging them costs the
+      page nothing and saves the 431 KB hero photograph from loading eagerly behind a film
+      that covers it.
+    */
+    <section id="hero" className="ignition" aria-label="Introduction">
       <HeroFilm film={IGNITION_FILM} />
 
       <div className="ignition__grain" aria-hidden="true" />
 
-      {/* Ghost statement — display texture, not a heading; the page's h1 lives below. */}
-      <p className="ignition__ghost" aria-hidden="true">
-        Not the west
-        <br />
-        you remember
-      </p>
+      {/*
+        The ghost statement is gone with the merge.
+
+        It was display texture set behind an ARTIFACT — a centred SVG buckle it framed
+        rather than collided with. With the real headline now in that same centre, a second
+        oversized line of type sits directly behind the first: two headlines competing in
+        one space, and the brighter of them is the one nobody is meant to read. The film
+        carries the atmosphere the ghost was doing.
+      */}
 
       <div className="ignition__content">
-        <p className="ignition__stage">01 · Ignition</p>
+        <p className="eyebrow">Wholesale · Texas</p>
+        <h1>Western apparel, made for the boutiques that sell it.</h1>
+        <p className="ignition__lede">
+          Howdy. We are a manufacturer and designer from the heart of Texas, and we sell to
+          approved retailers. Sign in to see your pricing, or apply for an account and be
+          approved in typically less than one business day.
+        </p>
 
         <div className="ignition__actions">
-          <a className="button button--secondary" href="#hero">
-            Enter the frontier
-          </a>
+          <Link className="button button--secondary" href="/new-arrivals">
+            See new arrivals
+          </Link>
+          {/*
+            §11: every cinematic surface keeps a one-action exit to shop. It still earns its
+            place with the headline here — the film runs for ten seconds behind this copy,
+            and this jumps straight past it to the products.
+          */}
           <a className="button button--quiet ignition__skip" href="#sheet">
             Skip to shop
           </a>

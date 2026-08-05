@@ -14,17 +14,26 @@ import { get } from '../helpers/http'
  */
 
 describe('flag enabled (default) — cinematic specifics', () => {
-  it('opens with the ignition and its three poster-first actions', async () => {
+  it('opens with ONE hero — the ignition, carrying the headline itself', async () => {
     const { body } = await get('/')
 
     expect(body).toContain('class="ignition"')
-    expect(body).toContain('Enter the frontier')
-    expect(body).toContain('Skip to shop')
-    expect(body).toContain('Wholesale access')
-    // The skip target exists on the same page.
-    expect(body).toContain('id="sheet"')
-    expect(body).toContain('href="#sheet"')
+    // The ignition IS the hero. It used to sit above a second full-viewport hero that
+    // repeated the same statement over a photograph; `id="hero"` moved onto this section
+    // when they merged, so "Enter the frontier" would now scroll to itself and is gone.
     expect(body).toContain('id="hero"')
+    expect(body).not.toContain('Enter the frontier')
+    expect(body, 'a second hero section is back').not.toContain('hero--photographic')
+
+    // Exactly one full-viewport opening, and it carries the page's only h1.
+    expect([...body.matchAll(/<h1[\s>]/g)]).toHaveLength(1)
+    expect(body).toContain('Western apparel, made for the boutiques that sell it.')
+
+    // §11's one-action exit to shop survives the merge, with its target on the page.
+    expect(body).toContain('Skip to shop')
+    expect(body).toContain('href="#sheet"')
+    expect(body).toContain('id="sheet"')
+    expect(body).toContain('Wholesale access')
   })
 
   it('describes the buckle as the 8B/8C form — and never the coin', async () => {
