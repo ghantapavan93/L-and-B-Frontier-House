@@ -3517,3 +3517,142 @@ tfoot td {
   block-size: clamp(11rem, 26vw, 20rem);
   object-fit: cover;
 }
+
+/* ==========================================================================
+   ARRIVAL — photographs entering as you scroll
+
+   Zero JavaScript, and that is the finding rather than a compromise. Fifteen
+   reference sites were measured and not one runs a motion library; Sézane, the
+   closest to this brand's position, ships 92 CSS transitions and 239 transforms
+   and nothing else. The motion those sites have is real — it is just not a
+   dependency.
+
+   So this is CSS scroll-driven animation, wrapped in `@supports` exactly as §9
+   requires: `animation-timeline` is Baseline Limited, Firefox has not shipped it
+   and Safari only since 26. Where it is unsupported nothing animates and every
+   card is simply already in place, which is the poster-first rule applied to
+   motion — the page is complete before anything moves.
+
+   Cost: 0 KB of JavaScript, no request, no hydration, no main-thread work. The
+   compositor runs it off the scroll position.
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /*
+      Cards arrive from alternating sides, which is what a hand-laid contact
+      sheet does and what a uniform fade does not. `nth-child` alternation means
+      no two neighbours enter from the same direction, so the eye reads a row as
+      assembling rather than as one block appearing.
+
+      `both` fill keeps the end state after the range completes; without it a
+      card would snap back to its offset once scrolled past.
+    */
+    /*
+      The horizontal entrance has to be contained, or it grows the page.
+
+      A card translated 2.5rem left of its column at the grid's edge paints
+      outside the container, and the browser makes that scrollable — nine
+      responsive tests failed on exactly this, at every width from 320 to 1440.
+
+      `clip` rather than `hidden`: `hidden` on one axis forces the other to
+      `auto`, which would create a scroll container inside the page and break
+      sticky positioning. `clip` never creates a scroll region at all, and
+      `overflow-clip-margin` lets the card shadows and the 2.5rem of travel
+      still paint outside the box without becoming scrollable.
+    */
+    .product-grid,
+    .edit-grid,
+    .category-grid {
+      overflow-x: clip;
+      overflow-clip-margin: 4rem;
+    }
+
+    /*
+      Vertical by default, horizontal only where the page margin can absorb it.
+
+      The mobile gutter is 20px and the horizontal travel is 40px, so a card at
+      the edge of the grid spends the first half of its entrance with its name
+      outside the viewport — clipped, not scrollable, but genuinely cut off.
+      Three accessibility tests caught it at 320, 375 and 390.
+
+      The desktop margin is 64px, which is wider than the travel, so the same
+      entrance is fully contained there. Phones get the vertical arrival; the
+      sideways assembly is a desktop affordance.
+    */
+    .product-grid > li {
+      animation: arrive-up linear both;
+      animation-timeline: view();
+      /* Finishes well before the card reaches the middle of the screen — motion
+         that is still resolving when you are trying to read it is friction. */
+      animation-range: entry 0% entry 45%;
+    }
+
+    @media (min-width: 48rem) {
+      .product-grid > li {
+        animation-name: arrive-left;
+      }
+
+      .product-grid > li:nth-child(2n) {
+        animation-name: arrive-right;
+      }
+    }
+
+    /* The editorial break rises rather than sliding: it spans the full row, so a
+       horizontal entrance would read as the page shifting rather than as an
+       image arriving. */
+    .product-grid__break {
+      animation-name: arrive-up;
+    }
+
+    /* Editorial bands and category tiles get the same treatment, so the whole
+       page shares one entrance vocabulary rather than the grid having its own. */
+    .editorial-split__figure,
+    .edit-grid > li,
+    .category-grid > li {
+      animation: arrive-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+/*
+  MOVEMENT ONLY. No opacity.
+
+  The first version faded from 0, and axe found 24 contrast failures on a single
+  edit page: text at 30% opacity genuinely does not meet a contrast threshold, and
+  a snapshot taken mid-scroll is a real moment a real reader can be looking at.
+  "It resolves in 300ms" is not an answer to someone reading slowly.
+
+  Removing the fade fixes it outright rather than papering over it, and it is the
+  better motion anyway — a fade reads as content still loading, a slide reads as
+  content arriving. It also means nothing on the page is ever invisible, which
+  removes the whole class of "did the animation fail and hide my products" risk.
+*/
+@keyframes arrive-left {
+  from {
+    transform: translate3d(-2.5rem, 0.75rem, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes arrive-right {
+  from {
+    transform: translate3d(2.5rem, 0.75rem, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes arrive-up {
+  from {
+    transform: translate3d(0, 2rem, 0);
+  }
+  to {
+    transform: none;
+  }
+}
