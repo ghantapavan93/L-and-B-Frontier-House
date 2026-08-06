@@ -3499,3 +3499,21 @@ tfoot td {
     inset-inline-end: var(--space-4);
   }
 }
+
+/*
+  The editorial break inside a product run.
+
+  Spans every column so it reads as a pause in the grid rather than as a cell that
+  failed to load, and takes a wide crop because its job is to change the rhythm —
+  a tall image here would just look like another garment.
+*/
+.product-grid__break {
+  grid-column: 1 / -1;
+  margin-block: var(--space-5);
+}
+
+.product-grid__break img {
+  inline-size: 100%;
+  block-size: clamp(11rem, 26vw, 20rem);
+  object-fit: cover;
+}
