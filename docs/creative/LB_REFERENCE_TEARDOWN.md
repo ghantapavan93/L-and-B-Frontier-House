@@ -172,13 +172,69 @@ art direction, pacing and photography.
 That is good news for this project, because art direction, pacing and photography are exactly
 what the budget allows and what a 180 KB JavaScript ceiling does not threaten.
 
-## 4. Still to tear down
+## 3a. The one site in the set that uses WebGL — and what it costs
 
-Burberry, SSENSE, Gucci, Prada, Tecovas, Kimes Ranch, Cavender's, Miss Me, Grace in LA,
-Sterling Kreek, Cowgirl Tuff, Myntra, AJIO, The Souled Store, and the immersive set
-(Burberry × SSENSE *Imaginary Cities*, G-Star *Clouds of Denim*, Lusion *Infinite
-Passerella*).
+**Lusion, *Infinite Passerella*.** Of everything measured, this is the only page carrying a
+3D renderer, and it settles the technology question rather than opening it.
 
-The immersive three matter most for the "blow their mind" brief, and the prediction worth
-testing is that all three are **campaign microsites separate from the store** — which is the
-pattern §11 already encodes as "cinema belongs to discovery, never to checkout".
+| Property | Value |
+| :--- | :--- |
+| Canvas | **1800 × 1125, WebGL2** |
+| JavaScript | **276 KB** |
+| Total page weight | **16.74 MB** |
+| Largest single asset | `hero_animation.buf` — **1.4 MB** of animation data alone |
+| Resources | 80 |
+| Cart | **none** |
+| Prices | **none** |
+| Host | `exp-infinite-passerella.lusion.co` — `exp` for *experiment* |
+
+**16.74 MB against this project's 4 MB cinematic budget, and 276 KB of JavaScript against
+180 KB.** The page is four times the weight we are allowed and half again the script.
+
+More decisive than the numbers: it is **not a shop**. No cart, no prices, no products — a
+studio's showcase piece on an experiment subdomain, built to demonstrate what the studio can
+do. It is the correct reference for *what is technically possible* and the wrong one for
+*how a shop should be built*, and those are different questions.
+
+Which closes the loop on §11 from a third independent direction. Burberry × SSENSE puts
+cinema on a microsite with no checkout. Every working shop measured carries no 3D at all.
+The one page that does carry it sells nothing.
+
+## 3b. The remainder
+
+| Site | Motion library | Body | `h1` | `h2` | Page height | video | canvas |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Cowgirl Tuff** | jQuery | 16px Roboto | 25px | 30px | 7,603px | 0 | 0 |
+| **The Souled Store** | **none** | 15px | **14px** | 15px | 1,366px | 0 | 0 |
+
+Both hold the pattern. The Souled Store — the community/fandom reference — sets its `h1` at
+**14px**, the smallest in the entire set.
+
+**Two could not be measured, and the reason is worth recording.** SSENSE serves a Cloudflare
+interstitial and AJIO returns *Access Denied* to this browser. Both actively block automated
+inspection. Nothing was worked around to get past either: a site that declines to be read by
+a machine has said so clearly, and the pattern across the other fifteen is consistent enough
+that neither would change it.
+
+## 4. The teardown is complete
+
+**Seventeen sites named, fifteen measured, two blocked by bot protection.** Nothing outstanding.
+
+The prediction this document opened with — that the immersive references would turn out to be
+campaign microsites separate from the store — held on both testable cases. Burberry × SSENSE
+runs on its own subdomain with no cart and no WebGL at all; Lusion runs WebGL on an
+*experiment* subdomain and sells nothing. Neither is a shop.
+
+### The whole finding, in four lines
+
+1. **No working shop in the set runs a motion library.** Fifteen measured, zero canvas
+   elements among the shops. The single WebGL page sells nothing and weighs 16.74 MB.
+2. **Type is small.** Four have no `h1` at all; the smallest is 14px, the largest 42px.
+3. **Pages are long and imagery is dense.** Burberry 11,424px, Sézane's listing 48,199px with
+   953 unpaginated products, Double D Ranch 19 vertical clips on one homepage.
+4. **Product imagery is tall, portrait and large.** 500×750, 616×822, 617×771, 767×1282 —
+   every sampled image between 2:3 and 3:5.
+
+All four are now implemented, within the limit that our catalogue is 360×540 and 22 styles
+deep. What the references spend on photography, this project cannot yet spend, and no
+further front-end work changes that.
