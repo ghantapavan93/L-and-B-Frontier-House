@@ -29,6 +29,7 @@ export const PUBLIC_ROUTES = [
   '/shop/accessories',
   '/mens',
   '/find-your-denim',
+  '/warehouse',
   '/edit/working-west',
   '/edit/rodeo-edit',
   `/product/${PRODUCT_SLUG}`,

@@ -259,6 +259,25 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* The door to the signature interaction: one aisle, every rack, native scroll. */}
+      <section className="container section--tight" aria-labelledby="warehouse-heading">
+        <div className="warehouse-teaser">
+          <div>
+            <p className="eyebrow" style={{ color: 'var(--text-meta-on-inverse)' }}>
+              One aisle
+            </p>
+            <h2 id="warehouse-heading">Walk the Warehouse</h2>
+            <p className="meta">
+              Every rack in the line, hung in one horizontal aisle. Hover a garment and it comes
+              forward.
+            </p>
+          </div>
+          <Link href="/warehouse" className="button button--secondary">
+            Enter
+          </Link>
+        </div>
+      </section>
+
       <section className="container section" aria-labelledby="ops-heading">
         <div className="section-head">
           <div>

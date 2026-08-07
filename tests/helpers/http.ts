@@ -13,6 +13,7 @@ export const PUBLIC_ROUTES: readonly string[] = [
   '/shop/accessories',
   '/mens',
   '/find-your-denim',
+  '/warehouse',
   '/edit/working-west',
   '/edit/modern-west',
   '/edit/rodeo-edit',

@@ -802,6 +802,10 @@ svg {
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   background: var(--surface-raised);
+  /* Owns its text colour as it owns its ground. Measured on the warehouse: embedded in a
+     dark section, the title inherited bone onto this light panel — 1.09:1. A component
+     that sets its own background must set its own foreground. */
+  color: var(--color-text);
 }
 
 .notice--fixture {
@@ -3981,4 +3985,299 @@ tfoot td {
       animation-name: arrive-right;
     }
   }
+}
+
+/* ==========================================================================
+   THE WAREHOUSE — one aisle, native scroll, depth in CSS
+
+   The signature interaction, under the constitution's hardest rule: never
+   intercept the wheel (§9). So the aisle is a real horizontal scroller —
+   trackpads pan it, touch swipes it, the scrollbar is visible and honest,
+   fragment links jump it, and keyboard focus walks garment to garment with the
+   browser doing the scrolling. Depth is perspective; the lean is per-item;
+   hover straightens one garment while :has() recedes its rack-mates.
+
+   The entrance animates `translate`/`scale` (individual properties) while the
+   lean and the hover ride `rotate` and the image's own `scale` — deliberately
+   disjoint property sets, because an animation's fill would otherwise pin the
+   very property the hover needs to move. Movement only, no opacity: text at
+   partial opacity fails contrast mid-animation, measured on the grid arrivals.
+   ========================================================================== */
+
+.warehouse {
+  background:
+    radial-gradient(90% 60% at 50% 0%, #16130f 0%, transparent 70%),
+    linear-gradient(180deg, #0c0b09 0%, var(--color-ink) 55%, #14100c 100%);
+  color: var(--text-on-inverse);
+}
+
+.warehouse__crumb,
+.warehouse__crumb a {
+  color: var(--text-meta-on-inverse);
+}
+
+.warehouse__eyebrow {
+  color: var(--text-meta-on-inverse);
+}
+
+.warehouse__title,
+.warehouse__lede {
+  color: var(--text-on-inverse);
+}
+
+.warehouse__hint {
+  color: var(--text-meta-on-inverse);
+}
+
+/* Sandstone focus everywhere on this route: tobacco does not pass on ink. */
+.warehouse :focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.warehouse__jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-5);
+}
+
+.warehouse__jump {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid rgb(245 242 238 / 0.35);
+  color: var(--text-on-inverse);
+  text-decoration: none;
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+}
+
+.warehouse__jump:hover {
+  border-color: rgb(245 242 238 / 0.7);
+}
+
+/* ---- The aisle ---- */
+
+.warehouse__aisle {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-9);
+  overflow-x: auto;
+  padding: var(--space-8) var(--margin-mobile) var(--space-7);
+  scroll-padding-inline: var(--space-7);
+  scrollbar-color: var(--color-sandstone) transparent;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 62rem) {
+  .warehouse__aisle {
+    padding-inline: var(--margin-desktop);
+  }
+}
+
+/*
+  Snap is a TOUCH affordance here, and only a touch affordance. Measured with a
+  keyboard: focus scrolls a garment into view, then proximity snap re-settles the
+  aisle onto the nearest snap point and drags the focused item half off-screen —
+  its box centre landed at x≈1300 on a 1280 viewport, which is a 2.4.11 failure
+  and a genuinely bad keyboard experience, not just a failing test. Coarse
+  pointers get the controlled swipe; fine pointers and the keyboard get plain
+  native scrolling that never moves without being asked.
+*/
+@media (pointer: coarse) {
+  .warehouse__aisle {
+    scroll-snap-type: x proximity;
+  }
+}
+
+.warehouse__rack {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  perspective: 1200px;
+  scroll-snap-align: start;
+  scroll-margin-inline: var(--space-7);
+}
+
+.warehouse__sign {
+  flex: none;
+  inline-size: clamp(9rem, 16vw, 13rem);
+}
+
+.warehouse__sign-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.1;
+  color: var(--text-on-inverse);
+  margin: 0 0 var(--space-3);
+  text-wrap: balance;
+}
+
+.warehouse__sign-line {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-meta-on-inverse);
+}
+
+/* ---- The garments ---- */
+
+.warehouse__item {
+  flex: none;
+  inline-size: clamp(12rem, 20vw, 17rem);
+  text-decoration: none;
+  color: inherit;
+  rotate: y var(--lean, 0deg);
+  transition: rotate var(--duration-base) var(--ease-entrance);
+  scroll-snap-align: start;
+  scroll-margin-inline: var(--space-7);
+}
+
+/* The rail's lean: alternating, small, never uniform. */
+.warehouse__item:nth-child(3n) {
+  --lean: 6deg;
+}
+
+.warehouse__item:nth-child(3n + 1) {
+  --lean: -5deg;
+}
+
+.warehouse__item:nth-child(3n + 2) {
+  --lean: 3deg;
+}
+
+.warehouse__item img {
+  inline-size: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: var(--surface-sunken);
+  border: var(--space-2) solid var(--color-bone);
+  box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.62);
+  transition:
+    scale var(--duration-base) var(--ease-entrance),
+    box-shadow var(--duration-base) var(--ease-entrance);
+}
+
+.warehouse__item-name {
+  display: block;
+  padding-block-start: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  color: var(--text-on-inverse);
+}
+
+/* Hover brings one forward… */
+.warehouse__item:hover,
+.warehouse__item:focus-visible {
+  rotate: y 0deg;
+  position: relative;
+  z-index: 1;
+}
+
+.warehouse__item:focus-visible {
+  transition-duration: 0s;
+}
+
+.warehouse__item:focus-visible img {
+  transition-duration: 0s;
+}
+
+.warehouse__item:hover img,
+.warehouse__item:focus-visible img {
+  scale: 1.05;
+  box-shadow: 0 28px 60px -18px rgb(0 0 0 / 0.8);
+}
+
+/* …and the rest of the rack falls back. Transform only, never opacity. */
+.warehouse__rack:has(.warehouse__item:hover) .warehouse__item:not(:hover) img {
+  scale: 0.94;
+}
+
+/* ---- The exit ---- */
+
+.warehouse__exit {
+  display: grid;
+  gap: var(--space-3);
+  align-content: center;
+}
+
+.warehouse .button--secondary {
+  color: var(--text-on-inverse);
+  border-color: rgb(245 242 238 / 0.4);
+}
+
+.warehouse .button--secondary:hover {
+  border-color: rgb(245 242 238 / 0.8);
+  background: rgb(245 242 238 / 0.08);
+}
+
+/* ---- Entrance: racks approach as the aisle pans ----
+
+   view(inline) is the horizontal twin of the grid's vertical arrivals: driven
+   by the scroller's own axis, on the compositor, zero JavaScript. Individual
+   `translate`/`scale` only, so the fill never pins `rotate` or the image scale
+   that the hover owns. Unsupported browsers get a static aisle.               */
+
+@supports (animation-timeline: view(inline)) {
+  @media (prefers-reduced-motion: no-preference) {
+    .warehouse__item {
+      animation: rack-approach linear both;
+      animation-timeline: view(inline);
+      animation-range: entry 0% entry 50%;
+    }
+  }
+}
+
+@keyframes rack-approach {
+  from {
+    translate: 2.5rem 0.5rem;
+    scale: 0.88;
+  }
+  to {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+/* ---- The homepage door ---- */
+
+.warehouse-teaser {
+  background:
+    radial-gradient(80% 100% at 20% 0%, #1a150f 0%, transparent 60%), var(--color-ink);
+  color: var(--text-on-inverse);
+  padding: var(--space-7);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.warehouse-teaser h2 {
+  color: var(--text-on-inverse);
+  margin: 0 0 var(--space-2);
+}
+
+.warehouse-teaser .meta {
+  color: var(--text-meta-on-inverse);
+}
+
+.warehouse-teaser .button--secondary {
+  color: var(--text-on-inverse);
+  border-color: rgb(245 242 238 / 0.4);
+}
+
+.warehouse-teaser .button--secondary:hover {
+  border-color: rgb(245 242 238 / 0.8);
+  background: rgb(245 242 238 / 0.08);
+}
+
+.warehouse-teaser :focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: var(--focus-ring-offset);
 }
