@@ -3656,3 +3656,329 @@ tfoot td {
     transform: none;
   }
 }
+
+/* ==========================================================================
+   Media slots — reserved containers for photography that does not exist yet
+
+   Honest emptiness: the slot names what it is waiting for instead of shimmering
+   as though something were loading. Same family as hero__pending.
+   ========================================================================== */
+
+.media-slot {
+  display: grid;
+  place-content: center;
+  gap: var(--space-2);
+  justify-items: center;
+  inline-size: 100%;
+  background: var(--surface-sunken);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius-default);
+  color: var(--color-text-meta);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.media-slot__mark {
+  font-size: 1.25rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.media-slot__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  max-inline-size: 16ch;
+}
+
+/* ==========================================================================
+   This Week — five frames at five scales
+
+   An asymmetric editorial composition over real products: the lead runs tall,
+   one frame crosses behind its neighbour, a portrait drops in. On a phone it
+   settles into a calm two-column stack.
+   ========================================================================== */
+
+.week-band {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* The entrances travel horizontally; clip them without creating a scroller. */
+  overflow-x: clip;
+  overflow-clip-margin: 4rem;
+}
+
+.week-band__cell {
+  min-width: 0;
+}
+
+.week-band__frame {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.week-band__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block-start: var(--space-3);
+}
+
+.week-band__name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+
+.week-band__frame:hover .week-band__name {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.week-band__new {
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+}
+
+@media (min-width: 62rem) {
+  .week-band {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(2rem, auto);
+    align-items: start;
+  }
+
+  .week-band__cell--1 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+
+  /* Crosses slightly behind the lead — the one deliberate overlap. */
+  .week-band__cell--2 {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    margin-inline-start: calc(var(--space-6) * -1);
+    margin-block-start: var(--space-8);
+    position: relative;
+    z-index: 1;
+  }
+
+  .week-band__cell--3 {
+    grid-column: 4 / 6;
+    grid-row: 1 / 3;
+    margin-block-start: var(--space-7);
+  }
+
+  .week-band__cell--4 {
+    grid-column: 6 / 7;
+    grid-row: 1;
+  }
+
+  .week-band__cell--5 {
+    grid-column: 6 / 7;
+    grid-row: 2;
+    margin-block-start: var(--space-5);
+  }
+}
+
+/* Reserved film slots, three across on desktop. */
+.motion-band {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-inline-size: 52rem;
+}
+
+/* The single PDP film slot: portrait, capped so it never dominates the page. */
+.pdp-motion {
+  max-inline-size: 16rem;
+}
+
+/* ==========================================================================
+   PDP folds — the references' accordions on native <details>
+   ========================================================================== */
+
+.pdp-fold {
+  border-block-start: 1px solid var(--rule);
+}
+
+.pdp-fold:last-of-type {
+  border-block-end: 1px solid var(--rule);
+}
+
+.pdp-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-block-size: 44px; /* 2.5.8 target size, with margin over the 24px floor. */
+  padding-block: var(--space-4);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.pdp-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* One glyph, rotated when open — no icon font, no image. */
+.pdp-fold > summary::after {
+  content: '+';
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-text-meta);
+  transition: rotate var(--duration-fast) var(--ease-entrance);
+}
+
+.pdp-fold[open] > summary::after {
+  rotate: 45deg;
+}
+
+.pdp-fold__body {
+  padding-block: 0 var(--space-5);
+}
+
+/* The garment's name at the scale the references set it — the photograph is the
+   headline on this page, not the type. */
+.pdp__title {
+  font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Denim finder options — radios and checkboxes as tappable chips
+   ========================================================================== */
+
+.denim-finder {
+  max-inline-size: 40rem;
+}
+
+.denim-finder__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.denim-finder__option input {
+  inline-size: 24px;
+  block-size: 24px;
+  accent-color: var(--color-ink);
+}
+
+.denim-finder__option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-default);
+  cursor: pointer;
+}
+
+.denim-finder__option:has(:checked) {
+  border-color: var(--color-ink);
+  background: var(--surface-raised);
+}
+
+.denim-finder__option:has(:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* The homepage teaser: one panel, one action. */
+.fit-teaser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+/* ==========================================================================
+   Trade dashboard tiles — the morning numbers
+   ========================================================================== */
+
+.dash-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 48rem) {
+  .dash-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.dash-tile {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--rule);
+  background: var(--surface-raised);
+  text-decoration: none;
+  color: inherit;
+  min-block-size: 44px;
+}
+
+.dash-tile:hover {
+  border-color: var(--color-ink);
+}
+
+.dash-tile__count {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.dash-tile__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+/* ==========================================================================
+   Arrivals for the new bands — same scroll-driven system as the grid
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .week-band__cell,
+    .motion-band > * {
+      animation: arrive-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+
+  /* Horizontal travel only where the 64px desktop margin can absorb it. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 62rem) {
+    .week-band__cell--1 {
+      animation-name: arrive-left;
+    }
+
+    .week-band__cell--2 {
+      animation-name: arrive-right;
+    }
+
+    .week-band__cell--4,
+    .week-band__cell--5 {
+      animation-name: arrive-right;
+    }
+  }
+}

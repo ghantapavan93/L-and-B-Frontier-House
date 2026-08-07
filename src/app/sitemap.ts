@@ -13,11 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env['LB_SITE_URL'] ?? 'http://localhost:3000'
   const products = await listPublicProducts()
 
-  const staticRoutes = ['', '/new-arrivals', '/wholesale', '/mens'].map((path) => ({
-    url: `${base}${path}`,
-    changeFrequency: 'daily' as const,
-    priority: path === '' ? 1 : 0.8,
-  }))
+  const staticRoutes = ['', '/new-arrivals', '/wholesale', '/mens', '/find-your-denim'].map(
+    (path) => ({
+      url: `${base}${path}`,
+      changeFrequency: 'daily' as const,
+      priority: path === '' ? 1 : 0.8,
+    }),
+  )
 
   /*
     Edits are listed below the categories they draw from, at a lower priority. They are a

@@ -174,6 +174,8 @@ test.describe('status and progress announcements', () => {
 test.describe('tables', () => {
   test('size and fit tables carry captions and scoped headers', async ({ page }) => {
     await page.goto(`/product/${PRODUCT_SLUG}`)
+    // The size table sits in a closed <details> fold; a closed fold exposes no table role.
+    await page.getByText('Size and fit', { exact: true }).click()
 
     const tables = page.getByRole('table')
     const count = await tables.count()
@@ -270,6 +272,8 @@ test.describe('reduced motion', () => {
     // Same products, same facts, same actions.
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Dark Wash Flare')
     await expect(page.getByRole('region', { name: 'Wholesale pricing' })).toBeVisible()
+    // Folds open under reduced motion exactly as they do without it — capability identical.
+    await page.getByText('Size and fit', { exact: true }).click()
     await expect(page.getByRole('table').first()).toBeVisible()
 
     // The media query must actually be emulated, or the rest of this proves nothing.

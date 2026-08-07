@@ -181,6 +181,11 @@ for (const viewport of VIEWPORTS) {
     test('size and fit tables scroll inside their own container', async ({ page }) => {
       await page.goto(`/product/${PRODUCT_SLUG}`)
 
+      // The size table now lives in a closed <details> fold, the way the reference PDPs
+      // collapse specification. Open it the way a reader would — the property under test
+      // is the open state's layout, and a native summary needs no JavaScript to open.
+      await page.getByText('Size and fit', { exact: true }).click()
+
       const container = page.locator('.table-scroll').first()
       await expect(container).toBeVisible()
 

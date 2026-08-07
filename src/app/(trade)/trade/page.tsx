@@ -2,9 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { requireSignedIn } from '@/auth/guards'
 import { getBuyerProfile } from '@/data/buyer-repository'
+import { listVisibleProducts } from '@/data/catalog-repository'
 import { getDraftOrder, listOrders } from '@/data/order-repository'
 import { formatMoney } from '@/domain/money'
 import { ORDER_STATUS_LABELS, orderSubtotal, orderUnits } from '@/domain/order'
+import { isAuthorisedProduct } from '@/domain/product'
 import { isAuthorisedBuyer } from '@/domain/session'
 import { BuyerStatusPanel } from '@/ui/buyer-status'
 import { StateBlock } from '@/ui/notices'
@@ -48,14 +50,71 @@ export default async function PassportPage() {
     )
   }
 
-  const [orders, draft] = await Promise.all([listOrders(session), getDraftOrder(session)])
+  const [orders, draft, visible] = await Promise.all([
+    listOrders(session),
+    getDraftOrder(session),
+    listVisibleProducts(session),
+  ])
   const draftUnits = orderUnits(draft)
+
+  /*
+   * THE MORNING NUMBERS. A returning buyer has a job, and the job starts with four
+   * questions: what is new, what is on pre-order, what is running out, what did I buy
+   * before. Every count below is derived live from the same records the linked pages
+   * render — no cached figure that can drift from what a click reveals.
+   *
+   * "Low stock" is authorised data (per-size units are restricted), so it is computed
+   * inside this session only, and the threshold is stated in the label rather than
+   * implied: under four prepacks left.
+   */
+  const authorised = visible.filter(isAuthorisedProduct)
+  const counts = {
+    newThisWeek: visible.filter((p) => p.newArrivalOn !== undefined).length,
+    preOrder: visible.filter((p) => p.availability === 'pre-order').length,
+    lowStock: authorised.filter((p) => {
+      const units = p.wholesale.stockBySize.reduce((sum, row) => sum + row.units, 0)
+      return units > 0 && units < 24
+    }).length,
+    pastOrders: orders.length,
+  }
 
   return (
     <div className="container section stack">
       <p className="eyebrow">Your account</p>
       <h1>{profile.retailerName}</h1>
       <p className="meta">Approved {profile.approvedAt}. Sales tax ID on file and verified.</p>
+
+      <section aria-labelledby="morning-heading">
+        <h2 className="eyebrow" id="morning-heading">
+          Since you were last in
+        </h2>
+        <ul className="dash-grid">
+          <li>
+            <Link href="/new-arrivals" className="dash-tile">
+              <span className="dash-tile__count">{counts.newThisWeek}</span>
+              <span className="dash-tile__label">New this week</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/trade/orders" className="dash-tile">
+              <span className="dash-tile__count">{counts.pastOrders}</span>
+              <span className="dash-tile__label">Orders to reorder from</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/new-arrivals?availability=pre-order" className="dash-tile">
+              <span className="dash-tile__count">{counts.preOrder}</span>
+              <span className="dash-tile__label">On pre-order</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/trade/assortment" className="dash-tile">
+              <span className="dash-tile__count">{counts.lowStock}</span>
+              <span className="dash-tile__label">Low stock — under 4 packs</span>
+            </Link>
+          </li>
+        </ul>
+      </section>
 
       <section aria-labelledby="current-heading" className="price-panel">
         <h2 className="eyebrow" id="current-heading">

@@ -12,6 +12,7 @@ import { FixtureNotice } from '@/ui/notices'
 import { ProductCard, ProductGrid } from '@/ui/product-card'
 import { EditorialMedia } from '@/ui/product-media'
 import { ProductWorlds } from '@/ui/product-worlds'
+import { ThisWeekBand, MotionClipBand } from '@/ui/this-week'
 import { ThreadToTrade, ThreadToTradeJourney } from '@/ui/thread-to-trade'
 
 /**
@@ -101,11 +102,13 @@ export default async function HomePage() {
       )}
 
       {/*
-        Identity before taxonomy. Someone arriving from a search or a post is asking "is
-        this for me", and a row of category tiles cannot answer that. The category grid
-        still ships below — this is a way in, never a replacement for it.
+        The measured homepage cadence: film, then the drop as five frames at five scales,
+        then reserved motion, then the sheet, then identity. Imagery leads every band and
+        the type stays quiet — that is the whole finding of the teardown.
       */}
-      <ChooseYourWest edits={populatedEdits(newest)} products={newest} />
+      <ThisWeekBand products={newest} />
+
+      <MotionClipBand />
 
       <ContactSheet
         products={sheet}
@@ -115,6 +118,13 @@ export default async function HomePage() {
         linkLabel="Open the full sheet"
         stories={frontier}
       />
+
+      {/*
+        Identity before taxonomy. Someone arriving from a search or a post is asking "is
+        this for me", and a row of category tiles cannot answer that. The category grid
+        still ships below — this is a way in, never a replacement for it.
+      */}
+      <ChooseYourWest edits={populatedEdits(newest)} products={newest} />
 
       {craftDetail ? (
         <section className="container section" aria-labelledby="craft-heading">
@@ -168,6 +178,25 @@ export default async function HomePage() {
         ) : (
           <ProductGrid products={featured} emptyMessage="No new arrivals are published yet." />
         )}
+      </section>
+
+      {/*
+        FIT AS A FEATURE — the finder's front door. Three questions instead of seventy
+        thumbnails; the page behind it is honest filtering over published garment facts.
+      */}
+      <section className="container section--tight" aria-labelledby="fit-heading">
+        <div className="panel fit-teaser">
+          <div>
+            <p className="eyebrow">Fit</p>
+            <h2 id="fit-heading">Find your denim</h2>
+            <p className="meta">
+              Silhouette, wash, stretch — answer what you know and see the pairs that match.
+            </p>
+          </div>
+          <Link href="/find-your-denim" className="button">
+            Start
+          </Link>
+        </div>
       </section>
 
       {extendedSizing ? (

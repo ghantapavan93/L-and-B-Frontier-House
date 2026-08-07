@@ -6,6 +6,7 @@ import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { AVAILABILITY_LABELS } from '@/domain/product'
 import type { PublicProduct } from '@/domain/product'
 import { findCategory } from '@/domain/taxonomy'
+import { MediaSlot } from '@/ui/media-slot'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard } from '@/ui/product-card'
 import { ProductMedia } from '@/ui/product-media'
@@ -165,6 +166,19 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
                 <ProductMedia media={media} priority={index === 0} />
               </div>
             ))}
+            {/*
+              The gallery STRUCTURE the references run, ahead of the photography that fills
+              it. Sézane carries forty images per product; this catalogue carries one. Two
+              reserved slots make the multi-angle layout true today and give the owner named
+              boxes to paste into — detail crop and back view are the two angles every
+              reference PDP carries that ours cannot yet.
+            */}
+            <div className="pdp__media">
+              <MediaSlot label="Detail crop — stitch, hardware or print" aspectRatio="2 / 3" />
+            </div>
+            <div className="pdp__media">
+              <MediaSlot label="Back view" aspectRatio="2 / 3" />
+            </div>
           </div>
 
           <div className="stack">
@@ -177,42 +191,6 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             </div>
 
             <p className="lede">{product.description}</p>
-
-            <dl className="definition-list">
-              {fabrics ? (
-                <>
-                  <dt>Fabric</dt>
-                  <dd>{fabrics}</dd>
-                </>
-              ) : null}
-              {details ? (
-                <>
-                  <dt>Detail</dt>
-                  <dd>{details}</dd>
-                </>
-              ) : null}
-              <dt>Colour</dt>
-              <dd>{colours}</dd>
-              {product.attributes.silhouette ? (
-                <>
-                  <dt>Silhouette</dt>
-                  <dd>{product.attributes.silhouette}</dd>
-                </>
-              ) : null}
-              {product.attributes.inseam ? (
-                <>
-                  <dt>Inseam</dt>
-                  <dd>{product.attributes.inseam}</dd>
-                </>
-              ) : null}
-              <dt>Sizes</dt>
-              <dd>
-                {product.sizeRanges
-                  .filter((r) => r.availability !== 'unavailable')
-                  .flatMap((r) => r.sizes)
-                  .join(', ')}
-              </dd>
-            </dl>
 
             {product.preOrder ? (
               <section className="notice" aria-labelledby="preorder-heading">
@@ -255,13 +233,98 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           </section>
         ) : null}
 
-        <section className="section" aria-labelledby="size-heading">
-          <h2 id="size-heading">Size and fit</h2>
-          <p className="meta">
-            Body measurements in inches. Published as text so it can be read, searched and
-            announced — never as an image of a table.
-          </p>
-          <SizeAndFitTable ranges={product.sizeRanges} />
+        {/*
+          THE DETAILS, AS ACCORDIONS — Sézane's PDP mechanism, on native <details>.
+          Zero JavaScript: summaries open without a script, the content is server HTML, and
+          a crawler or Ctrl-F reads it closed or open. The first block ships open so the
+          garment facts are at-a-glance; the h2 above keeps the outline contiguous for the
+          h3s inside the size table.
+        */}
+        <section className="section" aria-labelledby="details-heading">
+          <h2 id="details-heading">The details</h2>
+
+          <details className="pdp-fold" open>
+            <summary>What it is</summary>
+            <div className="pdp-fold__body">
+              <dl className="definition-list">
+                {fabrics ? (
+                  <>
+                    <dt>Fabric</dt>
+                    <dd>{fabrics}</dd>
+                  </>
+                ) : null}
+                {details ? (
+                  <>
+                    <dt>Detail</dt>
+                    <dd>{details}</dd>
+                  </>
+                ) : null}
+                <dt>Colour</dt>
+                <dd>{colours}</dd>
+                {product.attributes.silhouette ? (
+                  <>
+                    <dt>Silhouette</dt>
+                    <dd>{product.attributes.silhouette}</dd>
+                  </>
+                ) : null}
+                {product.attributes.inseam ? (
+                  <>
+                    <dt>Inseam</dt>
+                    <dd>{product.attributes.inseam}</dd>
+                  </>
+                ) : null}
+                <dt>Sizes</dt>
+                <dd>
+                  {product.sizeRanges
+                    .filter((r) => r.availability !== 'unavailable')
+                    .flatMap((r) => r.sizes)
+                    .join(', ')}
+                </dd>
+              </dl>
+            </div>
+          </details>
+
+          <details className="pdp-fold">
+            <summary>Size and fit</summary>
+            <div className="pdp-fold__body">
+              <p className="meta">
+                Body measurements in inches. Published as text so it can be read, searched and
+                announced — never as an image of a table.
+              </p>
+              <SizeAndFitTable ranges={product.sizeRanges} />
+            </div>
+          </details>
+
+          <details className="pdp-fold">
+            <summary>Shipping</summary>
+            <div className="pdp-fold__body">
+              {/* Verified operational facts only — the same figures the homepage states.
+                  No returns copy: no verified returns policy exists in this repo, and an
+                  invented one would be a production claim. */}
+              <p>
+                100% of orders filled complete, 2.64-day average processing. Order by 5pm CST
+                and it ships the same or next business day.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        {/*
+          SEE IT MOVE — the reserved film slot. Every strong reference carries garment
+          motion on the product page; the container ships now, at the portrait ratio the
+          owner's footage should arrive in, and says plainly what belongs in it.
+        */}
+        <section className="section--tight" aria-labelledby="motion-slot-heading">
+          <h2 className="eyebrow" id="motion-slot-heading">
+            See it move
+          </h2>
+          <div className="pdp-motion">
+            <MediaSlot
+              label={`${product.displayName} in motion — film slot`}
+              aspectRatio="9 / 16"
+              kind="video"
+            />
+          </div>
         </section>
 
         {frontier && related.length > 0 ? (
