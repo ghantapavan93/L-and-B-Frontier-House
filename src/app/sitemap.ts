@@ -13,11 +13,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env['LB_SITE_URL'] ?? 'http://localhost:3000'
   const products = await listPublicProducts()
 
+  /*
+    /mens is deliberately absent: it is a noindex demonstration surface for an owner
+    decision (D-03), not a published category.
+  */
   const staticRoutes = [
     '',
     '/new-arrivals',
     '/wholesale',
-    '/mens',
     '/find-your-denim',
     '/warehouse',
   ].map((path) => ({

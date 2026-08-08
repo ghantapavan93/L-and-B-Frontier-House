@@ -127,3 +127,81 @@ deliberately composed · states branded and stable · no competitor media · no
 generated SKU imagery · no unsupported category or service · no horizontal
 overflow · no truncation · reduced motion preserves full functionality · security
 and cache guarantees intact · full pipeline green.
+
+---
+
+## 2026-08-07 pass — the shop mechanisms, from the live-reference translation
+
+Source: [LB_REFERENCE_TRANSLATION.md](LB_REFERENCE_TRANSLATION.md) (live L&B measured
+2026-08-07). All server HTML + CSS; zero client JavaScript added; first-load JS unchanged.
+
+| Surface | Status | What shipped |
+| :--- | :--- | :--- |
+| `/search` | `SHIPPED` | Real GET-form search over public fields only (name, spec, category, fabric, detail, motif, colour, fit, availability). Ranked, no-JS, noindex. Header carries a working search field on desktop and a menu entry on mobile |
+| Header | `SHIPPED` | DISCOVER and TRADE as native `<details>` panels with one-line context per destination; categories stay flat links. Market dates surface from programming |
+| Promo bar | `SHIPPED` | One quiet line from the programming calendar; renders only a live, verified entry; scrolls away with the page |
+| Programming model | `SHIPPED` | `src/content/programming.ts` — drop / sale / lookbook / market / campaign / promo-bar entries with windows, audience, priority. Consumed by promo bar, header, `/new-arrivals`, `/search`. Unverified entries stay `draft` and render nowhere |
+| Product card | `SHIPPED` | Hover/focus swap to a second image ONLY where a real one exists; Quick view trigger where the grid carries overlays |
+| Quick view | `SHIPPED` | `:target` overlay per product on category, new-arrivals and search grids — media, description, sizes, availability, View product. Close returns to the card anchor. Zero JS |
+| Mobile filters | `SHIPPED` | Filter & sort trigger opens the facet panel as a full-height `:target` sheet under 62rem; applying the form drops the fragment and closes it. Desktop rail unchanged |
+| `/wholesale/apply` | `SHIPPED` | Four steps (store → credentials → buying profile → review) with visible progress, httpOnly draft cookie between steps, masked tax-ID review, terms confirmation. Field truth from the live registration form (customer type, referral, shows attended); the 25-field single page becomes four small screens |
+| `/wholesale/apply/received` | `SHIPPED` | Designed received state: what happens next, in order, with the verified approval timing |
+| House Guide | `SHIPPED` | Bottom-right `<details>` help entry — find-it links, wholesale links, verified contact. Honest: no fake AI, no invented response times |
+| PDP | `PASS` | Buying column sticky on desktop; accordions and gallery unchanged |
+| Footer | `PASS` | Discover column, verified contact details added |
+
+Structural tests extended: four-step application per-step labels, search-as-GET-form,
+quick-view-in-HTML. Visual baselines re-recorded 2026-08-07 after the intentional chrome
+change (delete-and-rerun — update-snapshots does not re-record passing shots).
+
+### `/mens` — the demonstration rack `SHIPPED` (2026-08-07, second pass)
+
+Rebuilt from the honesty page into the Frontier House demonstration: ten fixture products
+across Denim / Shirts / Outerwear / Accessories, built from the owner-dropped reference
+photographs in `public/Men wear/` (46 unique frames, grouped by eye from a generated
+contact sheet). Same live mechanics as the store — cards, hover swap where a second frame
+exists, `:target` quick views with thumbnail angles, zero JavaScript.
+
+Honesty boundary, in force:
+- Demo products live in `src/fixtures/mens-demo.ts`, OUTSIDE the catalogue — no
+  repository, search, facet, sitemap or product route touches them (D-03).
+- No price in any form. Sizes are labelled fixture runs. Descriptions state only what the
+  photographs show.
+- Boots occur only inside two labelled campaign frames — footwear is not a demo category.
+- Reference imagery is flagged on-page as pending replacement (D-09); several sources are
+  400px thumbnails despite 2000px filenames, and the import script
+  (`scripts/import-mens-demo.mjs`) never upscales.
+- Page is `noindex` and absent from the sitemap.
+
+Also fixed in this pass: the new overlay entrances (quick view, facet sheet, nav panels,
+House Guide) animate **transform only** — an opacity entrance leaves content invisible for
+as long as a frozen timeline keeps the animation at its first frame, which §8.7 forbids.
+
+---
+
+## 2026-08-07 density pass — the media the pages were starving for
+
+The owner's verdict on the previous state was blunt: not attractive, reads as if no
+photography exists. The finding on inspection: the hero and buckle films were DELIVERED
+on 2026-08-03 and already wired (promo/hero band plays them); the flatness lived below
+the fold — three empty "film slot" boxes, one campaign plate recycled into every grid
+break, imageless category tiles, a text-only warehouse teaser.
+
+What changed, all from assets already on disk:
+
+| Surface | Before | Now |
+| :--- | :--- | :--- |
+| Campaign plates | 2 published of 112 mirrored | **28 published** — curated by eye (MATERIAL / HARDWARE / PLACE / MAKING only, §12 rules in `manifest.json` per plate), imported via `scripts/import-campaign-plates.mjs` |
+| Grid breaks | Same plate every 12 products | Rotation through 8 macros |
+| Homepage motion band | 3 empty labelled slots | **The Register** — cinema / land / warehouse triptych, captioned campaign imagery. Static by design: references Ken-Burns nothing, and drift would re-enter WCAG 2.2.2 |
+| Category tiles + shop banners | Empty when no owner photo | Cleared material plates as fallback (denim / snap / buckle) |
+| Warehouse teaser | Dark text panel | The aisle plate behind the invitation at 38% |
+| Search landing | Text columns | Material strip above the starting points |
+| `/mens` | Photo rack only | **The reference film** — owner-dropped 1080p footage, click-to-play (`preload="none"`, native controls, poster grabbed from frame 1.5s), fixture-captioned. Focus ring added to the player (caught by the keyboard suite) |
+
+Weight: plates ship as AVIF/WebP srcsets; per-page cost is the few frames a viewport
+actually pulls. The 4.8 MB film costs zero bytes until clicked.
+
+Baselines re-recorded 2026-08-07 (third pass). Media requests that remain owner-supply:
+garment motion clips for the register band, ≥1600px catalogue photography, category
+photography (D-09 licensing decision for everything generated or reference).

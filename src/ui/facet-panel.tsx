@@ -71,7 +71,16 @@ export function FacetPanel({
   const hasFilters = appliedChips.length > 0
 
   return (
-    <div className="facet-panel">
+    /*
+      `id` + `tabIndex` make the panel a `:target` destination: on phones the "Filter &
+      sort" trigger opens it as a full-height sheet with no JavaScript, and Close returns
+      to the grid anchor. On desktop the same element is the ordinary rail and the sheet
+      CSS never applies.
+    */
+    <div className="facet-panel" id="facets" tabIndex={-1}>
+      <a className="facet-panel__close" href="#products">
+        Close<span className="visually-hidden"> filters and return to results</span>
+      </a>
       <form method="get" action={action}>
         <h2 className="eyebrow">
           Filter

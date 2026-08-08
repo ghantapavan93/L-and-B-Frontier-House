@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { liveProgramming } from '@/content/programming'
 import { getFacets, listPublicProducts } from '@/data/catalog-repository'
 import type { ProductQuery } from '@/data/adapters/commerce-adapter'
 import { FacetPanel } from '@/ui/facet-panel'
@@ -24,23 +25,35 @@ export default async function NewArrivalsPage({
 }) {
   const params = await searchParams
   const applied = readFacetParams(params)
+  const appliedCount = [
+    applied.sizeRange,
+    applied.availability,
+    applied.fabric,
+    applied.detail,
+  ].filter(Boolean).length
   const query: ProductQuery = { ...toProductQuery(applied), sort: 'newest' }
 
   const [products, facets] = await Promise.all([listPublicProducts(query), getFacets()])
   const withArrivalDate = products.filter((p) => p.newArrivalOn !== undefined)
+  const drop = liveProgramming('drop')[0]
 
   return (
     <div className="container section">
       <p className="eyebrow">The drop</p>
-      <h1>New arrivals</h1>
+      <h1>{drop ? drop.title : 'New arrivals'}</h1>
       <p>
-        Everything published most recently, newest first. Sign in for your pricing and pack
-        breakdowns.
+        {drop?.statement ?? 'Everything published most recently, newest first.'} Sign in for
+        your pricing and pack breakdowns.
       </p>
 
       <FixtureNotice detail={false} />
 
-      <div className="layout-with-facets" style={{ marginTop: 'var(--space-6)' }}>
+      <a className="facet-trigger" href="#facets">
+        Filter &amp; sort
+        {appliedCount > 0 ? ` (${appliedCount})` : ''}
+      </a>
+
+      <div className="layout-with-facets" id="products" style={{ marginTop: 'var(--space-6)' }}>
         <FacetPanel
           action="/new-arrivals"
           facets={facets}
@@ -49,6 +62,7 @@ export default async function NewArrivalsPage({
         />
         <ProductGrid
           products={withArrivalDate}
+          quickView
           emptyMessage="No new arrivals match these filters. Clear them to see everything."
         />
       </div>

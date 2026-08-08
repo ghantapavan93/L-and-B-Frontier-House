@@ -201,16 +201,24 @@ describe('empty, error and denial states', () => {
 })
 
 describe('forms work without JavaScript', () => {
-  it('renders the application form with labelled, required fields', async () => {
-    const { body } = await get('/wholesale/apply')
-
-    expect(body).toMatch(/<form[^>]*>/)
-    for (const field of ['retailerName', 'city', 'region', 'salesTaxId', 'email']) {
-      expect(body, `missing field ${field}`).toContain(`name="${field}"`)
-      expect(body, `missing label for ${field}`).toContain(`for="${field}"`)
+  it('renders the four-step application with labelled, required fields per step', async () => {
+    // The application is four small steps; each step's fields stay labelled server HTML.
+    const stepFields: Record<string, string[]> = {
+      '1': ['retailerName', 'buyerName', 'email'],
+      '2': ['salesTaxId', 'region', 'city'],
     }
-    expect(body).toContain('<fieldset')
-    expect(body).toContain('<legend')
+    for (const [step, fields] of Object.entries(stepFields)) {
+      const { body } = await get(`/wholesale/apply?step=${step}`)
+      expect(body).toMatch(/<form[^>]*>/)
+      for (const field of fields) {
+        expect(body, `missing field ${field} on step ${step}`).toContain(`name="${field}"`)
+        expect(body, `missing label for ${field} on step ${step}`).toContain(`for="${field}"`)
+      }
+      expect(body).toContain('<fieldset')
+      expect(body).toContain('<legend')
+      // Visible progress — the step indicator is server HTML too.
+      expect(body).toContain('aria-current="step"')
+    }
   })
 
   it('renders the facet panel as a GET form with labelled controls', async () => {
@@ -227,5 +235,26 @@ describe('forms work without JavaScript', () => {
 
     expect(status).toBe(200)
     expect(body).toContain('Extended sizing')
+  })
+})
+
+describe('search and quick view are server HTML', () => {
+  it('search is a GET form whose results render without JavaScript', async () => {
+    const empty = await get('/search')
+    expect(empty.body).toMatch(/<form[^>]+action="\/search"[^>]+method="get"/)
+    expect(empty.body).toContain('for="search-q"')
+
+    const { body } = await get('/search?q=denim')
+    // Server-rendered results: at least one product link in the response bytes.
+    expect(body).toContain('/product/')
+    expect(body).toMatch(/styles? match/)
+  })
+
+  it('quick view overlays ship in listing HTML and are :target-driven', async () => {
+    const { body } = await get('/shop/women')
+    expect(body).toContain('id="qv-')
+    expect(body).toContain('href="#qv-')
+    // Close returns to the card anchor, so scroll position survives.
+    expect(body).toContain('href="#p-')
   })
 })

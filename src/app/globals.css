@@ -454,6 +454,12 @@ svg {
   color: var(--text-meta-on-inverse);
 }
 
+/* One long unbroken token (the contact email) must wrap, not push the page wide. */
+.site-footer a,
+.house-guide__panel a {
+  overflow-wrap: anywhere;
+}
+
 .site-footer__list {
   list-style: none;
   margin: 0;
@@ -1119,6 +1125,7 @@ legend {
   inside their range anyway — taller and narrower than what we had.
 */
 .product-card__media {
+  display: block; /* the demo rack mounts this on a <span> */
   position: relative;
   aspect-ratio: 2 / 3;
   background: var(--surface-raised);
@@ -4247,6 +4254,8 @@ tfoot td {
 /* ---- The homepage door ---- */
 
 .warehouse-teaser {
+  position: relative;
+  overflow: hidden;
   background:
     radial-gradient(80% 100% at 20% 0%, #1a150f 0%, transparent 60%), var(--color-ink);
   color: var(--text-on-inverse);
@@ -4256,6 +4265,23 @@ tfoot td {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
+}
+
+/* The aisle behind the invitation — dimmed so the type stays the subject. */
+.warehouse-teaser__media {
+  position: absolute;
+  inset: 0;
+  opacity: 0.38;
+}
+
+.warehouse-teaser__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.warehouse-teaser > :not(.warehouse-teaser__media) {
+  position: relative;
 }
 
 .warehouse-teaser h2 {
@@ -4280,4 +4306,757 @@ tfoot td {
 .warehouse-teaser :focus-visible {
   outline: var(--focus-ring-width) solid var(--color-sandstone);
   outline-offset: var(--focus-ring-offset);
+}
+
+/* ==========================================================================
+   PROGRAMMING — promo bar
+
+   One quiet line above the header, from the merchandising calendar. It scrolls
+   away with the page: announcements are not chrome.
+   ========================================================================== */
+
+.promo-bar {
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  padding: var(--space-2) var(--margin-mobile);
+  text-align: center;
+}
+
+.promo-bar__line {
+  margin: 0;
+  font-size: var(--label-caps);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-bar__line a {
+  color: var(--text-meta-on-inverse);
+  min-height: var(--target-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Grouped navigation — DISCOVER and TRADE as native <details> panels
+
+   The useful part of a mega menu (grouping and one line of context) without
+   the novelty. Click/Enter to open, same to close; zero JavaScript.
+   ========================================================================== */
+
+.nav-group-label {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  margin: var(--space-4) 0 var(--space-1);
+}
+
+/*
+  Entrance for the new overlay surfaces: TRANSFORM ONLY, never opacity. An opacity
+  entrance leaves content invisible for as long as the animation has not run — and a
+  frozen timeline (hidden tab, prerender, energy-saver pause) means "forever". A failed
+  animation must never hide a product (CLAUDE.md section 8), so these settle visible by
+  construction.
+*/
+@keyframes rise-in {
+  from {
+    transform: translateY(12px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.nav-drop {
+  position: relative;
+}
+
+.nav-drop > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--target-min);
+}
+
+.nav-drop > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-drop > summary::after {
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-0.1em);
+}
+
+.nav-drop[open] > summary {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.nav-drop[open] > summary::after {
+  transform: rotate(-135deg) translateY(-0.1em);
+}
+
+.nav-drop__panel {
+  position: absolute;
+  top: calc(100% + var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-overlay);
+  display: flex;
+  gap: var(--space-7);
+  min-width: 18rem;
+  text-align: left;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--shadow-ambient);
+  padding: var(--space-5) var(--space-6);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-drop[open] .nav-drop__panel {
+    animation: rise-in var(--duration-fast) var(--ease-entrance);
+  }
+}
+
+.nav-drop__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+  white-space: nowrap;
+}
+
+.nav-drop__list a {
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.nav-drop__list--plain {
+  gap: var(--space-2);
+}
+
+.nav-drop__note {
+  margin: 2px 0 0;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--color-text-meta);
+  white-space: nowrap;
+}
+
+.nav-drop__aside {
+  border-left: 1px solid var(--rule);
+  padding-left: var(--space-6);
+}
+
+.nav-drop__aside .nav-group-label {
+  margin-top: 0;
+}
+
+/* Header search — a real GET form, quiet until focused. */
+.header-search {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.header-search input[type='search'] {
+  width: 8.5rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  background: transparent;
+  padding: var(--space-1) 0;
+  font-size: var(--text-xs);
+  transition: width var(--duration-fast) var(--ease-entrance);
+}
+
+.header-search input[type='search']:focus {
+  width: 12rem;
+  border-bottom-color: var(--color-ink);
+}
+
+/* Group labels inside the mobile menu panel. */
+.nav-disclosure__panel .nav-group-label {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-3);
+  margin: var(--space-3) 0 0;
+}
+
+.nav-disclosure__panel .nav-group-label:first-child {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   Product card — honest hover swap and quick view trigger
+   ========================================================================== */
+
+.product-card__swap {
+  position: relative;
+  display: block;
+}
+
+.product-card__alt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-entrance);
+}
+
+.product-card__link:hover .product-card__alt,
+.product-card__link:focus-visible .product-card__alt {
+  opacity: 1;
+}
+
+.product-card__quick {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  margin-top: var(--space-1);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  text-decoration: none;
+}
+
+.product-card__quick:hover {
+  text-decoration: underline;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Quick view — the sheet-story mechanism pointed at the grid
+
+   `:target` is the whole state machine. Close returns to the card's anchor so
+   scroll position survives. No JavaScript, so it cannot fail closed.
+   ========================================================================== */
+
+.quick-view {
+  display: none;
+}
+
+.quick-view:target {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+}
+
+.quick-view__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(10 10 10 / 0.5);
+}
+
+.quick-view__panel {
+  position: relative;
+  margin: min(8vh, 80px) auto 0;
+  width: min(56rem, calc(100vw - 2 * var(--margin-mobile)));
+  max-height: min(84vh, 52rem);
+  overflow: auto;
+  background: var(--surface-page);
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--shadow-ambient);
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .quick-view:target .quick-view__panel {
+    animation: rise-in var(--duration-base) var(--ease-entrance);
+  }
+}
+
+@media (min-width: 62rem) {
+  .quick-view__panel {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+    gap: var(--space-7);
+    padding: var(--space-6);
+  }
+}
+
+.quick-view__media {
+  max-width: 24rem;
+}
+
+.quick-view__media img {
+  width: 100%;
+  height: auto;
+}
+
+/* Remaining angles inside a quick view — small, honest, no lightbox machinery. */
+.quick-view__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.quick-view__thumbs img {
+  width: 5rem;
+  height: auto;
+}
+
+.quick-view__copy {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  align-content: start;
+}
+
+.quick-view__copy h3 {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.quick-view__copy p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Filters on a phone — a full-height sheet, driven by `:target`
+
+   The trigger is a plain anchor; applying the form drops the fragment so the
+   sheet closes itself on submit. Desktop keeps the ordinary rail and never
+   sees any of this.
+   ========================================================================== */
+
+.facet-trigger {
+  display: none;
+}
+
+.facet-panel__close {
+  display: none;
+}
+
+@media (max-width: 61.99rem) {
+  .facet-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    margin-top: var(--space-4);
+    border: 1px solid var(--color-ink);
+    font-size: var(--text-2xs);
+    font-weight: var(--label-caps-weight);
+    letter-spacing: var(--label-caps-tracking);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .facet-panel {
+    display: none;
+  }
+
+  .facet-panel:target {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--surface-page);
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: calc(var(--space-5) + var(--safe-top)) var(--margin-mobile)
+      calc(var(--space-8) + var(--safe-bottom));
+  }
+
+  .facet-panel__close {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    float: right;
+    font-size: var(--text-2xs);
+    font-weight: var(--label-caps-weight);
+    letter-spacing: var(--label-caps-tracking);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+}
+
+@media (max-width: 61.99rem) and (prefers-reduced-motion: no-preference) {
+  .facet-panel:target {
+    animation: rise-in var(--duration-base) var(--ease-entrance);
+  }
+}
+
+/* ==========================================================================
+   Trade access — the four-step application
+   ========================================================================== */
+
+.apply-progress {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+.apply-progress li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.apply-progress__n {
+  font-family: var(--font-mono);
+}
+
+.apply-progress li[aria-current='step'] {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+  text-decoration-thickness: 2px;
+}
+
+.apply-progress .apply-progress__done {
+  color: var(--color-chip-text);
+}
+
+.apply-form {
+  margin-top: var(--space-6);
+  max-width: 40rem;
+}
+
+.apply-unlocks {
+  margin-top: var(--space-6);
+}
+
+.apply-unlocks__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.apply-unlocks__list li {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-3);
+}
+
+.field__optional {
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--color-text-meta);
+  font-weight: 400;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+  font-size: var(--text-sm);
+}
+
+.choice input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-tobacco);
+}
+
+/* Application received — the numbered promise. */
+.received-steps {
+  list-style: none;
+  counter-reset: received;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  max-width: 40rem;
+}
+
+.received-steps li {
+  counter-increment: received;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-5);
+}
+
+.received-steps li::before {
+  content: counter(received, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-chip-text);
+  padding-top: 0.3em;
+}
+
+.received-steps h2 {
+  font-size: var(--headline-md);
+  margin: 0 0 var(--space-1);
+}
+
+/* ==========================================================================
+   Search page
+   ========================================================================== */
+
+.search-page__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 var(--space-5);
+  max-width: 40rem;
+}
+
+.search-page__form input[type='search'] {
+  flex: 1 1 16rem;
+  font-size: var(--body-lg);
+  padding: var(--space-3) 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-ink);
+  background: transparent;
+}
+
+.search-starts {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .search-starts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.search-starts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.search-starts__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+/* ==========================================================================
+   House Guide — the honest help entry, bottom right
+   ========================================================================== */
+
+.house-guide {
+  position: fixed;
+  right: calc(var(--margin-mobile) + var(--safe-right));
+  bottom: calc(var(--margin-mobile) + var(--safe-bottom));
+  z-index: var(--z-sticky);
+}
+
+.house-guide > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-ambient);
+}
+
+.house-guide > summary::-webkit-details-marker {
+  display: none;
+}
+
+.house-guide__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--text-meta-on-inverse);
+  border-radius: var(--radius-full); /* pearl-snap hardware */
+  font-family: var(--font-display);
+}
+
+.house-guide__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--space-3));
+  width: min(20rem, calc(100vw - 2 * var(--margin-mobile)));
+  max-height: min(70vh, 34rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--shadow-ambient);
+  padding: var(--space-5);
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .house-guide[open] .house-guide__panel {
+    animation: rise-in var(--duration-fast) var(--ease-entrance);
+  }
+}
+
+.house-guide__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+}
+
+.house-guide__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+@media print {
+  .house-guide {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   The register — three campaign frames where the empty film slots stood
+   ========================================================================== */
+
+.register-band {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 62rem) {
+  .register-band {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+}
+
+.register-band__cell {
+  margin: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
+  box-shadow:
+    0 1px 2px rgb(26 22 18 / 0.04),
+    0 12px 28px -12px rgb(26 22 18 / 0.16);
+}
+
+.register-band__cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.register-band__caption {
+  padding: var(--space-2) var(--space-1) var(--space-1);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+/* Search landing — the material strip above the starting points. */
+.search-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.search-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+/* The reference film block on the demonstration page. */
+.mens-film {
+  margin: 0;
+  max-width: 56rem;
+}
+
+.mens-film video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--color-ink);
+  border: 1px solid var(--rule-strong);
+}
+
+/*
+  A player is a control: it takes keyboard focus, so it owes a visible ring. Plain
+  `:focus`, deliberately — tabbing through the player's native controls keeps the <video>
+  host as the active element, and the host does not reliably match `:focus-visible` while
+  its shadow controls cycle. A media player wearing its ring on mouse focus too is the
+  lesser cost.
+*/
+.mens-film:focus-within video {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.mens-film figcaption {
+  margin-top: var(--space-2);
+}
+
+/* ==========================================================================
+   PDP — the buying column stays reachable while the gallery scrolls
+   ========================================================================== */
+
+@media (min-width: 62rem) {
+  .pdp > .stack {
+    position: sticky;
+    top: calc(9rem + var(--safe-top));
+  }
 }

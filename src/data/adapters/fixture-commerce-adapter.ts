@@ -150,6 +150,7 @@ export class FixtureCommerceAdapter implements CommerceAdapter {
           postalCode: '—',
           country: 'US',
         },
+        ...(application.storeUrl ? { website: application.storeUrl } : {}),
       },
       salesTaxId: { value: application.salesTaxId, verified: false },
       status: 'pending',

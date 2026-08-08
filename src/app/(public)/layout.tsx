@@ -1,3 +1,5 @@
+import { HouseGuide } from '@/ui/house-guide'
+import { PromoBar } from '@/ui/promo-bar'
 import { SiteFooter } from '@/ui/site-footer'
 import { SiteHeader } from '@/ui/site-header'
 
@@ -18,11 +20,13 @@ import { SiteHeader } from '@/ui/site-header'
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <PromoBar />
       <SiteHeader />
       <main id="main" className="page-main" tabIndex={-1}>
         {children}
       </main>
       <SiteFooter />
+      <HouseGuide />
     </>
   )
 }

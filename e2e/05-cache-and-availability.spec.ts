@@ -27,15 +27,21 @@ test.describe('public output does not vary by session', () => {
   }) => {
     // Compares the raw server response, not the hydrated DOM: the response body is what a
     // cache would store and replay to the wrong person.
+    /*
+      The received page greets the applicant by store name, so it varies by session BY
+      DESIGN — it is a dynamic route the framework serves no-store, never from a shared
+      cache. Every other public route must stay byte-identical.
+    */
+    const byteIdentical = PUBLIC_ROUTES.filter((r) => r !== '/wholesale/apply/received')
     const anonymous = new Map<string, string>()
-    for (const route of PUBLIC_ROUTES) {
+    for (const route of byteIdentical) {
       anonymous.set(route, await (await context.request.get(route)).text())
     }
 
     await signIn(page, BUYERS.approved)
     expect((await context.cookies()).some((c) => c.name === 'lb_session')).toBe(true)
 
-    for (const route of PUBLIC_ROUTES) {
+    for (const route of byteIdentical) {
       const authenticated = await (await context.request.get(route)).text()
       expect(authenticated, `${route} changed once a buyer signed in`).toBe(
         anonymous.get(route),

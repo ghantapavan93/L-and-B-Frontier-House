@@ -144,6 +144,8 @@ test.describe('focus order follows the page', () => {
         const el = document.activeElement
         if (!el) return 'none'
         if (el.closest('.skip-link')) return 'skip'
+        // The announcement line above the header is chrome, not content.
+        if (el.closest('.promo-bar')) return 'header'
         if (el.closest('header')) return 'header'
         if (el.closest('main')) return 'main'
         if (el.closest('footer')) return 'footer'
@@ -228,21 +230,46 @@ test.describe('every Phase 1 control is keyboard operable', () => {
   test('the buyer application completes with the keyboard only', async ({ page }) => {
     await page.goto('/wholesale/apply')
 
+    // Step 1: store name → your name → email → phone (optional) → Continue.
     await page.getByLabel('Store name').focus()
     await page.keyboard.type('Keyboard Fixture Store')
     await page.keyboard.press('Tab')
-    await page.keyboard.type('Fort Worth')
-    await page.keyboard.press('Tab')
-    await page.keyboard.type('TX')
-    await page.keyboard.press('Tab')
-    await page.keyboard.type('FIXTURE-KEYBOARD-0001')
+    await page.keyboard.type('Keyboard Buyer')
     await page.keyboard.press('Tab')
     await page.keyboard.type('keyboard@fixture.test')
     await page.keyboard.press('Tab')
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/step=2/)
+
+    // Step 2: tax ID → state → city → storefront radio → store URL → Continue.
+    await page.getByLabel('Sales tax ID').focus()
+    await page.keyboard.type('FIXTURE-KEYBOARD-0001')
+    await page.keyboard.press('Tab')
+    await page.keyboard.type('TX')
+    await page.keyboard.press('Tab')
+    await page.keyboard.type('Fort Worth')
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/step=3/)
+
+    // Step 3 is optional throughout — straight to review.
+    await page.getByRole('button', { name: 'Continue — review' }).focus()
+    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/step=4/)
+
+    // Step 4: confirm terms with Space, submit with Enter.
+    await page.getByLabel(/buying for resale/).focus()
+    await page.keyboard.press('Space')
+    await page.getByRole('button', { name: 'Submit application' }).focus()
     await page.keyboard.press('Enter')
 
-    await expect(page).toHaveURL('/trade')
-    await expect(page.getByRole('heading', { name: 'We have your application' })).toBeVisible()
+    await expect(page).toHaveURL('/wholesale/apply/received')
+    await expect(
+      page.getByRole('heading', { name: /Received, Keyboard Fixture Store/ }),
+    ).toBeVisible()
   })
 
   /**
@@ -332,7 +359,8 @@ test.describe('every Phase 1 control is keyboard operable', () => {
     await page.getByRole('link', { name: 'Clear' }).focus()
     await page.keyboard.press('Enter')
     await expect(page).toHaveURL('/shop/girls')
-    await expect(page.getByRole('link', { name: /Ranch Ruffle Short/ })).toBeVisible()
+    // The card link and its quick-view trigger both carry the product name; target the card.
+    await expect(page.locator('.product-card__link', { hasText: 'Ranch Ruffle' })).toBeVisible()
   })
 
   test('authorised surfaces keep visible focus on every control', async ({ page }) => {

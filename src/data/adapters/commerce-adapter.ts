@@ -36,6 +36,22 @@ export type BuyerApplication = {
   readonly salesTaxId: string
   readonly city: string
   readonly region: string
+  /**
+   * Buying-profile detail from the four-step application. Optional throughout: the live
+   * business asks for all of this on one page (measured 2026-08-07 — customer type,
+   * socials, shows attended, referral source), and the real adapter will want it, but
+   * approval never hinges on it. The fixture adapter persists what `Buyer` can hold and
+   * drops the rest.
+   */
+  readonly buyerName?: string
+  readonly phone?: string
+  readonly storefront?: 'physical' | 'online' | 'both'
+  readonly storeUrl?: string
+  readonly styleProfile?: readonly string[]
+  readonly categoriesOfInterest?: readonly string[]
+  readonly showsAttended?: string
+  readonly referralSource?: string
+  readonly notes?: string
 }
 
 export type AddLineInput = {

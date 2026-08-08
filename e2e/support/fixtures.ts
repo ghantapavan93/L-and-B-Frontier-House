@@ -36,6 +36,8 @@ export const PUBLIC_ROUTES = [
   '/size-and-fit/women',
   '/wholesale',
   '/wholesale/apply',
+  '/wholesale/apply/received',
+  '/search',
   '/sign-in',
 ] as const
 

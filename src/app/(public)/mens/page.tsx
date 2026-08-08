@@ -1,43 +1,156 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { navigableCategories } from '@/domain/taxonomy'
+import {
+  MENS_DEMO_CAMPAIGN,
+  MENS_DEMO_CATEGORIES,
+  MENS_DEMO_PRODUCTS,
+} from '@/fixtures/mens-demo'
+import type { DemoImage, DemoProduct } from '@/fixtures/mens-demo'
 
 /**
- * MENSWEAR — a designed, gated, unpopulated surface.
+ * MEN'S — the Frontier House demonstration surface.
  *
- * This route exists because the question is real: `FOR HIM` appears in five places across
- * the design corpus, buyers ask about coordinated men's product, and someone searching for
- * it deserves to land somewhere truthful rather than on a 404 or, far worse, on a rack of
- * garments that do not exist.
+ * D-03 remains the owner's decision, and this page's job is to make that decision
+ * tangible without turning into a capability claim. The rules that keep it honest:
  *
- * What it must never become is a capability claim. Menswear is not part of the line
- * (CLAUDE.md §11, D-03) and the corpus's men's pieces — the $850 boot, the "Men's
- * Collection" row — are fiction inherited from V1's storyboard and never re-examined. So
- * this page carries:
+ *   - Everything renders from `fixtures/mens-demo`, which lives OUTSIDE the catalogue:
+ *     no repository, no search, no facets, no sitemap entry, no product routes.
+ *   - The page says what it is in the first line, and the fixture flag is unmissable.
+ *   - No price appears in any form. Sizes are labelled fixture runs.
+ *   - The photography is reference imagery the owner dropped in for direction; it is
+ *     replaced by owned photography before anything ships (D-09), and the page says so.
+ *   - Boots appear only inside campaign frames — footwear is not a demo category.
+ *   - `noindex`: a demonstration is for the owner and the room, not for search engines.
  *
- *   no product, no price, no size, no pack, no photograph of a garment,
- *   no launch date, no countdown, no "coming soon",
- *   and no email capture.
- *
- * That last omission is the deliberate one. A notify-me field is a promise with a form
- * attached: it tells a visitor the thing is coming and banks their address against it. D-03
- * is unresolved and may well resolve as "never" — the verified replacement for that slot is
- * Girls, which already exists. Collecting interest in a product line the business has not
- * decided to make is the kind of small, reasonable-looking commitment that becomes an
- * obligation nobody chose.
- *
- * The page states the position and sends the visitor to what is real. When D-03 resolves in
- * favour of menswear, this becomes the flagship; if it resolves the other way, this file is
- * deleted and no customer was ever told otherwise.
+ * The mechanics are the same ones the live store runs — cards, hover swap where a second
+ * frame exists, `:target` quick views with zero JavaScript — so the demonstration is of a
+ * working shop, not a mockup.
  */
 export const metadata: Metadata = {
-  title: "Men's",
+  title: 'Men’s — the Frontier House demonstration',
   description:
-    'Lucky & Blessed makes western apparel for women, girls and accessories. A men’s line is not published.',
-  alternates: { canonical: '/mens' },
+    'A working demonstration of a future men’s line: fixture data, reference imagery, real mechanics. Not a published catalogue.',
+  robots: { index: false },
+}
+
+function MensImage({
+  image,
+  sizes = '(min-width: 62rem) 25vw, 50vw',
+  loading = 'lazy',
+}: {
+  image: DemoImage
+  sizes?: string
+  loading?: 'lazy' | 'eager'
+}) {
+  const { asset, alt } = image
+  return (
+    <picture>
+      <source type="image/avif" srcSet={asset.avifSrcSet} sizes={sizes} />
+      <source type="image/webp" srcSet={asset.webpSrcSet} sizes={sizes} />
+      <img
+        src={asset.poster}
+        alt={alt}
+        width={asset.intrinsicWidth}
+        height={asset.intrinsicHeight}
+        style={{ aspectRatio: `${asset.intrinsicWidth} / ${asset.intrinsicHeight}` }}
+        loading={loading}
+        decoding="async"
+      />
+    </picture>
+  )
+}
+
+function DemoCard({ product }: { product: DemoProduct }) {
+  const [face, swap] = product.media
+
+  return (
+    <article className="product-card">
+      {/* No product route exists for a demo entry — the card opens its quick view. */}
+      <a href={`#qvd-${product.slug}`} className="product-card__link">
+        {face ? (
+          swap ? (
+            <span className="product-card__swap">
+              <span className="product-card__media">
+                <MensImage image={face} />
+              </span>
+              <span aria-hidden="true" className="product-card__alt">
+                <span className="product-card__media">
+                  <MensImage image={swap} />
+                </span>
+              </span>
+            </span>
+          ) : (
+            <span className="product-card__media">
+              <MensImage image={face} />
+            </span>
+          )
+        ) : null}
+        <h3 className="product-card__name">{product.name}</h3>
+      </a>
+      <p className="product-card__spec">
+        {product.category} · {product.sizesNote}
+      </p>
+      <div className="badge-row">
+        <span className="badge badge--quiet">Demo fixture</span>
+      </div>
+    </article>
+  )
+}
+
+function DemoQuickView({ product }: { product: DemoProduct }) {
+  const [face, ...rest] = product.media
+
+  return (
+    <article
+      className="quick-view"
+      id={`qvd-${product.slug}`}
+      tabIndex={-1}
+      aria-label={`${product.name} — quick view`}
+    >
+      <a
+        className="quick-view__backdrop"
+        href={`#pd-${product.slug}`}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <div className="quick-view__panel">
+        <div className="quick-view__media">
+          {/*
+            Eager, deliberately: a lazy image inside a display:none overlay only starts
+            loading after :target reveals it, so a direct link to the hash opens onto a
+            blank column. The URL is the same one the card face uses, so this costs one
+            early fetch, not a duplicate.
+          */}
+          {face ? (
+            <MensImage image={face} sizes="(min-width: 62rem) 24rem, 90vw" loading="eager" />
+          ) : null}
+          {rest.length > 0 ? (
+            <div className="quick-view__thumbs">
+              {rest.map((image) => (
+                <MensImage key={image.asset.poster} image={image} sizes="8rem" />
+              ))}
+            </div>
+          ) : null}
+        </div>
+        <div className="quick-view__copy">
+          <p className="eyebrow">{product.category} · demo fixture</p>
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+          <p className="meta">{product.sizesNote}. No price exists for a demo entry.</p>
+          <div className="cluster">
+            <a href={`#pd-${product.slug}`} className="button button--secondary">
+              Close
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  )
 }
 
 export default function MensPage() {
+  const [gravel, bootPull] = MENS_DEMO_CAMPAIGN
+
   return (
     <div className="container section stack">
       <nav aria-label="Breadcrumb">
@@ -46,58 +159,134 @@ export default function MensPage() {
         </p>
       </nav>
 
-      <p className="eyebrow">The line</p>
-      <h1>We do not make a men&rsquo;s line.</h1>
-      <p className="lede">
-        Lucky &amp; Blessed designs and manufactures western apparel for women and girls, plus
-        accessories. There is no men&rsquo;s collection, and we would rather tell you that here
-        than let you find out at the end of a search.
-      </p>
+      <div>
+        <p className="eyebrow">Frontier House · demonstration</p>
+        <h1>The men&rsquo;s direction, made tangible.</h1>
+        <p className="lede">
+          Lucky &amp; Blessed sells women&rsquo;s, girls&rsquo; and accessories today. A
+          men&rsquo;s line is a decision the owner has not made — so this page is a working
+          demonstration of what that business could look like the day it is: the real shop
+          mechanics, on fixture data and reference imagery, with no price anywhere.
+        </p>
+      </div>
 
-      <section className="notice" aria-labelledby="honest-heading">
-        <p className="notice__title" id="honest-heading">
-          Why this page exists at all
+      <aside className="notice notice--fixture" aria-labelledby="mens-demo-notice">
+        <p className="notice__title" id="mens-demo-notice">
+          Demonstration only — fixture data, reference imagery
         </p>
         <p className="meta">
-          Men&rsquo;s appears in our own design references, and buyers ask about coordinated
-          product. Rather than show a rack that is not real, this page says plainly what the
-          line is. If that changes, this is where it will be — with product on it, not a
-          promise.
+          Nothing here is Lucky &amp; Blessed inventory. Names, sizes and availability are
+          development fixtures. The photographs are reference images supplied for direction —
+          several are small thumbnails — and are replaced by owned photography before anything
+          ships (D-09). No price exists on this surface in any form.
         </p>
+      </aside>
+
+      {MENS_DEMO_CATEGORIES.map((category) => {
+        const rack = MENS_DEMO_PRODUCTS.filter((p) => p.category === category)
+        if (rack.length === 0) return null
+        const headingId = `mens-${category.toLowerCase()}`
+        return (
+          <section key={category} aria-labelledby={headingId}>
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">The rack</p>
+                <h2 id={headingId}>{category}</h2>
+              </div>
+            </div>
+            <ul className="product-grid">
+              {rack.map((product) => (
+                <li key={product.slug} id={`pd-${product.slug}`}>
+                  <DemoCard product={product} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      })}
+
+      <section aria-labelledby="mens-film-heading">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">See it move</p>
+            <h2 id="mens-film-heading">The reference film</h2>
+            <p className="meta">
+              Dropped in with the photographs — plays on your click, never by itself. Reference
+              footage only, replaced by owned film before anything ships (D-09).
+            </p>
+          </div>
+        </div>
+        {/*
+          User-initiated playback: `preload="none"` so the 4.8 MB file costs nothing until
+          asked for, native controls because a click-to-play product film is a player, and
+          no autoplay — so WCAG 2.2.2 never engages. The poster is a frame of the film
+          itself, captured at import.
+        */}
+        <figure className="mens-film">
+          <video
+            controls
+            preload="none"
+            playsInline
+            poster="/media/mens-demo/reference-film-poster.webp"
+            width={1920}
+            height={1080}
+          >
+            <source src="/media/mens-demo/reference-film.mp4" type="video/mp4" />
+            Your browser cannot play this film. It is reference footage of denim in motion.
+          </video>
+          <figcaption className="meta">
+            Reference film · fixture — not Lucky &amp; Blessed footage
+          </figcaption>
+        </figure>
       </section>
 
-      <section aria-labelledby="real-heading" className="stack">
-        <h2 id="real-heading">What we do make</h2>
-        <ul className="cluster" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-          {navigableCategories().map((category) => (
-            <li key={category.slug}>
-              <Link href={`/shop/${category.slug}`} className="button button--secondary">
-                {category.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {gravel && bootPull ? (
+        <section aria-labelledby="mens-campaign-heading">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Campaign frames</p>
+              <h2 id="mens-campaign-heading">Context, not catalogue</h2>
+              <p className="meta">
+                Reference frames for the campaign register. Footwear appears here only as
+                styling — it is not a demo category and carries no product entry.
+              </p>
+            </div>
+          </div>
+          <div className="editorial-split">
+            <figure className="editorial-split__figure depth-far">
+              <MensImage image={gravel} sizes="(min-width: 62rem) 55vw, 100vw" />
+              <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
+            </figure>
+            <figure className="editorial-split__figure depth-far">
+              <MensImage image={bootPull} sizes="(min-width: 62rem) 40vw, 100vw" />
+              <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
+            </figure>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="panel" aria-labelledby="mens-next-heading">
+        <h2 className="eyebrow" id="mens-next-heading">
+          What this would take
+        </h2>
         <p className="meta">
-          Every one of these is a published category with real styles, real size ranges and real
-          pack structures.
+          Real SKUs, names, sizes, prepacks, wholesale terms and owned photography — none of
+          which exists yet. The mechanics on this page are the ones the store already runs, so
+          the day the owner decides, the rack fills rather than gets rebuilt.
         </p>
-      </section>
-
-      <section aria-labelledby="buyer-heading" className="stack">
-        <h2 id="buyer-heading">If you are a retailer</h2>
-        <p>
-          We sell to approved retailers. Terms are a $50 minimum, prepacks of 6 and a sales tax
-          ID, with approval typically in less than one business day.
-        </p>
-        <div className="cluster">
-          <Link href="/wholesale" className="button">
+        <div className="cluster" style={{ marginTop: 'var(--space-4)' }}>
+          <Link href="/wholesale" className="button button--secondary">
             How wholesale works
           </Link>
-          <Link href="/wholesale/apply" className="button button--secondary">
-            Apply for an account
+          <Link href="/shop/women" className="button button--secondary">
+            The line that ships today
           </Link>
         </div>
       </section>
+
+      {MENS_DEMO_PRODUCTS.map((product) => (
+        <DemoQuickView key={product.slug} product={product} />
+      ))}
     </div>
   )
 }

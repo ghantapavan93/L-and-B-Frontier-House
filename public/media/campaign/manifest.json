@@ -36,6 +36,446 @@
         "place-high-desert-480.avif",
         "place-high-desert-480.webp"
       ]
+    },
+    {
+      "slug": "leather-bench",
+      "sourcePlate": "plate--OnVgrCXbWXmRfYw.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MAKING. A workbench of material and tools; no person, no garment offered for sale, no claim of where or by whom. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A leatherworker’s bench covered in cut hides, tools and hardware",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "leather-bench-1408.avif",
+        "leather-bench-1408.webp",
+        "leather-bench-480.avif",
+        "leather-bench-480.webp",
+        "leather-bench-960.avif",
+        "leather-bench-960.webp"
+      ]
+    },
+    {
+      "slug": "tooled-leather",
+      "sourcePlate": "plate-0jPoMEhhtD2S7JnA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Tooled leather surface only — craft texture, no product, no price. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Floral hand-tooling carved into saddle-tan leather, photographed close",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "tooled-leather-1408.avif",
+        "tooled-leather-1408.webp",
+        "tooled-leather-480.avif",
+        "tooled-leather-480.webp",
+        "tooled-leather-960.avif",
+        "tooled-leather-960.webp"
+      ]
+    },
+    {
+      "slug": "indigo-thread",
+      "sourcePlate": "plate-2seOHmOtrnx3xk-g.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. A spool of thread; nothing offered for sale. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A wooden spool wound with indigo thread",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "indigo-thread-1408.avif",
+        "indigo-thread-1408.webp",
+        "indigo-thread-480.avif",
+        "indigo-thread-480.webp",
+        "indigo-thread-960.avif",
+        "indigo-thread-960.webp"
+      ]
+    },
+    {
+      "slug": "embossed-leather",
+      "sourcePlate": "plate-59ec8k39kJS_gYRg.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Embossed leather texture only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Concentric western tooling embossed into near-black leather",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "embossed-leather-1408.avif",
+        "embossed-leather-1408.webp",
+        "embossed-leather-480.avif",
+        "embossed-leather-480.webp",
+        "embossed-leather-960.avif",
+        "embossed-leather-960.webp"
+      ]
+    },
+    {
+      "slug": "denim-weave",
+      "sourcePlate": "plate-5nGTkWlNlZfscMBQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Denim weave macro — the North Star’s legible-weave image. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Heavyweight indigo denim, the twill line legible",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "denim-weave-1408.avif",
+        "denim-weave-1408.webp",
+        "denim-weave-480.avif",
+        "denim-weave-480.webp",
+        "denim-weave-960.avif",
+        "denim-weave-960.webp"
+      ]
+    },
+    {
+      "slug": "selvedge-beam",
+      "sourcePlate": "plate-7lZiJCgL-RCDu3sA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Denim and light; no garment, no claim. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A raking beam of light across dark denim weave",
+      "intrinsicWidth": 1376,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "selvedge-beam-1376.avif",
+        "selvedge-beam-1376.webp",
+        "selvedge-beam-480.avif",
+        "selvedge-beam-480.webp",
+        "selvedge-beam-960.avif",
+        "selvedge-beam-960.webp"
+      ]
+    },
+    {
+      "slug": "buckle-denim",
+      "sourcePlate": "plate-8pCfKpGiMZNgUUtw.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE. Buckle-and-denim still life consistent with the signature artifact; not a purchasable listing — no name, no price. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "An engraved silver buckle on worn leather over indigo denim",
+      "intrinsicWidth": 768,
+      "intrinsicHeight": 1376,
+      "renditions": [
+        "buckle-denim-480.avif",
+        "buckle-denim-480.webp",
+        "buckle-denim-768.avif",
+        "buckle-denim-768.webp"
+      ]
+    },
+    {
+      "slug": "hardware-bench",
+      "sourcePlate": "plate-I8Xun1NpegaGA7jQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MAKING. Hardware on a bench; no person, no product claim. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Rows of silver hardware laid out on a workbench",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "hardware-bench-1408.avif",
+        "hardware-bench-1408.webp",
+        "hardware-bench-480.avif",
+        "hardware-bench-480.webp",
+        "hardware-bench-960.avif",
+        "hardware-bench-960.webp"
+      ]
+    },
+    {
+      "slug": "longhorn-buckle",
+      "sourcePlate": "plate-MD9QplUIvZBJMh7A.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE. Western buckle still life. Accessories are a verified category, and the image carries no name, price or availability — atmosphere, not listing. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A longhorn buckle with turquoise points on a tooled belt over denim",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "longhorn-buckle-1408.avif",
+        "longhorn-buckle-1408.webp",
+        "longhorn-buckle-480.avif",
+        "longhorn-buckle-480.webp",
+        "longhorn-buckle-960.avif",
+        "longhorn-buckle-960.webp"
+      ]
+    },
+    {
+      "slug": "high-dunes",
+      "sourcePlate": "plate-Oq6inNPmh2jMUMRA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "PLACE. Landscape and light claim nothing. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Wind-carved dunes under low desert light",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "high-dunes-1408.avif",
+        "high-dunes-1408.webp",
+        "high-dunes-480.avif",
+        "high-dunes-480.webp",
+        "high-dunes-960.avif",
+        "high-dunes-960.webp"
+      ]
+    },
+    {
+      "slug": "pearl-snaps",
+      "sourcePlate": "plate-PcRtH72Y6thHTjJQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Snap hardware and thread — the verified pearl-snap motif as material. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Loose pearl snaps and a spool of thread on denim",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "pearl-snaps-1408.avif",
+        "pearl-snaps-1408.webp",
+        "pearl-snaps-480.avif",
+        "pearl-snaps-480.webp",
+        "pearl-snaps-960.avif",
+        "pearl-snaps-960.webp"
+      ]
+    },
+    {
+      "slug": "selvedge-stitch",
+      "sourcePlate": "plate-QN_UhW9FSphDL2dQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Seam macro only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A selvedge seam with contrast stitching, photographed close",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "selvedge-stitch-1408.avif",
+        "selvedge-stitch-1408.webp",
+        "selvedge-stitch-480.avif",
+        "selvedge-stitch-480.webp",
+        "selvedge-stitch-960.avif",
+        "selvedge-stitch-960.webp"
+      ]
+    },
+    {
+      "slug": "night-set",
+      "sourcePlate": "plate-QQYIQDfhi4DjzhXg.jpg",
+      "provenance": "generated-campaign",
+      "justification": "PLACE / CINEMA. A set being lit — the campaign register itself. Figures are distant, unidentifiable crew at work; nobody is presented as a person or ambassador (§12). Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A film crew lighting a wet street at night",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "night-set-1408.avif",
+        "night-set-1408.webp",
+        "night-set-480.avif",
+        "night-set-480.webp",
+        "night-set-960.avif",
+        "night-set-960.webp"
+      ]
+    },
+    {
+      "slug": "khaki-twill",
+      "sourcePlate": "plate-RrOla5d1dxOZNBxA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Twill macro only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Khaki cotton twill, the diagonal weave legible",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "khaki-twill-1408.avif",
+        "khaki-twill-1408.webp",
+        "khaki-twill-480.avif",
+        "khaki-twill-480.webp",
+        "khaki-twill-960.avif",
+        "khaki-twill-960.webp"
+      ]
+    },
+    {
+      "slug": "warehouse-aisle",
+      "sourcePlate": "plate-RsZY5uymg7ByrydQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "PLACE. Architecture and depth; nothing merchandised. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A high warehouse aisle receding in black and white",
+      "intrinsicWidth": 1376,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "warehouse-aisle-1376.avif",
+        "warehouse-aisle-1376.webp",
+        "warehouse-aisle-480.avif",
+        "warehouse-aisle-480.webp",
+        "warehouse-aisle-960.avif",
+        "warehouse-aisle-960.webp"
+      ]
+    },
+    {
+      "slug": "felt-hat",
+      "sourcePlate": "plate-XClfvNstZT7MaHoQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE/OBJECT. A single hat as still life. Accessories are verified; no name, size, price or availability is stated or implied. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A dark felt hat resting on boarded wood",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "felt-hat-1408.avif",
+        "felt-hat-1408.webp",
+        "felt-hat-480.avif",
+        "felt-hat-480.webp",
+        "felt-hat-960.avif",
+        "felt-hat-960.webp"
+      ]
+    },
+    {
+      "slug": "tan-belt",
+      "sourcePlate": "plate-ady6QXgSMAflOrxg.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE. Belt still life; accessories are verified; no listing data. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A saddle-tan belt coiled on a pale ground",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "tan-belt-1408.avif",
+        "tan-belt-1408.webp",
+        "tan-belt-480.avif",
+        "tan-belt-480.webp",
+        "tan-belt-960.avif",
+        "tan-belt-960.webp"
+      ]
+    },
+    {
+      "slug": "engraved-buckle",
+      "sourcePlate": "plate-fXPyV1pO4cUbfQvA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE. Buckle still life; no listing data. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "An engraved silver buckle standing on blackened wood",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "engraved-buckle-1408.avif",
+        "engraved-buckle-1408.webp",
+        "engraved-buckle-480.avif",
+        "engraved-buckle-480.webp",
+        "engraved-buckle-960.avif",
+        "engraved-buckle-960.webp"
+      ]
+    },
+    {
+      "slug": "rawhide-tools",
+      "sourcePlate": "plate-gOtTtfec7lTinRsw.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MAKING. Material and tools; no person, no claim. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Rawhide unrolled beside stitching tools",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "rawhide-tools-1408.avif",
+        "rawhide-tools-1408.webp",
+        "rawhide-tools-480.avif",
+        "rawhide-tools-480.webp",
+        "rawhide-tools-960.avif",
+        "rawhide-tools-960.webp"
+      ]
+    },
+    {
+      "slug": "denim-slub",
+      "sourcePlate": "plate-jMu9KfH-Wmkv0a8w.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Denim macro only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Washed denim weave, slubs legible",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "denim-slub-1408.avif",
+        "denim-slub-1408.webp",
+        "denim-slub-480.avif",
+        "denim-slub-480.webp",
+        "denim-slub-960.avif",
+        "denim-slub-960.webp"
+      ]
+    },
+    {
+      "slug": "rack-aisle",
+      "sourcePlate": "plate-q8NQ9SbVDhv8lD8g.jpg",
+      "provenance": "generated-campaign",
+      "justification": "PLACE. Racked garments read as environment, out of focus and unlisted — no individual garment is named, priced or offered. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A garment rack aisle receding in cool light",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "rack-aisle-1408.avif",
+        "rack-aisle-1408.webp",
+        "rack-aisle-480.avif",
+        "rack-aisle-480.webp",
+        "rack-aisle-960.avif",
+        "rack-aisle-960.webp"
+      ]
+    },
+    {
+      "slug": "saddle-stitch",
+      "sourcePlate": "plate-qw9G5DZy39J-WoMQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Stitching macro only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Saddle stitching along a leather edge, photographed close",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "saddle-stitch-1408.avif",
+        "saddle-stitch-1408.webp",
+        "saddle-stitch-480.avif",
+        "saddle-stitch-480.webp",
+        "saddle-stitch-960.avif",
+        "saddle-stitch-960.webp"
+      ]
+    },
+    {
+      "slug": "tooled-belt-rock",
+      "sourcePlate": "plate-smK8aPGxR10Y3kSQ.jpg",
+      "provenance": "generated-campaign",
+      "justification": "HARDWARE. Belt still life in landscape; no listing data. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A tooled belt with a silver buckle laid over weathered rock",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "tooled-belt-rock-1408.avif",
+        "tooled-belt-rock-1408.webp",
+        "tooled-belt-rock-480.avif",
+        "tooled-belt-rock-480.webp",
+        "tooled-belt-rock-960.avif",
+        "tooled-belt-rock-960.webp"
+      ]
+    },
+    {
+      "slug": "showroom-bench",
+      "sourcePlate": "plate-wXEVhzeFk-w80CiA.jpg",
+      "provenance": "generated-campaign",
+      "justification": "PLACE. Empty room and textile; nothing merchandised. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A woven blanket over a bench in an empty showroom",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "showroom-bench-1408.avif",
+        "showroom-bench-1408.webp",
+        "showroom-bench-480.avif",
+        "showroom-bench-480.webp",
+        "showroom-bench-960.avif",
+        "showroom-bench-960.webp"
+      ]
+    },
+    {
+      "slug": "snap-macro",
+      "sourcePlate": "plate-wntCegdQvJ_JaFew.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. The verified pearl-snap detail as macro. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "A mother-of-pearl snap set into indigo denim",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "snap-macro-1408.avif",
+        "snap-macro-1408.webp",
+        "snap-macro-480.avif",
+        "snap-macro-480.webp",
+        "snap-macro-960.avif",
+        "snap-macro-960.webp"
+      ]
+    },
+    {
+      "slug": "denim-blue",
+      "sourcePlate": "plate-yAcHZNNq9AKOypNw.jpg",
+      "provenance": "generated-campaign",
+      "justification": "MATERIAL. Denim macro only. Reviewed by eye on the 2026-08-07 contact sheet.",
+      "alt": "Bright indigo denim weave, photographed close",
+      "intrinsicWidth": 1408,
+      "intrinsicHeight": 768,
+      "renditions": [
+        "denim-blue-1408.avif",
+        "denim-blue-1408.webp",
+        "denim-blue-480.avif",
+        "denim-blue-480.webp",
+        "denim-blue-960.avif",
+        "denim-blue-960.webp"
+      ]
     }
   ]
 }

@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import { REGISTER_TRIPTYCH } from '@/content/media/campaign-plates'
 import type { PublicProduct } from '@/domain/product'
 import { primaryMedia } from '@/domain/product'
 import { MediaSlot } from './media-slot'
-import { ProductMedia } from './product-media'
+import { EditorialMedia, ProductMedia } from './product-media'
 
 /**
  * THIS WEEK — the spatial band. Five frames at five scales, entering from beyond the edges.
@@ -79,32 +80,42 @@ export function ThisWeekBand({ products }: { products: readonly PublicProduct[] 
 }
 
 /**
- * PRODUCT IN MOTION — three reserved film slots.
+ * THE REGISTER — the campaign triptych where the empty film slots stood.
  *
- * Double D Ranch's single strongest mechanism is nineteen short vertical garment clips on
- * one homepage. We have the container architecture and zero clips, so the band ships as
- * three labelled 9:16 slots at the exact dimensions the owner's footage should arrive in
- * (short, muted, portrait, one garment moving). The section explains itself rather than
- * shimmering, and the day clips exist they drop straight in.
+ * Double D Ranch's strongest mechanism is many short garment clips, and that band returns
+ * the day the owner's footage exists (the media request is recorded). Until then, three
+ * grey boxes labelled "film slot" were the single flattest moment on the page — reserved
+ * space read as missing content. The band now runs three cleared campaign plates instead:
+ * cinema, land, warehouse — the registers the house shoots in. Still imagery, deliberately:
+ * the references Ken-Burns nothing, and a drifting still would re-enter WCAG 2.2.2 for no
+ * gain. Every frame is captioned as campaign imagery (§12).
  */
 export function MotionClipBand() {
   return (
-    <section className="container section" aria-labelledby="motion-heading">
+    <section className="container section" aria-labelledby="register-heading">
       <div className="section-head">
         <div>
-          <p className="eyebrow">In motion</p>
-          <h2 id="motion-heading">Fabric moves. Photographs don&rsquo;t.</h2>
+          <p className="eyebrow">The register</p>
+          <h2 id="register-heading">Shot like a film. Run like a warehouse.</h2>
           <p className="meta">
-            Three film slots reserved for short garment clips — drape, walk, turn. Portrait, a
-            few seconds each, no sound.
+            The three rooms this house works in — the set, the land, the racks.
           </p>
         </div>
       </div>
 
-      <div className="motion-band">
-        <MediaSlot label="Garment in motion · film slot 01" aspectRatio="9 / 16" kind="video" />
-        <MediaSlot label="Garment in motion · film slot 02" aspectRatio="9 / 16" kind="video" />
-        <MediaSlot label="Garment in motion · film slot 03" aspectRatio="9 / 16" kind="video" />
+      <div className="register-band">
+        {REGISTER_TRIPTYCH.map((media, index) => (
+          <figure className="register-band__cell" key={media.id}>
+            <EditorialMedia
+              media={media}
+              sizes="(min-width: 62rem) 33vw, 100vw"
+              priority={false}
+            />
+            <figcaption className="register-band__caption">
+              {String(index + 1).padStart(2, '0')} · Campaign imagery
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   )

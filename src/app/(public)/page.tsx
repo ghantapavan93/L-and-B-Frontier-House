@@ -1,5 +1,10 @@
 import Link from 'next/link'
-import { MATERIAL_PLATE, PLACE_PLATE } from '@/content/media/campaign-plates'
+import {
+  atmospherePlate,
+  CATEGORY_TILE_FALLBACK,
+  MATERIAL_PLATE,
+  PLACE_PLATE,
+} from '@/content/media/campaign-plates'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
@@ -235,7 +240,11 @@ export default async function HomePage() {
           </div>
           <ul className="category-grid">
             {navigableCategories().map((category) => {
-              const tile = officialMediaForSlot(`category-${category.slug}`)
+              /* Owner photography when it exists; a cleared material plate until then —
+                 an imageless tile reads as a broken one, and material claims no garment. */
+              const tile =
+                officialMediaForSlot(`category-${category.slug}`) ??
+                CATEGORY_TILE_FALLBACK[category.slug]
               return (
                 <li key={category.slug}>
                   <article className="category-card">
@@ -262,6 +271,10 @@ export default async function HomePage() {
       {/* The door to the signature interaction: one aisle, every rack, native scroll. */}
       <section className="container section--tight" aria-labelledby="warehouse-heading">
         <div className="warehouse-teaser">
+          {/* The aisle itself, behind the invitation — a door you can see through. */}
+          <div className="warehouse-teaser__media" aria-hidden="true">
+            <EditorialMedia media={atmospherePlate('warehouse-aisle')} sizes="100vw" />
+          </div>
           <div>
             <p className="eyebrow" style={{ color: 'var(--text-meta-on-inverse)' }}>
               One aisle

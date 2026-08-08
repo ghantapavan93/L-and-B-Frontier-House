@@ -314,27 +314,51 @@ test.describe('session lifecycle', () => {
 })
 
 test.describe('buyer application', () => {
-  test('submits through the real form and lands in the pending state', async ({ page }) => {
+  test('submits through the four-step flow and lands in the received state', async ({
+    page,
+  }) => {
     await page.goto('/wholesale/apply')
 
+    // Step 1 — the store.
     await page.getByLabel('Store name').fill('Playwright Fixture Store')
-    await page.getByLabel('City').fill('Austin')
-    await page.getByLabel('State').fill('TX')
-    await page.getByLabel('Sales tax ID').fill('FIXTURE-APPLY-0001')
+    await page.getByLabel('Your name').fill('Playwright Buyer')
     await page.getByLabel('Email').fill('applicant@fixture.test')
+    await page.getByRole('button', { name: 'Continue — credentials' }).click()
+
+    // Step 2 — credentials.
+    await expect(page).toHaveURL(/step=2/)
+    await page.getByLabel('Sales tax ID').fill('FIXTURE-APPLY-0001')
+    await page.getByLabel('State').fill('TX')
+    await page.getByLabel('City').fill('Austin')
+    await page.getByRole('button', { name: 'Continue — buying profile' }).click()
+
+    // Step 3 — optional throughout; skipping it must be allowed.
+    await expect(page).toHaveURL(/step=3/)
+    await page.getByRole('button', { name: 'Continue — review' }).click()
+
+    // Step 4 — review masks the tax ID to its last four characters.
+    await expect(page).toHaveURL(/step=4/)
+    await expect(page.locator('body')).not.toContainText('FIXTURE-APPLY-0001')
+    await expect(page.getByText('•••• 0001')).toBeVisible()
+    await page.getByLabel(/buying for resale/).check()
     await page.getByRole('button', { name: 'Submit application' }).click()
 
-    await expect(page).toHaveURL('/trade')
-    await expect(page.getByRole('heading', { name: 'We have your application' })).toBeVisible()
-
+    // The designed received state, then the pending panel on the account page.
+    await expect(page).toHaveURL('/wholesale/apply/received')
+    await expect(
+      page.getByRole('heading', { name: /Received, Playwright Fixture Store/ }),
+    ).toBeVisible()
     // The submitted tax ID is never echoed back to the browser.
     await expect(page.locator('body')).not.toContainText('FIXTURE-APPLY-0001')
+
+    await page.goto('/trade')
+    await expect(page.getByRole('heading', { name: 'We have your application' })).toBeVisible()
   })
 
   test('shows a validation error without JavaScript state', async ({ page }) => {
     await page.goto('/wholesale/apply?error=missing')
     const alert = page.locator('.notice--error')
     await expect(alert).toBeVisible()
-    await expect(alert).toContainText('Every field below is required')
+    await expect(alert).toContainText('A required field on this step is empty')
   })
 })

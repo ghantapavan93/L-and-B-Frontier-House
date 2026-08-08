@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { CATEGORY_TILE_FALLBACK } from '@/content/media/campaign-plates'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { getFacets, listPublicProducts } from '@/data/catalog-repository'
 import { findRoutableCategory, routableCategories } from '@/domain/taxonomy'
@@ -51,11 +52,19 @@ export default async function CategoryPage({
   if (!category) notFound()
 
   const applied = readFacetParams(await searchParams)
+  const appliedCount = [
+    applied.sizeRange,
+    applied.availability,
+    applied.fabric,
+    applied.detail,
+  ].filter(Boolean).length
   const [products, facets] = await Promise.all([
     listPublicProducts({ ...toProductQuery(applied), categorySlug: category.slug }),
     getFacets(category.slug),
   ])
-  const banner = officialMediaForSlot(`category-${category.slug}`)
+  /* Owner photography when supplied; a cleared material plate until then. */
+  const banner =
+    officialMediaForSlot(`category-${category.slug}`) ?? CATEGORY_TILE_FALLBACK[category.slug]
 
   return (
     <div className="container section">
@@ -76,7 +85,12 @@ export default async function CategoryPage({
 
       <FixtureNotice detail={false} />
 
-      <div className="layout-with-facets" style={{ marginTop: 'var(--space-6)' }}>
+      <a className="facet-trigger" href="#facets">
+        Filter &amp; sort
+        {appliedCount > 0 ? ` (${appliedCount})` : ''}
+      </a>
+
+      <div className="layout-with-facets" id="products" style={{ marginTop: 'var(--space-6)' }}>
         <FacetPanel
           action={`/shop/${category.slug}`}
           facets={facets}
@@ -85,6 +99,7 @@ export default async function CategoryPage({
         />
         <ProductGrid
           products={products}
+          quickView
           emptyMessage={`No ${category.label.toLowerCase()} styles match these filters. Clear them to see everything in this category.`}
         />
       </div>

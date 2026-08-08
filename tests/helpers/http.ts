@@ -30,6 +30,9 @@ export const PUBLIC_ROUTES: readonly string[] = [
   '/product/yee-haw-motif-short-sleeve-tee',
   '/product/tooled-leather-concho-belt',
   '/product/silver-horseshoe-drop-earrings',
+  '/search',
+  '/search?q=denim',
+  '/wholesale/apply/received',
   '/robots.txt',
   '/sitemap.xml',
 ]

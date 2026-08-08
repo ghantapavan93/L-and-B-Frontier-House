@@ -34,6 +34,24 @@ export function SiteFooter() {
           </section>
 
           <section>
+            <h2 className="eyebrow">Discover</h2>
+            <ul className="site-footer__list">
+              <li>
+                <Link href="/search">Search the line</Link>
+              </li>
+              <li>
+                <Link href="/find-your-denim">Find your denim</Link>
+              </li>
+              <li>
+                <Link href="/size-and-fit/women">Size and fit</Link>
+              </li>
+              <li>
+                <Link href="/warehouse">The Warehouse</Link>
+              </li>
+            </ul>
+          </section>
+
+          <section>
             <h2 className="eyebrow">Wholesale</h2>
             <ul className="site-footer__list">
               <li>
@@ -62,6 +80,13 @@ export function SiteFooter() {
               Permanent showroom #13656, Dallas Market Center.
               <br />
               Markets: August 18–21 and October 20–23, 2026.
+            </p>
+            <p className="meta">
+              <a href="mailto:customerservice@landbapparel.com">
+                customerservice@landbapparel.com
+              </a>
+              <br />
+              <a href="tel:+12148501109">214-850-1109</a>
             </p>
           </section>
         </div>

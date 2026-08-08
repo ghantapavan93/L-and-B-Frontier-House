@@ -119,9 +119,14 @@ test.describe('landmarks and headings', () => {
 
 test.describe('forms', () => {
   test('every control on the application form has an accessible name', async ({ page }) => {
+    // The application is four steps; each step's controls carry labels.
     await page.goto('/wholesale/apply')
+    for (const name of ['Store name', 'Your name', 'Email', 'Phone']) {
+      await expect(page.getByLabel(name)).toBeVisible()
+    }
 
-    for (const name of ['Store name', 'City', 'State', 'Sales tax ID', 'Email']) {
+    await page.goto('/wholesale/apply?step=2')
+    for (const name of ['Sales tax ID', 'State', 'City']) {
       await expect(page.getByLabel(name)).toBeVisible()
     }
 
@@ -175,7 +180,8 @@ test.describe('tables', () => {
   test('size and fit tables carry captions and scoped headers', async ({ page }) => {
     await page.goto(`/product/${PRODUCT_SLUG}`)
     // The size table sits in a closed <details> fold; a closed fold exposes no table role.
-    await page.getByText('Size and fit', { exact: true }).click()
+    // The chrome now carries "Size and fit" links too, so target the fold's summary.
+    await page.locator('summary', { hasText: 'Size and fit' }).click()
 
     const tables = page.getByRole('table')
     const count = await tables.count()
@@ -273,7 +279,7 @@ test.describe('reduced motion', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Dark Wash Flare')
     await expect(page.getByRole('region', { name: 'Wholesale pricing' })).toBeVisible()
     // Folds open under reduced motion exactly as they do without it — capability identical.
-    await page.getByText('Size and fit', { exact: true }).click()
+    await page.locator('summary', { hasText: 'Size and fit' }).click()
     await expect(page.getByRole('table').first()).toBeVisible()
 
     // The media query must actually be emulated, or the rest of this proves nothing.

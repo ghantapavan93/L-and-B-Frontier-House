@@ -264,6 +264,11 @@ describe('flag disabled — the verified Phase 1 experience', () => {
   it('keeps the wholesale application reachable', async () => {
     const apply = await getOff('/wholesale/apply')
     expect(apply.status).toBe(200)
-    expect(apply.body).toContain('name="salesTaxId"')
+    expect(apply.body).toContain('name="retailerName"')
+
+    // The credential step still carries the tax-ID field, no JavaScript required.
+    const credentials = await getOff('/wholesale/apply?step=2')
+    expect(credentials.status).toBe(200)
+    expect(credentials.body).toContain('name="salesTaxId"')
   })
 })

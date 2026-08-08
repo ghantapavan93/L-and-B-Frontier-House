@@ -170,6 +170,14 @@ for (const viewport of VIEWPORTS) {
     test('filters and sort stay usable', async ({ page }) => {
       await page.goto('/shop/women')
 
+      // Under 62rem the facet panel is a :target sheet behind the Filter & sort trigger;
+      // opening it is part of what "usable" means on a phone.
+      if (viewport.width < 992) {
+        const trigger = page.getByRole('link', { name: /Filter & sort/ })
+        await expect(trigger).toBeVisible()
+        await trigger.click()
+      }
+
       await expect(page.getByLabel('Size range')).toBeVisible()
       await expect(page.getByLabel('Sort by')).toBeVisible()
       await page.getByLabel('Size range').selectOption('extended')
@@ -184,7 +192,7 @@ for (const viewport of VIEWPORTS) {
       // The size table now lives in a closed <details> fold, the way the reference PDPs
       // collapse specification. Open it the way a reader would — the property under test
       // is the open state's layout, and a native summary needs no JavaScript to open.
-      await page.getByText('Size and fit', { exact: true }).click()
+      await page.locator('summary', { hasText: 'Size and fit' }).click()
 
       const container = page.locator('.table-scroll').first()
       await expect(container).toBeVisible()
@@ -312,7 +320,14 @@ test.describe('layout invariants', () => {
       thing at its own centre. What is asserted here is the two things that make that hold —
       only the header is sticky, and scroll room is reserved beneath it.
     */
-    expect(positioned.filter((p) => !p.includes('site-header'))).toHaveLength(0)
+    /*
+      The House Guide is the one deliberate fixed layer besides the header: the corner help
+      entry every reference carries, small and self-dismissing. The keyboard suite's
+      topmost-at-centre walk is what proves it never obscures a focused control.
+    */
+    expect(
+      positioned.filter((p) => !p.includes('site-header') && !p.includes('house-guide')),
+    ).toHaveLength(0)
     expect(positioned.some((p) => p.includes('site-header'))).toBe(true)
 
     const scrollMargin = await page
