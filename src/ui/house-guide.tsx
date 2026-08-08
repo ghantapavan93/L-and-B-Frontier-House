@@ -27,6 +27,20 @@ export function HouseGuide() {
         <p className="eyebrow">House Guide</p>
         <p className="meta">Quick answers first. A person after that — never a bot.</p>
 
+        <p className="nav-group-label">Ask it plainly</p>
+        {/* Honest presets: each is a real search the engine can already answer. */}
+        <ul className="house-guide__list">
+          <li>
+            <Link href="/search?q=dark+bootcut">&ldquo;Dark bootcut&rdquo;</Link>
+          </li>
+          <li>
+            <Link href="/search?q=fringe">&ldquo;Something with fringe&rdquo;</Link>
+          </li>
+          <li>
+            <Link href="/search?q=pre-order">&ldquo;What&rsquo;s on pre-order?&rdquo;</Link>
+          </li>
+        </ul>
+
         <p className="nav-group-label">Find it</p>
         <ul className="house-guide__list">
           <li>
@@ -34,6 +48,9 @@ export function HouseGuide() {
           </li>
           <li>
             <Link href="/find-your-denim">Find your denim</Link>
+          </li>
+          <li>
+            <Link href="/fit-passport">Fit Passport — the House remembers</Link>
           </li>
           <li>
             <Link href="/size-and-fit/women">Size and fit</Link>

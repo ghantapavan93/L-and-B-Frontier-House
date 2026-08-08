@@ -19,11 +19,19 @@ export function ProductMedia({
   sizes = '(min-width: 62rem) 33vw, (min-width: 48rem) 50vw, 100vw',
   priority = false,
   className = 'product-card__media',
+  transitionName,
 }: {
   media: MediaRef | undefined
   sizes?: string
   priority?: boolean
   className?: string
+  /**
+   * Cross-document view-transition identity. The same name on a card image and its
+   * product page's opening image makes the click a morph instead of a page swap —
+   * pure CSS (`@view-transition` in globals), no JavaScript, ignored by browsers
+   * without support and disabled under reduced motion.
+   */
+  transitionName?: string
 }) {
   if (!media) {
     return (
@@ -49,7 +57,10 @@ export function ProductMedia({
           alt={media.alt}
           width={media.intrinsicWidth ?? 600}
           height={media.intrinsicHeight ?? 750}
-          style={{ aspectRatio: media.aspectRatio }}
+          style={{
+            aspectRatio: media.aspectRatio,
+            ...(transitionName ? { viewTransitionName: transitionName } : {}),
+          }}
           loading={loading}
           decoding={priority ? 'sync' : 'async'}
           {...(priority ? { fetchPriority: 'high' as const } : {})}

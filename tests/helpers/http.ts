@@ -32,6 +32,7 @@ export const PUBLIC_ROUTES: readonly string[] = [
   '/product/silver-horseshoe-drop-earrings',
   '/search',
   '/search?q=denim',
+  '/fit-passport',
   '/wholesale/apply/received',
   '/robots.txt',
   '/sitemap.xml',

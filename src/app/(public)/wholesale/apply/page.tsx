@@ -83,7 +83,8 @@ export default async function ApplyPage({
       <p className="eyebrow">Trade access</p>
       <h1>For the stores that sell the West</h1>
       <p className="lede">
-        Hey y&rsquo;all. Four short steps, and we approve accounts {VERIFIED_APPROVAL_TIMING}.
+        A private buying room for the stores carrying the next West. Hey y&rsquo;all — four
+        short steps, and we approve accounts {VERIFIED_APPROVAL_TIMING}.
       </p>
 
       <Progress current={step} />

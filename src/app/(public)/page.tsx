@@ -195,12 +195,18 @@ export default async function HomePage() {
             <p className="eyebrow">Fit</p>
             <h2 id="fit-heading">Find your denim</h2>
             <p className="meta">
-              Silhouette, wash, stretch — answer what you know and see the pairs that match.
+              Silhouette, wash, stretch — answer what you know and see the pairs that match. Or
+              tell the House once, and every style answers in your size.
             </p>
           </div>
-          <Link href="/find-your-denim" className="button">
-            Start
-          </Link>
+          <div className="cluster">
+            <Link href="/find-your-denim" className="button">
+              Start
+            </Link>
+            <Link href="/fit-passport" className="button button--secondary">
+              Fit Passport
+            </Link>
+          </div>
         </div>
       </section>
 

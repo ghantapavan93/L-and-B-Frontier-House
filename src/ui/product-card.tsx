@@ -58,20 +58,37 @@ export function ProductCard({
 
   return (
     <article className="product-card">
-      <Link href={`/product/${product.slug}`} className="product-card__link">
+      {/*
+        A plain <a>, not <Link>, deliberately: a real document navigation is what lets the
+        cross-document view transition fire, so the card's photograph MORPHS into the
+        product page's opening image (`@view-transition` in globals, zero JavaScript).
+        Client-side routing would need an experimental React integration to do the same;
+        a full navigation to a prerendered static page costs almost nothing here.
+      */}
+      <a href={`/product/${product.slug}`} className="product-card__link">
         {alt ? (
           <span className="product-card__swap">
-            <ProductMedia media={media} priority={priority} {...(sizes ? { sizes } : {})} />
+            <ProductMedia
+              media={media}
+              priority={priority}
+              transitionName={`p-${product.slug}`}
+              {...(sizes ? { sizes } : {})}
+            />
             {/* Decorative duplicate view — announcing it twice would be noise. */}
             <span aria-hidden="true" className="product-card__alt">
               <ProductMedia media={alt} {...(sizes ? { sizes } : {})} />
             </span>
           </span>
         ) : (
-          <ProductMedia media={media} priority={priority} {...(sizes ? { sizes } : {})} />
+          <ProductMedia
+            media={media}
+            priority={priority}
+            transitionName={`p-${product.slug}`}
+            {...(sizes ? { sizes } : {})}
+          />
         )}
         <h3 className="product-card__name">{product.displayName}</h3>
-      </Link>
+      </a>
       <p className="product-card__spec">{product.specName}</p>
       <div className="badge-row">
         <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
@@ -134,9 +151,10 @@ function QuickView({ product }: { product: PublicProduct }) {
             ))}
           </div>
           <div className="cluster">
-            <Link href={`/product/${product.slug}`} className="button">
+            {/* Plain <a> so the document navigation carries the view-transition morph. */}
+            <a href={`/product/${product.slug}`} className="button">
               View product
-            </Link>
+            </a>
             <a href={`#p-${product.slug}`} className="button button--secondary">
               Close
             </a>

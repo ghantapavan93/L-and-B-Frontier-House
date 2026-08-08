@@ -4794,8 +4794,9 @@ tfoot td {
 }
 
 .choice input {
-  width: 18px;
-  height: 18px;
+  /* 2.5.8: the control itself meets the 24px target minimum, label aside. */
+  width: 24px;
+  height: 24px;
   accent-color: var(--color-tobacco);
 }
 
@@ -5059,4 +5060,160 @@ tfoot td {
     position: sticky;
     top: calc(9rem + var(--safe-top));
   }
+}
+
+/* ==========================================================================
+   CROSS-DOCUMENT VIEW TRANSITIONS — the click becomes a morph
+
+   Product links are real document navigations, so the card photograph morphs
+   into the product page's opening image with zero JavaScript. Browsers without
+   support ignore all of this and get an ordinary navigation; reduced motion
+   turns it off entirely. §9: 240–300ms, entrance ease, nothing intercepted.
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--duration-fast);
+}
+
+::view-transition-group(*) {
+  animation-duration: var(--duration-base);
+  animation-timing-function: var(--ease-entrance);
+}
+
+/* ==========================================================================
+   THE STITCH — the ignition's turquoise thread as a house code
+
+   A 1px dashed hairline, always decorative, never text and never a focus ring:
+   the accent palette is still an owner decision (D-07), so the thread appears
+   only as the same routing line the approved buckle film draws, continued into
+   the chrome at whisper volume.
+   ========================================================================== */
+
+:root {
+  /* Decorative hairline only — matches the delivered ignition render's thread. */
+  --color-stitch: #2f8f8a;
+}
+
+.section-head .eyebrow::after {
+  content: '';
+  display: block;
+  width: 40px;
+  border-top: 1px dashed var(--color-stitch);
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+.house-guide > summary {
+  border-top: 1px dashed var(--color-stitch);
+}
+
+.anatomy__item {
+  border-left: 1px dashed var(--color-stitch);
+  padding-left: var(--space-3);
+}
+
+.apply-progress {
+  border-bottom: 1px dashed var(--color-stitch);
+  padding-bottom: var(--space-3);
+}
+
+/* ==========================================================================
+   DEPTH — scroll-driven arrival and parallax on the campaign bands
+
+   Progressive enhancement exactly as §9 requires: wrapped in @supports, driven
+   by native scroll position via view() timelines, transform-only, and absent
+   under reduced motion. Without support the bands are simply still — complete.
+   ========================================================================== */
+
+@keyframes rise-depth {
+  from {
+    transform: translateY(28px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift-y {
+  from {
+    transform: translateY(-3.5%) scale(1.07);
+  }
+  to {
+    transform: translateY(3.5%) scale(1.07);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .register-band__cell {
+      animation: rise-depth linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    /* Staggered arrival: the middle frame lands last, like a dealt hand. */
+    .register-band__cell:nth-child(2) {
+      animation-range: entry 0% entry 75%;
+    }
+
+    .editorial-split__figure {
+      overflow: hidden;
+    }
+
+    .editorial-split__figure img {
+      animation: drift-y linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+/* ==========================================================================
+   FIT PASSPORT — the profile page's own furniture
+   ========================================================================== */
+
+.fit-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.fit-results > li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-4);
+}
+
+.fit-results .product-card__media {
+  aspect-ratio: 3 / 4;
+  padding: var(--space-1);
+}
+
+.fit-suggestion {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-2xs);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border: 1px dashed var(--color-stitch);
+  padding: 2px var(--space-2);
 }

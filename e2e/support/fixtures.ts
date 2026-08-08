@@ -38,6 +38,7 @@ export const PUBLIC_ROUTES = [
   '/wholesale/apply',
   '/wholesale/apply/received',
   '/search',
+  '/fit-passport',
   '/sign-in',
 ] as const
 

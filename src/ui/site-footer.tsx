@@ -43,6 +43,9 @@ export function SiteFooter() {
                 <Link href="/find-your-denim">Find your denim</Link>
               </li>
               <li>
+                <Link href="/fit-passport">Fit Passport</Link>
+              </li>
+              <li>
                 <Link href="/size-and-fit/women">Size and fit</Link>
               </li>
               <li>

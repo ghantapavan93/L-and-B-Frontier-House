@@ -163,7 +163,12 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <div className="pdp__gallery">
             {product.media.map((media, index) => (
               <div className="pdp__media" key={media.id}>
-                <ProductMedia media={media} priority={index === 0} />
+                <ProductMedia
+                  media={media}
+                  priority={index === 0}
+                  /* The card's photograph morphs into this one on arrival. */
+                  {...(index === 0 ? { transitionName: `p-${product.slug}` } : {})}
+                />
               </div>
             ))}
             {/*
