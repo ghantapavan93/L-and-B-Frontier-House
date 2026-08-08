@@ -57,6 +57,9 @@ export default async function CategoryPage({
     applied.availability,
     applied.fabric,
     applied.detail,
+    applied.wash,
+    applied.silhouette,
+    applied.colour,
   ].filter(Boolean).length
   const [products, facets] = await Promise.all([
     listPublicProducts({ ...toProductQuery(applied), categorySlug: category.slug }),

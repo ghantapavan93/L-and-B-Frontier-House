@@ -6,6 +6,9 @@ export type AppliedFacets = {
   readonly availability?: string
   readonly fabric?: string
   readonly detail?: string
+  readonly wash?: string
+  readonly silhouette?: string
+  readonly colour?: string
   readonly sort?: string
 }
 
@@ -51,6 +54,9 @@ export function FacetPanel({
       ['availability', 'Availability', applied.availability, facets.availability],
       ['fabric', 'Fabric', applied.fabric, facets.fabric],
       ['detail', 'Detail', applied.detail, facets.detail],
+      ['wash', 'Wash', applied.wash, facets.wash],
+      ['silhouette', 'Silhouette', applied.silhouette, facets.silhouette],
+      ['colour', 'Colour', applied.colour, facets.colour],
     ] as const
   ).flatMap(([key, label, value, options]) => {
     if (!value) return []
@@ -171,6 +177,61 @@ export function FacetPanel({
             <select id="facet-detail" name="detail" defaultValue={applied.detail ?? ''}>
               <option value="">Any detail</option>
               {facets.detail.map((facet) => (
+                <option key={facet.value} value={facet.value}>
+                  {facet.value} ({facet.count})
+                </option>
+              ))}
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset className="facet-group">
+          <legend>Wash</legend>
+          <div className="field">
+            <label htmlFor="facet-wash" className="visually-hidden">
+              Wash
+            </label>
+            <select id="facet-wash" name="wash" defaultValue={applied.wash ?? ''}>
+              <option value="">Any wash</option>
+              {facets.wash.map((facet) => (
+                <option key={facet.value} value={facet.value}>
+                  {facet.label} ({facet.count})
+                </option>
+              ))}
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset className="facet-group">
+          <legend>Silhouette</legend>
+          <div className="field">
+            <label htmlFor="facet-silhouette" className="visually-hidden">
+              Silhouette
+            </label>
+            <select
+              id="facet-silhouette"
+              name="silhouette"
+              defaultValue={applied.silhouette ?? ''}
+            >
+              <option value="">Any silhouette</option>
+              {facets.silhouette.map((facet) => (
+                <option key={facet.value} value={facet.value}>
+                  {facet.label} ({facet.count})
+                </option>
+              ))}
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset className="facet-group">
+          <legend>Colour</legend>
+          <div className="field">
+            <label htmlFor="facet-colour" className="visually-hidden">
+              Colour
+            </label>
+            <select id="facet-colour" name="colour" defaultValue={applied.colour ?? ''}>
+              <option value="">Any colour</option>
+              {facets.colour.map((facet) => (
                 <option key={facet.value} value={facet.value}>
                   {facet.value} ({facet.count})
                 </option>

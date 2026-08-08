@@ -43,7 +43,9 @@ test.describe('ignition and skip', () => {
   test('the hero is one background film, ten seconds, one-shot', async ({ page }) => {
     await page.goto('/')
 
-    const video = page.locator('video')
+    // The homepage now carries click-to-play players too; the BACKGROUND film is the
+    // one under test here, addressed by its own attribute.
+    const video = page.locator('[data-hero-film]')
     // One film. The section previously carried an SVG buckle AND a video of the same
     // buckle, which read as a duplicate rather than as a fallback.
     await expect(video).toHaveCount(1)
@@ -83,7 +85,9 @@ test.describe('ignition and skip', () => {
   test('it plays by itself and can be stopped — WCAG 2.2.2', async ({ page }) => {
     await page.goto('/')
 
-    const video = page.locator('video')
+    // The homepage now carries click-to-play players too; the BACKGROUND film is the
+    // one under test here, addressed by its own attribute.
+    const video = page.locator('[data-hero-film]')
     const toggle = page.getByRole('button', { name: /the film/ })
 
     // Ten seconds of automatic motion beside a headline is squarely inside 2.2.2, which
@@ -107,7 +111,9 @@ test.describe('ignition and skip', () => {
     const page = await context.newPage()
     await page.goto('/')
 
-    const video = page.locator('video')
+    // The homepage now carries click-to-play players too; the BACKGROUND film is the
+    // one under test here, addressed by its own attribute.
+    const video = page.locator('[data-hero-film]')
     // The whole reason playback is script-started rather than an attribute: a visitor who
     // asked for no motion must get none, and `autoplay` cannot be withdrawn once served.
     await expect

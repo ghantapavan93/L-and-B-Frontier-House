@@ -92,12 +92,37 @@ describe('products only ever receive the photograph mapped to them', () => {
     }
   })
 
-  it('gives every product exactly the images mapped to it', () => {
+  it('gives every product exactly the images mapped to it, plus derived detail crops', () => {
     for (const product of PRODUCT_RECORDS) {
-      const expected = APPROVED_ASSETS.filter(
+      const mapped = APPROVED_ASSETS.filter(
         (a) => a.placement.kind === 'product' && a.placement.productId === product.id,
       )
-      expect(officialMediaForProduct(product).length, product.slug).toBe(expected.length)
+      const mappedSlugs = new Set(mapped.map((a) => a.slug))
+      /*
+        A `-detail` entry is a mechanical crop OF a hand-mapped photograph
+        (scripts/derive-detail-crops.mjs) — same shot, recomposed closer. It may only
+        exist when its parent slug is in the hand mapping; anything else is an asset
+        attaching itself to a product no human placed it on.
+      */
+      const served = ASSETS.filter((a) => {
+        const placement = a.placement as { kind?: string; productId?: string } | null
+        return (
+          a.published &&
+          placement !== null &&
+          typeof placement === 'object' &&
+          placement.kind === 'product' &&
+          placement.productId === product.id
+        )
+      })
+      for (const asset of served) {
+        const parentSlug = asset.slug.endsWith('-detail')
+          ? asset.slug.slice(0, -'-detail'.length)
+          : asset.slug
+        expect(mappedSlugs.has(parentSlug), `${asset.slug} has no hand-mapped parent`).toBe(
+          true,
+        )
+      }
+      expect(officialMediaForProduct(product).length, product.slug).toBe(served.length)
     }
   })
 

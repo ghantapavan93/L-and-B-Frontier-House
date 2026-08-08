@@ -10,6 +10,7 @@ import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { populatedEdits } from '@/domain/edits'
+import { CampaignFilm } from '@/ui/campaign-film'
 import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
@@ -114,6 +115,8 @@ export default async function HomePage() {
       <ThisWeekBand products={newest} />
 
       <MotionClipBand />
+
+      <CampaignFilm />
 
       <ContactSheet
         products={sheet}

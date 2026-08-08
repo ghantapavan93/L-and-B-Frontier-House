@@ -10,6 +10,7 @@ import { MediaSlot } from '@/ui/media-slot'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard } from '@/ui/product-card'
 import { ProductMedia } from '@/ui/product-media'
+import { ProofStrip } from '@/ui/proof-strip'
 import { SizeAndFitTable } from '@/ui/size-and-fit-table'
 import { WholesaleGate } from '@/ui/wholesale'
 
@@ -210,6 +211,8 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             ) : null}
 
             <WholesaleGate returnTo={`/trade/product/${product.slug}`} />
+
+            <ProofStrip />
 
             <FixtureNotice />
           </div>

@@ -1462,6 +1462,702 @@
       "published": false,
       "ownerApproval": "approved",
       "note": "OWNER APPROVED — WITHHELD FROM PUBLICATION"
+    },
+    {
+      "original": "JE334-DW__1_360x.webp",
+      "slug": "dark-wash-flare-jean-detail",
+      "styleCode": "JE334-DW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE334-DW__1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 26858,
+      "sha256": "6c7412011e1cabc796e2d976b4f7fd1a89f4085c4fc3ee90d302f6a70de14bdf",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je334-dw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "dark-wash-flare-jean-detail-360.avif",
+          "byteSize": 16173
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "dark-wash-flare-jean-detail-360.webp",
+          "byteSize": 26858
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE322-DW3_z1ec-tc_360x.webp",
+      "slug": "dark-wash-bootcut-jean-detail",
+      "styleCode": "JE322-DW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE322-DW3_z1ec-tc_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 27846,
+      "sha256": "d77cfa4a4891791676e815b632c7c7efcd44ce462c96134371e31486f7e0643e",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je322-dw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "dark-wash-bootcut-jean-detail-360.avif",
+          "byteSize": 16710
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "dark-wash-bootcut-jean-detail-360.webp",
+          "byteSize": 27846
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE305-DW__6_360x.webp",
+      "slug": "black-wash-wide-leg-jean-detail",
+      "styleCode": "JE305-DW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE305-DW__6_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 15852,
+      "sha256": "f31030aacb3bba8cd5175a1b5e3143bcc85f9b1a032e32156abf809711dcdbd9",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je305-dw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-wash-wide-leg-jean-detail-360.avif",
+          "byteSize": 9803
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-wash-wide-leg-jean-detail-360.webp",
+          "byteSize": 15852
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE587-MWback_360x.webp",
+      "slug": "mid-wash-cuffed-wide-leg-jean-detail",
+      "styleCode": "JE587-MW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE587-MWback_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 21960,
+      "sha256": "6a9a04f7de5644dfa4c796d5e3f481cfca458ddb12c730d7412ad59d3748150f",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je587-mw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "mid-wash-cuffed-wide-leg-jean-detail-360.avif",
+          "byteSize": 13286
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "mid-wash-cuffed-wide-leg-jean-detail-360.webp",
+          "byteSize": 21960
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE274-LW-Xback_360x.webp",
+      "slug": "light-wash-straight-leg-jean-detail",
+      "styleCode": "JE274-LW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE274-LW-Xback_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 18842,
+      "sha256": "bf556f770eb5c1e812d4d6a208e23d73d4be4a034de0246702699f7361613aa7",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je274-lw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "light-wash-straight-leg-jean-detail-360.avif",
+          "byteSize": 12073
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "light-wash-straight-leg-jean-detail-360.webp",
+          "byteSize": 18842
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE386-LEO-2_360x.webp",
+      "slug": "leopard-print-jean-detail",
+      "styleCode": "JE386-LEO",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE386-LEO-2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 27968,
+      "sha256": "cfdbcdeb879bbb47348d5ce5f4f2457cafad2629aa41b94d072171c397c0a6de",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je386-leo",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "leopard-print-jean-detail-360.avif",
+          "byteSize": 15032
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "leopard-print-jean-detail-360.webp",
+          "byteSize": 27968
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "je384-leo-2_7cci-gt_4098affd-aa7d-41c7-a80d-cdd295fb21aa_360x.jpg",
+      "slug": "leopard-print-tie-waist-flare-jean-detail",
+      "styleCode": "JE384-LEO",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/je384-leo-2_7cci-gt_4098affd-aa7d-41c7-a80d-cdd295fb21aa_360x.jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 42746,
+      "sha256": "c7a67be4896a03fc9199fa664dbd7dc4472a7bac04b53e63934f13b9f2a4bada",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je384-leo",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "leopard-print-tie-waist-flare-jean-detail-360.avif",
+          "byteSize": 24461
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "leopard-print-tie-waist-flare-jean-detail-360.webp",
+          "byteSize": 42746
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JE393-BTST1_1z2n-6l_360x.webp",
+      "slug": "western-swirl-printed-jean-detail",
+      "styleCode": "JE393-BTST",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JE393-BTST1_1z2n-6l_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 20916,
+      "sha256": "6aa6763121d1ab87f6e8a1146e7405d3061dd7d7856b3443c435969fa768e506",
+      "placement": {
+        "kind": "product",
+        "productId": "p-je393-btst",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "western-swirl-printed-jean-detail-360.avif",
+          "byteSize": 13282
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "western-swirl-printed-jean-detail-360.webp",
+          "byteSize": 20916
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "DR047-BLK1_360x.webp",
+      "slug": "black-one-shoulder-fringe-mini-dress-detail",
+      "styleCode": "DR047-BLK",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/DR047-BLK1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 16634,
+      "sha256": "08ed7d91184e10090af07e04c4dada6d3002be34359fee1d3d38b4637c602c4d",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr047-blk",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-one-shoulder-fringe-mini-dress-detail-360.avif",
+          "byteSize": 10428
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-one-shoulder-fringe-mini-dress-detail-360.webp",
+          "byteSize": 16634
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "DR381-AW_7_360x.webp",
+      "slug": "chambray-asymmetric-ruffle-midi-dress-detail",
+      "styleCode": "DR381-AW",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/DR381-AW_7_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 19550,
+      "sha256": "dc86dca564c0766166660b9f1e19d13601586bba4c5800e695de2dcba17040a6",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr381-aw",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "chambray-asymmetric-ruffle-midi-dress-detail-360.avif",
+          "byteSize": 13166
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "chambray-asymmetric-ruffle-midi-dress-detail-360.webp",
+          "byteSize": 19550
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "dr505-blk-2_7xp9-wo_1_360x.webp",
+      "slug": "black-fringe-sleeve-embroidered-mini-dress-detail",
+      "styleCode": "DR505-BLK",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/dr505-blk-2_7xp9-wo_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 12242,
+      "sha256": "6988ed72b1b6ee612bff5246359c0674ade46052c468fff2c92dee6f8d40c9ae",
+      "placement": {
+        "kind": "product",
+        "productId": "p-dr505-blk",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-fringe-sleeve-embroidered-mini-dress-detail-360.avif",
+          "byteSize": 8380
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-fringe-sleeve-embroidered-mini-dress-detail-360.webp",
+          "byteSize": 12242
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO390-BLK_360x.webp",
+      "slug": "black-long-fringe-vest-detail",
+      "styleCode": "JO390-BLK",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JO390-BLK_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 17432,
+      "sha256": "c392eba6d95afc610cdcac6172719b824bd9327f9d51285a81aeda0cd0631f02",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo390-blk",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "black-long-fringe-vest-detail-360.avif",
+          "byteSize": 10316
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "black-long-fringe-vest-detail-360.webp",
+          "byteSize": 17432
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO390-CML-3-1_oyl0-k0_1_360x.webp",
+      "slug": "camel-long-fringe-vest-detail",
+      "styleCode": "JO390-CML",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JO390-CML-3-1_oyl0-k0_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 16398,
+      "sha256": "69fdee6536f7e2bcd5835d7aeab37d47cb1424b00ec7112320ee6bd36749ddc7",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo390-cml",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "camel-long-fringe-vest-detail-360.avif",
+          "byteSize": 9233
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "camel-long-fringe-vest-detail-360.webp",
+          "byteSize": 16398
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "JO632 (5).jpg",
+      "slug": "studded-fringe-poncho-detail",
+      "styleCode": "JO632",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/JO632 (5).jpg",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 600,
+      "sourceHeight": 600,
+      "aspectRatio": "1 / 1",
+      "byteSize": 48722,
+      "sha256": "821525a92144364c6897efafa98dccc056f3a1965b7339ee2412e587e826c958",
+      "placement": {
+        "kind": "product",
+        "productId": "p-jo632",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 480,
+          "format": "avif",
+          "file": "studded-fringe-poncho-detail-480.avif",
+          "byteSize": 20031
+        },
+        {
+          "width": 480,
+          "format": "webp",
+          "file": "studded-fringe-poncho-detail-480.webp",
+          "byteSize": 32466
+        },
+        {
+          "width": 600,
+          "format": "avif",
+          "file": "studded-fringe-poncho-detail-600.avif",
+          "byteSize": 29761
+        },
+        {
+          "width": 600,
+          "format": "webp",
+          "file": "studded-fringe-poncho-detail-600.webp",
+          "byteSize": 48722
+        }
+      ],
+      "needsHigherResolution": false,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "KD039-SER-2_360x.webp",
+      "slug": "serape-stripe-fringe-vest-detail",
+      "styleCode": "KD039-SER",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/KD039-SER-2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 19292,
+      "sha256": "79363aefa3f98654ba289a17b33580b9b983feb8899145d9e2e42a515f2ed5f1",
+      "placement": {
+        "kind": "product",
+        "productId": "p-kd039-ser",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "serape-stripe-fringe-vest-detail-360.avif",
+          "byteSize": 10436
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "serape-stripe-fringe-vest-detail-360.webp",
+          "byteSize": 19292
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "TO1069-CMLAZT_2_1_360x.webp",
+      "slug": "camel-aztec-print-long-sleeve-top-detail",
+      "styleCode": "TO1069-CMLAZT",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/TO1069-CMLAZT_2_1_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 49968,
+      "sha256": "0ddb1b4f50e62f6f5cadecdfd4ebc41fbbdf8318d3495bf603ef32cc992b0338",
+      "placement": {
+        "kind": "product",
+        "productId": "p-to1069-cmlazt",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "camel-aztec-print-long-sleeve-top-detail-360.avif",
+          "byteSize": 28122
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "camel-aztec-print-long-sleeve-top-detail-360.webp",
+          "byteSize": 49968
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "to588-s-7_2_360x.webp",
+      "slug": "aztec-print-graphic-tee-detail",
+      "styleCode": "TO588-S",
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/to588-s-7_2_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 25128,
+      "sha256": "c557756254cf91390ba380b12ccbcbbb37b97c7ce2c11a1afc38b9c86831f286",
+      "placement": {
+        "kind": "product",
+        "productId": "p-to588-s",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "aztec-print-graphic-tee-detail-360.avif",
+          "byteSize": 15417
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "aztec-print-graphic-tee-detail-360.webp",
+          "byteSize": 25128
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
+    },
+    {
+      "original": "l-b-apparel-sleeveless-top-sleeveless-pearl-snap-top-curvy-size-1155907553_360x.webp",
+      "slug": "sleeveless-pearl-snap-western-top-detail",
+      "styleCode": null,
+      "describes": "a close crop of the same photograph — fabric, print and hardware",
+      "sourcePath": "assets/source/owner-approved/l-b-apparel-sleeveless-top-sleeveless-pearl-snap-top-curvy-size-1155907553_360x.webp",
+      "provenance": "owner-provided",
+      "addedOn": "2026-08-08",
+      "sourceWidth": 360,
+      "sourceHeight": 360,
+      "aspectRatio": "1 / 1",
+      "byteSize": 21694,
+      "sha256": "9c54506542398efc8df1bbc47e67b9f33c689399bc86a41dbc509b671a7be76a",
+      "placement": {
+        "kind": "product",
+        "productId": "p-pearl-snap-sleeveless",
+        "order": 2
+      },
+      "renditions": [
+        {
+          "width": 360,
+          "format": "avif",
+          "file": "sleeveless-pearl-snap-western-top-detail-360.avif",
+          "byteSize": 13515
+        },
+        {
+          "width": 360,
+          "format": "webp",
+          "file": "sleeveless-pearl-snap-western-top-detail-360.webp",
+          "byteSize": 21694
+        }
+      ],
+      "needsHigherResolution": true,
+      "suitable": true,
+      "published": true,
+      "ownerApproval": "approved",
+      "note": "OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT"
     }
   ],
   "withheld": [

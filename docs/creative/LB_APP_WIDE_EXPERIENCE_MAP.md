@@ -205,3 +205,24 @@ actually pulls. The 4.8 MB film costs zero bytes until clicked.
 Baselines re-recorded 2026-08-07 (third pass). Media requests that remain owner-supply:
 garment motion clips for the register band, ≥1600px catalogue photography, category
 photography (D-09 licensing decision for everything generated or reference).
+
+---
+
+## 2026-08-08 gap-closing pass — the "how shitty are we" table, answered
+
+Measured against the competitor teardown with identical probes, then each deficit closed
+with real assets or honestly declared. See LB_FRONTIER_VISION_MAP.md for the vision map.
+
+| Deficit (vs best cowboy site) | Answer shipped |
+| :--- | :--- |
+| Garment video: 0 vs Double D's 19 | **The Fall Collection 2026 campaign film** — found unwired in the owner drop (18s, 1350x1200, real models, brand endcard). Click-to-play homepage chapter, poster from its own frame, preload none. 0 → 1 REAL film; the men's reference film makes 2 |
+| PDP proof: 1 image vs 8–40 | **Detail crops for all 18 photographed styles** (`scripts/derive-detail-crops.mjs`): a native-pixel square crop of each product's own photograph, manifested as order-2 product placement with inherited provenance. PDP galleries now 2 frames; card hover-swap lights up everywhere. Invents nothing — same shot, closer |
+| Filter depth: 4 facets vs waist/inseam walls | **7 facets**: wash, silhouette and colour added end-to-end (query allowlist → adapter → counts → panel → chips → URL state) |
+| Social proof: 0 | **Proof strip on every PDP** — the verified house record (4.76/5 · 262, 4.7/5 · 353, 100% fill, 2.64d), attributed to the house, explicitly not per-style reviews |
+| Depth | This Week frames land staggered; category banners breathe against their crop — view() timelines, gated as ever |
+| Resolution + catalogue width | **Blocked on one switch, not on code**: `scripts/import-official-media.ts` refuses to bulk-import because landbapparel.com's robots.txt disallows this agent by name. The script carries an AUTHORISATION block — recorded written permission from L&B unlocks full-res import of the whole 235-style catalogue |
+
+Test evolution: the "one video on the homepage" invariants now address the background film
+by `[data-hero-film]` and require every other film to be click-to-play with no preload.
+The hand-mapping test admits mechanically derived `-detail` crops only when their parent
+is hand-mapped.

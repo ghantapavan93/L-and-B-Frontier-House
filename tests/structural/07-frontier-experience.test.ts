@@ -144,8 +144,18 @@ describe('flag enabled (default) — cinematic specifics', () => {
     // what keeps the no-JavaScript case motionless.
     expect(body, 'ships an ungateable autoplay attribute').not.toMatch(/<video[^>]*\sautoplay/)
 
-    // A background surface, not an embedded player.
-    expect(body, 'ships native player chrome').not.toMatch(/<video[^>]*\scontrols/)
+    // The IGNITION is a background surface, not an embedded player — its tag carries no
+    // chrome. Other films on the page are allowed only as deliberate click-to-play
+    // players: controls on, preload="none", and never autoplay (asserted above).
+    const videoTags = body.match(/<video[^>]*>/g) ?? []
+    const heroTag = videoTags.find((tag) => tag.includes('data-hero-film'))
+    expect(heroTag, 'the ignition video tag is missing').toBeDefined()
+    expect(heroTag, 'the ignition ships native player chrome').not.toMatch(/\scontrols/)
+    for (const tag of videoTags) {
+      if (tag === heroTag) continue
+      expect(tag, `non-ignition film must be click-to-play: ${tag}`).toMatch(/\scontrols/)
+      expect(tag, `non-ignition film must not preload: ${tag}`).toContain('preload="none"')
+    }
   })
 
   it('ships no video on any surface other than the homepage ignition', async () => {

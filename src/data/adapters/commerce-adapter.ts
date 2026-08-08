@@ -25,6 +25,9 @@ export type ProductQuery = {
   readonly fabric?: string
   readonly detail?: string
   readonly wash?: string
+  readonly silhouette?: string
+  /** Colour NAME as published (e.g. "Camel"). Never a hex, never a price. */
+  readonly colour?: string
   /** ISO date. Only products first offered on or after it. */
   readonly newArrivalSince?: string
   readonly sort?: ProductSort

@@ -78,6 +78,19 @@ export const PROGRAMMING: readonly ProgrammingEntry[] = [
     verified: true,
   },
   {
+    id: 'fall-collection-2026',
+    kind: 'campaign',
+    title: 'Fall Collection 2026',
+    statement: 'The season, shot by the house — eighteen seconds on film.',
+    status: 'live',
+    href: '/new-arrivals',
+    ctaLabel: 'Shop the season',
+    audience: 'public',
+    priority: 3,
+    mediaSlot: 'campaign-fall-2026',
+    verified: true,
+  },
+  {
     id: 'edit-working-west',
     kind: 'lookbook',
     title: 'The Working West',
@@ -86,7 +99,7 @@ export const PROGRAMMING: readonly ProgrammingEntry[] = [
     href: '/edit/working-west',
     ctaLabel: 'Open the edit',
     audience: 'public',
-    priority: 3,
+    priority: 4,
     verified: true,
   },
   /*

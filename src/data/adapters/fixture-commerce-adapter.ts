@@ -59,6 +59,10 @@ function matchesQuery(product: ProductRecord, query: ProductQuery): boolean {
   if (query.fabric && !product.attributes.fabric?.includes(query.fabric)) return false
   if (query.detail && !product.attributes.detail?.includes(query.detail)) return false
   if (query.wash && product.attributes.wash !== query.wash) return false
+  if (query.silhouette && product.attributes.silhouette !== query.silhouette) return false
+  if (query.colour && !product.attributes.colour.some((c) => c.name === query.colour)) {
+    return false
+  }
   if (query.newArrivalSince) {
     if (!product.newArrivalOn || product.newArrivalOn < query.newArrivalSince) return false
   }

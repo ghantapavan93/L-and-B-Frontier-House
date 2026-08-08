@@ -5021,13 +5021,15 @@ tfoot td {
   aspect-ratio: 4 / 3;
 }
 
-/* The reference film block on the demonstration page. */
-.mens-film {
+/* Click-to-play film blocks: the demonstration reference and the house campaign. */
+.mens-film,
+.house-film {
   margin: 0;
   max-width: 56rem;
 }
 
-.mens-film video {
+.mens-film video,
+.house-film video {
   width: 100%;
   height: auto;
   display: block;
@@ -5037,18 +5039,61 @@ tfoot td {
 
 /*
   A player is a control: it takes keyboard focus, so it owes a visible ring. Plain
-  `:focus`, deliberately — tabbing through the player's native controls keeps the <video>
-  host as the active element, and the host does not reliably match `:focus-visible` while
-  its shadow controls cycle. A media player wearing its ring on mouse focus too is the
-  lesser cost.
+  `:focus-within`, deliberately — tabbing through the player's native controls keeps the
+  <video> host as the active element, and the host does not reliably match
+  `:focus-visible` while its shadow controls cycle. A media player wearing its ring on
+  mouse focus too is the lesser cost.
 */
-.mens-film:focus-within video {
+.mens-film:focus-within video,
+.house-film:focus-within video {
   outline: var(--focus-ring-width) solid var(--color-focus);
   outline-offset: var(--focus-ring-offset);
 }
 
-.mens-film figcaption {
+.mens-film figcaption,
+.house-film figcaption {
   margin-top: var(--space-2);
+}
+
+/* ==========================================================================
+   Proof strip — the verified house record, on every product page
+   ========================================================================== */
+
+.proof-strip {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-4) 0;
+}
+
+.proof-strip dl {
+  margin: 0 0 var(--space-2);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .proof-strip dl {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.proof-strip dt {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.proof-strip dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: var(--body-lg);
+}
+
+.proof-strip > .meta {
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -5172,6 +5217,28 @@ tfoot td {
     }
 
     .editorial-split__figure img {
+      animation: drift-y linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* The drop's five frames land like a dealt hand as they enter. */
+    .week-band__cell {
+      animation: rise-depth linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+
+    .week-band__cell:nth-child(2n) {
+      animation-range: entry 0% entry 70%;
+    }
+
+    /* Category banners breathe against their crop as the page moves. */
+    .page-banner {
+      overflow: hidden;
+    }
+
+    .page-banner img {
       animation: drift-y linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;

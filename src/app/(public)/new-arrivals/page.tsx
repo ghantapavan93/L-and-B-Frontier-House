@@ -30,6 +30,9 @@ export default async function NewArrivalsPage({
     applied.availability,
     applied.fabric,
     applied.detail,
+    applied.wash,
+    applied.silhouette,
+    applied.colour,
   ].filter(Boolean).length
   const query: ProductQuery = { ...toProductQuery(applied), sort: 'newest' }
 

@@ -36,6 +36,9 @@ export function readFacetParams(params: RawParams): AppliedFacets {
   const availability = single(params, 'availability')
   const fabric = single(params, 'fabric')
   const detail = single(params, 'detail')
+  const wash = single(params, 'wash')
+  const silhouette = single(params, 'silhouette')
+  const colour = single(params, 'colour')
   const sort = single(params, 'sort')
 
   return {
@@ -45,6 +48,9 @@ export function readFacetParams(params: RawParams): AppliedFacets {
       : {}),
     ...(fabric ? { fabric } : {}),
     ...(detail ? { detail } : {}),
+    ...(wash ? { wash } : {}),
+    ...(silhouette ? { silhouette } : {}),
+    ...(colour ? { colour } : {}),
     ...(sort && SORTS.includes(sort as ProductSort) ? { sort } : {}),
   }
 }
@@ -55,6 +61,9 @@ export function toProductQuery(applied: AppliedFacets): ProductQuery {
     ...(applied.availability ? { availability: applied.availability as Availability } : {}),
     ...(applied.fabric ? { fabric: applied.fabric } : {}),
     ...(applied.detail ? { detail: applied.detail } : {}),
+    ...(applied.wash ? { wash: applied.wash } : {}),
+    ...(applied.silhouette ? { silhouette: applied.silhouette } : {}),
+    ...(applied.colour ? { colour: applied.colour } : {}),
     ...(applied.sort ? { sort: applied.sort as ProductSort } : {}),
   }
 }
