@@ -5247,6 +5247,55 @@ tfoot td {
 }
 
 /* ==========================================================================
+   MOTION ISLANDS — where the Framer Motion vars are spent
+
+   The islands publish unitless spring values (--depth-x/--depth-y from pointer,
+   --aisle-drift from native scroll). This is the only place they become
+   movement, always through calc() with a zero default: no JavaScript, no vars,
+   no motion, identical layout. Transform-only, per the motion-stack rule.
+   ========================================================================== */
+
+/* This Week: the five frames separate into planes under the cursor. */
+.week-band__frame {
+  transform: translate3d(
+    calc(var(--depth-x, 0) * var(--wb-rate, 0) * 1px),
+    calc(var(--depth-y, 0) * var(--wb-rate, 0) * 1px),
+    0
+  );
+}
+
+.week-band__cell:nth-child(1) .week-band__frame {
+  --wb-rate: -7;
+}
+
+.week-band__cell:nth-child(2) .week-band__frame {
+  --wb-rate: 11;
+}
+
+.week-band__cell:nth-child(3) .week-band__frame {
+  --wb-rate: -14;
+}
+
+.week-band__cell:nth-child(4) .week-band__frame {
+  --wb-rate: 8;
+}
+
+.week-band__cell:nth-child(5) .week-band__frame {
+  --wb-rate: -10;
+}
+
+/* The Warehouse: the camera dollies as the aisle scrolls — perspective origin
+   drifts through each rack while the signs counter-shift like fixed signage.
+   Zero at rest, so the unscrolled aisle is pixel-identical with or without JS. */
+.warehouse__rack {
+  perspective-origin: calc(50% + var(--aisle-drift, 0) * -30%) 50%;
+}
+
+.warehouse__sign {
+  transform: translate3d(calc(var(--aisle-drift, 0) * -22px), 0, 0);
+}
+
+/* ==========================================================================
    FIT PASSPORT — the profile page's own furniture
    ========================================================================== */
 

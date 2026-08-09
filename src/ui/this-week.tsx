@@ -3,6 +3,7 @@ import { REGISTER_TRIPTYCH } from '@/content/media/campaign-plates'
 import type { PublicProduct } from '@/domain/product'
 import { primaryMedia } from '@/domain/product'
 import { MediaSlot } from './media-slot'
+import { DepthField } from './motion/depth-field'
 import { EditorialMedia, ProductMedia } from './product-media'
 
 /**
@@ -41,7 +42,13 @@ export function ThisWeekBand({ products }: { products: readonly PublicProduct[] 
         </Link>
       </div>
 
-      <div className="week-band">
+      {/*
+        The DepthField island: pointer position, sprung, published as --depth-x/--depth-y.
+        The stylesheet moves each frame a few pixels at its own rate — the five photographs
+        separate into planes under the cursor. Server cells pass through untouched; no
+        JavaScript, no vars, no movement, same band.
+      */}
+      <DepthField className="week-band">
         {Array.from({ length: 5 }, (_, index) => {
           const product = cells[index]
           if (!product) {
@@ -74,7 +81,7 @@ export function ThisWeekBand({ products }: { products: readonly PublicProduct[] 
             </div>
           )
         })}
-      </div>
+      </DepthField>
     </section>
   )
 }

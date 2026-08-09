@@ -37,3 +37,17 @@ honestly gated on media or an owner decision. The governing principle held throu
 2. **Owner decisions** — D-07 (accent palette: the stitch stays decorative until then),
    D-03/D-04 (taxonomy), D-01 (consumer commerce), OQ-15 (commerce platform / CMS).
 3. **A real assistant** behind Ask the House, if ever — honesty first until then.
+
+## The motion-stack rule, rewritten (2026-08-08, owner-directed)
+
+The owner overrode the CSS-only stance: Framer Motion is now installed and approved for
+**scoped islands** where springs on live input earn the bytes. First two islands:
+
+- **DepthField** (This Week band): pointer position through springs, published as
+  `--depth-x/--depth-y`; the five frames separate into planes under the cursor.
+- **AisleDepth** (the Warehouse): native scroll progress through a spring as
+  `--aisle-drift`; the camera dollies and the rack signs counter-drift.
+
+The contract every island keeps: server children untouched, vars zero by default (no-JS
+renders pixel-identical), transform-only spends, `LazyMotion`+`m` strict for tree-shaken
+weight, reduced motion zeroes the field, wheel never intercepted, 180 KB budget holds.

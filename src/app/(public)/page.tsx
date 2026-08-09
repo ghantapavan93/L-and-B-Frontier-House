@@ -29,9 +29,10 @@ import { ThreadToTrade, ThreadToTradeJourney } from '@/ui/thread-to-trade'
  * blocks that deliberately break the grid, and a Living Contact Sheet where a conventional
  * catalogue would put a uniform product row.
  *
- * Everything here is server-rendered semantic HTML. No canvas, no WebGL, no client
- * JavaScript, no autoplaying media. Depth is CSS; the stitch line is SVG. Remove the motion
- * entirely and the page is complete — which is the invariant Phase 3 must not break.
+ * Everything here is server-rendered semantic HTML. No canvas, no WebGL, no autoplaying
+ * media. Depth is CSS plus two Framer Motion islands (the motion-stack rule, CLAUDE.md
+ * section 9) that publish spring values as CSS vars above unchanged server children.
+ * Remove the motion entirely and the page is complete — the invariant that must not break.
  */
 export default async function HomePage() {
   const frontier = frontierEnabled()

@@ -223,6 +223,14 @@ static fallback and the SEO surface.
   as the interoperable fallback. Verify support against MDN browser-compat-data or
   webstatus.dev — **caniuse's rendered tables project a fictional "Firefox 156"** and
   will mislead you.
+- **Motion stack (rewritten 2026-08-08, owner-directed):** CSS and native platform
+  features first — view transitions, scroll-driven animation, `<details>`, `:target`.
+  **Framer Motion is approved for scoped client islands** where springs on live input
+  (pointer, native scroll progress, gestures) justify it — capabilities CSS does not have.
+  Island rules, all binding: server-rendered children pass through untouched; the island
+  publishes CSS custom properties and the stylesheet spends them, transform-only, zero by
+  default so no-JS renders identically; `LazyMotion` + `m` with `strict`; reduced motion
+  zeroes the field; the wheel is never intercepted; JS budget stays ≤ 180 KB compressed.
 - **Never intercept the wheel.** Read native scroll to drive animation. Smooth-scroll
   libraries that replace native scroll are what usability research calls scroll-jacking;
   scroll-*linked* animation is a different, acceptable thing.

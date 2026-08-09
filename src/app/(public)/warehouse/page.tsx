@@ -5,6 +5,7 @@ import { populatedEdits, productsInEdit } from '@/domain/edits'
 import type { PublicProduct } from '@/domain/product'
 import { primaryMedia } from '@/domain/product'
 import { navigableCategories } from '@/domain/taxonomy'
+import { AisleDepth } from '@/ui/motion/aisle-depth'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductMedia } from '@/ui/product-media'
 
@@ -28,7 +29,12 @@ export const metadata: Metadata = {
  * itself. Depth is CSS perspective; the racks lean like garments on a rail; hover
  * straightens one and `:has()` recedes its rack-mates; entrances ride
  * `animation-timeline: view(inline)` — the horizontal twin of the vertical arrivals the
- * grid already runs. Total JavaScript: zero.
+ * grid already runs.
+ *
+ * One motion island rides above all of that: `AisleDepth` reads native scroll progress
+ * through a spring and publishes it as a CSS var the stylesheet spends on a dollying
+ * perspective and counter-drifting signs (the motion-stack rule, CLAUDE.md §9). With
+ * JavaScript off the island is inert markup and the aisle is complete.
  *
  * The racks are the EDITS — the campaign-safe merchandising groupings — plus a New Drop
  * rack from real arrival dates. Not the spec's DENIM/SHIRTS/JACKETS: those are garment
@@ -83,7 +89,12 @@ export default async function WarehousePage() {
         </nav>
       </div>
 
-      <div className="warehouse__aisle" role="region" aria-label="The racks" tabIndex={0}>
+      {/*
+        The aisle is the AisleDepth island: the same native scroller, plus a sprung
+        `--aisle-drift` var the CSS spends on a dollying perspective origin. Children are
+        this server markup, unchanged; no JavaScript leaves the aisle complete.
+      */}
+      <AisleDepth>
         {racks.map((rack) => (
           <section
             key={rack.id}
@@ -133,7 +144,7 @@ export default async function WarehousePage() {
             </Link>
           </div>
         </section>
-      </div>
+      </AisleDepth>
 
       <div className="container section--tight">
         <p className="meta warehouse__hint" aria-hidden="true">
