@@ -65,6 +65,13 @@ async function clippedText(page: Page): Promise<string[]> {
       // A deliberate horizontal scroller (tables, the worlds carousel, the rack) clips its
       // off-screen slides by design; the page-level scroll check still guards the page.
       if (inHorizontalScroller(el)) continue
+      /*
+        A marquee is text that is SUPPOSED to be wider than the window: the track runs
+        past both edges and its container clips it. Nothing is lost — the phrase repeats,
+        the section carries it as an accessible name, and reduced motion collapses the
+        track to one centred copy. The page-level overflow check still guards the page.
+      */
+      if (el.closest('.marquee')) continue
       // `.visually-hidden` clips on purpose — it is the standard screen-reader-only
       // technique, and its 1px box always reports scrollWidth > clientWidth.
       if (el.closest('.visually-hidden')) continue

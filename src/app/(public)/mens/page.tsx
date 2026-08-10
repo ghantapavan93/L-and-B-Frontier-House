@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {
   MENS_DEMO_CAMPAIGN,
   MENS_DEMO_CATEGORIES,
+  MENS_DEMO_FLOOR,
   MENS_DEMO_PRODUCTS,
 } from '@/fixtures/mens-demo'
 import type { DemoImage, DemoProduct } from '@/fixtures/mens-demo'
@@ -150,6 +151,8 @@ function DemoQuickView({ product }: { product: DemoProduct }) {
 
 export default function MensPage() {
   const [gravel, bootPull] = MENS_DEMO_CAMPAIGN
+  /* The strongest frame in the drop opens the page: a full look, hat to denim. */
+  const hero = MENS_DEMO_PRODUCTS.find((p) => p.slug === 'indigo-trucker-jacket')?.media[0]
 
   return (
     <div className="container section stack">
@@ -159,28 +162,32 @@ export default function MensPage() {
         </p>
       </nav>
 
-      <div>
-        <p className="eyebrow">Frontier House · demonstration</p>
-        <h1>The men&rsquo;s direction, made tangible.</h1>
-        <p className="lede">
-          Lucky &amp; Blessed sells women&rsquo;s, girls&rsquo; and accessories today. A
-          men&rsquo;s line is a decision the owner has not made — so this page is a working
-          demonstration of what that business could look like the day it is: the real shop
-          mechanics, on fixture data and reference imagery, with no price anywhere.
-        </p>
-      </div>
+      {/*
+        THE PHOTOGRAPH FIRST.
 
-      <aside className="notice notice--fixture" aria-labelledby="mens-demo-notice">
-        <p className="notice__title" id="mens-demo-notice">
-          Demonstration only — fixture data, reference imagery
-        </p>
-        <p className="meta">
-          Nothing here is Lucky &amp; Blessed inventory. Names, sizes and availability are
-          development fixtures. The photographs are reference images supplied for direction —
-          several are small thumbnails — and are replaced by owned photography before anything
-          ships (D-09). No price exists on this surface in any form.
-        </p>
-      </aside>
+        This page used to open with three paragraphs of disclaimer before a single image,
+        which read as an apology for the line rather than a proposal of it. The honesty is
+        undiminished — one unmissable badge here, the full statement at the foot of the
+        page — but a men's house has to look like one from the first screen.
+      */}
+      {hero ? (
+        <section className="mens-hero" aria-labelledby="mens-hero-heading">
+          <div className="mens-hero__media">
+            <MensImage image={hero} sizes="(min-width: 62rem) 60vw, 100vw" loading="eager" />
+          </div>
+          <div className="mens-hero__copy">
+            <p className="eyebrow">Frontier House · demonstration</p>
+            <h1 id="mens-hero-heading">The men&rsquo;s direction, made tangible.</h1>
+            <p className="lede">
+              Lucky &amp; Blessed sells women&rsquo;s, girls&rsquo; and accessories today. A
+              men&rsquo;s line is a decision the owner has not made — so this is a working
+              demonstration of that business: real shop mechanics, on fixture data and reference
+              photography, with no price anywhere.
+            </p>
+            <p className="mens-hero__badge">Demonstration · fixture data · no prices</p>
+          </div>
+        </section>
+      ) : null}
 
       {MENS_DEMO_CATEGORIES.map((category) => {
         const rack = MENS_DEMO_PRODUCTS.filter((p) => p.category === category)
@@ -265,6 +272,34 @@ export default function MensPage() {
         </section>
       ) : null}
 
+      {/*
+        THE FLOOR — every remaining frame the owner sent, as a contact sheet.
+
+        Twenty photographs that read as styling rather than product: worn looks, hems over
+        boots, hardware, texture. They earn a place because this is how the trousers are
+        actually worn, and because a men's house is judged on how much of it you can see.
+        No names, no sizes, no prices — the heading says what the group is.
+      */}
+      <section aria-labelledby="mens-floor-heading">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">The floor</p>
+            <h2 id="mens-floor-heading">How it is worn</h2>
+            <p className="meta">
+              The rest of the reference drop — looks, hems, hardware and texture. Styling
+              frames, not entries to buy; footwear is not a demo category.
+            </p>
+          </div>
+        </div>
+        <ul className="mens-floor">
+          {MENS_DEMO_FLOOR.map((image) => (
+            <li key={image.asset.poster}>
+              <MensImage image={image} sizes="(min-width: 62rem) 25vw, 50vw" />
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="panel" aria-labelledby="mens-next-heading">
         <h2 className="eyebrow" id="mens-next-heading">
           What this would take
@@ -283,6 +318,19 @@ export default function MensPage() {
           </Link>
         </div>
       </section>
+
+      {/* The full statement, in full, at the foot — the badge above carries it on arrival. */}
+      <aside className="notice notice--fixture" aria-labelledby="mens-demo-notice">
+        <p className="notice__title" id="mens-demo-notice">
+          Demonstration only — fixture data, reference imagery
+        </p>
+        <p className="meta">
+          Nothing here is Lucky &amp; Blessed inventory. Names, sizes and availability are
+          development fixtures. The photographs are reference images supplied for direction —
+          several are small thumbnails — and are replaced by owned photography before anything
+          ships (D-09). No price exists on this surface in any form.
+        </p>
+      </aside>
 
       {MENS_DEMO_PRODUCTS.map((product) => (
         <DemoQuickView key={product.slug} product={product} />

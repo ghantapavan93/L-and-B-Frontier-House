@@ -84,16 +84,24 @@ describe('flag enabled (default) — cinematic specifics', () => {
     const { body } = await get('/')
 
     for (const world of [
-      'world-women',
-      'world-girls',
+      'world-denim',
+      'world-shirts',
+      'world-outerwear',
       'world-accessories',
-      'world-wholesale',
     ]) {
       expect(body).toContain(`id="${world}"`)
-      expect(body).toContain(`href="#${world}"`)
     }
-    // The exported Frame 5 gates on menswear; it must never surface.
-    expect(body).not.toMatch(/world-men|for him/i)
+
+    /*
+      The worlds are now the men's COLLECTIONS (owner-directed, 2026-08-08), so the
+      guard changes shape but not purpose. What must never surface is the exported
+      Frame 5 gateway label, and what must always accompany the imagery is the
+      demonstration marker — the line is proposed, not published (D-03).
+    */
+    expect(body).not.toMatch(/for him/i)
+    expect(body, 'the collection grid lost its demonstration marker').toMatch(/demonstration/i)
+    // Every world opens the labelled demonstration, never a catalogue route.
+    expect(body).toContain('href="/mens#mens-denim"')
   })
 
   it('renders the journey with honest planes and no invented place', async () => {

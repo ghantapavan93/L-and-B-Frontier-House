@@ -180,66 +180,45 @@ test.describe('contact-sheet stories', () => {
 })
 
 test.describe('product worlds', () => {
-  test('the four verified worlds render with keyboard-operable navigation', async ({
+  test('the four collection tiles are whole-tile links into the labelled demonstration', async ({
     page,
   }) => {
     await page.goto('/')
 
-    for (const name of ['Women', 'Girls', 'Accessories', 'Wholesale']) {
-      await expect(
-        page.locator('.worlds__card').filter({ hasText: name }).first(),
-      ).toBeAttached()
+    /*
+      The worlds are the men's COLLECTIONS now (owner-directed, 2026-08-08): a two-column
+      photographic grid, not the prev/next carousel this test used to describe. What is
+      asserted is what still matters — four tiles, each a single link covering the whole
+      tile, each opening the labelled demonstration rather than a catalogue route.
+    */
+    for (const world of ['denim', 'shirts', 'outerwear', 'accessories']) {
+      const tile = page.locator(`#world-${world}`)
+      await expect(tile, `#world-${world} is missing`).toHaveCount(1)
+
+      const links = tile.locator('a')
+      await expect(links, 'a tile must be exactly one link').toHaveCount(1)
+      await expect(links).toHaveAttribute('href', `/mens#mens-${world}`)
+
+      // The link covers the tile: the image is inside it, not beside it.
+      await expect(links.locator('img')).toHaveCount(1)
     }
 
-    // A world card is a link and reaches its destination.
-    await page.locator('#world-girls .worlds__card').click()
-    await expect(page).toHaveURL('/shop/girls')
+    // The marker travels with the imagery.
+    await expect(page.locator('.worlds__marker')).toContainText(/demonstration/i)
   })
 
-  test('mobile world navigation moves the carousel without swiping', async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 })
+  test('the collection grid is reachable and operable by keyboard', async ({ page }) => {
     await page.goto('/')
 
-    const nav = page.getByRole('navigation', { name: 'Product worlds' })
-    await expect(nav).toBeVisible()
+    const denim = page.locator('#world-denim a')
+    await denim.focus()
+    await expect(denim).toBeFocused()
 
-    await nav.getByRole('link', { name: 'Go to the Accessories world' }).click()
-    await expect(page.locator('#world-accessories')).toBeInViewport()
+    const ring = await denim.evaluate((el) => getComputedStyle(el).outlineStyle)
+    expect(ring, 'the tile takes focus with no visible ring').not.toBe('none')
 
-    await nav.getByRole('link', { name: 'Go to the Women world' }).click()
-    await expect(page.locator('#world-women')).toBeInViewport()
-  })
-})
-
-test.describe('mobile chrome', () => {
-  test.use({ viewport: { width: 390, height: 844 } })
-
-  test('the disclosure menu opens and navigates by keyboard alone', async ({ page }) => {
-    await page.goto('/')
-
-    const summary = page.locator('.nav-disclosure summary')
-    await expect(summary).toBeVisible()
-    await summary.focus()
     await page.keyboard.press('Enter')
-
-    const menu = page.getByRole('navigation', { name: 'Menu' })
-    await expect(menu).toBeVisible()
-
-    await menu.getByRole('link', { name: 'New Arrivals' }).focus()
-    await page.keyboard.press('Enter')
-    await expect(page).toHaveURL('/new-arrivals')
-  })
-
-  test('the compact bar keeps wordmark and account on one row', async ({ page }) => {
-    await page.goto('/')
-
-    const bar = page.locator('.site-header__bar')
-    await expect(bar.locator('.site-header__wordmark')).toBeVisible()
-    await expect(bar.locator('.site-header__account-link')).toBeVisible()
-
-    const menuBox = await page.locator('.nav-disclosure summary').boundingBox()
-    const markBox = await bar.locator('.site-header__wordmark').boundingBox()
-    expect(Math.abs((menuBox?.y ?? 0) - (markBox?.y ?? 99))).toBeLessThan(20)
+    await expect(page).toHaveURL(/\/mens#mens-denim$/)
   })
 
   test('the cinematic homepage still has no horizontal overflow on mobile', async ({

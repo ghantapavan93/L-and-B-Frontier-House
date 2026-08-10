@@ -96,12 +96,17 @@ h4 {
   against Stitch renders rather than working shops — and a generator makes type
   large because type is the cheapest thing it can make impressive.
 
-  40px ceiling: at the top of the measured range, not past it.
+  RECALIBRATED 2026-08-08, owner-directed. The measured reference range produced a page
+  the owner reads as "dated and too timid" — and the measurement was of general-market
+  shops, not of a fashion house leading with a men's collection. Display scale returns:
+  h1 to a 68px ceiling, h2 to 44px, both on tight negative tracking so the type reads as
+  a graphic object rather than as a louder label. Fluid from a small floor, so 320px is
+  unaffected.
 */
 h1 {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.25rem, 5.2vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -125,9 +130,9 @@ h1 {
   together.
 */
 h2 {
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
@@ -2411,197 +2416,321 @@ tfoot td {
 }
 
 /* ==========================================================================
-   PHASE 2 — ONE WEST, PRODUCT WORLDS
+   ONE WEST — THE COLLECTION GRID
 
-   V3 Frame 5's layered gateway on desktop; V3.1 12F's depth carousel on
-   mobile. Prev/next and dots are anchors — operable without JS and never
-   swipe-only.
+   Two columns of photography with a single word over each, the whole tile
+   interactive. The reference mechanism across every fashion house that sells a
+   collection rather than a category: the image is the tile, type is an overlay,
+   and there is no card chrome at all.
    ========================================================================== */
 
+/*
+  The collection grid follows the film directly, so it drops the section rhythm's top
+  margin: 168px of cream between a full-bleed film and the first chapter was the single
+  largest dead area on the page, and it read as the film having ended rather than as the
+  house continuing.
+*/
 .worlds {
-  position: relative;
+  --tile-ratio: 4 / 5;
+  padding-top: var(--space-8);
 }
 
-.worlds__track {
+.worlds__head {
+  align-items: end;
+}
+
+.worlds__marker {
+  margin: 0;
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border: 1px dashed var(--color-stitch);
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+}
+
+.worlds__grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 84%;
-  gap: var(--space-4);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding-bottom: var(--space-3);
-  /* Contain the scroller; the page itself must never scroll sideways. */
-  min-width: 0;
-  position: relative;
+  gap: var(--space-3);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .worlds__track {
-    scroll-behavior: auto;
-  }
-}
-
-@media (min-width: 62rem) {
-  .worlds__track {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    overflow: visible;
-    gap: var(--gutter);
-  }
-
-  /* The gateway offsets — adjacent worlds sit on different horizons. */
-  .worlds__world:nth-child(2) {
-    margin-top: var(--space-7);
-  }
-  .worlds__world:nth-child(3) {
-    margin-top: var(--space-4);
-  }
-  .worlds__world:nth-child(4) {
-    margin-top: var(--space-8);
+@media (min-width: 48rem) {
+  .worlds__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
   }
 }
 
 .worlds__world {
-  scroll-snap-align: center;
   min-width: 0;
-}
-
-/* Mobile 2.5D: side slides recede. Progressive enhancement only. */
-@supports (animation-timeline: view(inline)) {
-  @media (prefers-reduced-motion: no-preference) and (max-width: 61.99rem) {
-    .worlds__world {
-      animation: world-depth linear both;
-      animation-timeline: view(inline);
-      animation-range: cover 0% cover 100%;
-    }
-  }
-}
-
-@keyframes world-depth {
-  0% {
-    transform: scale(0.92);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.92);
-    opacity: 0.75;
-  }
 }
 
 .worlds__card {
   position: relative;
   display: block;
+  overflow: hidden;
+  aspect-ratio: var(--tile-ratio);
+  background: var(--surface-sunken);
   text-decoration: none;
   color: var(--text-on-inverse);
-  isolation: isolate;
-  overflow: hidden;
-  background: var(--color-carbon);
 }
 
-.worlds__media {
-  aspect-ratio: 3 / 4;
+@media (min-width: 62rem) {
+  .worlds__card {
+    aspect-ratio: 3 / 4;
+  }
 }
 
-.worlds__media img {
+/*
+  Every source here is a 4:5 portrait — a full-length look or a flat lay. A landscape
+  tile takes a band out of the middle and loses the head and the shoe, so the tile stays
+  portrait and the crop is weighted above centre, where the garment and the face are.
+*/
+.worlds__card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    transform var(--duration-base) var(--ease-entrance),
-    filter var(--duration-base) var(--ease-entrance);
-  filter: saturate(0.95);
+  object-position: center 28%;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-entrance);
 }
 
-.worlds__card:hover .worlds__media img,
-.worlds__card:focus-visible .worlds__media img {
-  transform: scale(1.03);
-  filter: saturate(1);
+/* The crop breathes on approach — transform only, so nothing reflows. */
+.worlds__card:hover img,
+.worlds__card:focus-visible img {
+  transform: scale(1.04);
 }
 
+/*
+  A gradient scrim, not a flat wash. The label sits in the bottom third, so only
+  the bottom third needs darkening — a full overlay would grey out the
+  photograph, which is the thing the tile exists to show.
+*/
 .worlds__card::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgb(10 10 10 / 0.05) 40%, rgb(10 10 10 / 0.78) 100%);
+  background: linear-gradient(
+    to top,
+    rgb(10 10 10 / 0.72) 0%,
+    rgb(10 10 10 / 0.28) 38%,
+    rgb(10 10 10 / 0) 62%
+  );
+  pointer-events: none;
 }
 
 .worlds__label {
   position: absolute;
-  inset-inline: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
-  z-index: 2;
-  padding: var(--space-5);
+  z-index: 1;
   display: grid;
   gap: var(--space-1);
+  padding: var(--space-5) var(--space-5) var(--space-5);
+}
+
+@media (min-width: 62rem) {
+  .worlds__label {
+    padding: var(--space-6);
+  }
 }
 
 .worlds__name {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.4vw, 2.25rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  text-transform: none;
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--text-on-inverse);
-  margin: 0;
 }
 
 .worlds__line {
-  margin: 0;
   font-size: var(--text-xs);
+  letter-spacing: 0.01em;
   color: var(--color-sandstone);
 }
 
-.worlds__enter {
-  margin-top: var(--space-2);
-  font-size: 10px;
-  font-weight: var(--label-caps-weight);
-  letter-spacing: var(--label-caps-tracking);
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 0.35em;
+.worlds__card:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: calc(var(--focus-ring-offset) * -1);
 }
 
-.worlds__nav {
+/* ==========================================================================
+   THE HOUSE MARQUEE — one line of type, running the width of the world
+   ========================================================================== */
+
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--rule);
+  padding-block: var(--space-6);
+  margin-block: var(--space-7);
+}
+
+.marquee__track {
   display: flex;
-  gap: var(--space-2);
-  align-items: center;
-  justify-content: center;
-  margin-top: var(--space-4);
+  width: max-content;
+  will-change: transform;
 }
 
-@media (min-width: 62rem) {
-  .worlds__nav {
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__track {
+    animation: marquee-run 42s linear infinite;
+  }
+}
+
+/*
+  Half the track, exactly: the phrase list is duplicated, so translating by 50%
+  lands the second copy precisely where the first began and the loop has no seam.
+*/
+@keyframes marquee-run {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/*
+  Stillness, not a slower crawl. Under reduced motion the track stops being a
+  track: it centres, shows one phrase, and clips the rest — a static line of
+  display type, which is what the section was always saying.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marquee__phrase:not(:first-child) {
     display: none;
   }
 }
 
-.worlds__nav a {
+.marquee__phrase {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: var(--target-min);
-  min-height: var(--target-min);
-  border: 1px solid var(--rule-strong);
-  color: var(--color-text);
-  text-decoration: none;
-  font-size: var(--text-xs);
-  padding: 0 var(--space-3);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-right: clamp(1.5rem, 4vw, 4rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--color-ink);
 }
 
-.worlds__nav a[aria-current='true'] {
-  background: var(--color-ink);
-  color: var(--text-on-inverse);
-  border-color: var(--color-ink);
+.marquee__mark {
+  color: var(--color-stitch);
+  font-size: 0.7em;
+}
+
+/* ==========================================================================
+   THE CAMPAIGN STORY — asymmetric, overlapping, type across the composition
+   ========================================================================== */
+
+.story {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.story__lead img,
+.story__inset img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story__lead {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface-sunken);
+}
+
+.story__inset {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  border: var(--space-2) solid var(--surface-page);
+}
+
+.story__headline {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.story__lede {
+  font-size: var(--body-lg);
+  line-height: 1.45;
+  max-width: 28ch;
+  margin: 0;
+}
+
+.story__badge {
+  display: inline-block;
+  margin: var(--space-4) 0 var(--space-4);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border: 1px dashed var(--color-stitch);
+  padding: var(--space-1) var(--space-3);
+}
+
+.story__cta {
+  align-self: start;
+}
+
+/*
+  The overlap, on one grid.
+
+  Twelve columns and three rows; the lead frame occupies the left seven columns
+  across the first two rows, the inset sits in columns 6-10 of rows 2-3 — so
+  they share two cells and the inset laps the lead by a column and a half. The
+  copy takes the right edge. No absolute positioning, so the phone layout is a
+  clean stack rather than a pile.
+*/
+@media (min-width: 62rem) {
+  .story {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    gap: 0 var(--space-5);
+    align-items: center;
+  }
+
+  .story__lead {
+    grid-column: 1 / span 7;
+    grid-row: 1 / span 3;
+    aspect-ratio: 4 / 5;
+  }
+
+  .story__inset {
+    grid-column: 6 / span 4;
+    grid-row: 3;
+    z-index: 1;
+    align-self: end;
+  }
+
+  /*
+    The copy owns the upper right and the inset the lower right, so the only overlap is
+    each of them over the LEAD frame — never over the headline, which is the collision
+    the first arrangement produced at display scale.
+  */
+  .story__copy {
+    grid-column: 8 / span 5;
+    grid-row: 1 / span 2;
+    align-self: center;
+    padding-left: var(--space-4);
+  }
 }
 
 /* ==========================================================================
@@ -5053,6 +5182,156 @@ tfoot td {
 .mens-film figcaption,
 .house-film figcaption {
   margin-top: var(--space-2);
+}
+
+/* ==========================================================================
+   THE MEN'S DEMONSTRATION — hero, floor sheet, homepage chapter
+
+   The label always travels with the imagery: every surface here carries a
+   visible demonstration badge, because the photography is persuasive and the
+   line is not published (D-03).
+   ========================================================================== */
+
+.site-nav__demo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-nav__demo-tag {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  padding: 1px 4px;
+  border: 1px solid var(--color-border);
+  color: var(--color-chip-text);
+}
+
+.mens-hero {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .mens-hero {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--space-8);
+  }
+}
+
+.mens-hero__media {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
+  box-shadow:
+    0 2px 4px rgb(26 22 18 / 0.05),
+    0 24px 56px -20px rgb(26 22 18 / 0.22);
+}
+
+.mens-hero__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mens-hero__copy h1 {
+  margin-bottom: var(--space-3);
+}
+
+.mens-hero__badge,
+.mens-chapter__badge {
+  display: inline-block;
+  margin-top: var(--space-3);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border: 1px dashed var(--color-stitch);
+  padding: var(--space-1) var(--space-3);
+}
+
+/* The floor: a dense contact sheet of the remaining reference frames. */
+.mens-floor {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+@media (min-width: 48rem) {
+  .mens-floor {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 62rem) {
+  .mens-floor {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+/*
+  A hairline on every frame. Several of these are pale garments shot on white, and on a
+  bone page they read as empty tiles without an edge to hold them — the frame is what
+  makes a light photograph legible as a photograph.
+*/
+.mens-floor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  display: block;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+/* The homepage chapter. */
+.mens-chapter {
+  display: grid;
+  gap: var(--space-5);
+  background: var(--surface-sunken);
+  padding: var(--space-6);
+}
+
+@media (min-width: 62rem) {
+  .mens-chapter {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+    grid-template-rows: auto auto;
+    gap: var(--space-7);
+    padding: var(--space-8);
+    align-items: center;
+  }
+
+  .mens-chapter__lead {
+    grid-row: span 2;
+  }
+}
+
+.mens-chapter__lead img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mens-chapter__strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.mens-chapter__strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
 }
 
 /* ==========================================================================

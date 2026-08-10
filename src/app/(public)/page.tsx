@@ -14,6 +14,8 @@ import { CampaignFilm } from '@/ui/campaign-film'
 import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
+import { HouseMarquee } from '@/ui/house-marquee'
+import { MensChapter } from '@/ui/mens-chapter'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard, ProductGrid } from '@/ui/product-card'
 import { EditorialMedia } from '@/ui/product-media'
@@ -113,6 +115,20 @@ export default async function HomePage() {
         then reserved motion, then the sheet, then identity. Imagery leads every band and
         the type stays quiet — that is the whole finding of the teardown.
       */}
+      {/*
+        THE HOUSE LEADS, THE STORE FOLLOWS.
+
+        The page opens as a men's western house — the collection grid, the marquee, the
+        campaign story — and only then becomes a shop. The commerce bands below are
+        unchanged and still carry the real, shippable catalogue; what moved is the order,
+        because a fashion house that opens on a product row is a catalogue with a hero.
+      */}
+      {frontier ? <ProductWorlds /> : null}
+
+      <HouseMarquee />
+
+      <MensChapter />
+
       <ThisWeekBand products={newest} />
 
       <MotionClipBand />
@@ -238,9 +254,9 @@ export default async function HomePage() {
 
       {frontier ? <ThreadToTradeJourney /> : <ThreadToTrade />}
 
-      {frontier ? (
-        <ProductWorlds />
-      ) : (
+      {/* The real, shippable taxonomy keeps its own grid — the men's worlds above are a
+          proposal, this is the business that ships today. */}
+      {
         <section className="container section" aria-labelledby="shop-heading">
           <div className="section-head">
             <div>
@@ -276,7 +292,7 @@ export default async function HomePage() {
             })}
           </ul>
         </section>
-      )}
+      }
 
       {/* The door to the signature interaction: one aisle, every rack, native scroll. */}
       <section className="container section--tight" aria-labelledby="warehouse-heading">

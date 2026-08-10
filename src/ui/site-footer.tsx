@@ -46,6 +46,9 @@ export function SiteFooter() {
                 <Link href="/fit-passport">Fit Passport</Link>
               </li>
               <li>
+                <Link href="/mens">Men&rsquo;s — the demonstration</Link>
+              </li>
+              <li>
                 <Link href="/size-and-fit/women">Size and fit</Link>
               </li>
               <li>

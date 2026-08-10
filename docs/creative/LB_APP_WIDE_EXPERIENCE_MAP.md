@@ -226,3 +226,35 @@ Test evolution: the "one video on the homepage" invariants now address the backg
 by `[data-hero-film]` and require every other film to be click-to-play with no preload.
 The hand-mapping test admits mechanically derived `-detail` crops only when their parent
 is hand-mapped.
+
+---
+
+## 2026-08-08 homepage transformation — men's house first, commerce second
+
+Owner-directed, referencing three mechanisms on kimesranch.com (mechanisms only — no
+imagery, copy or branding taken). The homepage now opens as a men's western house and
+becomes a shop below the fold.
+
+| Mechanism | What shipped |
+| :--- | :--- |
+| **Shop-by-collection grid** | `Four worlds` keeps its name and slot, rebuilt as the men's collection grid: two columns, photography edge to edge, one word of display type over a bottom-weighted scrim, the whole tile a single link. Denim · Shirts · Outerwear · Accessories, from the owner's reference drop, cropped portrait at `object-position: center 28%` because every source is a 4:5 look |
+| **Moving typography** | `HouseMarquee` — "Built for the long ride west" at up to 96px, running as a seamless film strip (duplicated track, `translate3d(-50%)`). Announced once (duplicates `aria-hidden`); under reduced motion the track collapses to one centred, static phrase |
+| **Editorial story block** | `MensChapter` rebuilt as an asymmetric overlap on one 12-column grid: lead frame across columns 1–7, inset lapping it at columns 6–9 of the last row, copy in the upper right. No absolute positioning, so a phone gets a clean stack |
+| **Type + image direction** | h1 `clamp(2.25rem, 5.2vw, 4.25rem)`, h2 `clamp(1.6rem, 3.2vw, 2.75rem)`, both on −0.03em tracking. The 2026-08-05 reference calibration is deliberately overridden — it measured general-market shops, not a house leading with a collection. The 168px cream gap between the film and the first chapter is closed |
+
+**Order changed, commerce unchanged.** Collections → marquee → story → *then* This Week,
+the register, the campaign film, the contact sheet, the edits, Just Landed, fit, the real
+`Shop by category` taxonomy, the Warehouse, operations. Every commerce band still carries
+the real shippable catalogue; only the sequence moved.
+
+**Safeguards held, and visible in the markup.** Every collection tile opens `/mens` (a
+`noindex` page, outside the catalogue, absent from the sitemap); the grid carries a
+`MEN'S · DEMONSTRATION · NO PRICES` marker; the story carries `NOT A PUBLISHED LINE ·
+FIXTURES · NO PRICES`; no tile or block states a price, size or availability. D-03 remains
+open and nothing here claims it is closed.
+
+**Test evolution.** The worlds assertions now describe collection tiles (four ids, one
+whole-tile link each, href into the labelled demonstration, marker present) and keyboard
+operability, replacing the prev/next carousel that no longer exists. The `for him` guard
+stays. The text-clipping check exempts `.marquee`, whose content is intentionally wider
+than the window and clipped by its own container.

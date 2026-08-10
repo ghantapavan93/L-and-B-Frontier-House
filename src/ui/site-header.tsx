@@ -62,6 +62,12 @@ export function SiteHeader({ session }: { session?: Session }) {
                     <Link href={`/shop/${category.slug}`}>{category.label}</Link>
                   </li>
                 ))}
+                <li>
+                  <Link href="/mens" className="site-nav__demo">
+                    Men&rsquo;s
+                    <span className="site-nav__demo-tag">Demo</span>
+                  </Link>
+                </li>
               </ul>
               <p className="nav-group-label">Discover</p>
               <ul>
@@ -110,6 +116,18 @@ export function SiteHeader({ session }: { session?: Session }) {
                 <Link href={`/shop/${category.slug}`}>{category.label}</Link>
               </li>
             ))}
+            {/*
+              MEN'S sits in the primary row because Frontier House IS the men's direction —
+              a demonstration nobody can find demonstrates nothing. It is marked so the
+              label itself never becomes a capability claim, the page is `noindex`, and it
+              carries no catalogue entry, price or sitemap presence until D-03 resolves.
+            */}
+            <li>
+              <Link href="/mens" className="site-nav__demo">
+                Men&rsquo;s
+                <span className="site-nav__demo-tag">Demo</span>
+              </Link>
+            </li>
             <li>
               <details className="nav-drop">
                 <summary>Discover</summary>

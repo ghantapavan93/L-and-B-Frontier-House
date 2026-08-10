@@ -1,104 +1,119 @@
 import Link from 'next/link'
-import { officialMediaForSlot } from '@/content/media/official-media'
-import { EditorialMedia } from './product-media'
+import { MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
+import type { DemoImage } from '@/fixtures/mens-demo'
 
 /**
- * ONE WEST — PRODUCT WORLDS.
+ * ONE WEST — FOUR WORLDS, rebuilt as the men's collection grid.
  *
- * V3 Frame 5's gateway and V3.1 12F's depth carousel, inspected over MCP, rebuilt without
- * their one fatal flaw: the exported Frame 5 gates on FOR HIM, and menswear does not exist.
- * The worlds here are the four verified launch destinations only — Women, Girls,
- * Accessories, Wholesale (D-03, D-04). No Men, no footwear, no AR, no Home.
+ * The section keeps its name and its slot on the page; what changed is what it is FOR.
+ * Frontier House is the men's direction, so the four worlds are now the four men's
+ * collections — Denim, Shirts, Outerwear, Accessories — presented the way a fashion house
+ * presents a collection: two columns, photography edge to edge, a single word of type over
+ * it, the whole tile interactive.
  *
- * Desktop: four tall panels on offset horizons, adjacent worlds visible, per Frame 5.
- * Mobile: a scroll-snap 2.5D carousel per 12F — side slides recede via scroll-driven scale
- * behind `@supports`, and previous/next/dots are ANCHOR LINKS, so navigation is keyboard
- * and tap operable and never swipe-only. All of it works with JavaScript disabled.
+ * What keeps it honest, and what must not be edited away: every tile opens the `/mens`
+ * demonstration (a `noindex` page, outside the catalogue, no prices), the section carries a
+ * visible DEMONSTRATION marker, and no tile states a price, a size or availability. The
+ * real, shippable taxonomy — Women, Girls, Accessories — keeps its own grid lower on the
+ * page. This proposes a business; it does not claim one.
  */
 
-const WORLDS = [
+type World = {
+  readonly id: string
+  readonly href: string
+  readonly name: string
+  readonly line: string
+  readonly image: DemoImage | undefined
+}
+
+function productFrame(slug: string, index = 0): DemoImage | undefined {
+  return MENS_DEMO_PRODUCTS.find((p) => p.slug === slug)?.media[index]
+}
+
+function floorFrame(key: string): DemoImage | undefined {
+  return MENS_DEMO_FLOOR.find((frame) => frame.asset.poster.includes(key))
+}
+
+const WORLDS: readonly World[] = [
   {
-    id: 'world-women',
-    slug: 'women',
-    href: '/shop/women',
-    name: 'Women',
-    line: 'The line, in straight and extended sizing.',
-    slot: 'category-women',
-    alt: 'A model in a light-wash denim mini skirt and horseshoe-print tank against a dark brick wall',
+    id: 'world-denim',
+    href: '/mens#mens-denim',
+    name: 'Denim',
+    line: 'Rigid, washed, cut for a boot.',
+    /* A full-length look leads the grid — the lower-body crops read as detail, and the
+       first tile has to carry a person. */
+    image: floorFrame('floor-light-jean-worn'),
   },
   {
-    id: 'world-girls',
-    slug: 'girls',
-    href: '/shop/girls',
-    name: 'Girls',
-    line: 'Western apparel for girls.',
-    slot: 'category-girls',
-    alt: 'A young model photographed full length in a western look on a storefront street',
+    id: 'world-shirts',
+    href: '/mens#mens-shirts',
+    name: 'Shirts',
+    line: 'Snap fronts and long sleeves.',
+    image: productFrame('stripe-pearl-snap-shirt'),
+  },
+  {
+    id: 'world-outerwear',
+    href: '/mens#mens-outerwear',
+    name: 'Outerwear',
+    line: 'Denim that goes on last.',
+    image: productFrame('indigo-trucker-jacket'),
   },
   {
     id: 'world-accessories',
-    slug: 'accessories',
-    href: '/shop/accessories',
+    href: '/mens#mens-accessories',
     name: 'Accessories',
-    line: 'Belts, bags, bows and jewellery.',
-    slot: 'category-accessories',
-    alt: 'A model photographed full length in a western look with accessories',
+    line: 'Leather, hardware, weight.',
+    image: floorFrame('floor-waist-detail'),
   },
-  {
-    id: 'world-wholesale',
-    slug: 'wholesale',
-    href: '/wholesale',
-    name: 'Wholesale',
-    line: 'Pricing, packs and ordering for approved retailers.',
-    slot: 'wholesale',
-    alt: 'A model photographed full length in a western look on a storefront street',
-  },
-] as const
+]
 
 export function ProductWorlds() {
   return (
     <section className="container section worlds" aria-labelledby="worlds-heading">
-      <div className="section-head">
+      <div className="section-head worlds__head">
         <div>
           <p className="eyebrow">One west</p>
           <h2 id="worlds-heading">Four worlds</h2>
         </div>
+        {/* The label travels with the imagery — the photography is persuasive and the
+            line is not published (D-03). */}
+        <p className="worlds__marker">Men&rsquo;s · demonstration · no prices</p>
       </div>
 
-      <ul className="worlds__track">
-        {WORLDS.map((world) => {
-          const media = officialMediaForSlot(world.slot, world.alt)
-          return (
-            <li className="worlds__world" key={world.id} id={world.id}>
-              <Link href={world.href} className="worlds__card">
-                <div className="worlds__media">
-                  {media ? (
-                    <EditorialMedia media={media} sizes="(min-width: 62rem) 25vw, 84vw" />
-                  ) : null}
-                </div>
-                <span className="worlds__label">
-                  <span className="worlds__name">{world.name}</span>
-                  <span className="worlds__line">{world.line}</span>
-                  <span className="worlds__enter">Enter</span>
-                </span>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
-
-      {/*
-        Mobile navigation: one anchor per world into the scroll-snap track — a superset of
-        previous/next, since any adjacent world is one tap or one Tab away, and it needs no
-        JavaScript to know which slide is current. Never swipe-only.
-      */}
-      <nav className="worlds__nav" aria-label="Product worlds">
+      <ul className="worlds__grid">
         {WORLDS.map((world) => (
-          <a key={world.id} href={`#${world.id}`} aria-label={`Go to the ${world.name} world`}>
-            {world.name}
-          </a>
+          <li className="worlds__world" key={world.id} id={world.id}>
+            <Link href={world.href} className="worlds__card">
+              {world.image ? (
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcSet={world.image.asset.avifSrcSet}
+                    sizes="(min-width: 48rem) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={world.image.asset.webpSrcSet}
+                    sizes="(min-width: 48rem) 50vw, 100vw"
+                  />
+                  <img
+                    src={world.image.asset.poster}
+                    alt={world.image.alt}
+                    width={world.image.asset.intrinsicWidth}
+                    height={world.image.asset.intrinsicHeight}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              ) : null}
+              <span className="worlds__label">
+                <span className="worlds__name">{world.name}</span>
+                <span className="worlds__line">{world.line}</span>
+              </span>
+            </Link>
+          </li>
         ))}
-      </nav>
+      </ul>
     </section>
   )
 }

@@ -228,4 +228,168 @@ export const MENS_DEMO_MEDIA: Record<string, MensDemoAsset> = {
     intrinsicWidth: 400,
     intrinsicHeight: 500,
   },
+  'floor-white-jean-worn': {
+    poster: '/media/mens-demo/floor-white-jean-worn-920.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-white-jean-worn-480.avif 480w, /media/mens-demo/floor-white-jean-worn-920.avif 920w',
+    webpSrcSet:
+      '/media/mens-demo/floor-white-jean-worn-480.webp 480w, /media/mens-demo/floor-white-jean-worn-920.webp 920w',
+    intrinsicWidth: 920,
+    intrinsicHeight: 1150,
+  },
+  'floor-dark-jean-back': {
+    poster: '/media/mens-demo/floor-dark-jean-back-720.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-dark-jean-back-480.avif 480w, /media/mens-demo/floor-dark-jean-back-720.avif 720w',
+    webpSrcSet:
+      '/media/mens-demo/floor-dark-jean-back-480.webp 480w, /media/mens-demo/floor-dark-jean-back-720.webp 720w',
+    intrinsicWidth: 720,
+    intrinsicHeight: 900,
+  },
+  'floor-black-boots': {
+    poster: '/media/mens-demo/floor-black-boots-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-black-boots-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-black-boots-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-dark-hem-boot': {
+    poster: '/media/mens-demo/floor-dark-hem-boot-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-dark-hem-boot-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-dark-hem-boot-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-tan-boots': {
+    poster: '/media/mens-demo/floor-tan-boots-540.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-tan-boots-480.avif 480w, /media/mens-demo/floor-tan-boots-540.avif 540w',
+    webpSrcSet:
+      '/media/mens-demo/floor-tan-boots-480.webp 480w, /media/mens-demo/floor-tan-boots-540.webp 540w',
+    intrinsicWidth: 540,
+    intrinsicHeight: 675,
+  },
+  'floor-cream-seated': {
+    poster: '/media/mens-demo/floor-cream-seated-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-cream-seated-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-cream-seated-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-light-jean-side': {
+    poster: '/media/mens-demo/floor-light-jean-side-920.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-light-jean-side-480.avif 480w, /media/mens-demo/floor-light-jean-side-920.avif 920w',
+    webpSrcSet:
+      '/media/mens-demo/floor-light-jean-side-480.webp 480w, /media/mens-demo/floor-light-jean-side-920.webp 920w',
+    intrinsicWidth: 920,
+    intrinsicHeight: 1150,
+  },
+  'floor-dark-jean-street': {
+    poster: '/media/mens-demo/floor-dark-jean-street-536.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-dark-jean-street-480.avif 480w, /media/mens-demo/floor-dark-jean-street-536.avif 536w',
+    webpSrcSet:
+      '/media/mens-demo/floor-dark-jean-street-480.webp 480w, /media/mens-demo/floor-dark-jean-street-536.webp 536w',
+    intrinsicWidth: 536,
+    intrinsicHeight: 670,
+  },
+  'floor-denim-texture': {
+    poster: '/media/mens-demo/floor-denim-texture-720.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-denim-texture-480.avif 480w, /media/mens-demo/floor-denim-texture-720.avif 720w',
+    webpSrcSet:
+      '/media/mens-demo/floor-denim-texture-480.webp 480w, /media/mens-demo/floor-denim-texture-720.webp 720w',
+    intrinsicWidth: 720,
+    intrinsicHeight: 720,
+  },
+  'floor-black-toe': {
+    poster: '/media/mens-demo/floor-black-toe-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-black-toe-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-black-toe-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-cuffing-barn': {
+    poster: '/media/mens-demo/floor-cuffing-barn-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-cuffing-barn-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-cuffing-barn-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-light-jean-worn': {
+    poster: '/media/mens-demo/floor-light-jean-worn-540.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-light-jean-worn-480.avif 480w, /media/mens-demo/floor-light-jean-worn-540.avif 540w',
+    webpSrcSet:
+      '/media/mens-demo/floor-light-jean-worn-480.webp 480w, /media/mens-demo/floor-light-jean-worn-540.webp 540w',
+    intrinsicWidth: 540,
+    intrinsicHeight: 675,
+  },
+  'floor-brown-boots': {
+    poster: '/media/mens-demo/floor-brown-boots-540.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-brown-boots-480.avif 480w, /media/mens-demo/floor-brown-boots-540.avif 540w',
+    webpSrcSet:
+      '/media/mens-demo/floor-brown-boots-480.webp 480w, /media/mens-demo/floor-brown-boots-540.webp 540w',
+    intrinsicWidth: 540,
+    intrinsicHeight: 675,
+  },
+  'floor-boot-floorboards': {
+    poster: '/media/mens-demo/floor-boot-floorboards-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-boot-floorboards-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-boot-floorboards-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-back-pocket': {
+    poster: '/media/mens-demo/floor-back-pocket-720.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-back-pocket-480.avif 480w, /media/mens-demo/floor-back-pocket-720.avif 720w',
+    webpSrcSet:
+      '/media/mens-demo/floor-back-pocket-480.webp 480w, /media/mens-demo/floor-back-pocket-720.webp 720w',
+    intrinsicWidth: 720,
+    intrinsicHeight: 900,
+  },
+  'floor-waist-detail': {
+    poster: '/media/mens-demo/floor-waist-detail-720.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-waist-detail-480.avif 480w, /media/mens-demo/floor-waist-detail-720.avif 720w',
+    webpSrcSet:
+      '/media/mens-demo/floor-waist-detail-480.webp 480w, /media/mens-demo/floor-waist-detail-720.webp 720w',
+    intrinsicWidth: 720,
+    intrinsicHeight: 900,
+  },
+  'floor-boot-rocks': {
+    poster: '/media/mens-demo/floor-boot-rocks-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-boot-rocks-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-boot-rocks-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-light-jean-flat': {
+    poster: '/media/mens-demo/floor-light-jean-flat-540.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-light-jean-flat-480.avif 480w, /media/mens-demo/floor-light-jean-flat-540.avif 540w',
+    webpSrcSet:
+      '/media/mens-demo/floor-light-jean-flat-480.webp 480w, /media/mens-demo/floor-light-jean-flat-540.webp 540w',
+    intrinsicWidth: 540,
+    intrinsicHeight: 675,
+  },
+  'floor-boot-crate': {
+    poster: '/media/mens-demo/floor-boot-crate-400.webp',
+    avifSrcSet: '/media/mens-demo/floor-boot-crate-400.avif 400w',
+    webpSrcSet: '/media/mens-demo/floor-boot-crate-400.webp 400w',
+    intrinsicWidth: 400,
+    intrinsicHeight: 500,
+  },
+  'floor-pale-jean-flat': {
+    poster: '/media/mens-demo/floor-pale-jean-flat-540.webp',
+    avifSrcSet:
+      '/media/mens-demo/floor-pale-jean-flat-480.avif 480w, /media/mens-demo/floor-pale-jean-flat-540.avif 540w',
+    webpSrcSet:
+      '/media/mens-demo/floor-pale-jean-flat-480.webp 480w, /media/mens-demo/floor-pale-jean-flat-540.webp 540w',
+    intrinsicWidth: 540,
+    intrinsicHeight: 675,
+  },
 }

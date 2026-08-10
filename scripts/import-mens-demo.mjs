@@ -51,6 +51,34 @@ const SELECTION = {
   'leather-duffel': 26,
   'campaign-boot-pull': 28,
   'campaign-gravel': 16,
+  /*
+   * THE FLOOR — the rest of the owner's drop, every remaining unique frame.
+   *
+   * These are campaign and editorial reference: worn looks, hems over boots, hardware and
+   * texture. Several are footwear, which is why they live here rather than in the rack —
+   * boots are not an approved demo category, but they are how the trousers are worn, and
+   * the owner sent them. Nothing in this group is presented as a purchasable entry.
+   */
+  'floor-white-jean-worn': 2,
+  'floor-dark-jean-back': 3,
+  'floor-black-boots': 7,
+  'floor-dark-hem-boot': 8,
+  'floor-tan-boots': 10,
+  'floor-cream-seated': 11,
+  'floor-light-jean-side': 18,
+  'floor-dark-jean-street': 19,
+  'floor-denim-texture': 21,
+  'floor-black-toe': 24,
+  'floor-cuffing-barn': 30,
+  'floor-light-jean-worn': 32,
+  'floor-brown-boots': 34,
+  'floor-boot-floorboards': 35,
+  'floor-back-pocket': 36,
+  'floor-waist-detail': 37,
+  'floor-boot-rocks': 39,
+  'floor-light-jean-flat': 42,
+  'floor-boot-crate': 43,
+  'floor-pale-jean-flat': 45,
 }
 
 const files = readdirSync(SRC)
