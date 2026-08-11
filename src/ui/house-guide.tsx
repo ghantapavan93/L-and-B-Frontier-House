@@ -17,11 +17,14 @@ import Link from 'next/link'
 export function HouseGuide() {
   return (
     <details className="house-guide">
-      <summary>
+      {/* The name lives on the control itself, so the visible word can be dropped on a
+          phone without the button ever losing its accessible name. */}
+      <summary aria-label="House Guide">
         <span aria-hidden="true" className="house-guide__mark">
           ?
         </span>
-        House Guide
+        {/* Dropped on a phone so the closed chip stops covering content. */}
+        <span className="house-guide__label">House Guide</span>
       </summary>
       <div className="house-guide__panel">
         <p className="eyebrow">House Guide</p>

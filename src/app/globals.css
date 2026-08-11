@@ -5020,6 +5020,29 @@ tfoot td {
   z-index: var(--z-sticky);
 }
 
+/*
+  On a phone the chip sat on top of the gallery's thumbnail rail — a fixed control
+  covering content, which is the one thing a corner affordance must never do. Closed, it
+  now shrinks to its mark and steps aside; opening it still gives the full panel.
+*/
+@media (max-width: 47.99rem) {
+  .house-guide:not([open]) > summary {
+    padding: 0 var(--space-2);
+    gap: 0;
+  }
+
+  /*
+    The word is removed outright on a phone so the closed chip stops covering the gallery
+    rail beneath it. That is safe here ONLY because the control carries an explicit
+    `aria-label`: the accessible name comes from the attribute, not from this text, so
+    hiding it costs nothing to assistive technology. Clipping it instead would leave
+    off-screen text that the no-clipped-text guard correctly objects to.
+  */
+  .house-guide:not([open]) > summary .house-guide__label {
+    display: none;
+  }
+}
+
 .house-guide > summary {
   list-style: none;
   cursor: pointer;
