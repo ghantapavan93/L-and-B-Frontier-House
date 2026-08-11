@@ -26,6 +26,24 @@ export type DemoImage = {
   readonly alt: string
 }
 
+/**
+ * One row of a specification table. `visible` marks a fact the photograph itself proves —
+ * a colour, a snap front, a leg opening you can see. Everything else is fixture
+ * specification, rendered under a fixture heading, and never presented as stock truth.
+ */
+export type DemoSpec = {
+  readonly term: string
+  readonly value: string
+  readonly visible?: boolean
+}
+
+/** A named detail with the frame that shows it — the anatomy callout. */
+export type DemoDetail = {
+  readonly label: string
+  readonly note: string
+  readonly image: DemoImage
+}
+
 export type DemoProduct = {
   readonly slug: string
   readonly name: string
@@ -36,6 +54,24 @@ export type DemoProduct = {
   readonly sizesNote: string
   /** First image is the card face; second, when present, is the hover swap. */
   readonly media: readonly DemoImage[]
+  /** The editorial opening on the product page. Register, never specification. */
+  readonly story?: string
+  /** What the photographs show, in a line each. */
+  readonly features?: readonly string[]
+  /** Construction and material rows. */
+  readonly details?: readonly DemoSpec[]
+  /** Fit and sizing rows — cut, rise, leg opening, size run. */
+  readonly fit?: readonly DemoSpec[]
+  /** Material and care rows. */
+  readonly care?: readonly DemoSpec[]
+  /** Colour names with a swatch value — the swatch is a CSS colour, never a claim. */
+  readonly colours?: readonly { readonly name: string; readonly swatch: string }[]
+  /** Selectable sizes for the demo size control. */
+  readonly sizes?: readonly string[]
+  /** Anatomy callouts, each tied to the frame that proves it. */
+  readonly anatomy?: readonly DemoDetail[]
+  /** Lifestyle frames for "how it is worn". */
+  readonly worn?: readonly DemoImage[]
 }
 
 function img(key: string, alt: string): DemoImage {
@@ -73,6 +109,49 @@ export const MENS_DEMO_PRODUCTS: readonly DemoProduct[] = [
       img('mid-wash-jean-front', 'Front waistband of the mid-wash jean with a brown belt'),
       img('mid-wash-jean-hem', 'Mid-wash hem breaking over a western boot'),
     ],
+    story:
+      'The pair you stop thinking about. Mid indigo with the whiskering a season of wear puts in on its own, cut straight enough to sit over a boot without pooling at the ankle.',
+    features: [
+      'Straight through the thigh and knee',
+      'Light whiskering at the hip and seat',
+      'Five-pocket western cut',
+      'Hem breaks clean over a boot',
+    ],
+    colours: [{ name: 'Mid Indigo', swatch: '#3f5b7d' }],
+    sizes: ['30', '32', '34', '36', '38'],
+    details: [
+      { term: 'Cut', value: 'Five-pocket, straight leg', visible: true },
+      { term: 'Closure', value: 'Button fly with belt loops', visible: true },
+      { term: 'Pockets', value: 'Two front, two back patch', visible: true },
+    ],
+    fit: [
+      { term: 'Fit', value: 'Straight' },
+      { term: 'Rise', value: 'Mid' },
+      { term: 'Leg opening', value: 'Straight to the hem', visible: true },
+      { term: 'Waist run', value: '30–38 · fixture run' },
+      { term: 'Wash', value: 'Mid indigo', visible: true },
+    ],
+    care: [
+      { term: 'Material', value: 'Denim', visible: true },
+      { term: 'Care', value: 'Wash cold, hang dry' },
+    ],
+    anatomy: [
+      {
+        label: 'The waistband',
+        note: 'Belt loops set wide enough for a full western belt and buckle.',
+        image: img('mid-wash-jean-front', 'The waistband and belt of the mid-wash jean'),
+      },
+      {
+        label: 'The hem',
+        note: 'Cut to break once over a boot instead of stacking at the ankle.',
+        image: img('mid-wash-jean-hem', 'The hem breaking over a western boot'),
+      },
+    ],
+    worn: [
+      img('floor-dark-jean-street', 'The straight leg worn on a paved street'),
+      img('floor-waist-detail', 'The waistband and belt, worn'),
+      img('floor-back-pocket', 'The back pocket of worn denim'),
+    ],
   },
   {
     slug: 'light-wash-jean',
@@ -98,6 +177,47 @@ export const MENS_DEMO_PRODUCTS: readonly DemoProduct[] = [
       img('bootcut-jean-hem', 'Bootcut hem draped over an exotic-grain western boot'),
       img('bootcut-jean-drape', 'The dark jean draped over a wooden ladder'),
     ],
+    story:
+      'Cut for a heel. The leg opens from the knee so the boot sits under the denim rather than fighting it — the reason the shape has never actually gone anywhere out here.',
+    features: [
+      'Opens from the knee over a western heel',
+      'Deep, even indigo with no fading at the seat',
+      'Five-pocket western cut',
+    ],
+    colours: [{ name: 'Deep Indigo', swatch: '#20304a' }],
+    sizes: ['30', '32', '34', '36', '38'],
+    details: [
+      { term: 'Cut', value: 'Five-pocket, bootcut', visible: true },
+      { term: 'Closure', value: 'Button fly with belt loops', visible: true },
+    ],
+    fit: [
+      { term: 'Fit', value: 'Bootcut' },
+      { term: 'Rise', value: 'Mid' },
+      { term: 'Leg opening', value: 'Opens from the knee', visible: true },
+      { term: 'Waist run', value: '30–38 · fixture run' },
+      { term: 'Wash', value: 'Deep indigo, unfaded', visible: true },
+    ],
+    care: [
+      { term: 'Material', value: 'Denim', visible: true },
+      { term: 'Care', value: 'Wash cold, hang dry' },
+    ],
+    anatomy: [
+      {
+        label: 'The opening',
+        note: 'The leg widens from the knee, so the boot shaft sits beneath the denim.',
+        image: img('bootcut-jean-hem', 'The bootcut hem over a western boot'),
+      },
+      {
+        label: 'The drape',
+        note: 'Weight enough to hold a line off the body rather than cling to it.',
+        image: img('bootcut-jean-drape', 'The jean draped over a wooden ladder'),
+      },
+    ],
+    worn: [
+      img('floor-black-toe', 'A boot toe beneath the dark leg'),
+      img('floor-boot-floorboards', 'The hem and boot on floorboards'),
+      img('floor-cuffing-barn', 'Cuffing the leg over a boot in a barn'),
+    ],
   },
   {
     slug: 'khaki-five-pocket-jean',
@@ -121,6 +241,37 @@ export const MENS_DEMO_PRODUCTS: readonly DemoProduct[] = [
       'Long-sleeve western shirt in a red-brown stripe with a snap front and two flap chest pockets.',
     sizesNote: 'S–XXL · fixture run',
     media: [img('stripe-shirt-flat', 'Striped snap-front western shirt, laid flat')],
+    story:
+      'A shirt that opens with one hand. The stripe is quiet enough for a working week and loud enough to read as western across a room.',
+    features: [
+      'Snap front, no buttons to lose',
+      'Two flap chest pockets, both snapped',
+      'Long sleeve with a snapped cuff',
+      'Red-brown stripe on a pale ground',
+    ],
+    colours: [{ name: 'Rust Stripe', swatch: '#9c5a49' }],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    details: [
+      { term: 'Front', value: 'Snap placket', visible: true },
+      { term: 'Pockets', value: 'Two flap chest pockets, snapped', visible: true },
+      { term: 'Collar', value: 'Pointed western collar', visible: true },
+      { term: 'Sleeve', value: 'Long, snapped cuff', visible: true },
+    ],
+    fit: [
+      { term: 'Fit', value: 'Regular' },
+      { term: 'Size run', value: 'S–XXL · fixture run' },
+    ],
+    care: [
+      { term: 'Pattern', value: 'Woven stripe', visible: true },
+      { term: 'Care', value: 'Wash cold, warm iron' },
+    ],
+    anatomy: [
+      {
+        label: 'The snap front',
+        note: 'A placket of pearl snaps — the western fastening, opened with one pull.',
+        image: img('stripe-shirt-flat', 'The snap placket and chest pockets of the shirt'),
+      },
+    ],
   },
   {
     slug: 'indigo-trucker-jacket',
@@ -133,6 +284,41 @@ export const MENS_DEMO_PRODUCTS: readonly DemoProduct[] = [
       img('denim-jacket-hero', 'Indigo denim trucker jacket worn open, with a cream hat'),
       img('denim-jacket-saddle', 'The denim jacket worn beside a tooled western saddle'),
     ],
+    story:
+      'The layer that goes on last and comes off never. Worn indigo, a pointed yoke across the chest, and a fit that takes a shirt underneath without pulling at the shoulder.',
+    features: [
+      'Button front with a pointed western yoke',
+      'Two chest pockets with flaps',
+      'Worn indigo with natural fade at the seams',
+      'Cut to layer over a shirt',
+    ],
+    colours: [{ name: 'Worn Indigo', swatch: '#4a6a8f' }],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    details: [
+      { term: 'Front', value: 'Button through', visible: true },
+      { term: 'Yoke', value: 'Pointed western yoke', visible: true },
+      { term: 'Pockets', value: 'Two flap chest pockets', visible: true },
+    ],
+    fit: [
+      { term: 'Fit', value: 'Regular, cut to layer' },
+      { term: 'Size run', value: 'S–XXL · fixture run' },
+    ],
+    care: [
+      { term: 'Material', value: 'Denim', visible: true },
+      { term: 'Care', value: 'Wash cold, hang dry' },
+    ],
+    anatomy: [
+      {
+        label: 'The yoke',
+        note: 'The pointed chest yoke — the line that makes a denim jacket a western one.',
+        image: img('denim-jacket-hero', 'The chest yoke and button front of the jacket'),
+      },
+      {
+        label: 'In the round',
+        note: 'Shown against tooled leather: the register the jacket was cut for.',
+        image: img('denim-jacket-saddle', 'The jacket worn beside a tooled western saddle'),
+      },
+    ],
   },
   {
     slug: 'saddle-tan-belt',
@@ -143,6 +329,34 @@ export const MENS_DEMO_PRODUCTS: readonly DemoProduct[] = [
     media: [
       img('saddle-belt-flat', 'Tan leather belt with a brass-tone buckle, coiled flat'),
       img('saddle-belt-worn', 'The tan belt worn through dark denim loops'),
+    ],
+    story:
+      'Saddle tan, one prong, no ornament. The belt you stop noticing because it never asks for anything.',
+    features: [
+      'Smooth saddle-tan leather',
+      'Brass-tone single-prong buckle',
+      'Stitched edge along the full length',
+    ],
+    colours: [{ name: 'Saddle Tan', swatch: '#a9713f' }],
+    sizes: ['32', '34', '36', '38', '40', '42'],
+    details: [
+      { term: 'Buckle', value: 'Brass-tone, single prong', visible: true },
+      { term: 'Edge', value: 'Stitched', visible: true },
+      { term: 'Material', value: 'Smooth leather', visible: true },
+    ],
+    fit: [{ term: 'Size run', value: '32–42 · fixture run' }],
+    care: [{ term: 'Care', value: 'Wipe clean, condition as needed' }],
+    anatomy: [
+      {
+        label: 'The buckle',
+        note: 'A single prong in brass tone — the plain fastening, not a trophy.',
+        image: img('saddle-belt-flat', 'The brass-tone single-prong buckle'),
+      },
+      {
+        label: 'Worn',
+        note: 'Through dark denim loops, where the leather does its actual work.',
+        image: img('saddle-belt-worn', 'The belt worn through denim loops'),
+      },
     ],
   },
   {

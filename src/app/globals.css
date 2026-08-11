@@ -5612,3 +5612,598 @@ tfoot td {
   border: 1px dashed var(--color-stitch);
   padding: 2px var(--space-2);
 }
+
+/* ==========================================================================
+   THE PRODUCT GALLERY — frames, thumbnails, enlarged view
+
+   A scroll-snap strip with anchor thumbnails: native scrolling, fragment
+   targets, and a `:target` enlargement. No carousel state, no JavaScript.
+   ========================================================================== */
+
+.gallery {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .gallery {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.gallery__rail {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  order: 2;
+}
+
+@media (min-width: 48rem) {
+  .gallery__rail {
+    order: 0;
+    flex-direction: column;
+    overflow-x: visible;
+  }
+}
+
+.gallery__thumb {
+  flex: none;
+  display: block;
+  width: 4.5rem;
+  border: 1px solid var(--rule);
+  background: var(--surface-raised);
+  padding: 2px;
+}
+
+@media (min-width: 48rem) {
+  .gallery__thumb {
+    width: 100%;
+  }
+}
+
+.gallery__thumb img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery__thumb:hover,
+.gallery__thumb:focus-visible {
+  border-color: var(--color-ink);
+}
+
+/*
+  The frames.
+
+  MOBILE: one per screen, snapped, scrolled by the browser itself.
+
+  DESKTOP: a vertical STACK, not a horizontal scroller — which is what every reference
+  product page actually does, and what fixes a real WCAG 2.4.11 failure. In a horizontal
+  strip the off-screen frames still take keyboard focus, and a focused element sitting
+  outside its scroll port is obscured by construction. Stacked, every frame is on the page,
+  focus lands where the eye already is, and the gallery gets the photographic dominance the
+  page is for.
+*/
+.gallery__strip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: var(--space-2);
+  min-width: 0;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 48rem) {
+  .gallery__strip {
+    display: grid;
+    gap: var(--space-3);
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__strip {
+    scroll-behavior: auto;
+  }
+}
+
+.gallery__frame {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+  min-width: 0;
+}
+
+.gallery__open {
+  position: relative;
+  display: block;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2);
+}
+
+.gallery__open img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery__open-hint {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  background: rgb(10 10 10 / 0.72);
+  color: var(--color-bone);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+}
+
+.gallery__caption {
+  margin-top: var(--space-2);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+/* The enlarged view. */
+.zoom {
+  display: none;
+}
+
+.zoom:target {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+}
+
+.zoom__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(10 10 10 / 0.88);
+}
+
+.zoom__panel {
+  position: relative;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.zoom__panel img {
+  max-width: min(92vw, 60rem);
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.zoom__close {
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+.zoom__close:hover {
+  background: var(--text-on-inverse);
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
+   THE BUYING PANEL
+   ========================================================================== */
+
+.pdp-panel__row {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-4);
+}
+
+.pdp-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.pdp-panel__label {
+  margin: 0 0 var(--space-2);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.pdp-panel__value {
+  color: var(--color-text);
+}
+
+.swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.swatch {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule-strong);
+}
+
+.size-run {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.size-run__size {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--rule-strong);
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
+  background: var(--surface-sunken);
+}
+
+/* ==========================================================================
+   PDP DEPTH — story, specification tables, anatomy, worn, related
+   ========================================================================== */
+
+.pdp-story {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 62rem) {
+  .pdp-story {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+.pdp-story__headline {
+  margin-bottom: var(--space-3);
+}
+
+.pdp-story__label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+.pdp-story__features {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pdp-story__features li {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-2);
+}
+
+.pdp-story__note {
+  margin-top: var(--space-4);
+}
+
+.pdp-story__aside img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.spec-table {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.spec-table > div {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: var(--space-4);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-2);
+}
+
+.spec-table dt {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  padding-top: 2px;
+}
+
+.spec-table dd {
+  margin: 0;
+}
+
+/* Marks a row the photographs prove — evidence, not decoration. */
+.spec-table__seen {
+  margin-left: var(--space-2);
+  font-size: 9px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-chip-text);
+  border: 1px dashed var(--color-stitch);
+  padding: 0 4px;
+}
+
+.anatomy-grid,
+.related-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.anatomy-grid img,
+.related-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: var(--surface-sunken);
+}
+
+.anatomy-grid__label {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+.related-grid__card {
+  display: block;
+  text-decoration: none;
+}
+
+.related-grid__name {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--body-lg);
+  color: var(--color-text);
+}
+
+.worn-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.worn-strip li {
+  flex: 0 0 min(80vw, 26rem);
+  scroll-snap-align: start;
+}
+
+.worn-strip img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: var(--surface-sunken);
+}
+
+/* ==========================================================================
+   THE SPLIT CAMPAIGN — two frames, full bleed, a word on each
+
+   No container and no card: the section IS the photography. Each half is one
+   link covering the whole frame.
+   ========================================================================== */
+
+.split {
+  display: grid;
+  gap: 2px;
+  margin-block: var(--space-8);
+}
+
+@media (min-width: 48rem) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.split__half {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--surface-sunken);
+  text-decoration: none;
+}
+
+@media (min-width: 48rem) {
+  .split__half {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+.split__half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-entrance);
+}
+
+.split__half:hover img,
+.split__half:focus-visible img {
+  transform: scale(1.04);
+}
+
+.split__half::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(10 10 10 / 0.7) 0%,
+    rgb(10 10 10 / 0.2) 45%,
+    rgb(10 10 10 / 0) 70%
+  );
+  pointer-events: none;
+}
+
+.split__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-6) var(--space-5);
+}
+
+.split__word {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--text-on-inverse);
+}
+
+.split__cta {
+  font-size: 10px;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-bone);
+  border-bottom: 1px solid var(--color-sandstone);
+  padding-bottom: 2px;
+}
+
+.split__half:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-sandstone);
+  outline-offset: calc(var(--focus-ring-offset) * -1);
+}
+
+/* ==========================================================================
+   THE HOUSE STRIP — the page closes on the house tag and a run of frames
+   ========================================================================== */
+
+.house-strip {
+  margin-top: var(--space-9);
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--rule);
+}
+
+.house-strip__head {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.house-strip__tag {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.house-strip__run {
+  padding: 0 var(--margin-mobile);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+.house-strip__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (min-width: 62rem) {
+  .house-strip__run {
+    padding-inline: var(--margin-desktop);
+  }
+
+  .house-strip__list {
+    gap: var(--space-3);
+  }
+}
+
+.house-strip__list li {
+  flex: 0 0 min(55vw, 20rem);
+  scroll-snap-align: start;
+}
+
+.house-strip__list img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: var(--surface-sunken);
+}
+
+/* Focus rings for the surfaces this pass introduced. A photograph that takes focus
+   still owes a visible indicator — the image is not the affordance, the ring is. */
+.gallery__thumb:focus-visible,
+.gallery__open:focus-visible,
+.related-grid__card:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.gallery__strip:focus-visible,
+.worn-strip:focus-visible,
+.house-strip__run:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: calc(var(--focus-ring-offset) * -1);
+}

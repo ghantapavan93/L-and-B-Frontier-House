@@ -66,8 +66,9 @@ function DemoCard({ product }: { product: DemoProduct }) {
 
   return (
     <article className="product-card">
-      {/* No product route exists for a demo entry — the card opens its quick view. */}
-      <a href={`#qvd-${product.slug}`} className="product-card__link">
+      {/* The card opens the product's own page — the quick view below stays as the
+          glance, exactly as it works on the real catalogue. */}
+      <a href={`/mens/${product.slug}`} className="product-card__link">
         {face ? (
           swap ? (
             <span className="product-card__swap">
@@ -94,6 +95,9 @@ function DemoCard({ product }: { product: DemoProduct }) {
       <div className="badge-row">
         <span className="badge badge--quiet">Demo fixture</span>
       </div>
+      <a className="product-card__quick" href={`#qvd-${product.slug}`}>
+        Quick view<span className="visually-hidden"> — {product.name}</span>
+      </a>
     </article>
   )
 }
@@ -139,6 +143,9 @@ function DemoQuickView({ product }: { product: DemoProduct }) {
           <p>{product.description}</p>
           <p className="meta">{product.sizesNote}. No price exists for a demo entry.</p>
           <div className="cluster">
+            <a href={`/mens/${product.slug}`} className="button">
+              View product
+            </a>
             <a href={`#pd-${product.slug}`} className="button button--secondary">
               Close
             </a>

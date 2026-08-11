@@ -37,6 +37,7 @@ export const PUBLIC_ROUTES = [
   '/wholesale',
   '/wholesale/apply',
   '/wholesale/apply/received',
+  '/mens/everyday-mid-jean',
   '/search',
   '/fit-passport',
   '/sign-in',

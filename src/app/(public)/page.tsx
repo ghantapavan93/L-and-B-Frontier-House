@@ -15,6 +15,7 @@ import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
 import { HouseMarquee } from '@/ui/house-marquee'
+import { HouseStrip, SplitCampaign } from '@/ui/house-strip'
 import { MensChapter } from '@/ui/mens-chapter'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard, ProductGrid } from '@/ui/product-card'
@@ -130,6 +131,8 @@ export default async function HomePage() {
       <MensChapter />
 
       <ThisWeekBand products={newest} />
+
+      <SplitCampaign />
 
       <MotionClipBand />
 
@@ -343,6 +346,8 @@ export default async function HomePage() {
           </dl>
         </div>
       </section>
+
+      <HouseStrip />
 
       <section className="container section--tight">
         <FixtureNotice />

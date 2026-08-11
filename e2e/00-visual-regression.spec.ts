@@ -29,6 +29,21 @@ async function stabilise(page: import('@playwright/test').Page) {
     against a timeout so a stuck image costs a few hundred milliseconds rather than the test.
   */
   await page.evaluate(async () => {
+    /*
+      Wait for the webfonts before measuring anything.
+
+      Both families load with `font-display: swap`, so a capture taken mid-swap measures
+      the fallback's metrics. In the header that moved the search field's line box by a
+      pixel, the whole document below it shifted by one, and a baseline recorded and
+      immediately re-compared differed in total height — which reads as "the homepage
+      changed" when nothing did. `document.fonts.ready` is the supported signal for this
+      and it is raced, so a font that never resolves costs a second rather than the run.
+    */
+    await Promise.race([
+      document.fonts.ready,
+      new Promise((resolve) => setTimeout(resolve, 4000)),
+    ])
+
     // Step down the page rather than jumping: a single jump to the bottom skips past
     // mid-page lazy images, which is how the category tiles landed in a baseline unloaded.
     const step = window.innerHeight * 0.8
@@ -47,6 +62,25 @@ async function stabilise(page: import('@playwright/test').Page) {
       ),
       new Promise((resolve) => setTimeout(resolve, 3000)),
     ])
+
+    /*
+      Freeze film LAST, immediately before the capture.
+
+      `animations: 'disabled'` covers CSS, not <video>. The ignition film starts by itself
+      and runs ten seconds, so a capture taken mid-playback lands on whichever frame the
+      decoder reached — which made the page height vary by a pixel between two captures of
+      the same page. This ran first at one point, which left the whole scroll-and-decode
+      pass for playback to resume in; last is the only position that holds.
+    */
+    for (const video of document.querySelectorAll('video')) {
+      video.pause()
+      try {
+        video.currentTime = 0
+      } catch {
+        // A film with no loaded metadata cannot be sought; it is already at frame 0.
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 250))
   })
 
   await page.waitForTimeout(300)
@@ -57,12 +91,63 @@ async function shoot(page: import('@playwright/test').Page, name: string) {
   await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true })
 }
 
+/**
+ * Captures a named region instead of the whole document.
+ *
+ * The homepage is now a 25,000-pixel editorial scroll, and a full-page baseline of it is
+ * not a useful regression test: ANY one-pixel reflow anywhere changes the canvas size, so
+ * the comparison fails without saying what moved, and the true diff is invisible inside a
+ * 25k-pixel image. Worse, a full-page capture of a page that tall is inherently racy —
+ * a late webfont metric or a decoded image shifts the total by a pixel between two
+ * captures of an unchanged page, which is exactly what it did.
+ *
+ * Section shots are the fix that keeps the value: each one is small enough to read at a
+ * glance, stable because its own box is stable, and it names the thing it guards.
+ */
+async function shootRegion(
+  page: import('@playwright/test').Page,
+  selector: string,
+  name: string,
+) {
+  await stabilise(page)
+  const region = page.locator(selector).first()
+  await region.scrollIntoViewIfNeeded()
+  await page.waitForTimeout(300)
+  await expect(region).toHaveScreenshot(`${name}.png`)
+}
+
 test.describe('public surfaces — desktop', () => {
   test.use({ viewport: DESKTOP })
 
-  test('homepage', async ({ page }) => {
+  /*
+    The homepage is guarded section by section rather than as one enormous canvas — see
+    `shootRegion`. Together these cover the opening, the collection grid, the marquee,
+    the campaign story and the closing strip: every band this redesign touched.
+  */
+  test('homepage — the opening', async ({ page }) => {
     await page.goto('/')
-    await shoot(page, 'desktop-homepage')
+    await stabilise(page)
+    await expect(page).toHaveScreenshot('desktop-homepage-opening.png')
+  })
+
+  test('homepage — the collection grid', async ({ page }) => {
+    await page.goto('/')
+    await shootRegion(page, '.worlds', 'desktop-homepage-collections')
+  })
+
+  test('homepage — the marquee', async ({ page }) => {
+    await page.goto('/')
+    await shootRegion(page, '.marquee', 'desktop-homepage-marquee')
+  })
+
+  test('homepage — the campaign story', async ({ page }) => {
+    await page.goto('/')
+    await shootRegion(page, '.story', 'desktop-homepage-story')
+  })
+
+  test('homepage — the house strip', async ({ page }) => {
+    await page.goto('/')
+    await shootRegion(page, '.house-strip', 'desktop-homepage-strip')
   })
 
   test('new arrivals', async ({ page }) => {

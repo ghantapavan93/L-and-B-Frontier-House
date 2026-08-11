@@ -258,3 +258,50 @@ whole-tile link each, href into the labelled demonstration, marker present) and 
 operability, replacing the prev/next carousel that no longer exists. The `for him` guard
 stays. The text-clipping check exempts `.marquee`, whose content is intentionally wider
 than the window and clipped by its own container.
+
+---
+
+## 2026-08-08 PDP architecture + homepage pass 2
+
+### The product page, at reference depth
+
+One reusable architecture in `src/ui/pdp/`, wired to ten men's demo products at
+`/mens/[slug]`. Every card, quick view and collection tile now opens a real page.
+
+| Layer | What it does |
+| :--- | :--- |
+| `PdpGallery` | Thumbnail rail (anchors naming each view), frames as a scroll-snap strip on mobile and a **vertical stack on desktop**, `:target` enlarged view. Zero JavaScript |
+| Buying panel | Breadcrumb, name, description, colour + swatch, size run, Fit Passport link, demonstration badge. Fields render only where data exists |
+| `PdpStory` | Editorial opening, KEY FEATURES, then Details / Fit & sizing / Material & care as native folds, with a detail photograph carrying the opposite column |
+| `PdpAnatomy` | Named callouts, each beside the frame that proves it — a callout cannot exist without its evidence |
+| `PdpWorn` | Lifestyle frames in context |
+| Related | Same-category pieces |
+
+**The `seen` badge is the house mechanism.** A specification row marked `seen` is provable
+from a photograph on that same page; everything else is fixture specification, stated once
+at the foot. Claim and evidence ship together or not at all.
+
+**Trade mode is deliberately absent from demo PDPs** and that is the correct outcome: a
+demo product has no wholesale record, so there is nothing to authorise and nothing to leak.
+Restricted values remain on `/trade/product/[slug]` for real catalogue products inside an
+authorised session. Inventing a wholesale figure to enrich the demonstration is exactly the
+false claim the surface exists to avoid.
+
+### Homepage, second visual pass
+
+- **Split campaign** — two full-bleed frames, a word and an action on each, replacing the
+  weakest band on the page.
+- **`#FrontierHouse` strip** — the page now closes on a horizontal run of ten lifestyle
+  frames under the house tag. A real scroller with an honest scrollbar and keyboard reach,
+  never auto-advancing (§9).
+
+### Three real defects the suites caught
+
+1. `role="region"` on a `<ul>` replaced its list semantics and orphaned ten `<li>`
+   elements (axe, serious). The wrapper takes the role; the list stays a list.
+2. Gallery frames in a horizontal strip took keyboard focus while scrolled out of view — a
+   genuine WCAG 2.4.11 failure. The desktop gallery now stacks, which is also what every
+   reference product page does.
+3. The homepage visual baseline was non-deterministic: `animations: 'disabled'` does not
+   pause `<video>`, so each capture landed on a different frame of the ignition film and
+   the page height varied by a pixel. `stabilise` now pauses and rewinds every film.
