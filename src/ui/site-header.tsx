@@ -6,25 +6,24 @@ import { navigableCategories } from '@/domain/taxonomy'
 import type { Session } from '@/domain/session'
 
 /**
- * The glass header, in two arrangements from the same markup:
+ * ONE ROW.
  *
- * DESKTOP — V3's quiet centred chrome: wordmark, primary navigation in letterspaced small
- * caps, account row beneath. Categories stay flat links — three categories do not justify a
- * mega menu — while DISCOVER and TRADE open as native `<details>` panels: grouped the way
- * the brief's references group them, keyboard-operable, zero JavaScript. The panels carry
- * one line of context per destination, which is the useful part of a mega menu without the
- * novelty.
+ * This header used to stack four: an announcement, the wordmark, a navigation row that
+ * wrapped to two lines at common widths, and a third row carrying an inline search field
+ * and an account link. Measured at 1440px it was 244px tall, and the first photograph on a
+ * category page began 465px down — so a visitor met a quarter-screen of chrome before they
+ * met any clothes. Every reference house spends about 60px there and then hits you with
+ * the product.
  *
- * SEARCH is a real GET form posting to /search — a working feature with JavaScript
- * disabled, not a dead field. (Its previous absence was honest; the feature now exists.)
+ * So: wordmark left, navigation centred, actions right, on a single line. Search becomes a
+ * link to the search page rather than a field parked in the chrome — the field lives on
+ * the page that exists for it, and the header gets its height back.
  *
- * MOBILE — V3.1 12A/12F's compact bar: Menu · centred wordmark · Account on ONE row. The
- * menu is a native `<details>` disclosure opening a full-width panel with the same three
- * groups flattened under small-caps labels, search first.
+ * MOBILE keeps the compact three-up bar: Menu · wordmark · Account, with the full
+ * navigation in a native `<details>` panel. That was already right and is unchanged.
  *
  * SESSION-INDEPENDENT BY DEFAULT: public routes render this with no session, keeping every
- * public response byte-identical for every visitor. The account affordance points at
- * /trade, which resolves per session.
+ * public response byte-identical for every visitor.
  */
 export function SiteHeader({ session }: { session?: Session }) {
   const categories = navigableCategories()
@@ -35,77 +34,68 @@ export function SiteHeader({ session }: { session?: Session }) {
   const discoverLinks = [
     { href: '/new-arrivals', label: 'The drop', note: 'Everything new this week' },
     { href: '/find-your-denim', label: 'Find your denim', note: 'Three questions to a fit' },
+    { href: '/fit-passport', label: 'Fit Passport', note: 'The House remembers your fit' },
     { href: '/size-and-fit/women', label: 'Size and fit', note: 'Every measurement, as text' },
     { href: '/warehouse', label: 'The Warehouse', note: 'Every rack, one aisle' },
   ]
 
   return (
     <header className="site-header">
-      <div className="container site-header__rows">
-        <div className="site-header__bar">
-          <details className="nav-disclosure">
-            <summary>Menu</summary>
-            <nav className="site-nav nav-disclosure__panel" aria-label="Menu">
-              <p className="nav-group-label">Search</p>
-              <ul>
-                <li>
-                  <Link href="/search">Search the line</Link>
+      <div className="site-header__row">
+        {/* MOBILE ONLY — the disclosure that carries everything below. */}
+        <details className="nav-disclosure">
+          <summary>Menu</summary>
+          <nav className="site-nav nav-disclosure__panel" aria-label="Menu">
+            <p className="nav-group-label">Shop</p>
+            <ul>
+              <li>
+                <Link href="/new-arrivals">New Arrivals</Link>
+              </li>
+              {categories.map((category) => (
+                <li key={`m-${category.slug}`}>
+                  <Link href={`/shop/${category.slug}`}>{category.label}</Link>
                 </li>
-              </ul>
-              <p className="nav-group-label">Shop</p>
-              <ul>
-                <li>
-                  <Link href="/new-arrivals">New Arrivals</Link>
+              ))}
+              <li>
+                <Link href="/mens" className="site-nav__demo">
+                  Men&rsquo;s
+                  <span className="site-nav__demo-tag">Demo</span>
+                </Link>
+              </li>
+            </ul>
+            <p className="nav-group-label">Discover</p>
+            <ul>
+              {discoverLinks.map((link) => (
+                <li key={`m-${link.href}`}>
+                  <Link href={link.href}>{link.label}</Link>
                 </li>
-                {categories.map((category) => (
-                  <li key={`m-${category.slug}`}>
-                    <Link href={`/shop/${category.slug}`}>{category.label}</Link>
-                  </li>
-                ))}
-                <li>
-                  <Link href="/mens" className="site-nav__demo">
-                    Men&rsquo;s
-                    <span className="site-nav__demo-tag">Demo</span>
-                  </Link>
+              ))}
+              {EDITS.map((edit) => (
+                <li key={`m-edit-${edit.slug}`}>
+                  <Link href={`/edit/${edit.slug}`}>{edit.name}</Link>
                 </li>
-              </ul>
-              <p className="nav-group-label">Discover</p>
-              <ul>
-                {discoverLinks.map((link) => (
-                  <li key={`m-${link.href}`}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-                {EDITS.map((edit) => (
-                  <li key={`m-edit-${edit.slug}`}>
-                    <Link href={`/edit/${edit.slug}`}>{edit.name}</Link>
-                  </li>
-                ))}
-              </ul>
-              <p className="nav-group-label">Trade</p>
-              <ul>
-                <li>
-                  <Link href="/wholesale">How wholesale works</Link>
-                </li>
-                <li>
-                  <Link href="/wholesale/apply">Apply for an account</Link>
-                </li>
-                <li>
-                  <Link href="/trade">{signedIn ? 'Your account' : 'Buyer sign in'}</Link>
-                </li>
-              </ul>
-            </nav>
-          </details>
+              ))}
+            </ul>
+            <p className="nav-group-label">Trade</p>
+            <ul>
+              <li>
+                <Link href="/wholesale">How wholesale works</Link>
+              </li>
+              <li>
+                <Link href="/wholesale/apply">Apply for an account</Link>
+              </li>
+              <li>
+                <Link href="/trade">{signedIn ? 'Your account' : 'Buyer sign in'}</Link>
+              </li>
+            </ul>
+          </nav>
+        </details>
 
-          <Link href="/" className="site-header__wordmark">
-            Lucky &amp; Blessed
-          </Link>
+        <Link href="/" className="site-header__wordmark">
+          Lucky &amp; Blessed
+        </Link>
 
-          <Link href="/trade" className="site-header__account-link">
-            {approved ? 'Order' : 'Account'}
-          </Link>
-        </div>
-
+        {/* DESKTOP — the one navigation row, centred between wordmark and actions. */}
         <nav className="site-nav site-nav--primary" aria-label="Primary">
           <ul>
             <li>
@@ -116,12 +106,6 @@ export function SiteHeader({ session }: { session?: Session }) {
                 <Link href={`/shop/${category.slug}`}>{category.label}</Link>
               </li>
             ))}
-            {/*
-              MEN'S sits in the primary row because Frontier House IS the men's direction —
-              a demonstration nobody can find demonstrates nothing. It is marked so the
-              label itself never becomes a capability claim, the page is `noindex`, and it
-              carries no catalogue entry, price or sitemap presence until D-03 resolves.
-            */}
             <li>
               <Link href="/mens" className="site-nav__demo">
                 Men&rsquo;s
@@ -183,49 +167,34 @@ export function SiteHeader({ session }: { session?: Session }) {
           </ul>
         </nav>
 
-        <nav className="site-nav site-nav--secondary" aria-label="Account">
-          <ul>
-            <li>
-              <form action="/search" method="get" className="header-search" role="search">
-                <label htmlFor="header-search-q" className="visually-hidden">
-                  Search the line
-                </label>
-                <input
-                  id="header-search-q"
-                  type="search"
-                  name="q"
-                  placeholder="Search"
-                  autoComplete="off"
-                />
-                <button type="submit" className="button button--quiet button--small">
-                  Search
-                </button>
-              </form>
-            </li>
-            {approved ? (
-              <li>
-                <Link href="/trade/order">Order</Link>
-              </li>
-            ) : null}
-            {signedIn ? (
-              <>
-                <li>
-                  <Link href="/trade">Your account</Link>
-                </li>
-                <li>
-                  <form action={signOutAction}>
-                    <button type="submit" className="button button--quiet button--small">
-                      Sign out
-                    </button>
-                  </form>
-                </li>
-              </>
-            ) : (
-              <li>
-                <Link href="/trade">Buyer account</Link>
-              </li>
-            )}
-          </ul>
+        {/*
+          Actions, as compact labels rather than a field and a row of links. Search is a
+          link to the page that owns the field — parking an input in the chrome cost more
+          height than the feature was worth there.
+        */}
+        {/* A labelled landmark, not a bare div: these are navigation links, and a screen
+            reader user jumping by landmark should find the account group. */}
+        <nav className="site-header__actions" aria-label="Account">
+          <Link href="/search" className="site-header__action">
+            Search
+          </Link>
+          {approved ? (
+            <Link href="/trade/order" className="site-header__action">
+              Order
+            </Link>
+          ) : null}
+          {/* "Account", not "Buyer account": at 320px the longer label pushed the row
+              65px past the viewport. The destination explains itself on arrival. */}
+          <Link href="/trade" className="site-header__action site-header__action--account">
+            Account
+          </Link>
+          {signedIn ? (
+            <form action={signOutAction}>
+              <button type="submit" className="site-header__action">
+                Sign out
+              </button>
+            </form>
+          ) : null}
         </nav>
       </div>
     </header>

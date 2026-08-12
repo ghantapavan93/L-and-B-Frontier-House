@@ -20,8 +20,8 @@ type Params = { category: string }
  *
  * A category with status `hidden` (currently Home, pending D-05) has no route and 404s.
  *
- * `dynamicParams = false` so an unknown or hidden category is an unmatched URL, which is the
- * one 404 path Next server-renders into the initial HTML rather than streaming as RSC.
+ * `dynamicParams = false` so an unknown or hidden category is an unmatched URL, which is
+ * the one 404 path Next server-renders into the initial HTML rather than streaming as RSC.
  */
 export const dynamicParams = false
 
@@ -70,42 +70,69 @@ export default async function CategoryPage({
     officialMediaForSlot(`category-${category.slug}`) ?? CATEGORY_TILE_FALLBACK[category.slug]
 
   return (
-    <div className="container section">
-      <nav aria-label="Breadcrumb">
-        <p className="meta">
-          <Link href="/">Home</Link> / {category.label}
-        </p>
-      </nav>
+    <>
+      {/*
+        THE PHOTOGRAPH IS THE OPENING.
 
-      <h1>{category.label}</h1>
-      <p className="lede">{category.blurb}</p>
-
+        This page used to lead with a breadcrumb, a heading and a paragraph, and only then
+        an image inset in the container — measured, the first photograph began 465px down.
+        The image now runs the full width of the window with the title set on it, which is
+        what every reference category page does. Text stays inside the measure; the
+        photograph does not.
+      */}
       {banner ? (
-        <div className="page-banner">
-          <EditorialMedia media={banner} priority sizes="100vw" />
+        <section className="page-hero" aria-labelledby="category-heading">
+          <div className="page-hero__media" aria-hidden="true">
+            <EditorialMedia media={banner} priority sizes="100vw" />
+          </div>
+          <div className="page-hero__inner">
+            <nav aria-label="Breadcrumb">
+              <p className="meta page-hero__crumb">
+                <Link href="/">Home</Link> / {category.label}
+              </p>
+            </nav>
+            <h1 id="category-heading">{category.label}</h1>
+            <p className="lede">{category.blurb}</p>
+          </div>
+        </section>
+      ) : (
+        <div className="container section--tight">
+          <nav aria-label="Breadcrumb">
+            <p className="meta">
+              <Link href="/">Home</Link> / {category.label}
+            </p>
+          </nav>
+          <h1 id="category-heading">{category.label}</h1>
+          <p className="lede">{category.blurb}</p>
         </div>
-      ) : null}
+      )}
 
-      <FixtureNotice detail={false} />
+      <div className="container section--tight">
+        <FixtureNotice detail={false} />
 
-      <a className="facet-trigger" href="#facets">
-        Filter &amp; sort
-        {appliedCount > 0 ? ` (${appliedCount})` : ''}
-      </a>
+        <a className="facet-trigger" href="#facets">
+          Filter &amp; sort
+          {appliedCount > 0 ? ` (${appliedCount})` : ''}
+        </a>
 
-      <div className="layout-with-facets" id="products" style={{ marginTop: 'var(--space-6)' }}>
-        <FacetPanel
-          action={`/shop/${category.slug}`}
-          facets={facets}
-          applied={applied}
-          resultCount={products.length}
-        />
-        <ProductGrid
-          products={products}
-          quickView
-          emptyMessage={`No ${category.label.toLowerCase()} styles match these filters. Clear them to see everything in this category.`}
-        />
+        <div
+          className="layout-with-facets"
+          id="products"
+          style={{ marginTop: 'var(--space-6)' }}
+        >
+          <FacetPanel
+            action={`/shop/${category.slug}`}
+            facets={facets}
+            applied={applied}
+            resultCount={products.length}
+          />
+          <ProductGrid
+            products={products}
+            quickView
+            emptyMessage={`No ${category.label.toLowerCase()} styles match these filters. Clear them to see everything in this category.`}
+          />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -341,7 +341,16 @@ test.describe('layout invariants', () => {
       .getByRole('link', { name: 'New Arrivals' })
       .first()
       .evaluate((el) => Number.parseFloat(getComputedStyle(el).scrollMarginTop))
-    expect(scrollMargin).toBeGreaterThan(100)
+    /*
+      The property is "an anchored element clears the sticky header", not a fixed number.
+      This asserted 144px, which was simply the value the old four-row header needed; when
+      the header came down to one row the constant outlived the thing it described.
+      Measuring the header keeps the invariant true through any future chrome change.
+    */
+    const headerHeight = await page
+      .locator('.site-header')
+      .evaluate((el) => el.getBoundingClientRect().height)
+    expect(scrollMargin).toBeGreaterThan(headerHeight)
   })
 
   test('the grain overlay never intercepts a click', async ({ page }) => {

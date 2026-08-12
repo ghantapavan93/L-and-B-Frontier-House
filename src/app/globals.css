@@ -332,6 +332,14 @@ svg {
   Sticky rather than fixed, and paired with `scroll-margin-top` on every focusable element
   below, so a keyboard user is never scrolled to a control that sits under it (WCAG 2.4.11).
 */
+/*
+  ONE ROW, about 64px.
+
+  Measured before this change: 244px of chrome, and the first photograph on a category
+  page began 465px down the page. Every reference house spends roughly 60px on the header
+  and then gives the screen to the product. Wordmark left, navigation centred, actions
+  right — one line, no wrapping, no field parked in the chrome.
+*/
 .site-header {
   position: sticky;
   top: 0;
@@ -340,9 +348,64 @@ svg {
   background: var(--glass-tint);
   backdrop-filter: blur(var(--glass-blur)) saturate(140%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
-  padding-top: calc(var(--space-4) + var(--safe-top));
-  padding-bottom: var(--space-3);
-  text-align: center;
+  padding-top: var(--safe-top);
+}
+
+.site-header__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 64px;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .site-header__row {
+    gap: var(--space-5);
+    padding-inline: var(--margin-mobile);
+  }
+}
+
+@media (min-width: 62rem) {
+  .site-header__row {
+    padding-inline: var(--margin-desktop);
+  }
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  justify-self: end;
+}
+
+.site-header__action {
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-meta);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+.site-header__action:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+@media (max-width: 61.99rem) {
+  /* The account label is the only action that survives the narrow bar. */
+  .site-header__action:not(.site-header__action--account) {
+    display: none;
+  }
 }
 
 @supports not (backdrop-filter: blur(1px)) {
@@ -353,28 +416,32 @@ svg {
 
 /* Nothing is ever scrolled under the sticky header. */
 :where(a, button, input, select, textarea, [tabindex], h1, h2, h3, main) {
-  scroll-margin-top: calc(9rem + var(--safe-top));
+  scroll-margin-top: calc(5rem + var(--safe-top));
 }
 
 .site-header__wordmark {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: var(--text-base);
-  letter-spacing: 0.22em;
+  /* Shrinks with the bar: at 320px it shares one row with Menu and Account. */
+  font-size: clamp(0.72rem, 3.4vw, 1.05rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  margin-bottom: var(--space-4);
+  white-space: nowrap;
+  justify-self: center;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 62rem) {
   .site-header__wordmark {
-    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    justify-self: start;
   }
 }
 
-.site-header__rows {
-  display: grid;
-  gap: var(--space-3);
+@media (min-width: 62rem) {
+  .site-header__wordmark {
+    font-size: 1.2rem;
+  }
 }
 
 .site-nav ul {
@@ -382,10 +449,21 @@ svg {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
+  gap: var(--space-5);
   justify-content: center;
   align-items: center;
+}
+
+/* One line, always. Wrapping is what made the old header two rows tall. */
+.site-nav--primary ul {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+@media (max-width: 61.99rem) {
+  .site-nav--primary {
+    display: none;
+  }
 }
 
 .site-nav a {
@@ -1129,19 +1207,22 @@ legend {
   page. That is worth more than matching a reference number precisely, and it lands
   inside their range anyway — taller and narrower than what we had.
 */
+/*
+  THE PHOTOGRAPH, BARE.
+
+  This carried a print-mount treatment — cream backing, hairline border, 8px of paper
+  margin and a drop shadow. Held against the references the effect is unmistakable: a
+  catalogue of framed prints rather than a shop. Not one of them frames a product image.
+  The mount is gone; the photograph now runs to the edge of its own cell and the grid gap
+  does the separating.
+*/
 .product-card__media {
   display: block; /* the demo rack mounts this on a <span> */
   position: relative;
   aspect-ratio: 2 / 3;
-  background: var(--surface-raised);
-  border: 1px solid var(--rule);
-  padding: var(--space-2);
+  background: var(--surface-sunken);
   border-radius: var(--radius-default);
   overflow: hidden;
-  box-shadow:
-    0 1px 2px rgb(26 22 18 / 0.04),
-    0 12px 28px -12px rgb(26 22 18 / 0.16);
-  transition: box-shadow var(--duration-base) var(--ease-entrance);
 }
 
 .product-card__link:hover .product-card__media {
@@ -1154,7 +1235,6 @@ legend {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Sits inside the mount, on the sunken ground, so the border reads as a paper margin. */
   background: var(--surface-sunken);
   transition: transform var(--duration-base) var(--ease-entrance);
 }
@@ -1301,14 +1381,9 @@ legend {
 .pdp__media {
   position: relative;
   aspect-ratio: 4 / 5;
-  background: var(--surface-raised);
-  border: 1px solid var(--rule);
-  padding: var(--space-3);
+  background: var(--surface-sunken);
   border-radius: var(--radius-default);
   overflow: hidden;
-  box-shadow:
-    0 2px 4px rgb(26 22 18 / 0.05),
-    0 24px 56px -20px rgb(26 22 18 / 0.22);
 }
 
 .pdp__media img {
@@ -3010,13 +3085,14 @@ tfoot td {
   display: none;
 }
 
-@media (max-width: 47.99rem) {
-  .site-header {
-    text-align: initial;
-    padding-top: calc(var(--space-3) + var(--safe-top));
-    padding-bottom: var(--space-3);
-  }
+/*
+  The disclosure covers everything the one-line nav does not.
 
+  These two breakpoints must be complements, not overlaps: the menu used to appear below
+  48rem while the desktop row appeared above 62rem, which left every viewport between 768
+  and 992px with no navigation at all.
+*/
+@media (max-width: 61.99rem) {
   .site-header__rows {
     display: block;
     position: relative;
@@ -3533,16 +3609,23 @@ tfoot td {
   always on screen. WCAG 2.2.2 asks for a mechanism, not a hidden one — a pause
   control a visitor has to hunt for has not stopped anything.
 */
+/*
+  Bottom LEFT, because the House Guide owns the bottom right.
+
+  Both sat in the same corner and the fixed chip won, covering the pause control — a real
+  2.4.11 failure, and worse than a layout blemish: WCAG 2.2.2 requires that control to be
+  reachable for a film that starts by itself. One fixed element per corner.
+*/
 .hero-film__controls {
   position: absolute;
   inset-block-end: var(--space-5);
-  inset-inline-end: var(--space-5);
+  inset-inline-start: var(--space-5);
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--space-2);
-  text-align: end;
+  text-align: start;
 }
 
 .hero-film__toggle {
@@ -5405,7 +5488,7 @@ tfoot td {
 @media (min-width: 62rem) {
   .pdp > .stack {
     position: sticky;
-    top: calc(9rem + var(--safe-top));
+    top: calc(5rem + var(--safe-top));
   }
 }
 
@@ -5676,9 +5759,14 @@ tfoot td {
   flex: none;
   display: block;
   width: 4.5rem;
-  border: 1px solid var(--rule);
-  background: var(--surface-raised);
-  padding: 2px;
+  background: var(--surface-sunken);
+  opacity: 0.62;
+  transition: opacity var(--duration-fast) var(--ease-entrance);
+}
+
+.gallery__thumb:hover,
+.gallery__thumb:focus-visible {
+  opacity: 1;
 }
 
 @media (min-width: 48rem) {
@@ -5693,11 +5781,6 @@ tfoot td {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
-}
-
-.gallery__thumb:hover,
-.gallery__thumb:focus-visible {
-  border-color: var(--color-ink);
 }
 
 /*
@@ -5747,9 +5830,7 @@ tfoot td {
 .gallery__open {
   position: relative;
   display: block;
-  background: var(--surface-raised);
-  border: 1px solid var(--rule);
-  padding: var(--space-2);
+  background: var(--surface-sunken);
 }
 
 .gallery__open img {
@@ -6229,4 +6310,113 @@ tfoot td {
 .house-strip__run:focus-visible {
   outline: var(--focus-ring-width) solid var(--color-focus);
   outline-offset: calc(var(--focus-ring-offset) * -1);
+}
+
+/* ==========================================================================
+   BREAKING THE CONTAINER
+
+   The references let photography run to the window edge and keep only TEXT
+   inside a measure. Everything here was boxed in a 1440px container with
+   gutters, which is most of why the build read as a document rather than a
+   shop. `.bleed` escapes whatever container it sits in without needing the
+   markup restructured around it.
+   ========================================================================== */
+
+.bleed {
+  /*
+    NOT `100vw` — that unit counts the scrollbar gutter, so a full-bleed block is always
+    wider than the page it sits in and the window grows a horizontal scrollbar. Negative
+    margins measured against the PARENT escape the container by exactly the gutter it
+    added, whatever the scrollbar is doing.
+  */
+  margin-inline: calc(-1 * var(--margin-mobile));
+}
+
+@media (min-width: 62rem) {
+  .bleed {
+    margin-inline: calc(-1 * var(--margin-desktop));
+  }
+}
+
+/* ==========================================================================
+   THE PAGE HERO — image first, title on it
+
+   A category page opened breadcrumb → heading → paragraph → image, so the
+   photograph began 465px down. Now the photograph IS the opening and the
+   title sits on it, which is what every reference does.
+   ========================================================================== */
+
+.page-hero {
+  position: relative;
+  min-height: min(58vh, 30rem);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  margin-bottom: var(--space-7);
+}
+
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero__media img,
+.page-hero__media picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(10 10 10 / 0.68) 0%,
+    rgb(10 10 10 / 0.24) 42%,
+    rgb(10 10 10 / 0) 70%
+  );
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-6) var(--margin-mobile) var(--space-7);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+@media (min-width: 62rem) {
+  .page-hero__inner {
+    padding-inline: var(--margin-desktop);
+  }
+}
+
+.page-hero h1 {
+  color: var(--text-on-inverse);
+  margin: 0 0 var(--space-2);
+}
+
+.page-hero .eyebrow,
+.page-hero .lede {
+  color: var(--color-sandstone);
+}
+
+.page-hero .lede {
+  margin: 0;
+  max-width: 42ch;
+}
+
+.page-hero__crumb {
+  color: var(--color-sandstone);
+  margin-bottom: var(--space-3);
+}
+
+.page-hero__crumb a {
+  color: var(--color-sandstone);
 }

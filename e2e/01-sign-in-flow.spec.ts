@@ -72,7 +72,7 @@ test.describe('approved buyer — full journey', () => {
     // Passport reflects the order.
     await page
       .getByRole('navigation', { name: 'Account' })
-      .getByRole('link', { name: 'Your account' })
+      .getByRole('link', { name: 'Account', exact: true })
       .click()
     await expect(page).toHaveURL('/trade')
     await expect(page.getByText('1 style · 12 units')).toBeVisible()
