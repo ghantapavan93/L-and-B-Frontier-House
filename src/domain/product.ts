@@ -29,6 +29,19 @@ export type ProductAttributes = {
   readonly fabric?: readonly string[]
   readonly detail?: readonly string[]
   readonly motif?: readonly string[]
+  /*
+    SPLIT, after the nine-site facet study found this field lying on every page it
+    appeared on. `silhouette` held thirteen values of which four were denim LEG OPENINGS
+    (straight, bootcut, flare, wide-leg), six were dress and outerwear SHAPES, and four
+    (western, regular, fitted, short) were neither — fit words, or nothing. A buyer on a
+    denim page saw "poncho" in the control; a buyer on outerwear saw "bootcut". Two of the
+    reference sites (Cinch, Ariat) name the denim axis `leg opening`, and our own denim
+    finder already enumerated exactly those four values — under the wrong name. One
+    concept, one name, per axis:
+  */
+  /** Denim and trousers only: the leg's cut. */
+  readonly legOpening?: 'straight' | 'bootcut' | 'flare' | 'wide-leg' | 'trouser' | 'tapered'
+  /** Non-denim garment shape (open front vest, poncho, strapless midi, …). */
   readonly silhouette?: string
   readonly sleeve?: string
   readonly inseam?: string

@@ -15,14 +15,19 @@
 import type { PublicProduct } from '@/domain/product'
 
 export type DenimAnswers = {
-  readonly silhouette?: string
+  readonly legOpening?: string
   readonly wash?: string
   /** True when the buyer asked for stretch. Matches fabric containing stretch denim. */
   readonly stretch?: boolean
 }
 
-/** The silhouettes that exist in the published line. An unknown value is dropped. */
-export const DENIM_SILHOUETTES = [
+/**
+ * The leg openings that exist in the published line. An unknown value is dropped.
+ * Renamed from DENIM_LEG_OPENINGS when the facet study split silhouette in two: this module
+ * had the right four values under the wrong name, and the facet had the wrong values under
+ * the right one. Cinch and Ariat both call this axis the leg opening.
+ */
+export const DENIM_LEG_OPENINGS = [
   { value: 'straight', label: 'Straight' },
   { value: 'bootcut', label: 'Bootcut' },
   { value: 'flare', label: 'Flare' },
@@ -48,12 +53,14 @@ function single(params: RawParams, key: string): string | undefined {
 }
 
 export function readDenimAnswers(params: RawParams): DenimAnswers {
-  const silhouette = single(params, 'silhouette')
+  /* `legOpening` is canonical; `silhouette` still reads as an alias so pre-split
+     bookmarks and shared finder URLs keep working. Writes always use the new name. */
+  const legOpening = single(params, 'legOpening') ?? single(params, 'silhouette')
   const wash = single(params, 'wash')
 
   return {
-    ...(silhouette && DENIM_SILHOUETTES.some((s) => s.value === silhouette)
-      ? { silhouette }
+    ...(legOpening && DENIM_LEG_OPENINGS.some((s) => s.value === legOpening)
+      ? { legOpening }
       : {}),
     ...(wash && DENIM_WASHES.some((w) => w.value === wash) ? { wash } : {}),
     ...(single(params, 'stretch') === 'yes' ? { stretch: true } : {}),
@@ -62,7 +69,7 @@ export function readDenimAnswers(params: RawParams): DenimAnswers {
 
 /** True when the visitor has answered at least one question. */
 export function hasAnswers(answers: DenimAnswers): boolean {
-  return Boolean(answers.silhouette || answers.wash || answers.stretch)
+  return Boolean(answers.legOpening || answers.wash || answers.stretch)
 }
 
 /** Denim only, then each answered question narrows. Unanswered questions exclude nothing. */
@@ -74,7 +81,7 @@ export function matchDenim(
     const fabrics = product.attributes.fabric ?? []
     if (!fabrics.some((fabric) => fabric.includes('denim'))) return false
 
-    if (answers.silhouette && product.attributes.silhouette !== answers.silhouette) {
+    if (answers.legOpening && product.attributes.legOpening !== answers.legOpening) {
       return false
     }
     if (answers.wash && product.attributes.wash !== answers.wash) return false

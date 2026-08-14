@@ -2135,7 +2135,13 @@ tfoot td {
 .ignition {
   position: relative;
   isolation: isolate;
-  min-height: 92svh;
+  /*
+    78svh, not 92svh. At 92 the hero filled the screen and showed nothing beneath it, so a
+    visitor had to gamble on a scroll to learn there was a shop. The reference houses stop
+    at roughly 78% and let the next band peek — which is also the cheapest way to make
+    §11's one-action exit to shop visible above the fold rather than merely present.
+  */
+  min-height: 78svh;
   display: grid;
   place-content: center;
   justify-items: center;
@@ -2182,21 +2188,53 @@ tfoot td {
   film itself, so a second, stylised copy of the same gesture would be competing with
   it rather than standing in for it.
 */
+/*
+  THE HERO'S PRIMARY CTA ROW — "See new arrivals", "Skip to shop", "Wholesale access" —
+  used to start at `opacity: 0` and wait 2.2s for an animation to reveal it.
+
+  That is the exact failure this codebase already banned elsewhere and then shipped here:
+  if the timeline never runs — a prerender snapshot, a background tab, an energy saver, an
+  animation-suppressing extension — the three most important controls on the page stay
+  invisible forever. Worse, it also breaks §11's requirement that every cinematic surface
+  keep a ONE-ACTION EXIT TO SHOP: the exit existed but could not be seen.
+
+  Now transform-only, so the row is legible at every frame including the first, and the
+  `scripting: none` floor below removes the animation entirely where nothing can drive it.
+*/
 @media (prefers-reduced-motion: no-preference) {
   .ignition__actions {
-    opacity: 0;
-    animation: ignition-rise 0.6s var(--ease-entrance) 2.2s forwards;
+    animation: ignition-rise 0.6s var(--ease-entrance) 2.2s both;
   }
 }
 
 @keyframes ignition-rise {
   from {
-    opacity: 0;
     transform: translateY(10px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/*
+  THE NO-SCRIPTING FLOOR.
+
+  `scripting: none` matches a prerender/snapshot context and any browser with scripting
+  disabled — the environments where an entrance can be started and never finished. We had
+  ZERO occurrences of this query; the reference set ships three. Every entrance in the
+  house is listed here and reduced to its finished state.
+*/
+@media (scripting: none) {
+  .ignition__actions,
+  .reveal-text__word,
+  .shutter-text,
+  .image-text__overlay,
+  .house-film--expand,
+  .campaign-stage__backdrop {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
   }
 }
 
@@ -2640,10 +2678,88 @@ tfoot td {
    ========================================================================== */
 
 .marquee {
+  position: relative;
   overflow: hidden;
   border-block: 1px solid var(--rule);
   padding-block: var(--space-6);
   margin-block: var(--space-7);
+}
+
+/*
+  THE MARQUEE'S PAUSE CONTROL.
+
+  This ran 42s linear infinite with no way to stop it. Our reduced-motion path removed the
+  animation, but 2.2.2 is a SEPARATE criterion: any motion over five seconds that runs
+  alongside other content needs a control, whatever the visitor's motion preference says.
+  The hero film and the campaign film both have one; the marquee was the surface that
+  slipped through.
+
+  The state lives on the section as a data attribute set by the checkbox, so the control is
+  a real input with a real label and needs no JavaScript at all.
+*/
+.marquee__toggle {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background: var(--surface-page);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+}
+
+.marquee__toggle:hover {
+  border-color: var(--color-ink);
+}
+
+/*
+  The checkbox IS the control, so the checkbox must BE the 44px target.
+
+  The first version clipped it to 1×1px and let the styled label carry the visuals — and
+  the target-size suite failed at every width, correctly: WCAG measures the interactive
+  element, not its costume. The input now sits transparently over the exact circle the
+  label draws, same coordinates, full 44×44 — one element receives the click, the tap,
+  the focus and the measurement.
+*/
+.marquee__state {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.marquee__state:focus-visible + .marquee__toggle {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Checked = paused. Both glyphs ship; CSS shows the one that describes the NEXT action. */
+.marquee__glyph--play {
+  display: none;
+}
+
+.marquee__state:checked ~ .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__state:checked + .marquee__toggle .marquee__glyph--play {
+  display: block;
+}
+
+.marquee__state:checked + .marquee__toggle .marquee__glyph--pause {
+  display: none;
 }
 
 .marquee__track {
@@ -6980,4 +7096,229 @@ tfoot td {
 .mens-film video,
 .house-film video {
   color: var(--color-bone);
+}
+
+/* ==========================================================================
+   FIT AS NAVIGATION — the leg-opening chip row on denim categories
+
+   Real anchors to real filtered URLs (crawlable, shareable, back-button
+   safe), not a widget. Chips grow into photographed tiles when owner
+   imagery lands; the markup will not change, only the contents.
+   ========================================================================== */
+
+.fit-row {
+  margin-top: var(--space-5);
+}
+
+.fit-row__label {
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  margin: 0 0 var(--space-2);
+}
+
+.fit-row__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.fit-row__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  background: var(--surface-page);
+}
+
+.fit-row__chip:hover {
+  border-color: var(--color-ink);
+}
+
+.fit-row__chip--current {
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+  border-color: var(--color-ink);
+}
+
+.fit-row__chip--quiet {
+  border-style: dashed;
+  color: var(--color-text-meta);
+}
+
+.fit-row__count {
+  font-size: var(--text-2xs);
+  color: inherit;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   RESEARCH PASS — card style line, visible quick view, scroll rail,
+   fit gateway
+   ========================================================================== */
+
+/*
+  SCROLL RAIL. The bar spends the one custom property the element publishes;
+  with no JavaScript the property never appears, the bar stays at scale 0,
+  the arrows stay hidden, and the native scrollbar carries the affordance —
+  zero-by-default, per the island contract.
+*/
+.scroll-rail {
+  position: relative;
+  display: block;
+}
+
+.scroll-rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-ink);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.scroll-rail__controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  translate: 0 -50%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  padding-inline: var(--space-2);
+}
+
+/*
+  The author display MUST yield to the `hidden` attribute. `display: inline-flex` on the
+  class outranks the UA's `[hidden] { display: none }`, so without this rule the arrows
+  rendered as visible dead controls precisely in the one context they exist to stay out
+  of — no JavaScript. The no-JS browser spec caught it on its first run.
+*/
+.scroll-rail__arrow[hidden] {
+  display: none;
+}
+
+.scroll-rail__arrow {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--surface-page);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.scroll-rail__arrow:hover:not(:disabled) {
+  border-color: var(--color-ink);
+}
+
+.scroll-rail__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* On the dark strip the arrows adopt the inverse ground. */
+.house-strip .scroll-rail__arrow {
+  background: rgb(10 10 10 / 0.72);
+  color: var(--text-on-inverse);
+  border-color: var(--text-on-inverse);
+}
+
+/* THE FIT GATEWAY — typographic tiles that upgrade to photography per slot. */
+.fit-gateway__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 62rem) {
+  .fit-gateway__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fit-gateway__tile {
+  position: relative;
+  display: block;
+  min-height: 14rem;
+  text-decoration: none;
+  color: var(--color-text);
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.fit-gateway__media {
+  position: absolute;
+  inset: 0;
+}
+
+.fit-gateway__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text always sits on a readable ground: plain on the sunken tile, on a scrim
+   once a photograph arrives underneath it. */
+.fit-gateway__media + .fit-gateway__body {
+  background: linear-gradient(to top, rgb(10 10 10 / 0.72), rgb(10 10 10 / 0));
+  color: var(--text-on-inverse);
+}
+
+.fit-gateway__media + .fit-gateway__body .fit-gateway__gloss,
+.fit-gateway__media + .fit-gateway__body .fit-gateway__count {
+  color: var(--color-sandstone);
+}
+
+.fit-gateway__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+
+.fit-gateway__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.05;
+}
+
+.fit-gateway__gloss {
+  font-size: var(--text-sm);
+  color: var(--color-text-meta);
+}
+
+.fit-gateway__count {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.fit-gateway__tile:hover .fit-gateway__name {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }

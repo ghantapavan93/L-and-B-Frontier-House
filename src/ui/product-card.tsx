@@ -90,6 +90,15 @@ export function ProductCard({
         <h3 className="product-card__name">{product.displayName}</h3>
       </a>
       <p className="product-card__spec">{product.specName}</p>
+      {/*
+        DELIBERATELY ABSENT: the style number. Both trade-serving reference houses print
+        it on the card, and the live business exposes its codes publicly in names and
+        URLs — but OUR type files `sku` inside WholesaleTerms, the restricted shape, so
+        rendering it here is impossible without moving a field across the security
+        boundary. That relocation is a real decision (logged as W-5 in the wholesale
+        teardown's register), not a rider on a card tweak. When it is made, the line is
+        one element: `Style {product.styleCode}`.
+      */}
       <div className="badge-row">
         <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
         {ranges.map((range) => (

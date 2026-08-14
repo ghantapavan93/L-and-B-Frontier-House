@@ -11,6 +11,7 @@ import { navigableCategories } from '@/domain/taxonomy'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { populatedEdits } from '@/domain/edits'
 import { CampaignFilm } from '@/ui/campaign-film'
+import { FitGateway } from '@/ui/fit-gateway'
 import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
@@ -138,6 +139,8 @@ export default async function HomePage() {
       <CampaignFilm />
 
       {frontier ? <ProductWorlds /> : null}
+
+      <FitGateway />
 
       <HouseMarquee />
 

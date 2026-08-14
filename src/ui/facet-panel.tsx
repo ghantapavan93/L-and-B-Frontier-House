@@ -7,7 +7,10 @@ export type AppliedFacets = {
   readonly fabric?: string
   readonly detail?: string
   readonly wash?: string
+  readonly legOpening?: string
   readonly silhouette?: string
+  readonly sleeve?: string
+  readonly motif?: string
   readonly colour?: string
   readonly sort?: string
 }
@@ -55,7 +58,10 @@ export function FacetPanel({
       ['fabric', 'Fabric', applied.fabric, facets.fabric],
       ['detail', 'Detail', applied.detail, facets.detail],
       ['wash', 'Wash', applied.wash, facets.wash],
+      ['legOpening', 'Leg opening', applied.legOpening, facets.legOpening],
       ['silhouette', 'Silhouette', applied.silhouette, facets.silhouette],
+      ['sleeve', 'Sleeve', applied.sleeve, facets.sleeve],
+      ['motif', 'Motif', applied.motif, facets.motif],
       ['colour', 'Colour', applied.colour, facets.colour],
     ] as const
   ).flatMap(([key, label, value, options]) => {
@@ -202,6 +208,35 @@ export function FacetPanel({
           </div>
         </fieldset>
 
+        {/*
+          LEG OPENING — the denim axis the nine-site facet study found under silhouette's
+          name. It sits directly after Wash because a denim buyer reads wash first, cut
+          second; the pure garment-shape silhouette follows for everything that is not
+          denim. Facets with no values in the current result set render nothing.
+        */}
+        {facets.legOpening.length > 0 ? (
+          <fieldset className="facet-group">
+            <legend>Leg opening</legend>
+            <div className="field">
+              <label htmlFor="facet-legOpening" className="visually-hidden">
+                Leg opening
+              </label>
+              <select
+                id="facet-legOpening"
+                name="legOpening"
+                defaultValue={applied.legOpening ?? ''}
+              >
+                <option value="">Any leg</option>
+                {facets.legOpening.map((facet) => (
+                  <option key={facet.value} value={facet.value}>
+                    {facet.label} ({facet.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
+        ) : null}
+
         <fieldset className="facet-group">
           <legend>Silhouette</legend>
           <div className="field">
@@ -222,6 +257,46 @@ export function FacetPanel({
             </select>
           </div>
         </fieldset>
+
+        {/* SLEEVE and MOTIF were populated attributes with no facet — the exact gap the
+            study found on three reference sites (data exists, filter does not). */}
+        {facets.sleeve.length > 0 ? (
+          <fieldset className="facet-group">
+            <legend>Sleeve</legend>
+            <div className="field">
+              <label htmlFor="facet-sleeve" className="visually-hidden">
+                Sleeve
+              </label>
+              <select id="facet-sleeve" name="sleeve" defaultValue={applied.sleeve ?? ''}>
+                <option value="">Any sleeve</option>
+                {facets.sleeve.map((facet) => (
+                  <option key={facet.value} value={facet.value}>
+                    {facet.value} ({facet.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
+        ) : null}
+
+        {facets.motif.length > 0 ? (
+          <fieldset className="facet-group">
+            <legend>Motif</legend>
+            <div className="field">
+              <label htmlFor="facet-motif" className="visually-hidden">
+                Motif
+              </label>
+              <select id="facet-motif" name="motif" defaultValue={applied.motif ?? ''}>
+                <option value="">Any motif</option>
+                {facets.motif.map((facet) => (
+                  <option key={facet.value} value={facet.value}>
+                    {facet.value} ({facet.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
+        ) : null}
 
         <fieldset className="facet-group">
           <legend>Colour</legend>

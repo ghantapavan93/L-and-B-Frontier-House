@@ -5,7 +5,7 @@
  */
 
 import { redirect } from 'next/navigation'
-import { DENIM_SILHOUETTES } from '@/features/discovery/denim-finder'
+import { DENIM_LEG_OPENINGS } from '@/features/discovery/denim-finder'
 import { clearFitProfile, writeFitProfile } from './profile'
 import type { FitProfile } from './profile'
 
@@ -16,7 +16,7 @@ export async function saveFitProfileAction(formData: FormData): Promise<void> {
   const waist = typeof rawWaist === 'string' ? Number.parseFloat(rawWaist) : NaN
   const silhouette =
     typeof rawSilhouette === 'string' &&
-    DENIM_SILHOUETTES.some((s) => s.value === rawSilhouette)
+    DENIM_LEG_OPENINGS.some((s) => s.value === rawSilhouette)
       ? rawSilhouette
       : undefined
 

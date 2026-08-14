@@ -46,6 +46,29 @@ describe('keyboard and focus foundations', () => {
     }
   })
 
+  it('never reuses one alt string across many images', async () => {
+    /*
+      The reference failure: one token repeated 34 times across a grid, each image
+      different, each description identical — which reads to a screen reader as a page of
+      duplicates. Two products can legitimately share a frame style, so a small amount of
+      repetition passes; industrial-scale repetition is always authorship failure.
+    */
+    for (const route of PUBLIC_ROUTES) {
+      const { body } = await get(route)
+      const counts = new Map<string, number>()
+      for (const match of body.matchAll(/<img[^>]*\salt="([^"]+)"[^>]*>/g)) {
+        const alt = match[1] ?? ''
+        counts.set(alt, (counts.get(alt) ?? 0) + 1)
+      }
+      for (const [alt, count] of counts) {
+        expect(
+          count,
+          `${route} repeats one alt string ${count} times: "${alt.slice(0, 60)}"`,
+        ).toBeLessThanOrEqual(8)
+      }
+    }
+  })
+
   it('labels every navigation landmark', async () => {
     const { body } = await get('/')
     expect(body).toMatch(/<nav[^>]+aria-label="Primary"/)
@@ -117,6 +140,14 @@ describe('media integrity', () => {
         // Empty alt is allowed only for a genuinely decorative image, which this build
         // does not currently have.
         expect(alt.length, `${route} has an image with empty alt: ${tag}`).toBeGreaterThan(0)
+        /*
+          ALT QUALITY, not merely alt presence — added after the reference audit found a
+          site whose curated tiles carried beautiful full-sentence alt while its product
+          grid shipped `alt="#color_indigo"` thirty-four times. Alt quality follows
+          authorship, so it must be enforced mechanically: a token is not a description.
+        */
+        expect(alt, `${route} ships token alt text: ${tag}`).not.toMatch(/^[#_-]/)
+        expect(alt.trim().length, `${route} ships single-word alt: ${tag}`).toBeGreaterThan(3)
       }
     }
   })

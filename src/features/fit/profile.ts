@@ -24,6 +24,12 @@ const MAX_AGE_SECONDS = 60 * 60 * 24 * 180
 export type FitProfile = {
   /** Inches. Clamped on write. */
   readonly waistIn?: number
+  /*
+    Historically named `silhouette`; the value space is the denim LEG OPENING set
+    (straight/bootcut/flare/wide-leg). The field name stays so existing httpOnly profile
+    cookies keep reading — renaming it would silently wipe every saved fit. The attribute
+    it matches against on products is `legOpening`.
+  */
   readonly silhouette?: string
 }
 

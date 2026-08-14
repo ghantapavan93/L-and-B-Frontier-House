@@ -59,7 +59,10 @@ function matchesQuery(product: ProductRecord, query: ProductQuery): boolean {
   if (query.fabric && !product.attributes.fabric?.includes(query.fabric)) return false
   if (query.detail && !product.attributes.detail?.includes(query.detail)) return false
   if (query.wash && product.attributes.wash !== query.wash) return false
+  if (query.legOpening && product.attributes.legOpening !== query.legOpening) return false
   if (query.silhouette && product.attributes.silhouette !== query.silhouette) return false
+  if (query.sleeve && product.attributes.sleeve !== query.sleeve) return false
+  if (query.motif && !(product.attributes.motif ?? []).includes(query.motif)) return false
   if (query.colour && !product.attributes.colour.some((c) => c.name === query.colour)) {
     return false
   }

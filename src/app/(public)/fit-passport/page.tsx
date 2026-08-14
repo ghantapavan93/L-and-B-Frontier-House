@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { primaryMedia } from '@/domain/product'
-import { DENIM_SILHOUETTES } from '@/features/discovery/denim-finder'
+import { DENIM_LEG_OPENINGS } from '@/features/discovery/denim-finder'
 import { clearFitProfileAction, saveFitProfileAction } from '@/features/fit/actions'
 import { readFitProfile, suggestSize } from '@/features/fit/profile'
 import { ErrorNotice } from '@/ui/notices'
@@ -38,7 +38,7 @@ export default async function FitPassportPage({
   const products = hasProfile ? await listPublicProducts({ sort: 'newest' }) : []
   const preferred =
     profile.silhouette !== undefined
-      ? products.filter((p) => p.attributes.silhouette === profile.silhouette)
+      ? products.filter((p) => p.attributes.legOpening === profile.silhouette)
       : []
   const preferredIds = new Set(preferred.map((p) => p.id))
   const rest = products.filter((p) => !preferredIds.has(p.id))
@@ -97,11 +97,11 @@ export default async function FitPassportPage({
               How you wear your denim <span className="field__optional">optional</span>
             </legend>
             <div className="choice-row">
-              {DENIM_SILHOUETTES.map((option) => (
+              {DENIM_LEG_OPENINGS.map((option) => (
                 <label key={option.value} className="choice">
                   <input
                     type="radio"
-                    name="silhouette"
+                    name="legOpening"
                     value={option.value}
                     defaultChecked={profile.silhouette === option.value}
                   />
@@ -133,7 +133,7 @@ export default async function FitPassportPage({
             <div>
               <p className="eyebrow">Cut to your line</p>
               <h2 id="fit-preferred-heading">
-                {DENIM_SILHOUETTES.find((s) => s.value === profile.silhouette)?.label}
+                {DENIM_LEG_OPENINGS.find((s) => s.value === profile.silhouette)?.label}
                 {profile.waistIn !== undefined ? ', in your size' : ''}
               </h2>
             </div>

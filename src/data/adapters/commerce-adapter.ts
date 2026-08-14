@@ -25,7 +25,13 @@ export type ProductQuery = {
   readonly fabric?: string
   readonly detail?: string
   readonly wash?: string
+  /** Denim leg cut — split from silhouette; see ProductAttributes. */
+  readonly legOpening?: string
   readonly silhouette?: string
+  /** Exact sleeve value as published (e.g. "long sleeve"). */
+  readonly sleeve?: string
+  /** One motif from the product's motif list (e.g. "aztec"). */
+  readonly motif?: string
   /** Colour NAME as published (e.g. "Camel"). Never a hex, never a price. */
   readonly colour?: string
   /** ISO date. Only products first offered on or after it. */

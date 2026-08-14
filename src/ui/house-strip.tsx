@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PLATE_MARKER, PLATE_STOREFRONT } from '@/content/media/frontier-plates'
+import { ScrollRail } from '@/ui/scroll-rail'
 import { MENS_DEMO_FLOOR } from '@/fixtures/mens-demo'
 import type { DemoImage } from '@/fixtures/mens-demo'
 
@@ -119,20 +120,25 @@ export function HouseStrip() {
         serious failure, and a screen reader loses the count. The wrapper takes the role
         and the focus; the list stays a list.
       */}
-      <div
-        className="house-strip__run"
-        tabIndex={0}
-        role="region"
-        aria-label="Campaign photography"
-      >
-        <ul className="house-strip__list">
-          {frames.map((image) => (
-            <li key={image.asset.poster}>
-              <Picture image={image} sizes="(min-width: 62rem) 22vw, 55vw" />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* The rail adds arrows and a progress bar when JS is present; the region and its
+          native scroll are untouched either way. */}
+      <ScrollRail>
+        <div
+          className="house-strip__run"
+          data-rail-scroller=""
+          tabIndex={0}
+          role="region"
+          aria-label="Campaign photography"
+        >
+          <ul className="house-strip__list">
+            {frames.map((image) => (
+              <li key={image.asset.poster}>
+                <Picture image={image} sizes="(min-width: 62rem) 22vw, 55vw" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ScrollRail>
     </section>
   )
 }

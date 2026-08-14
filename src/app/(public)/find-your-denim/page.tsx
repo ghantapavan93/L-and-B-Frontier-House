@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { listPublicProducts } from '@/data/catalog-repository'
 import {
-  DENIM_SILHOUETTES,
+  DENIM_LEG_OPENINGS,
   DENIM_WASHES,
   hasAnswers,
   matchDenim,
@@ -53,13 +53,13 @@ export default async function FindYourDenimPage({
         <fieldset className="facet-group">
           <legend>Silhouette</legend>
           <div className="denim-finder__options">
-            {DENIM_SILHOUETTES.map((option) => (
+            {DENIM_LEG_OPENINGS.map((option) => (
               <label className="denim-finder__option" key={option.value}>
                 <input
                   type="radio"
-                  name="silhouette"
+                  name="legOpening"
                   value={option.value}
-                  defaultChecked={answers.silhouette === option.value}
+                  defaultChecked={answers.legOpening === option.value}
                 />
                 <span>{option.label}</span>
               </label>

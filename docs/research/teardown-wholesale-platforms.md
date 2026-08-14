@@ -815,3 +815,18 @@ Faire Top Shop programme (BusinessWire).
 **Cookie handling:** FashionGo's OneTrust banner was set to essential-only (functional and
 targeting groups explicitly unchecked, then confirmed). Faire presented no banner in this
 session.
+
+---
+
+## W-5 (added after implementation review): where does the style code live?
+
+`WholesaleTerms.sku` files the style code under the restricted shape, so no public surface
+can render it. The live business publishes its style codes publicly — in product names, in
+public URL slugs (the D-00 finding was the *price* embedded beside the code, never the code
+itself), and across its own public imagery filenames. Both trade-serving reference houses
+print the style number on the public listing card, because buyers reorder by code.
+
+**Proposed:** move the style code to the public base type as `styleCode`, leaving every
+price, pack, MOQ and stock field exactly where it is. Blocked on confirming with the owner
+that style codes are public-safe (all measured evidence says they already are). Until then
+public cards deliberately omit it — the omission is annotated in `product-card.tsx`.

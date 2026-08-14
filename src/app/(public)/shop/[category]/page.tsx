@@ -110,6 +110,42 @@ export default async function CategoryPage({
       <div className="container section--tight">
         <FixtureNotice detail={false} />
 
+        {/*
+          FIT AS NAVIGATION, not a questionnaire. The reference set puts the denim cuts in
+          a row of real crawlable URLs at the top of the category; our finder stays as the
+          guided second path. Text chips, deliberately — each becomes a tile the moment the
+          owner supplies a photograph per cut, and it works today without one. Rendered only
+          where the result set actually contains denim (the facet is populated), so the
+          accessories page never advertises leg cuts it cannot honour.
+        */}
+        {facets.legOpening.length > 0 ? (
+          <nav className="fit-row" aria-label="Denim by leg opening">
+            <p className="fit-row__label">Denim, by cut</p>
+            <ul className="fit-row__list">
+              {facets.legOpening.map((cut) => (
+                <li key={cut.value}>
+                  <a
+                    className={
+                      applied.legOpening === cut.value
+                        ? 'fit-row__chip fit-row__chip--current'
+                        : 'fit-row__chip'
+                    }
+                    href={`/shop/${category.slug}?legOpening=${cut.value}#products`}
+                  >
+                    {cut.label}
+                    <span className="fit-row__count">{cut.count}</span>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a className="fit-row__chip fit-row__chip--quiet" href="/find-your-denim">
+                  Not sure? Find your denim
+                </a>
+              </li>
+            </ul>
+          </nav>
+        ) : null}
+
         <a className="facet-trigger" href="#facets">
           Filter &amp; sort
           {appliedCount > 0 ? ` (${appliedCount})` : ''}

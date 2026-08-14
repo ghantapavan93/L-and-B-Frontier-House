@@ -100,11 +100,18 @@ export type FacetCounts = {
     readonly label: string
     readonly count: number
   }[]
+  readonly legOpening: readonly {
+    readonly value: string
+    readonly label: string
+    readonly count: number
+  }[]
   readonly silhouette: readonly {
     readonly value: string
     readonly label: string
     readonly count: number
   }[]
+  readonly sleeve: readonly { readonly value: string; readonly count: number }[]
+  readonly motif: readonly { readonly value: string; readonly count: number }[]
   readonly colour: readonly { readonly value: string; readonly count: number }[]
 }
 
@@ -156,12 +163,20 @@ export async function getFacets(categorySlug?: string): Promise<FacetCounts> {
         label: `${entry.value.charAt(0).toUpperCase()}${entry.value.slice(1)} wash`,
       }),
     ),
+    legOpening: tally(
+      products.flatMap((p) => (p.attributes.legOpening ? [p.attributes.legOpening] : [])),
+    ).map((entry) => ({
+      ...entry,
+      label: `${entry.value.charAt(0).toUpperCase()}${entry.value.slice(1).replace('-', ' ')}`,
+    })),
     silhouette: tally(
       products.flatMap((p) => (p.attributes.silhouette ? [p.attributes.silhouette] : [])),
     ).map((entry) => ({
       ...entry,
       label: `${entry.value.charAt(0).toUpperCase()}${entry.value.slice(1).replace('-', ' ')}`,
     })),
+    sleeve: tally(products.flatMap((p) => (p.attributes.sleeve ? [p.attributes.sleeve] : []))),
+    motif: tally(products.flatMap((p) => p.attributes.motif ?? [])),
     colour: tally(products.flatMap((p) => p.attributes.colour.map((c) => c.name))),
   }
 }
