@@ -88,7 +88,11 @@ test.describe('ignition and skip', () => {
     // The homepage now carries click-to-play players too; the BACKGROUND film is the
     // one under test here, addressed by its own attribute.
     const video = page.locator('[data-hero-film]')
-    const toggle = page.getByRole('button', { name: /the film/ })
+    // Addressed by ITS OWN attribute, not by accessible name. The campaign film below now
+    // carries a pause control with the same wording — correctly, since both obey the same
+    // rule — so a name-only locator matches two buttons and the strict-mode violation is
+    // the test telling the truth about an ambiguous page.
+    const toggle = page.locator('[data-hero-toggle]')
 
     // Ten seconds of automatic motion beside a headline is squarely inside 2.2.2, which
     // is Level A. The control must be present and visible, not merely available.
@@ -123,8 +127,10 @@ test.describe('ignition and skip', () => {
       .poll(async () => video.evaluate((v: HTMLVideoElement) => v.currentTime))
       .toBe(0)
 
-    // Still offered, never imposed.
-    await expect(page.getByRole('button', { name: /Play the film/ })).toBeVisible()
+    // Still offered, never imposed. Scoped to the hero's own control — the campaign film
+    // below offers the identically-worded one, and this test is about the ignition.
+    await expect(page.locator('[data-hero-toggle]')).toBeVisible()
+    await expect(page.locator('[data-hero-toggle]')).toHaveText(/Play the film/)
     await expect(page.locator('.hero-film__poster img')).toBeVisible()
 
     await context.close()

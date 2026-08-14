@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
+  PLATE_CORRAL_WIDE,
+  PLATE_MARKER,
+  PLATE_RANCH_ROAD,
+  PLATE_STOREFRONT,
+  PLATE_TILES,
+} from '@/content/media/frontier-plates'
+import {
   MENS_DEMO_CAMPAIGN,
   MENS_DEMO_CATEGORIES,
   MENS_DEMO_FLOOR,
@@ -158,128 +165,183 @@ function DemoQuickView({ product }: { product: DemoProduct }) {
 
 export default function MensPage() {
   const [gravel, bootPull] = MENS_DEMO_CAMPAIGN
-  /* The strongest frame in the drop opens the page: a full look, hat to denim. */
-  const hero = MENS_DEMO_PRODUCTS.find((p) => p.slug === 'indigo-trucker-jacket')?.media[0]
 
   return (
-    <div className="container section stack">
-      <nav aria-label="Breadcrumb">
-        <p className="meta">
-          <Link href="/">Home</Link> / Men&rsquo;s
-        </p>
-      </nav>
-
+    <>
       {/*
-        THE PHOTOGRAPH FIRST.
+        THE TITLE CARD FIRST.
 
-        This page used to open with three paragraphs of disclaimer before a single image,
-        which read as an apology for the line rather than a proposal of it. The honesty is
-        undiminished — one unmissable badge here, the full statement at the foot of the
-        page — but a men's house has to look like one from the first screen.
+        The owner dropped generated campaign renders that carry the house name and the
+        register in one frame, so the page now opens the way the plate was drawn to be
+        seen: full width, before any chrome or copy. Art-directed — the wide corral frame
+        on desktop, the portrait storefront frame on a phone — and marked as generated
+        artwork ON the image, not in a footnote. The two fabrications baked into the
+        source renders (an invented founding date, an invented trust claim) were cropped
+        out at import and exist in no published file.
       */}
-      {hero ? (
-        <section className="mens-hero" aria-labelledby="mens-hero-heading">
-          <div className="mens-hero__media">
-            <MensImage image={hero} sizes="(min-width: 62rem) 60vw, 100vw" loading="eager" />
-          </div>
-          <div className="mens-hero__copy">
-            <p className="eyebrow">Frontier House · demonstration</p>
-            <h1 id="mens-hero-heading">The men&rsquo;s direction, made tangible.</h1>
-            <p className="lede">
-              Lucky &amp; Blessed sells women&rsquo;s, girls&rsquo; and accessories today. A
-              men&rsquo;s line is a decision the owner has not made — so this is a working
-              demonstration of that business: real shop mechanics, on fixture data and reference
-              photography, with no price anywhere.
-            </p>
-            <p className="mens-hero__badge">Demonstration · fixture data · no prices</p>
-          </div>
-        </section>
-      ) : null}
+      <section
+        className="plate-hero"
+        aria-label="Frontier House campaign title card — generated artwork"
+      >
+        <picture>
+          <source
+            type="image/avif"
+            media="(min-width: 48rem)"
+            srcSet={PLATE_CORRAL_WIDE.asset.avifSrcSet}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            media="(min-width: 48rem)"
+            srcSet={PLATE_CORRAL_WIDE.asset.webpSrcSet}
+            sizes="100vw"
+          />
+          <source type="image/avif" srcSet={PLATE_STOREFRONT.asset.avifSrcSet} sizes="100vw" />
+          <source type="image/webp" srcSet={PLATE_STOREFRONT.asset.webpSrcSet} sizes="100vw" />
+          {/* One alt that is true for both art directions — the frame swaps, the meaning
+              does not. Aspect ratios are reserved in CSS per breakpoint, so neither
+              direction shifts layout while it loads. */}
+          <img
+            src={PLATE_CORRAL_WIDE.asset.poster}
+            alt="Generated campaign artwork: Frontier House by Lucky & Blessed — old materials, new interface. A man in denim in golden-hour western light."
+            width={PLATE_CORRAL_WIDE.asset.intrinsicWidth}
+            height={PLATE_CORRAL_WIDE.asset.intrinsicHeight}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+        <p className="plate-note">{PLATE_MARKER}</p>
+      </section>
 
-      {MENS_DEMO_CATEGORIES.map((category) => {
-        const rack = MENS_DEMO_PRODUCTS.filter((p) => p.category === category)
-        if (rack.length === 0) return null
-        const headingId = `mens-${category.toLowerCase()}`
-        return (
-          <section key={category} aria-labelledby={headingId}>
-            <div className="section-head">
-              <div>
-                <p className="eyebrow">The rack</p>
-                <h2 id={headingId}>{category}</h2>
+      <div className="container section stack">
+        <nav aria-label="Breadcrumb">
+          <p className="meta">
+            <Link href="/">Home</Link> / Men&rsquo;s
+          </p>
+        </nav>
+
+        <header className="mens-hero__copy">
+          <p className="eyebrow">Frontier House · demonstration</p>
+          <h1 id="mens-hero-heading">The men&rsquo;s direction, made tangible.</h1>
+          <p className="lede">
+            Lucky &amp; Blessed sells women&rsquo;s, girls&rsquo; and accessories today. A
+            men&rsquo;s line is a decision the owner has not made — so this is a working
+            demonstration of that business: real shop mechanics, on fixture data, reference
+            photography and clearly-marked generated campaign artwork, with no price anywhere.
+          </p>
+          <p className="mens-hero__badge">Demonstration · fixture data · no prices</p>
+        </header>
+
+        {MENS_DEMO_CATEGORIES.map((category) => {
+          const rack = MENS_DEMO_PRODUCTS.filter((p) => p.category === category)
+          if (rack.length === 0) return null
+          const headingId = `mens-${category.toLowerCase()}`
+          return (
+            <section key={category} aria-labelledby={headingId}>
+              <div className="section-head">
+                <div>
+                  <p className="eyebrow">The rack</p>
+                  <h2 id={headingId}>{category}</h2>
+                </div>
               </div>
-            </div>
-            <ul className="product-grid">
-              {rack.map((product) => (
-                <li key={product.slug} id={`pd-${product.slug}`}>
-                  <DemoCard product={product} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        )
-      })}
+              <ul className="product-grid">
+                {rack.map((product) => (
+                  <li key={product.slug} id={`pd-${product.slug}`}>
+                    <DemoCard product={product} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        })}
 
-      <section aria-labelledby="mens-film-heading">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">See it move</p>
-            <h2 id="mens-film-heading">The reference film</h2>
-            <p className="meta">
-              Dropped in with the photographs — plays on your click, never by itself. Reference
-              footage only, replaced by owned film before anything ships (D-09).
-            </p>
+        <section aria-labelledby="mens-film-heading">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">See it move</p>
+              <h2 id="mens-film-heading">The reference film</h2>
+              <p className="meta">
+                Dropped in with the photographs — plays on your click, never by itself.
+                Reference footage only, replaced by owned film before anything ships (D-09).
+              </p>
+            </div>
           </div>
-        </div>
-        {/*
+          {/*
           User-initiated playback: `preload="none"` so the 4.8 MB file costs nothing until
           asked for, native controls because a click-to-play product film is a player, and
           no autoplay — so WCAG 2.2.2 never engages. The poster is a frame of the film
           itself, captured at import.
         */}
-        <figure className="mens-film">
-          <video
-            controls
-            preload="none"
-            playsInline
-            poster="/media/mens-demo/reference-film-poster.webp"
-            width={1920}
-            height={1080}
-          >
-            <source src="/media/mens-demo/reference-film.mp4" type="video/mp4" />
-            Your browser cannot play this film. It is reference footage of denim in motion.
-          </video>
-          <figcaption className="meta">
-            Reference film · fixture — not Lucky &amp; Blessed footage
-          </figcaption>
-        </figure>
-      </section>
-
-      {gravel && bootPull ? (
-        <section aria-labelledby="mens-campaign-heading">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">Campaign frames</p>
-              <h2 id="mens-campaign-heading">Context, not catalogue</h2>
-              <p className="meta">
-                Reference frames for the campaign register. Footwear appears here only as
-                styling — it is not a demo category and carries no product entry.
-              </p>
-            </div>
-          </div>
-          <div className="editorial-split">
-            <figure className="editorial-split__figure depth-far">
-              <MensImage image={gravel} sizes="(min-width: 62rem) 55vw, 100vw" />
-              <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
-            </figure>
-            <figure className="editorial-split__figure depth-far">
-              <MensImage image={bootPull} sizes="(min-width: 62rem) 40vw, 100vw" />
-              <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
-            </figure>
-          </div>
+          <figure className="mens-film">
+            <video
+              controls
+              preload="none"
+              playsInline
+              poster="/media/mens-demo/reference-film-poster.webp"
+              width={1920}
+              height={1080}
+            >
+              <source src="/media/mens-demo/reference-film.mp4" type="video/mp4" />
+              Your browser cannot play this film. It is reference footage of denim in motion.
+            </video>
+            <figcaption className="meta">
+              Reference film · fixture — not Lucky &amp; Blessed footage
+            </figcaption>
+          </figure>
         </section>
-      ) : null}
 
-      {/*
+        {gravel && bootPull ? (
+          <section aria-labelledby="mens-campaign-heading">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Campaign frames</p>
+                <h2 id="mens-campaign-heading">Context, not catalogue</h2>
+                <p className="meta">
+                  Reference frames and generated plates for the campaign register. Footwear
+                  appears here only as styling — it is not a demo category and carries no
+                  product entry.
+                </p>
+              </div>
+            </div>
+            <div className="editorial-split">
+              <figure className="editorial-split__figure depth-far">
+                <MensImage image={gravel} sizes="(min-width: 62rem) 55vw, 100vw" />
+                <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
+              </figure>
+              <figure className="editorial-split__figure depth-far">
+                <MensImage image={bootPull} sizes="(min-width: 62rem) 40vw, 100vw" />
+                <figcaption>Campaign reference imagery · pending licensing (D-09)</figcaption>
+              </figure>
+            </div>
+
+            {/*
+            The generated plates, recomposed. The source collage baked a fake button and a
+            "TRUSTED BY GENERATIONS" strip into its pixels; the import kept only the three
+            clean tiles and the truck frame (its invented founding date cropped away), and
+            this grid rebuilds the composition out of real markup instead of painted UI.
+          */}
+            <figure className="plate-collage">
+              <div className="plate-collage__grid">
+                <div className="plate-collage__lead">
+                  <MensImage image={PLATE_RANCH_ROAD} sizes="(min-width: 62rem) 55vw, 100vw" />
+                </div>
+                <div className="plate-collage__stack">
+                  {PLATE_TILES.map((tile) => (
+                    <div key={tile.asset.poster}>
+                      <MensImage image={tile} sizes="(min-width: 62rem) 36vw, 100vw" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <figcaption className="meta">
+                {PLATE_MARKER} · the campaign register, drawn before it is shot
+              </figcaption>
+            </figure>
+          </section>
+        ) : null}
+
+        {/*
         THE FLOOR — every remaining frame the owner sent, as a contact sheet.
 
         Twenty photographs that read as styling rather than product: worn looks, hems over
@@ -287,61 +349,64 @@ export default function MensPage() {
         actually worn, and because a men's house is judged on how much of it you can see.
         No names, no sizes, no prices — the heading says what the group is.
       */}
-      <section aria-labelledby="mens-floor-heading">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">The floor</p>
-            <h2 id="mens-floor-heading">How it is worn</h2>
-            <p className="meta">
-              The rest of the reference drop — looks, hems, hardware and texture. Styling
-              frames, not entries to buy; footwear is not a demo category.
-            </p>
+        <section aria-labelledby="mens-floor-heading">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">The floor</p>
+              <h2 id="mens-floor-heading">How it is worn</h2>
+              <p className="meta">
+                The rest of the reference drop — looks, hems, hardware and texture. Styling
+                frames, not entries to buy; footwear is not a demo category.
+              </p>
+            </div>
           </div>
-        </div>
-        <ul className="mens-floor">
-          {MENS_DEMO_FLOOR.map((image) => (
-            <li key={image.asset.poster}>
-              <MensImage image={image} sizes="(min-width: 62rem) 25vw, 50vw" />
-            </li>
-          ))}
-        </ul>
-      </section>
+          <ul className="mens-floor">
+            {MENS_DEMO_FLOOR.map((image) => (
+              <li key={image.asset.poster}>
+                <MensImage image={image} sizes="(min-width: 62rem) 25vw, 50vw" />
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      <section className="panel" aria-labelledby="mens-next-heading">
-        <h2 className="eyebrow" id="mens-next-heading">
-          What this would take
-        </h2>
-        <p className="meta">
-          Real SKUs, names, sizes, prepacks, wholesale terms and owned photography — none of
-          which exists yet. The mechanics on this page are the ones the store already runs, so
-          the day the owner decides, the rack fills rather than gets rebuilt.
-        </p>
-        <div className="cluster" style={{ marginTop: 'var(--space-4)' }}>
-          <Link href="/wholesale" className="button button--secondary">
-            How wholesale works
-          </Link>
-          <Link href="/shop/women" className="button button--secondary">
-            The line that ships today
-          </Link>
-        </div>
-      </section>
+        <section className="panel" aria-labelledby="mens-next-heading">
+          <h2 className="eyebrow" id="mens-next-heading">
+            What this would take
+          </h2>
+          <p className="meta">
+            Real SKUs, names, sizes, prepacks, wholesale terms and owned photography — none of
+            which exists yet. The mechanics on this page are the ones the store already runs, so
+            the day the owner decides, the rack fills rather than gets rebuilt.
+          </p>
+          <div className="cluster" style={{ marginTop: 'var(--space-4)' }}>
+            <Link href="/wholesale" className="button button--secondary">
+              How wholesale works
+            </Link>
+            <Link href="/shop/women" className="button button--secondary">
+              The line that ships today
+            </Link>
+          </div>
+        </section>
 
-      {/* The full statement, in full, at the foot — the badge above carries it on arrival. */}
-      <aside className="notice notice--fixture" aria-labelledby="mens-demo-notice">
-        <p className="notice__title" id="mens-demo-notice">
-          Demonstration only — fixture data, reference imagery
-        </p>
-        <p className="meta">
-          Nothing here is Lucky &amp; Blessed inventory. Names, sizes and availability are
-          development fixtures. The photographs are reference images supplied for direction —
-          several are small thumbnails — and are replaced by owned photography before anything
-          ships (D-09). No price exists on this surface in any form.
-        </p>
-      </aside>
+        {/* The full statement, in full, at the foot — the badge above carries it on arrival. */}
+        <aside className="notice notice--fixture" aria-labelledby="mens-demo-notice">
+          <p className="notice__title" id="mens-demo-notice">
+            Demonstration only — fixture data, reference imagery
+          </p>
+          <p className="meta">
+            Nothing here is Lucky &amp; Blessed inventory. Names, sizes and availability are
+            development fixtures. The photographs are reference images supplied for direction —
+            several are small thumbnails — and the campaign plates are generated artwork, drawn
+            rather than photographed, marked as such where they appear. All of it is replaced by
+            owned photography before anything ships (D-09). No price exists on this surface in
+            any form.
+          </p>
+        </aside>
 
-      {MENS_DEMO_PRODUCTS.map((product) => (
-        <DemoQuickView key={product.slug} product={product} />
-      ))}
-    </div>
+        {MENS_DEMO_PRODUCTS.map((product) => (
+          <DemoQuickView key={product.slug} product={product} />
+        ))}
+      </div>
+    </>
   )
 }

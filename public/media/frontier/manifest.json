@@ -1,0 +1,83 @@
+{
+  "generatedBy": "scripts/import-frontier-plates.mjs",
+  "provenance": "generated-campaign: owner-supplied generated renders. Artwork, never photography, never product truth. Excisions: fabricated founding date (EST. 2024) cropped out; \"TRUSTED BY GENERATIONS\" strip and painted UI controls excluded entirely.",
+  "contentHash": "11b151448ec315e609c94c5b9cff60727e8bad7f31bf87afaabdd83a0712623c",
+  "plates": [
+    {
+      "key": "corral-wide",
+      "source": "assets/source/frontier-campaign/frontier-corral-wide.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": null,
+      "note": "Full frame. Baked type is the campaign title itself."
+    },
+    {
+      "key": "storefront",
+      "source": "assets/source/frontier-campaign/frontier-storefront.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": null,
+      "note": "Full frame. Baked \"Discover the drop.\" reads as campaign copy; the wrapping link is the real control."
+    },
+    {
+      "key": "ranch-road",
+      "source": "assets/source/frontier-campaign/frontier-ranch-road-full.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": {
+        "left": 0,
+        "top": 0,
+        "width": 960,
+        "height": 828
+      },
+      "note": "Cropped to excise \"EST. 2024\" (fabricated founding date) and the painted SHOP NOW control."
+    },
+    {
+      "key": "craft-detail",
+      "source": "assets/source/frontier-campaign/frontier-built-collage-full.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": {
+        "left": 975,
+        "top": 10,
+        "width": 550,
+        "height": 310
+      },
+      "note": "Right-column tile. The fake button panel and \"TRUSTED BY GENERATIONS\" strip are excluded at import."
+    },
+    {
+      "key": "heritage-truck",
+      "source": "assets/source/frontier-campaign/frontier-built-collage-full.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": {
+        "left": 975,
+        "top": 342,
+        "width": 550,
+        "height": 282
+      },
+      "note": "Right-column tile, same exclusions."
+    },
+    {
+      "key": "campaign-backdrop",
+      "source": "assets/source/frontier-campaign/frontier-campaign-backdrop.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": null,
+      "note": "Full frame. The campaign stage backdrop behind the Fall 2026 film."
+    },
+    {
+      "key": "legacy-boots",
+      "source": "assets/source/frontier-campaign/frontier-built-collage-full.png",
+      "provenance": "generated-campaign",
+      "supplied": "2026-08-13, owner drop (generated renders)",
+      "extract": {
+        "left": 975,
+        "top": 636,
+        "width": 550,
+        "height": 262
+      },
+      "note": "Right-column tile, same exclusions. Ends above the badge strip."
+    }
+  ]
+}

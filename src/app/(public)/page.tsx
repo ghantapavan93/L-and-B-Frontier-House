@@ -124,6 +124,19 @@ export default async function HomePage() {
         unchanged and still carry the real, shippable catalogue; what moved is the order,
         because a fashion house that opens on a product row is a catalogue with a hero.
       */}
+      {/*
+        THE FILM, SECOND ONLY TO THE HERO — and expanding on native scroll.
+
+        The owner asked for the reference scroll-expansion hero. The reference implements
+        it by intercepting the wheel (`preventDefault` on every wheel event) and autoplaying
+        a looping film — the two things §9 and WCAG 2.2.2 categorically bar. The effect
+        ships anyway, legally: the frame scales up as the section travels through the
+        viewport via CSS `animation-timeline: view()`, reading native scroll and never
+        touching the wheel; the film itself still plays only on a click. No support, no
+        motion preference → the frame simply renders at full size.
+      */}
+      <CampaignFilm />
+
       {frontier ? <ProductWorlds /> : null}
 
       <HouseMarquee />
@@ -135,8 +148,6 @@ export default async function HomePage() {
       <SplitCampaign />
 
       <MotionClipBand />
-
-      <CampaignFilm />
 
       <ContactSheet
         products={sheet}

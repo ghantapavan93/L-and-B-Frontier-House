@@ -78,13 +78,26 @@ export const PROGRAMMING: readonly ProgrammingEntry[] = [
     verified: true,
   },
   {
-    id: 'fall-collection-2026',
+    id: 'campaign-film',
     kind: 'campaign',
-    title: 'Fall Collection 2026',
-    statement: 'The season, shot by the house — eighteen seconds on film.',
+    /*
+      THE SEASON NAME IS GONE, AND THE RUNTIME STAYS.
+
+      This shipped as "Fall Collection 2026". Checked against the source: the owner's file
+      is `video_6a36d58ece9146.64769701.mp4` — a hash. No season name came with it, and no
+      source in the corpus establishes that L&B names seasons at all. The title was ours,
+      which makes it exactly the invented brand vocabulary §12 forbids.
+
+      "Eighteen seconds" survives because it was MEASURED, not assumed: the file reports
+      duration 18.0 at 1350×1200. And the film is described as the house's own because it
+      arrived in the owner's drop — a statement about provenance, not about who held the
+      camera, which we do not know.
+    */
+    title: 'The house on film',
+    statement: 'Eighteen seconds of the line, on film.',
     status: 'live',
     href: '/new-arrivals',
-    ctaLabel: 'Shop the season',
+    ctaLabel: 'See what just landed',
     audience: 'public',
     priority: 3,
     mediaSlot: 'campaign-fall-2026',
@@ -137,11 +150,26 @@ function inWindow(entry: ProgrammingEntry, onDate: string): boolean {
 export function liveProgramming(
   kind?: ProgrammingKind,
   onDate: string = new Date().toISOString().slice(0, 10),
+  /*
+    AUDIENCE DEFAULTS TO PUBLIC, AND THAT DEFAULT IS THE POINT.
+
+    This filter read status, verified, window and kind — but never `audience`, the field
+    the type carries precisely to separate buyer programming from public programming. Every
+    entry today is `public`, so nothing leaked; but `promoBarEntry()` feeds the promo bar
+    that sits above the header on every public page, so the first `audience: 'wholesale'`
+    entry anyone added — a buyer-only preorder cutoff, a market appointment window — would
+    have published itself to the open web on the next build.
+
+    Defaulting to `'public'` means a caller must ASK for wholesale programming and can only
+    be doing so inside an authorised surface. The unsafe direction now requires an argument.
+  */
+  audience: ProgrammingAudience = 'public',
 ): readonly ProgrammingEntry[] {
   return PROGRAMMING.filter(
     (entry) =>
       entry.status === 'live' &&
       entry.verified &&
+      entry.audience === audience &&
       inWindow(entry, onDate) &&
       (kind === undefined || entry.kind === kind),
   ).sort((a, b) => a.priority - b.priority)

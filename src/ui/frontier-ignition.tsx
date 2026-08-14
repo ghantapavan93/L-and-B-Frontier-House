@@ -1,5 +1,33 @@
+import React from 'react'
 import Link from 'next/link'
+import { PLATE_CORRAL_WIDE } from '@/content/media/frontier-plates'
 import { HeroFilm, type HeroFilmSources } from './hero-film'
+
+const HEADLINE = 'Western apparel, made for the boutiques that sell it.'
+
+/**
+ * The headline's words, in the mask/word structure both text layers share. `animated`
+ * gates the per-word delay: the base layer rises, the overlay layer holds still and is
+ * revealed by its own sweep instead — but both must render IDENTICAL boxes, or the two
+ * layers could break lines differently at some width and shear the glyphs.
+ */
+function headlineWords(animated: boolean) {
+  return HEADLINE.split(' ').map((word, index, words) => (
+    <React.Fragment key={`${word}-${index}`}>
+      <span className="reveal-text__mask">
+        <span
+          className={animated ? 'reveal-text__word' : undefined}
+          style={animated ? { animationDelay: `${index * 70}ms` } : undefined}
+        >
+          {word}
+        </span>
+      </span>
+      {/* OUTSIDE the mask: an inline-block trims its own trailing space, so a space
+          inside would vanish and weld the words together. */}
+      {index < words.length - 1 ? ' ' : null}
+    </React.Fragment>
+  ))
+}
 
 /**
  * The ignition film's media, declared here rather than fetched.
@@ -71,8 +99,57 @@ export function FrontierIgnition() {
 
       <div className="ignition__content">
         <p className="eyebrow">Wholesale · Texas</p>
-        <h1>Western apparel, made for the boutiques that sell it.</h1>
-        <p className="ignition__lede">
+        {/*
+          REVEAL TEXT — each word rises out of its own clipped line box, staggered.
+
+          The reference implementations animate opacity on JS-split spans. Here the split
+          is server-rendered, the motion is transform-only (opacity entrances are banned in
+          this codebase since the frozen-overlay incident), and the whole effect lives
+          behind `prefers-reduced-motion: no-preference` — reduced motion, or no CSS
+          animation at all, is simply the finished headline.
+
+          `aria-label` carries the sentence whole and the visual spans are hidden from the
+          tree: a screen reader gets one line of prose, never nine inline-blocks read with
+          nine tiny pauses. The text stays real in the DOM for find-in-page and no-JS.
+        */}
+        {/*
+          TWO STACKED LAYERS, the reference RevealText structure exactly:
+
+            base    — solid bone glyphs, the word-mask rise above. Contrast against the
+                      dark film is guaranteed HERE, permanently.
+            overlay — the same words filled with the corral plate via background-clip:
+                      text, swept in left→right after the words land, and the image PANS
+                      through the glyphs on hover. Purely additive: if the overlay never
+                      arrives, fails, or is turned off by reduced motion, the base is the
+                      identical headline in solid bone. Legibility never depends on what
+                      the artwork's pixels happen to be doing behind a given letter.
+
+          Both layers share one grid cell and the identical word-span structure, so their
+          line breaks can never disagree at any width.
+        */}
+        <h1
+          className="image-text"
+          aria-label="Western apparel, made for the boutiques that sell it."
+        >
+          <span aria-hidden="true" className="image-text__base">
+            {headlineWords(true)}
+          </span>
+          <span
+            aria-hidden="true"
+            className="image-text__overlay"
+            /* BOTH layers here: an inline background-image would override the
+               stylesheet's, so the screen-blend gradient floor — the layer that
+               guarantees no letter ever renders dark — rides along with the plate. */
+            style={{
+              backgroundImage: `url(${PLATE_CORRAL_WIDE.asset.poster}), linear-gradient(115deg, #e4c391, #c89a62)`,
+            }}
+          >
+            {headlineWords(false)}
+          </span>
+        </h1>
+        {/* SHUTTER — the paragraph opens from its centreline like blades parting, once,
+            after the headline has landed. Clip-only, and off with reduced motion. */}
+        <p className="ignition__lede shutter-text">
           Howdy. We are a manufacturer and designer from the heart of Texas, and we sell to
           approved retailers. Sign in to see your pricing, or apply for an account and be
           approved in typically less than one business day.

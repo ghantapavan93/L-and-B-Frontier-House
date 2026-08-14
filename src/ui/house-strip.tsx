@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
+import { PLATE_MARKER, PLATE_STOREFRONT } from '@/content/media/frontier-plates'
+import { MENS_DEMO_FLOOR } from '@/fixtures/mens-demo'
 import type { DemoImage } from '@/fixtures/mens-demo'
 
 /**
@@ -40,9 +41,8 @@ function Picture({ image, sizes }: { image: DemoImage; sizes: string }) {
 }
 
 export function SplitCampaign() {
-  const left = MENS_DEMO_PRODUCTS.find((p) => p.slug === 'dark-bootcut-jean')?.media[0]
   const right = frame('floor-boot-crate')
-  if (!left || !right) return null
+  if (!right) return null
 
   return (
     <section className="split" aria-labelledby="split-heading">
@@ -50,12 +50,19 @@ export function SplitCampaign() {
         The house, in two frames
       </h2>
 
-      <Link href="/mens#mens-denim" className="split__half">
-        <Picture image={left} sizes="50vw" />
-        <span className="split__label">
-          <span className="split__word">Cut for a heel</span>
-          <span className="split__cta">The denim</span>
-        </span>
+      {/*
+        The left half is the storefront title card from the owner's generated-plate drop —
+        it carries its own typography, so no overlay word competes with it, and the scrim
+        that serves the labelled half is suppressed. The marker chip keeps it honest, and
+        the plate is exactly 4:5, so the split's frame shows it whole.
+      */}
+      <Link
+        href="/mens"
+        className="split__half split__half--plate"
+        aria-label="Frontier House — the men's demonstration. Generated campaign artwork."
+      >
+        <Picture image={PLATE_STOREFRONT} sizes="(min-width: 48rem) 50vw, 100vw" />
+        <span className="plate-note">{PLATE_MARKER}</span>
       </Link>
 
       <Link href="/mens" className="split__half">

@@ -39,6 +39,15 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  /*
+    The design is a single deliberate light theme (bone ground, ink type, dark bands as
+    art direction). Without a declared scheme, browsers with forced/auto dark mode
+    (Chrome's Auto Dark on Android, Edge's force-dark, dark-reader extensions) invert the
+    whole site algorithmically — black ground, guessed font colors, mangled imagery
+    edges. Declaring the scheme is the documented opt-out; the CSS root pairs it with
+    `color-scheme: only light`.
+  */
+  colorScheme: 'light',
 }
 
 /*
