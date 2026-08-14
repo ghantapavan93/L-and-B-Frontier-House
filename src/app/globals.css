@@ -72,9 +72,16 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 500;
+  /*
+    Fraunces is a VARIABLE face: 440 sits between its regular and medium, warmer than a
+    hard 500, and `font-optical-sizing: auto` lets the same file open its contrast at
+    display sizes and close it at captions — the behaviour Libre Caslon could not offer.
+    Tracking tightens a step now that the optical axis carries the elegance.
+  */
+  font-weight: 440;
+  font-optical-sizing: auto;
   line-height: var(--leading-tight);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.022em;
   margin: 0 0 var(--space-5);
   text-wrap: balance;
 }
@@ -7321,4 +7328,311 @@ tfoot td {
 .fit-gateway__tile:hover .fit-gateway__name {
   text-decoration: underline;
   text-underline-offset: 0.15em;
+}
+
+/* ==========================================================================
+   THE ALIVE PASS — texture in the smallest interactions
+
+   None of this is a feature; together it is the difference between a page
+   that renders and a page that feels attended to. Every rule is CSS-only,
+   transform/decoration-only, complete without JavaScript, and quiet under
+   reduced motion.
+   ========================================================================== */
+
+/* Selection carries the house: ink ground, bone type — everywhere, including
+   the moment someone triple-clicks a headline to share it. */
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bone);
+}
+
+/* Underline craft: hairline at rest, weighted under the pointer. Decoration
+   only — no layout, no colour dependence. */
+a {
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* The technical voice: the registers a line sheet speaks in. Mono squares up
+   the smallest text on the page and makes a code read as a code. */
+.eyebrow,
+.plate-note,
+.badge,
+.site-nav__demo-tag,
+.fit-gateway__count,
+.fit-row__count,
+.spec-table dt {
+  font-family: var(--font-mono);
+}
+
+/* Numbers that line up: counts and spec values read as data, not prose. */
+.spec-table,
+.fit-gateway__count,
+.fit-row__count,
+.facet-panel {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Buttons acknowledge the press — one pixel, one frame. */
+.button:active,
+.scroll-rail__arrow:active,
+.campaign-stage__toggle:active {
+  translate: 0 1px;
+}
+
+/* Product photography breathes under the pointer: transform-only, inside the
+   card's own overflow, and instant for reduced motion. */
+.product-card__media img {
+  transition: scale var(--duration-slow) var(--ease-entrance);
+}
+
+.product-card__link:hover .product-card__media img,
+.product-card__link:focus-visible .product-card__media img {
+  scale: 1.03;
+}
+
+/*
+  Section heads arrive with the scroll — a 16px rise driven by the section's
+  own position, on native scroll (`view()`), never a wheel hook. Transform
+  only: if the timeline freezes, the head sits 16px low and completely
+  legible, which is the failure mode the opacity ban exists to guarantee.
+*/
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .section-head {
+      animation: head-rise 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes head-rise {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card__media img {
+    transition: none;
+  }
+
+  .product-card__link:hover .product-card__media img,
+  .product-card__link:focus-visible .product-card__media img {
+    scale: none;
+  }
+}
+
+/* ==========================================================================
+   THE LINE SHEET — a living document, printable, never a file
+
+   Screen: a dense, legible trade table in the house style. Print: chrome
+   gone, document black on white, the sheet stamped for the buyer. The
+   export IS the print — no file ever exists for the export-leak gate to
+   find.
+   ========================================================================== */
+
+.line-sheet__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: end;
+}
+
+.line-sheet__print {
+  max-width: 30ch;
+}
+
+.line-sheet__terms {
+  font-family: var(--font-mono);
+  border-block: 1px solid var(--rule);
+  padding-block: var(--space-2);
+  margin-block: var(--space-4) var(--space-6);
+}
+
+.line-sheet__category {
+  margin-top: var(--space-7);
+}
+
+.line-sheet__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.line-sheet__table th,
+.line-sheet__table td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.line-sheet__table thead th {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.line-sheet__photo img {
+  width: 72px;
+  height: auto;
+  display: block;
+}
+
+.line-sheet__sku {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.line-sheet__spec {
+  display: block;
+  font-size: var(--text-2xs);
+  color: var(--color-text-meta);
+}
+
+.line-sheet__money {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.line-sheet__foot {
+  margin-top: var(--space-6);
+}
+
+@media print {
+  /* The sheet is the page: everything that is not the sheet leaves. */
+  .site-header,
+  .site-footer,
+  .promo-bar,
+  .house-guide,
+  .line-sheet__print {
+    display: none !important;
+  }
+
+  .line-sheet {
+    color: #000;
+  }
+
+  .line-sheet__table th,
+  .line-sheet__table td {
+    border-color: #000;
+  }
+
+  .line-sheet__table {
+    font-size: 10pt;
+  }
+
+  /* Category tables never split a row across sheets. */
+  .line-sheet__table tr {
+    break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   THE CALENDAR — dates that state themselves
+   ========================================================================== */
+
+.calendar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.calendar__entry {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--surface-sunken);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .calendar__entry {
+    grid-template-columns: 8rem minmax(0, 1fr) auto;
+  }
+}
+
+.calendar__kind {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.calendar__title {
+  margin: 0 0 var(--space-1);
+}
+
+.calendar__statement {
+  margin: 0 0 var(--space-1);
+  color: var(--color-text-meta);
+}
+
+.calendar__window {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.calendar__cta {
+  justify-self: start;
+}
+
+@media (min-width: 62rem) {
+  .calendar__cta {
+    justify-self: end;
+  }
+}
+
+/* ==========================================================================
+   THE DENIM GUIDE — the comparative table, as text
+   ========================================================================== */
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.guide-table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+}
+
+.guide-table th,
+.guide-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.guide-table thead th {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.guide-table tbody th {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 440;
 }

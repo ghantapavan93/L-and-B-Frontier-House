@@ -98,16 +98,45 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
     .filter((p) => p.id !== product.id)
     .slice(0, 3)
 
-  /* The product's own attributes are the ONLY anatomy source — no construction fact is
-     invented. Each entry is something visibly true of the garment in its photograph. */
-  const anatomy: { term: string; detail: string }[] = [
-    ...(product.attributes.fabric ?? []).map((f) => ({ term: 'Fabric', detail: f })),
-    ...(product.attributes.detail ?? []).map((d) => ({ term: 'Detail', detail: d })),
-    ...(product.attributes.motif ?? []).map((m) => ({ term: 'Motif', detail: m })),
-    ...(product.attributes.silhouette
-      ? [{ term: 'Silhouette', detail: product.attributes.silhouette }]
+  /*
+     The product's own attributes are the ONLY anatomy source — no construction fact is
+     invented. Each entry is something visibly true of the garment in its photograph.
+
+     ONE DATASET, TWO SURFACES: every entry that has a matching facet carries its facet
+     param, and renders as a real link into the filtered category. The PLP's controls and
+     the PDP's anatomy now speak the same vocabulary by construction — the mechanism the
+     denim references keep as two disconnected systems — and each garment fact doubles as
+     a route to every other garment sharing it. `facet: undefined` (inseam) renders as
+     plain text: one populated value is navigation to nowhere.
+  */
+  const anatomy: { term: string; detail: string; facet?: string }[] = [
+    ...(product.attributes.fabric ?? []).map((f) => ({
+      term: 'Fabric',
+      detail: f,
+      facet: 'fabric',
+    })),
+    ...(product.attributes.detail ?? []).map((d) => ({
+      term: 'Detail',
+      detail: d,
+      facet: 'detail',
+    })),
+    ...(product.attributes.motif ?? []).map((m) => ({
+      term: 'Motif',
+      detail: m,
+      facet: 'motif',
+    })),
+    ...(product.attributes.legOpening
+      ? [{ term: 'Leg opening', detail: product.attributes.legOpening, facet: 'legOpening' }]
       : []),
-    ...(product.attributes.wash ? [{ term: 'Wash', detail: product.attributes.wash }] : []),
+    ...(product.attributes.silhouette
+      ? [{ term: 'Silhouette', detail: product.attributes.silhouette, facet: 'silhouette' }]
+      : []),
+    ...(product.attributes.sleeve
+      ? [{ term: 'Sleeve', detail: product.attributes.sleeve, facet: 'sleeve' }]
+      : []),
+    ...(product.attributes.wash
+      ? [{ term: 'Wash', detail: product.attributes.wash, facet: 'wash' }]
+      : []),
     ...(product.attributes.inseam
       ? [{ term: 'Inseam', detail: product.attributes.inseam }]
       : []),
@@ -234,7 +263,16 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
               {anatomy.map((entry, index) => (
                 <li className="anatomy__item" key={`${entry.term}-${index}`}>
                   <span className="anatomy__term">{entry.term}</span>
-                  {entry.detail}
+                  {entry.facet ? (
+                    <Link
+                      className="text-link"
+                      href={`/shop/${product.categorySlug}?${entry.facet}=${encodeURIComponent(entry.detail)}#products`}
+                    >
+                      {entry.detail}
+                    </Link>
+                  ) : (
+                    entry.detail
+                  )}
                 </li>
               ))}
             </ul>

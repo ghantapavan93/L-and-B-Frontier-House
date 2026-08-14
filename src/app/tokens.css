@@ -50,7 +50,8 @@
   --font-display: var(--font-display-loaded), ui-serif, Georgia, serif;
   --font-ui:
     var(--font-ui-loaded), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: ui-monospace, 'JetBrains Mono', 'Cascadia Mono', 'Courier New', monospace;
+  /* The loaded mono first; the stack behind it is the fallback, not the plan. */
+  --font-mono: var(--font-mono-loaded), ui-monospace, 'Cascadia Mono', 'Courier New', monospace;
 
   /* Type scale, verbatim from the applied theme. */
   --display-xl: 84px;

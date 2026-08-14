@@ -49,6 +49,27 @@ export type ProgrammingEntry = {
 
 export const PROGRAMMING: readonly ProgrammingEntry[] = [
   {
+    /*
+      October market — dates verified (constitution §3: markets Aug 18–21 and
+      Oct 20–23, 2026). Titled by venue and month only: the drops research confirmed the
+      October dates are an Apparel & Accessories Market, not a WESA western market, so the
+      title claims the venue and the dates, nothing more.
+    */
+    id: 'dallas-market-oct-2026',
+    kind: 'market',
+    title: 'Dallas Market · October 20–23',
+    statement:
+      'Showroom #13656, Dallas Market Center. The second market of the season — plan the visit now.',
+    status: 'live',
+    startsOn: '2026-08-22',
+    endsOn: '2026-10-23',
+    href: '/wholesale',
+    ctaLabel: 'Plan your visit',
+    audience: 'public',
+    priority: 4,
+    verified: true,
+  },
+  {
     id: 'dallas-market-aug-2026',
     kind: 'market',
     title: 'Dallas Market · August 18–21',
@@ -179,4 +200,24 @@ export function liveProgramming(
 export function promoBarEntry(onDate?: string): ProgrammingEntry | null {
   const [first] = liveProgramming(undefined, onDate)
   return first ?? null
+}
+
+/**
+ * THE CALENDAR VIEW — public, verified, and INCLUSIVE OF WHAT IS COMING.
+ *
+ * `liveProgramming` answers "what is on right now" and correctly hides an entry until its
+ * window opens. A calendar answers a different question — "what is ahead" — so it keeps
+ * future windows and drops only what has already ENDED. Same gates otherwise: public
+ * audience, live status, verified facts only.
+ */
+export function publicProgramme(
+  onDate: string = new Date().toISOString().slice(0, 10),
+): readonly ProgrammingEntry[] {
+  return PROGRAMMING.filter(
+    (entry) =>
+      entry.status === 'live' &&
+      entry.verified &&
+      entry.audience === 'public' &&
+      (entry.endsOn === undefined || entry.endsOn >= onDate),
+  ).sort((a, b) => ((a.startsOn ?? '0000') < (b.startsOn ?? '0000') ? -1 : 1))
 }

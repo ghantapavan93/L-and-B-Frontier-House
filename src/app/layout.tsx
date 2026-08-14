@@ -1,21 +1,37 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Libre_Caslon_Text } from 'next/font/google'
+import { Fraunces, IBM_Plex_Mono, Inter } from 'next/font/google'
 import './globals.css'
 
 /**
- * The typefaces the live Stitch project's applied theme specifies — Libre Caslon Text for
- * display, Inter for UI and body.
+ * THE HOUSE VOICES — three, each with one job.
+ *
+ * Display is FRAUNCES, a variable serif with real optical sizing: at caption sizes it is
+ * sturdy and quiet, at display sizes the contrast opens and it turns editorial — one file
+ * behaving like a family. It replaces Libre Caslon Text (the Stitch theme's placeholder
+ * face), owner-directed 2026-08-13; the committed-typeface decision D-07 remains open and
+ * this is the working direction offered for it. Inter keeps the working text. IBM Plex
+ * Mono is new: the TECHNICAL voice — eyebrows, spec terms, style codes, counts — the
+ * line-sheet register every trade reference carries and no consumer site does.
  *
  * `next/font` downloads them at build time and serves them from this origin: no CDN, no
- * runtime request to a third party, and no layout shift because the metrics are known. Both
- * are OFL, which also clears the "zero licensed font files" blocker in docs/production/14.
+ * runtime request to a third party, and no layout shift because the metrics are known.
+ * All three are OFL, keeping the "zero licensed font files" blocker clear
+ * (docs/production/14).
  */
-const display = Libre_Caslon_Text({
+const display = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  /* Variable weight + the optical-size axis — the whole reason to choose Fraunces. */
+  axes: ['opsz'],
   style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-display-loaded',
+})
+
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-mono-loaded',
 })
 
 const ui = Inter({
@@ -71,7 +87,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-experience="balanced" className={`${display.variable} ${ui.variable}`}>
+    <html
+      lang="en"
+      data-experience="balanced"
+      className={`${display.variable} ${ui.variable} ${mono.variable}`}
+    >
       <body>
         {/* First focusable element in the DOM. */}
         <a className="skip-link" href="#main">

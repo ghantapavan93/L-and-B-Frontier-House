@@ -50,8 +50,11 @@ test.describe('with JavaScript disabled', () => {
     const marquee = page.locator('.marquee')
     await marquee.scrollIntoViewIfNeeded()
 
-    // The label is clickable and flips the checkbox with zero JavaScript.
-    await page.locator('.marquee__toggle').click()
+    // The CHECKBOX is the control — a transparent 44px input sitting exactly over the
+    // drawn circle (the target-size fix). Clicking the label underneath is intercepted
+    // by the input, which is correct: one element takes the click, the tap, the focus
+    // and the measurement. The test clicks what a finger hits.
+    await page.locator('.marquee__state').click()
     await expect(page.locator('.marquee__state')).toBeChecked()
   })
 

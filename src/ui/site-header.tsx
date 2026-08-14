@@ -37,6 +37,8 @@ export function SiteHeader({ session }: { session?: Session }) {
     { href: '/fit-passport', label: 'Fit Passport', note: 'The House remembers your fit' },
     { href: '/size-and-fit/women', label: 'Size and fit', note: 'Every measurement, as text' },
     { href: '/warehouse', label: 'The Warehouse', note: 'Every rack, one aisle' },
+    { href: '/denim-guide', label: 'Denim guide', note: 'The four cuts, side by side' },
+    { href: '/calendar', label: 'The calendar', note: 'Markets, drops and campaigns' },
   ]
 
   return (

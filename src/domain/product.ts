@@ -93,6 +93,20 @@ export type MediaRef = {
 export type PreOrderTerms = {
   readonly shipWindowStart: string
   readonly shipWindowEnd: string
+  /*
+    The two fields the canonical wholesale schema carries that we lacked, added as
+    OPTIONAL because no owner data exists yet for either (§12: absent, never invented):
+
+    `closesOn` — the order cutoff. A buyer plans a season around when the window SHUTS,
+    not when goods ship; every platform studied surfaces it ahead of the ship window.
+
+    `chargedOn` — when payment happens. B2B pays on ship, DTC pays on order, and the
+    DTC assumption silently leaking into a wholesale surface misstates the buyer's cash
+    position. Stated explicitly wherever preorder terms render, once the owner supplies
+    the policy.
+  */
+  readonly closesOn?: string
+  readonly chargedOn?: 'order' | 'ship'
   readonly terms: string
 }
 
