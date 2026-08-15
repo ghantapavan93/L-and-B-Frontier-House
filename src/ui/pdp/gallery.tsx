@@ -86,10 +86,14 @@ export function PdpGallery({ frames }: { frames: readonly GalleryImage[] }) {
                 sizes="(min-width: 62rem) 46vw, 100vw"
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
+              {/* One accessible name, not two — the audit caught this pair computing
+                  to "EnlargeEnlarge the front view". */}
               <span className="gallery__open-hint" aria-hidden="true">
                 Enlarge
               </span>
-              <span className="visually-hidden">Enlarge the {frame.label.toLowerCase()}</span>
+              <span className="visually-hidden">
+                Open the {frame.label.toLowerCase()} enlarged
+              </span>
             </a>
             <figcaption className="gallery__caption">{frame.label}</figcaption>
           </figure>

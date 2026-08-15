@@ -89,15 +89,22 @@ export default async function ApplyPage({
 
       <Progress current={step} />
 
+      {/* The notice already carries role="alert" (announced on render); the id lets
+          the form point at it with aria-describedby, associating the error with the
+          fields a screen reader is about to re-enter — a11y audit finding #8. */}
       {error === 'missing' ? (
-        <ErrorNotice>
-          <p>A required field on this step is empty. Complete it and continue.</p>
-        </ErrorNotice>
+        <div id="apply-error">
+          <ErrorNotice>
+            <p>A required field on this step is empty. Complete it and continue.</p>
+          </ErrorNotice>
+        </div>
       ) : null}
       {error === 'terms' ? (
-        <ErrorNotice>
-          <p>Please confirm the wholesale terms before submitting.</p>
-        </ErrorNotice>
+        <div id="apply-error">
+          <ErrorNotice>
+            <p>Please confirm the wholesale terms before submitting.</p>
+          </ErrorNotice>
+        </div>
       ) : null}
 
       {step === 1 ? (
@@ -115,7 +122,11 @@ export default async function ApplyPage({
             </ul>
           </section>
 
-          <form action={applyStepAction} className="stack apply-form">
+          <form
+            aria-describedby={error ? 'apply-error' : undefined}
+            action={applyStepAction}
+            className="stack apply-form"
+          >
             <input type="hidden" name="step" value="1" />
             <fieldset>
               <legend>Your store</legend>
@@ -175,7 +186,11 @@ export default async function ApplyPage({
       ) : null}
 
       {step === 2 ? (
-        <form action={applyStepAction} className="stack apply-form">
+        <form
+          aria-describedby={error ? 'apply-error' : undefined}
+          action={applyStepAction}
+          className="stack apply-form"
+        >
           <input type="hidden" name="step" value="2" />
           <fieldset>
             <legend>Retail credentials</legend>
@@ -266,7 +281,11 @@ export default async function ApplyPage({
       ) : null}
 
       {step === 3 ? (
-        <form action={applyStepAction} className="stack apply-form">
+        <form
+          aria-describedby={error ? 'apply-error' : undefined}
+          action={applyStepAction}
+          className="stack apply-form"
+        >
           <input type="hidden" name="step" value="3" />
           <fieldset>
             <legend>
@@ -415,7 +434,11 @@ export default async function ApplyPage({
             </dl>
           </section>
 
-          <form action={submitApplicationAction} className="stack">
+          <form
+            aria-describedby={error ? 'apply-error' : undefined}
+            action={submitApplicationAction}
+            className="stack"
+          >
             <label className="choice">
               <input type="checkbox" name="terms" required />
               <span>

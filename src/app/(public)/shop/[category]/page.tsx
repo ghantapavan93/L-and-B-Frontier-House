@@ -151,6 +151,10 @@ export default async function CategoryPage({
           {appliedCount > 0 ? ` (${appliedCount})` : ''}
         </a>
 
+        {/* A11y audit finding #6: cards are <h3> and nothing between them and the h1
+            said <h2> — a heading skip on every category page. Real for the
+            accessibility tree, silent for the layout. */}
+        <h2 className="visually-hidden">The rack</h2>
         <div
           className="layout-with-facets"
           id="products"

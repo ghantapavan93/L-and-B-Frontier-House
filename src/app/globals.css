@@ -6741,8 +6741,20 @@ tfoot td {
   bottom: 0;
   z-index: 1;
   margin: 0;
-  padding: var(--space-6) var(--space-3) var(--space-3);
-  background: linear-gradient(to top, rgb(0 0 0 / 0.78), rgb(0 0 0 / 0));
+  /*
+    A11y audit finding #2: the old gradient hit alpha 0 at the caption's own top edge,
+    so the first caption line sat on an unscrimmed photograph (worst case 1.67:1 at 10px,
+    across twenty tiles). The gradient now HOLDS >=0.62 through the whole text box and
+    only then decays; the type steps up from 10px.
+  */
+  padding: var(--space-7) var(--space-3) var(--space-3);
+  font-size: var(--text-xs);
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.78) 0%,
+    rgb(0 0 0 / 0.62) 55%,
+    rgb(0 0 0 / 0) 100%
+  );
   overflow-wrap: anywhere;
 }
 
@@ -6929,7 +6941,8 @@ tfoot td {
     height: 1px;
     background: var(--color-sandstone);
     transform: scaleX(0);
-    animation: shutter-line 1.5s var(--ease-entrance) 0.55s both;
+    /* 1.2s, trimmed with the travel — the same specialist note. */
+    animation: shutter-line 1.2s var(--ease-entrance) 0.55s both;
     pointer-events: none;
   }
 
@@ -7035,13 +7048,18 @@ tfoot td {
     /*
       Two movements, one element: the sweep unclips the layer as the base words
       land, then the plate itself TRAVELS through the glyphs left→right and
-      settles. Total automatic motion ≈ 0.9s + 3.4s — each finite, together
-      under the five seconds that would oblige decoration to carry its own
-      pause control (WCAG 2.2.2).
+      settles.
+
+      1.8s, DOWN FROM 3.4s — the motion specialist's one real correction. The
+      longest choreographed motion measured across eight reference sites is
+      500ms, and none of them animates a headline at all; at 3.4s the travel
+      made the hero's total automatic settle ≈4.55s, brushing the 2.2.2
+      threshold it was designed to stay clear of. At 1.8s the whole sequence
+      lands in ≈2.7s and the travel still reads as travel.
     */
     animation:
       image-sweep 0.9s var(--ease-entrance) 1.15s backwards,
-      image-travel 3.4s var(--ease-entrance) 1.15s backwards;
+      image-travel 1.8s var(--ease-entrance) 1.15s backwards;
   }
 
   @keyframes image-sweep {
@@ -7635,4 +7653,51 @@ a:hover {
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 440;
+}
+
+/* ==========================================================================
+   A11Y AUDIT REPAIRS — measured failures, repaired at the class level
+   ========================================================================== */
+
+/*
+  Finding #3: the Tobacco focus ring measures 2.73:1 on the site's dark bands (needs
+  3:1 non-text contrast). On every inverse surface the ring goes tan — 11.9:1 on ink.
+*/
+.promo-bar :focus-visible,
+.contact-sheet :focus-visible,
+.campaign-stage :focus-visible,
+.house-strip :focus-visible,
+.warehouse :focus-visible,
+.split :focus-visible,
+.ignition :focus-visible {
+  outline-color: #d9c5b2;
+}
+
+/*
+  Finding #4: three interactive elements sat over the hero film with no guaranteed
+  ground — the transcript link measured 1.67:1 worst-case, the secondary CTA 1.12:1.
+  Nothing may rely on the film "usually" being dark; each carries its own ground now.
+*/
+.ignition .button--secondary,
+.ignition .button--quiet {
+  background: rgb(16 13 10 / 0.68);
+}
+
+.hero-film__transcript {
+  background: rgb(16 13 10 / 0.68);
+  padding: var(--space-1) var(--space-2);
+}
+
+/*
+  Finding #5: the category-banner gradient decayed too early, leaving the title at
+  1.12:1 worst-case over a light photograph. It now holds >=0.62 under the entire
+  text block — the same repair class as the campaign stage's constant scrim.
+*/
+.page-hero::after {
+  background: linear-gradient(
+    to top,
+    rgb(10 10 10 / 0.78) 0%,
+    rgb(10 10 10 / 0.62) 36%,
+    rgb(10 10 10 / 0) 74%
+  );
 }

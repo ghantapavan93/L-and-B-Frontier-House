@@ -142,6 +142,13 @@ export default async function MensProductPage({ params }: { params: Promise<Para
                 ))}
               </ul>
               <p className="meta">{product.sizesNote}. Not selectable — nothing is stocked.</p>
+              {/* A11y/content audit finding #7: the site's size tables cover women's and
+                  girls' garments; men's grading does not exist, and this page must say so
+                  rather than let the global "Size and fit" link imply otherwise. */}
+              <p className="meta">
+                No men&rsquo;s measurement tables exist yet — the published size pages cover
+                women&rsquo;s and girls&rsquo; garments only.
+              </p>
             </div>
           ) : null}
 

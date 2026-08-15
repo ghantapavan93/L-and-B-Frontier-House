@@ -70,8 +70,16 @@ export default function CalendarPage() {
                   {entry.statement ? (
                     <p className="calendar__statement">{entry.statement}</p>
                   ) : null}
+                  {/* Real <time> semantics (finding #10): this page exists to state
+                      dates, so dates are data, not prose. */}
                   <p className="calendar__window">
-                    {windowLabel(entry.startsOn, entry.endsOn)}
+                    {entry.startsOn ? (
+                      <time dateTime={entry.startsOn}>
+                        {windowLabel(entry.startsOn, entry.endsOn)}
+                      </time>
+                    ) : (
+                      windowLabel(entry.startsOn, entry.endsOn)
+                    )}
                   </p>
                 </div>
                 <Link className="button button--secondary calendar__cta" href={entry.href}>
