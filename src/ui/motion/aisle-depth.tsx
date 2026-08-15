@@ -39,6 +39,7 @@ export function AisleDepth({ children }: { children: ReactNode }) {
       <m.div
         ref={scroller}
         className="warehouse__aisle"
+        data-rail-scroller=""
         role="region"
         aria-label="The racks"
         tabIndex={0}

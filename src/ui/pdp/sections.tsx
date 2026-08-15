@@ -1,4 +1,5 @@
 import type { DemoDetail, DemoImage, DemoSpec } from '@/fixtures/mens-demo'
+import { ScrollRail } from '@/ui/scroll-rail'
 
 /**
  * PDP SECTIONS — the shared depth layer beneath the gallery and the buying panel.
@@ -192,13 +193,16 @@ export function PdpWorn({ frames }: { frames?: readonly DemoImage[] | undefined 
           <h2 id="pdp-worn-heading">How it is worn</h2>
         </div>
       </div>
-      <ul className="worn-strip">
-        {frames.map((frame) => (
-          <li key={frame.asset.poster}>
-            <Picture image={frame} sizes="(min-width: 62rem) 33vw, 80vw" />
-          </li>
-        ))}
-      </ul>
+      {/* Railed: arrows + progress when JS is present, native scroll always. */}
+      <ScrollRail>
+        <ul className="worn-strip" data-rail-scroller="">
+          {frames.map((frame) => (
+            <li key={frame.asset.poster}>
+              <Picture image={frame} sizes="(min-width: 62rem) 33vw, 80vw" />
+            </li>
+          ))}
+        </ul>
+      </ScrollRail>
     </section>
   )
 }

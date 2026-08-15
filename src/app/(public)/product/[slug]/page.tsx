@@ -377,8 +377,28 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <section className="section" aria-labelledby="related-heading">
             <div className="section-head">
               <div>
-                <p className="eyebrow">More from the sheet</p>
-                <h2 id="related-heading">Nearby frames</h2>
+                <p className="eyebrow">Not sure between them?</p>
+                <h2 id="related-heading">Compare the line</h2>
+                {/*
+                  The comparison ANCHOR — the reference PDPs answer "is this the right
+                  one" with a shoppable comparison row, not a spec table. The anchor line
+                  states what the reader is already looking at in facet vocabulary, so the
+                  cards beneath read as alternatives to a stated position, not as an
+                  unrelated grid. Derived entirely from the record; renders only the
+                  attributes that exist.
+                */}
+                <p className="meta">
+                  You are looking at:{' '}
+                  {[
+                    product.attributes.wash ? `${product.attributes.wash} wash` : null,
+                    product.attributes.legOpening,
+                    product.attributes.silhouette,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ') || product.specName.toLowerCase()}
+                  . The rest of the {category ? category.label.toLowerCase() : 'line'} differs
+                  from here.
+                </p>
               </div>
               <Link href="/#sheet" className="text-link">
                 Return to the contact sheet

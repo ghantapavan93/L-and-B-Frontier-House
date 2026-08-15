@@ -6,6 +6,7 @@ import type { PublicProduct } from '@/domain/product'
 import { primaryMedia } from '@/domain/product'
 import { navigableCategories } from '@/domain/taxonomy'
 import { AisleDepth } from '@/ui/motion/aisle-depth'
+import { ScrollRail } from '@/ui/scroll-rail'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductMedia } from '@/ui/product-media'
 
@@ -94,57 +95,62 @@ export default async function WarehousePage() {
         `--aisle-drift` var the CSS spends on a dollying perspective origin. Children are
         this server markup, unchanged; no JavaScript leaves the aisle complete.
       */}
-      <AisleDepth>
-        {racks.map((rack) => (
+      {/* The rail wraps the island: two decorations, one native scroller. The rail's
+          element reads scroll position only; the island publishes its drift only. Neither
+          touches the wheel, and with no JavaScript both leave plain native scroll. */}
+      <ScrollRail>
+        <AisleDepth>
+          {racks.map((rack) => (
+            <section
+              key={rack.id}
+              id={rack.id}
+              className="warehouse__rack"
+              aria-label={rack.name}
+            >
+              <header className="warehouse__sign">
+                <h2 className="warehouse__sign-name">{rack.name}</h2>
+                <p className="warehouse__sign-line">{rack.line}</p>
+              </header>
+
+              {rack.items.map((product) => (
+                <Link
+                  key={product.id}
+                  href={`/product/${product.slug}`}
+                  className="warehouse__item"
+                >
+                  <ProductMedia media={primaryMedia(product)} sizes="18rem" />
+                  <span className="warehouse__item-name">{product.displayName}</span>
+                </Link>
+              ))}
+            </section>
+          ))}
+
+          {/* The end of the aisle points at the shop proper — the one-action exit. */}
           <section
-            key={rack.id}
-            id={rack.id}
-            className="warehouse__rack"
-            aria-label={rack.name}
+            className="warehouse__rack warehouse__rack--exit"
+            aria-label="Shop by category"
           >
             <header className="warehouse__sign">
-              <h2 className="warehouse__sign-name">{rack.name}</h2>
-              <p className="warehouse__sign-line">{rack.line}</p>
+              <h2 className="warehouse__sign-name">The floor</h2>
+              <p className="warehouse__sign-line">Everything, by category.</p>
             </header>
-
-            {rack.items.map((product) => (
-              <Link
-                key={product.id}
-                href={`/product/${product.slug}`}
-                className="warehouse__item"
-              >
-                <ProductMedia media={primaryMedia(product)} sizes="18rem" />
-                <span className="warehouse__item-name">{product.displayName}</span>
+            <div className="warehouse__exit">
+              {navigableCategories().map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/shop/${category.slug}`}
+                  className="button button--secondary"
+                >
+                  {category.label}
+                </Link>
+              ))}
+              <Link href="/new-arrivals" className="button button--secondary">
+                New arrivals
               </Link>
-            ))}
+            </div>
           </section>
-        ))}
-
-        {/* The end of the aisle points at the shop proper — the one-action exit. */}
-        <section
-          className="warehouse__rack warehouse__rack--exit"
-          aria-label="Shop by category"
-        >
-          <header className="warehouse__sign">
-            <h2 className="warehouse__sign-name">The floor</h2>
-            <p className="warehouse__sign-line">Everything, by category.</p>
-          </header>
-          <div className="warehouse__exit">
-            {navigableCategories().map((category) => (
-              <Link
-                key={category.slug}
-                href={`/shop/${category.slug}`}
-                className="button button--secondary"
-              >
-                {category.label}
-              </Link>
-            ))}
-            <Link href="/new-arrivals" className="button button--secondary">
-              New arrivals
-            </Link>
-          </div>
-        </section>
-      </AisleDepth>
+        </AisleDepth>
+      </ScrollRail>
 
       <div className="container section--tight">
         <p className="meta warehouse__hint" aria-hidden="true">
