@@ -73,8 +73,10 @@ test.describe('with JavaScript disabled', () => {
   })
 
   test('scroll-rail decoration stays dead: no arrows, no progress bar', async ({ page }) => {
-    await page.goto('/')
-    const strip = page.locator('.house-strip')
+    // The house strip now drifts by CSS and carries no rail; the warehouse aisle is the
+    // surface that still does.
+    await page.goto('/warehouse')
+    const strip = page.locator('.warehouse__aisle')
     await strip.scrollIntoViewIfNeeded()
 
     // Zero-by-default: the custom element never upgraded, so the arrows keep `hidden`

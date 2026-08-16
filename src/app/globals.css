@@ -7701,3 +7701,116 @@ a:hover {
     rgb(10 10 10 / 0) 74%
   );
 }
+
+/* ==========================================================================
+   THE DRIFTING HOUSE STRIP — film through a gate
+   ========================================================================== */
+
+.house-strip__stage {
+  position: relative;
+}
+
+.house-strip__track {
+  display: flex;
+  width: max-content;
+}
+
+/* The run stops being a scroller while the track drives itself. */
+@media (prefers-reduced-motion: no-preference) {
+  .house-strip__run {
+    overflow: hidden;
+  }
+
+  .house-strip__track {
+    animation: house-strip-run 70s linear infinite;
+    will-change: transform;
+  }
+
+  /* A reader looking at a frame outranks the drift. */
+  .house-strip__run:hover .house-strip__track,
+  .house-strip__run:focus-within .house-strip__track {
+    animation-play-state: paused;
+  }
+
+  .house-strip__state:checked ~ .house-strip__run .house-strip__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes house-strip-run {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/*
+  Reduced motion: the drift never existed. The duplicate set vanishes, the native
+  scroller returns, and the strip is exactly the hand-driven run it always was.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .house-strip__track > ul[aria-hidden] {
+    display: none;
+  }
+
+  .house-strip__run {
+    overflow-x: auto;
+  }
+}
+
+/* The pause control — the checkbox IS the 44px target (the marquee's lesson). */
+.house-strip__state {
+  position: absolute;
+  right: var(--space-3);
+  top: calc(-1 * var(--space-6));
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.house-strip__toggle {
+  position: absolute;
+  right: var(--space-3);
+  top: calc(-1 * var(--space-6));
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--text-on-inverse);
+  border-radius: 50%;
+  background: rgb(10 10 10 / 0.72);
+  color: var(--text-on-inverse);
+}
+
+.house-strip__state:focus-visible + .house-strip__toggle {
+  outline: 2px solid #d9c5b2;
+  outline-offset: 2px;
+}
+
+.house-strip__glyph--play {
+  display: none;
+}
+
+.house-strip__state:checked + .house-strip__toggle .house-strip__glyph--play {
+  display: block;
+}
+
+.house-strip__state:checked + .house-strip__toggle .house-strip__glyph--pause {
+  display: none;
+}
+
+/* With no drift to pause (reduced motion), the control disappears — a control that
+   controls nothing must not render. */
+@media (prefers-reduced-motion: reduce) {
+  .house-strip__state,
+  .house-strip__toggle {
+    display: none;
+  }
+}

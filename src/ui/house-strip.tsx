@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { PLATE_MARKER, PLATE_STOREFRONT } from '@/content/media/frontier-plates'
-import { ScrollRail } from '@/ui/scroll-rail'
 import { MENS_DEMO_FLOOR } from '@/fixtures/mens-demo'
 import type { DemoImage } from '@/fixtures/mens-demo'
 
@@ -120,25 +119,75 @@ export function HouseStrip() {
         serious failure, and a screen reader loses the count. The wrapper takes the role
         and the focus; the list stays a list.
       */}
-      {/* The rail adds arrows and a progress bar when JS is present; the region and its
-          native scroll are untouched either way. */}
-      <ScrollRail>
+      {/*
+        THE STRIP DRIFTS — owner-directed, on the marquee's exact legal machinery.
+
+        The frames travel right-to-left continuously, like film through a gate. Three
+        controls keep it legitimate, all CSS, zero JavaScript:
+          - A real 44px checkbox pause (2.2.2 binds ANY motion over 5s beside content).
+            Checked = paused; the input itself is the target, per the marquee fix.
+          - Hover or focus pauses the track, so a reader can actually look at a frame.
+          - `prefers-reduced-motion` removes the animation entirely and the strip
+            reverts to exactly what it was: a native hand-scrolled run — duplicates
+            hidden, scrollbar back, nothing moving uninvited.
+        The second set of frames exists only for the seamless loop and is aria-hidden;
+        assistive tech hears ten photographs, not twenty.
+      */}
+      <div className="house-strip__stage">
+        <input
+          type="checkbox"
+          id="house-strip-pause"
+          className="house-strip__state"
+          aria-label="Pause the moving photography strip"
+        />
+        <label className="house-strip__toggle" htmlFor="house-strip-pause">
+          <svg
+            className="house-strip__glyph house-strip__glyph--pause"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect x="2" y="1" width="3.5" height="12" fill="currentColor" />
+            <rect x="8.5" y="1" width="3.5" height="12" fill="currentColor" />
+          </svg>
+          <svg
+            className="house-strip__glyph house-strip__glyph--play"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M3 1l9 6-9 6z" fill="currentColor" />
+          </svg>
+        </label>
+
         <div
           className="house-strip__run"
-          data-rail-scroller=""
           tabIndex={0}
           role="region"
           aria-label="Campaign photography"
         >
-          <ul className="house-strip__list">
-            {frames.map((image) => (
-              <li key={image.asset.poster}>
-                <Picture image={image} sizes="(min-width: 62rem) 22vw, 55vw" />
-              </li>
-            ))}
-          </ul>
+          <div className="house-strip__track">
+            <ul className="house-strip__list">
+              {frames.map((image) => (
+                <li key={image.asset.poster}>
+                  <Picture image={image} sizes="(min-width: 62rem) 22vw, 55vw" />
+                </li>
+              ))}
+            </ul>
+            <ul className="house-strip__list" aria-hidden="true">
+              {frames.map((image) => (
+                <li key={`dup-${image.asset.poster}`}>
+                  <Picture image={image} sizes="(min-width: 62rem) 22vw, 55vw" />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </ScrollRail>
+      </div>
     </section>
   )
 }
