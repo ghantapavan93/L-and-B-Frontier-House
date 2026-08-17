@@ -115,7 +115,10 @@ export function SiteHeader({ session }: { session?: Session }) {
               </Link>
             </li>
             <li>
-              <details className="nav-drop">
+              {/* `name` groups the two drops as a native exclusive accordion: opening
+                  Trade closes Discover with zero JavaScript — the reported bug was both
+                  panels stacking open. Baseline HTML since 2023. */}
+              <details className="nav-drop" name="site-nav-drop">
                 <summary>Discover</summary>
                 <div className="nav-drop__panel">
                   <ul className="nav-drop__list">
@@ -140,7 +143,7 @@ export function SiteHeader({ session }: { session?: Session }) {
               </details>
             </li>
             <li>
-              <details className="nav-drop">
+              <details className="nav-drop" name="site-nav-drop">
                 <summary>Trade</summary>
                 <div className="nav-drop__panel">
                   <ul className="nav-drop__list">
@@ -199,6 +202,26 @@ export function SiteHeader({ session }: { session?: Session }) {
           ) : null}
         </nav>
       </div>
+
+      {/*
+        LIGHT DISMISS for the nav drops and the House Guide. Native <details> keeps a
+        panel open until its own summary is clicked again; the reported bug was Discover
+        hanging open over the page. Outside pointerdown closes any open drop; Escape
+        closes and returns focus to the summary. Degrades to native toggling with
+        scripting off — and the `name` grouping above keeps exclusivity even there.
+      */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(){
+function drops(){return document.querySelectorAll('details.nav-drop[open],details.house-guide[open]')}
+document.addEventListener('pointerdown',function(e){
+drops().forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})},true);
+document.addEventListener('keydown',function(e){
+if(e.key!=='Escape')return;
+drops().forEach(function(d){d.removeAttribute('open');var s=d.querySelector('summary');if(s)s.focus()})});
+})();`,
+        }}
+      />
     </header>
   )
 }
