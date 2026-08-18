@@ -7,6 +7,29 @@
  *
  * Re-run with `npm run import:mens-demo` whenever the source folder changes — e.g. when
  * reference imagery is replaced with owned photography (D-09).
+ *
+ * ── RESOLUTION ORDER: FILENAME FIRST, INDEX ONLY AS A REMNANT ────────────────────────
+ *
+ * A key resolves to a source file by NAME. Drop `dark-rigid-jean-flat.jpg` into the source
+ * folder and it becomes the `dark-rigid-jean-flat` asset — no code change, no re-indexing,
+ * nothing to remember.
+ *
+ * It did not used to work that way, and the old behaviour was a trap. Every key mapped to a
+ * POSITIONAL INDEX into the alphabetically sorted directory listing. That is stable only
+ * while the directory never changes, which is the one thing guaranteed to stop being true:
+ * the moment a real men's shoot lands in this folder, every index shifts and every men's
+ * image on the site silently becomes a different photograph. No error, no missing file, no
+ * failing test — the rack would simply show the wrong clothes. It is the exact shape of bug
+ * that survives code review because the code is correct and the assumption is not.
+ *
+ * The index map is kept, because the current reference drop genuinely has no meaningful
+ * filenames and re-indexing it by hand would be a second chance to get it wrong. It is now
+ * a documented remnant rather than the mechanism: as photography arrives named, entries
+ * resolve by name instead and the fallback drains. The run prints the split every time, so
+ * the remnant cannot quietly become permanent.
+ *
+ * A key that resolves NEITHER way is a hard failure. Rendering a placeholder or skipping the
+ * entry would put the decision back where it was — in a silent default.
  */
 
 import { mkdirSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
@@ -20,11 +43,16 @@ const MANIFEST = join(process.cwd(), 'src', 'fixtures', 'mens-demo-media.generat
 const WIDTHS = [480, 960]
 
 /*
- * Selection by stable index into the alphabetically sorted, de-duplicated source list.
- * The de-duplication rule matches the contact sheet this selection was made against:
- * files with a " (n)" suffix are byte-duplicates and are skipped.
+ * LEGACY INDEX MAP — the fallback, not the mechanism. See the header.
+ *
+ * Positions into the alphabetically sorted, de-duplicated source list. The de-duplication
+ * rule matches the contact sheet this selection was made against: files with a " (n)"
+ * suffix are byte-duplicates and are skipped.
+ *
+ * Every entry here is a frame waiting to be shot. Delete the line when a named file for
+ * that key lands — the shot list is docs/assets/LB_MENSWEAR_PHOTOGRAPHY_BRIEF.md.
  */
-const SELECTION = {
+const LEGACY_INDEX = {
   'denim-jacket-hero': 5,
   'denim-jacket-saddle': 1,
   'dark-rigid-jean-flat': 23,
@@ -81,18 +109,64 @@ const SELECTION = {
   'floor-pale-jean-flat': 45,
 }
 
-const files = readdirSync(SRC)
-  .filter((f) => f.endsWith('.avif') && !/\(\d\)/.test(f))
-  .sort()
+/** Anything sharp can decode. The shoot will not arrive as .avif. */
+const SOURCE_EXT = /\.(avif|webp|jpe?g|png|tiff?)$/i
+
+const all = readdirSync(SRC).filter((f) => SOURCE_EXT.test(f))
+
+/* The index map's positions were taken against this exact filter — .avif only, byte
+   duplicates removed. It has to keep seeing the same list to keep meaning the same thing. */
+const indexed = all.filter((f) => f.endsWith('.avif') && !/\(\d\)/.test(f)).sort()
+
+/** A file whose basename IS the key, ignoring extension and case. */
+function byName(key) {
+  return all.find((f) => f.replace(SOURCE_EXT, '').toLowerCase() === key)
+}
+
+/**
+ * Every key to publish: the ones the fixtures already reference, plus any correctly-named
+ * file that has been dropped in since.
+ *
+ * The second half is what makes the shoot self-serving. Frame 6 of the per-style pattern is
+ * `dark-rigid-jean-back`; nothing references it yet, so a stricter list would silently
+ * ignore the file and the photographer would be told their shot "didn't work". Naming a file
+ * to the convention is the whole act of publishing it — the fixture can start using it
+ * whenever, and until then it is encoded, in the manifest and ready.
+ */
+/*
+  Deliberately narrow. The current reference drop is named by content hash —
+  `e8c25a7676c18b5fcc27d44ae3bfe16a09030982-2000x2500.avif` — and a loose
+  "lowercase words joined by hyphens" pattern matches every one of them, which on the first
+  run published 46 hash-named assets beside the 46 real ones. A key is words: each segment
+  starts sensibly, none runs longer than a word, and the first must begin with a letter.
+*/
+const KEY_SHAPE = /^[a-z][a-z0-9]{1,13}(?:-[a-z0-9]{1,13}){1,4}$/
+
+const KEYS = [
+  ...new Set([
+    ...Object.keys(LEGACY_INDEX),
+    ...all.map((f) => f.replace(SOURCE_EXT, '').toLowerCase()).filter((n) => KEY_SHAPE.test(n)),
+  ]),
+]
 
 rmSync(OUT_DIR, { recursive: true, force: true })
 mkdirSync(OUT_DIR, { recursive: true })
 
 const entries = []
+const resolvedByName = []
+const resolvedByIndex = []
 
-for (const [key, index] of Object.entries(SELECTION)) {
-  const source = files[index]
-  if (!source) throw new Error(`No source at index ${index} for ${key}`)
+for (const key of KEYS) {
+  const named = byName(key)
+  const source = named ?? indexed[LEGACY_INDEX[key]]
+
+  if (!source) {
+    throw new Error(
+      `No source for '${key}'. Drop a file named '${key}.<ext>' into ${SRC}, ` +
+        `or give it a LEGACY_INDEX position. Refusing to render a placeholder.`,
+    )
+  }
+  ;(named ? resolvedByName : resolvedByIndex).push(key)
 
   const image = sharp(join(SRC, source))
   const meta = await image.metadata()
@@ -163,3 +237,12 @@ ${lines}
 )
 
 console.log(`manifest written with ${entries.length} assets`)
+console.log(
+  `  by filename: ${resolvedByName.length}   by legacy index: ${resolvedByIndex.length}`,
+)
+if (resolvedByIndex.length) {
+  console.log(
+    `  still unshot — a named file for any of these replaces it with zero code changes:
+` + `  ${resolvedByIndex.join(', ')}`,
+  )
+}

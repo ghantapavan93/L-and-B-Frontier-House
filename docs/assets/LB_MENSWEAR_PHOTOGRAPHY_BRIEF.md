@@ -270,3 +270,171 @@ None of them is a product. None of them is evidence. All of them are ground.
    manifest.
 5. Men's frames stay behind the `DEMONSTRATION` labelling until **D-03** is answered.
    Nothing here asserts that a men's line exists.
+
+
+---
+
+## 6. The site is ready for these — the naming contract
+
+**Name the file after the frame and the site publishes it. There is no second step.**
+
+Drop `dark-rigid-jean-hem.jpg` into `assets/source/mens-reference/`, run
+`npm run import:mens-demo`, and it is encoded to AVIF + WebP at every width the layout asks
+for and written into the typed manifest. No code change, no re-indexing, nothing to
+remember. Any extension sharp can read works — the shoot will not arrive as `.avif`.
+
+This did not used to be true, and the old behaviour was the single thing standing between
+"we have the photographs" and "the site has them". Every frame was selected by its
+**positional index into the alphabetically sorted source directory**. That is stable only
+while the directory never changes — which is exactly what stops being true the moment a
+real shoot lands. Every index would shift, and every men's image on the site would silently
+become a different photograph. No error, no missing file, no failing test; the rack would
+just show the wrong clothes.
+
+Resolution is now **by filename first**, with the old index map kept only as a draining
+remnant for the current unnamed reference drop. Each run prints the split:
+
+```
+manifest written with 46 assets
+  by filename: 0   by legacy index: 46
+```
+
+As named frames arrive that first number rises and the second falls. When it reaches zero,
+delete the map. A key that resolves neither way is a hard failure — the importer refuses to
+render a placeholder, because a placeholder is how a silent default gets reinstated.
+
+A correctly-named file **does not need to be referenced by a fixture to be published**.
+`dark-rigid-jean-back` is frame 6 of the pattern and nothing uses it yet; name it correctly
+and it is encoded and waiting in the manifest. Naming is the whole act of publishing.
+
+---
+
+## 7. The list — 50 frames to shoot
+
+Eighteen of the sixty-eight per-style frames already exist in the reference drop. These are
+the exact filenames. Shoot them to the §3.2 pattern and the §2 ratios.
+
+### Denim
+
+| Style | Frame filename | Status |
+| :--- | :--- | :--- |
+| Dark Rigid Jean | `dark-rigid-jean-flat` | have |
+|  | `dark-rigid-jean-model` | **shoot** |
+|  | `dark-rigid-jean-side` | have |
+|  | `dark-rigid-jean-hem` | **shoot** |
+|  | `dark-rigid-jean-macro` | have |
+|  | `dark-rigid-jean-back` | **shoot** |
+|  | `dark-rigid-jean-motion` | **shoot** |
+|  | `dark-rigid-jean-stack` | **shoot** |
+| Everyday Mid Jean | `mid-wash-jean-flat` | have |
+|  | `mid-wash-jean-model` | have |
+|  | `mid-wash-jean-side` | **shoot** |
+|  | `mid-wash-jean-hem` | have |
+|  | `mid-wash-jean-macro` | **shoot** |
+|  | `mid-wash-jean-back` | **shoot** |
+|  | `mid-wash-jean-motion` | **shoot** |
+|  | `mid-wash-jean-stack` | **shoot** |
+| Light Wash Jean | `light-wash-jean-flat` | have |
+|  | `light-wash-jean-model` | have |
+|  | `light-wash-jean-side` | **shoot** |
+|  | `light-wash-jean-hem` | have |
+|  | `light-wash-jean-macro` | **shoot** |
+|  | `light-wash-jean-back` | **shoot** |
+|  | `light-wash-jean-motion` | **shoot** |
+|  | `light-wash-jean-stack` | **shoot** |
+| Dark Bootcut Jean | `bootcut-jean-flat` | **shoot** |
+|  | `bootcut-jean-model` | have |
+|  | `bootcut-jean-side` | **shoot** |
+|  | `bootcut-jean-hem` | have |
+|  | `bootcut-jean-macro` | **shoot** |
+|  | `bootcut-jean-back` | **shoot** |
+|  | `bootcut-jean-motion` | **shoot** |
+|  | `bootcut-jean-stack` | **shoot** |
+| Khaki Five-Pocket Jean | `khaki-jean-flat` | have |
+|  | `khaki-jean-model` | have |
+|  | `khaki-jean-side` | have |
+|  | `khaki-jean-hem` | **shoot** |
+|  | `khaki-jean-macro` | **shoot** |
+|  | `khaki-jean-back` | **shoot** |
+|  | `khaki-jean-motion` | **shoot** |
+|  | `khaki-jean-stack` | **shoot** |
+
+### Shirts
+
+| Style | Frame filename | Status |
+| :--- | :--- | :--- |
+| Stripe Pearl Snap Shirt | `stripe-shirt-flat` | have |
+|  | `stripe-shirt-model` | **shoot** |
+|  | `stripe-shirt-placket` | **shoot** |
+|  | `stripe-shirt-cuff` | **shoot** |
+|  | `stripe-shirt-macro` | **shoot** |
+
+### Outerwear
+
+| Style | Frame filename | Status |
+| :--- | :--- | :--- |
+| Indigo Trucker Jacket | `denim-jacket-flat` | **shoot** |
+|  | `denim-jacket-model` | **shoot** |
+|  | `denim-jacket-side` | **shoot** |
+|  | `denim-jacket-cuff` | **shoot** |
+|  | `denim-jacket-macro` | **shoot** |
+|  | `denim-jacket-back` | **shoot** |
+|  | `denim-jacket-motion` | **shoot** |
+|  | `denim-jacket-stack` | **shoot** |
+
+### Accessories
+
+| Style | Frame filename | Status |
+| :--- | :--- | :--- |
+| Saddle Tan Belt | `saddle-belt-flat` | have |
+|  | `saddle-belt-worn` | have |
+|  | `saddle-belt-macro` | **shoot** |
+|  | `saddle-belt-edge` | **shoot** |
+|  | `saddle-belt-stack` | **shoot** |
+| Textured Grain Belt | `ostrich-belt-flat` | have |
+|  | `ostrich-belt-worn` | **shoot** |
+|  | `ostrich-belt-macro` | **shoot** |
+|  | `ostrich-belt-edge` | **shoot** |
+|  | `ostrich-belt-stack` | **shoot** |
+| Leather Weekend Duffel | `leather-duffel-flat` | **shoot** |
+|  | `leather-duffel-worn` | **shoot** |
+|  | `leather-duffel-macro` | **shoot** |
+|  | `leather-duffel-edge` | **shoot** |
+|  | `leather-duffel-stack` | **shoot** |
+
+### The floor — 20 frames
+
+Full-length worn looks and ground detail, register **Floor**, ratio **4:5**. The existing
+twenty reference frames cover this set and can stay until real photography replaces them,
+name for name: `floor-white-jean-worn`, `floor-dark-jean-back`, `floor-dark-jean-street`,
+`floor-light-jean-side`, `floor-light-jean-worn`, `floor-light-jean-flat`,
+`floor-pale-jean-flat`, `floor-cream-seated`, `floor-denim-texture`, `floor-back-pocket`,
+`floor-waist-detail`, `floor-cuffing-barn`, `floor-dark-hem-boot`, `floor-black-boots`,
+`floor-black-toe`, `floor-brown-boots`, `floor-tan-boots`, `floor-boot-crate`,
+`floor-boot-floorboards`, `floor-boot-rocks`.
+
+**Seven of those twenty are boots.** Footwear does not exist as a category and must never be
+shot as merchandise. They stay only because they are how the trousers are worn; if a frame
+reads as a boot *for sale* rather than a boot *being worn*, it does not ship. When
+re-shooting, prefer the trouser in frame with the boot incidental.
+
+### Campaign — 8 frames
+
+Register **Late**, golden hour. Two exist (`campaign-gravel`, `campaign-boot-pull`); the
+hero slots want six more, delivered as a matched desktop/mobile pair per setup:
+`campaign-hero-desktop` (**1672:941**) and `campaign-hero-mobile` (**1122:1402**),
+`campaign-story-lead` (**4:5**), `campaign-story-inset` (**1:1**),
+`campaign-world-tile` (**3:4**), `campaign-taxonomy-tile` (**4:3**).
+
+Compose the **lower-left third quiet** on every 16:9 frame — that is where the headline
+lands, with no scrim — and keep the centre clear enough to survive an iOS play glyph.
+
+### Totals
+
+| Set | Frames | Status |
+| :--- | ---: | :--- |
+| Per-style | 68 | 18 have · **50 to shoot** |
+| Floor | 20 | covered by reference, re-shoot when possible |
+| Campaign | 8 | 2 have · **6 to shoot** |
+| Generated ground plates (§4) | 10 | **all to generate** |
+| **Total** | **106** | **56 to shoot · 10 to generate** |
