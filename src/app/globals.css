@@ -7960,3 +7960,104 @@ a:hover {
     display: none;
   }
 }
+
+/* ==========================================================================
+   THE MATERIAL WALL
+
+   The making band, carrying six photographs where it carried one. Burberry's
+   editorial bands run eight images in 799px; this ran one in 726px, and that
+   single measurement is the density gap between a fashion house and a
+   brochure — docs/research/teardown-burberry-gstar-vero.md §1.2.
+
+   A wide lead plate, then a four-up macro row. The lead is landscape so it
+   reads as a scene; the macros are square so the weave, the stitch and the
+   hardware all get the same amount of attention. Nothing here animates: these
+   are material proofs, and a drifting macro is harder to read, not richer.
+   ========================================================================== */
+
+.material-wall__lead {
+  margin: var(--space-7) 0 var(--space-6);
+  position: relative;
+}
+
+.material-wall__lead img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1408 / 700;
+  object-fit: cover;
+}
+
+.material-wall__lead figcaption,
+.material-wall__cell figcaption {
+  padding-top: var(--space-2);
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.material-wall__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 48rem) {
+  .material-wall__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.material-wall__cell {
+  margin: 0;
+}
+
+.material-wall__cell img {
+  width: 100%;
+  height: auto;
+  /* Square, deliberately. These are swatches, not garments — the product ratio
+     would make them read as merchandise, which is the §12 confusion this band
+     is most exposed to. */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.material-wall__cell figcaption {
+  display: grid;
+  gap: var(--space-1);
+}
+
+/* The material's name carries the weight; the description sits under it in
+   sentence case so a four-up row does not become a wall of capitals. */
+.material-wall__label {
+  font-family: var(--font-display);
+  font-size: var(--body-md);
+  line-height: var(--body-md-leading);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text);
+}
+
+.material-wall__note {
+  font-size: 11px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text-meta);
+}
+
+.material-wall__provenance {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  max-width: 46ch;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-text-meta);
+}

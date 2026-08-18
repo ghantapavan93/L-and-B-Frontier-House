@@ -21,15 +21,6 @@ export const PLATE_ASSETS = {
     intrinsicWidth: 1408,
     intrinsicHeight: 768,
   },
-  'tooled-leather': {
-    poster: '/media/campaign/tooled-leather-960.webp',
-    avifSrcSet:
-      '/media/campaign/tooled-leather-480.avif 480w, /media/campaign/tooled-leather-960.avif 960w, /media/campaign/tooled-leather-1408.avif 1408w',
-    webpSrcSet:
-      '/media/campaign/tooled-leather-480.webp 480w, /media/campaign/tooled-leather-960.webp 960w, /media/campaign/tooled-leather-1408.webp 1408w',
-    intrinsicWidth: 1408,
-    intrinsicHeight: 768,
-  },
   'indigo-thread': {
     poster: '/media/campaign/indigo-thread-960.webp',
     avifSrcSet:
@@ -66,15 +57,6 @@ export const PLATE_ASSETS = {
     intrinsicWidth: 1376,
     intrinsicHeight: 768,
   },
-  'buckle-denim': {
-    poster: '/media/campaign/buckle-denim-768.webp',
-    avifSrcSet:
-      '/media/campaign/buckle-denim-480.avif 480w, /media/campaign/buckle-denim-768.avif 768w',
-    webpSrcSet:
-      '/media/campaign/buckle-denim-480.webp 480w, /media/campaign/buckle-denim-768.webp 768w',
-    intrinsicWidth: 768,
-    intrinsicHeight: 1376,
-  },
   'hardware-bench': {
     poster: '/media/campaign/hardware-bench-960.webp',
     avifSrcSet:
@@ -99,15 +81,6 @@ export const PLATE_ASSETS = {
       '/media/campaign/high-dunes-480.avif 480w, /media/campaign/high-dunes-960.avif 960w, /media/campaign/high-dunes-1408.avif 1408w',
     webpSrcSet:
       '/media/campaign/high-dunes-480.webp 480w, /media/campaign/high-dunes-960.webp 960w, /media/campaign/high-dunes-1408.webp 1408w',
-    intrinsicWidth: 1408,
-    intrinsicHeight: 768,
-  },
-  'pearl-snaps': {
-    poster: '/media/campaign/pearl-snaps-960.webp',
-    avifSrcSet:
-      '/media/campaign/pearl-snaps-480.avif 480w, /media/campaign/pearl-snaps-960.avif 960w, /media/campaign/pearl-snaps-1408.avif 1408w',
-    webpSrcSet:
-      '/media/campaign/pearl-snaps-480.webp 480w, /media/campaign/pearl-snaps-960.webp 960w, /media/campaign/pearl-snaps-1408.webp 1408w',
     intrinsicWidth: 1408,
     intrinsicHeight: 768,
   },
@@ -225,15 +198,6 @@ export const PLATE_ASSETS = {
       '/media/campaign/showroom-bench-480.avif 480w, /media/campaign/showroom-bench-960.avif 960w, /media/campaign/showroom-bench-1408.avif 1408w',
     webpSrcSet:
       '/media/campaign/showroom-bench-480.webp 480w, /media/campaign/showroom-bench-960.webp 960w, /media/campaign/showroom-bench-1408.webp 1408w',
-    intrinsicWidth: 1408,
-    intrinsicHeight: 768,
-  },
-  'snap-macro': {
-    poster: '/media/campaign/snap-macro-960.webp',
-    avifSrcSet:
-      '/media/campaign/snap-macro-480.avif 480w, /media/campaign/snap-macro-960.avif 960w, /media/campaign/snap-macro-1408.avif 1408w',
-    webpSrcSet:
-      '/media/campaign/snap-macro-480.webp 480w, /media/campaign/snap-macro-960.webp 960w, /media/campaign/snap-macro-1408.webp 1408w',
     intrinsicWidth: 1408,
     intrinsicHeight: 768,
   },

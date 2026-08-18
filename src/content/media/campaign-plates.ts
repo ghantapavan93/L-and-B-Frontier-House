@@ -5,11 +5,17 @@ import type { PlateSlug } from './campaign-plates.generated'
 /**
  * CAMPAIGN PLATES — atmosphere and place, never product.
  *
- * Twenty-eight of the 112 mirrored Stitch plates are published, each reviewed by eye
+ * Twenty-two of the 112 mirrored Stitch plates are published, each reviewed by eye
  * against §12 before inclusion: MATERIAL, HARDWARE, PLACE or MAKING only. No generated
  * person presented as a person, no garment presented as product, no menswear, no
  * footwear-as-merchandise, no mockup chrome. The clearance reasoning for every plate is
  * recorded in `public/media/campaign/manifest.json` beside the files.
+ *
+ * Four were WITHDRAWN on 2026-08-18 — they were design-board and device mockups rather
+ * than photographs, one of them rendering an invented product at an invented €245. Two
+ * were live at the time: the Girls category tile and the grid-break rotation. The full
+ * account, and the review method that missed them, is in
+ * `scripts/import-campaign-plates.mjs`.
  *
  * Why they are here at all: the catalogue's own photography is 360x540, and the audit is
  * blunt that this "caps the perceived quality of every surface on the site and no render or
@@ -51,16 +57,13 @@ function plate(
 /** Alt text per plate. Mirrors the manifest entries — the manifest is the audit record. */
 const PLATE_ALTS: Record<PlateSlug, string> = {
   'leather-bench': 'A leatherworker’s bench covered in cut hides, tools and hardware',
-  'tooled-leather': 'Floral hand-tooling carved into saddle-tan leather, photographed close',
   'indigo-thread': 'A wooden spool wound with indigo thread',
   'embossed-leather': 'Concentric western tooling embossed into near-black leather',
   'denim-weave': 'Heavyweight indigo denim, the twill line legible',
   'selvedge-beam': 'A raking beam of light across dark denim weave',
-  'buckle-denim': 'An engraved silver buckle on worn leather over indigo denim',
   'hardware-bench': 'Rows of silver hardware laid out on a workbench',
   'longhorn-buckle': 'A longhorn buckle with turquoise points on a tooled belt over denim',
   'high-dunes': 'Wind-carved dunes under low desert light',
-  'pearl-snaps': 'Loose pearl snaps and a spool of thread on denim',
   'selvedge-stitch': 'A selvedge seam with contrast stitching, photographed close',
   'night-set': 'A film crew lighting a wet street at night',
   'khaki-twill': 'Khaki cotton twill, the diagonal weave legible',
@@ -74,7 +77,6 @@ const PLATE_ALTS: Record<PlateSlug, string> = {
   'saddle-stitch': 'Saddle stitching along a leather edge, photographed close',
   'tooled-belt-rock': 'A tooled belt with a silver buckle laid over weathered rock',
   'showroom-bench': 'A woven blanket over a bench in an empty showroom',
-  'snap-macro': 'A mother-of-pearl snap set into indigo denim',
   'denim-blue': 'Bright indigo denim weave, photographed close',
 }
 
@@ -132,8 +134,8 @@ export const PLACE_PLATE = plate(
 export const GRID_BREAK_PLATES: readonly MediaRef[] = [
   MATERIAL_PLATE,
   atmospherePlate('denim-weave'),
-  atmospherePlate('pearl-snaps'),
-  atmospherePlate('tooled-leather'),
+  atmospherePlate('denim-slub'),
+  atmospherePlate('embossed-leather'),
   atmospherePlate('selvedge-stitch'),
   atmospherePlate('longhorn-buckle'),
   atmospherePlate('khaki-twill'),
@@ -154,6 +156,6 @@ export const REGISTER_TRIPTYCH: readonly MediaRef[] = [
  */
 export const CATEGORY_TILE_FALLBACK: Record<string, MediaRef> = {
   women: atmospherePlate('denim-blue'),
-  girls: atmospherePlate('snap-macro'),
+  girls: atmospherePlate('indigo-thread'),
   accessories: atmospherePlate('longhorn-buckle'),
 }

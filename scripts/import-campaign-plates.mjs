@@ -6,6 +6,34 @@
  * product, no menswear, no footwear-as-merchandise, no mockup chrome. Provenance stays
  * `generated-campaign` at the point of use, and every rendering carries a campaign caption.
  *
+ * ── HOW THAT REVIEW FAILED, 2026-08-18 ────────────────────────────────────────────────
+ *
+ * Four of the twenty-six were not photographs at all. They were SCREENS — design-board and
+ * device mockups from the Stitch renderer, with the photograph inset inside tool chrome:
+ *
+ *   tooled-leather   a board captioned "V3.1 Frame 8: The Belt Buckle Aperture"
+ *   pearl-snaps      a board captioned "Garment Portal and Product Anatomy"
+ *   snap-macro       a board captioned "Product Anatomy"
+ *   buckle-denim     a PHONE MOCKUP rendering an invented product page —
+ *                    "Artisan Crafted Silver Buckle · €245 · Add to Bag"
+ *
+ * Two of them were live: snap-macro was the Girls category tile on the homepage, and
+ * pearl-snaps and tooled-leather were in the grid-break rotation on every long product run.
+ * The last one is the serious one — a fabricated product name and a €245 price, against a
+ * verified wholesale range of $7–$33, inside an image the site presents as its own campaign
+ * imagery. §12 forbids invented product facts and fabricated prices; the audit is explicit
+ * that "prices in the designs are fiction".
+ *
+ * WHY IT WAS MISSED, which is the part worth remembering: the 2026-08-07 review contact
+ * sheet rendered every plate as a square with `object-fit: cover`. Centre-cropping a 16:9
+ * board to a square removes the caption bar at the top and the gutters at the sides — it
+ * removes exactly the evidence that the frame is a mockup. The review looked at cropped
+ * thumbnails and saw four convincing macros.
+ *
+ * SO: review plates at their NATURAL ASPECT RATIO, on a mid-grey ground so light gutters
+ * are visible, never square-cropped. A plate with a flat border, a caption bar, a device
+ * frame or any UI is a screen, not a photograph, and does not ship.
+ *
  * Re-run with `node scripts/import-campaign-plates.mjs` if the selection changes. Output:
  * responsive AVIF/WebP under public/media/campaign/ plus a typed manifest.
  */
@@ -20,18 +48,24 @@ const MANIFEST = join(process.cwd(), 'src', 'content', 'media', 'campaign-plates
 
 const WIDTHS = [480, 960, 1408]
 
+/*
+  WITHDRAWN 2026-08-18 — screens, not photographs. Kept here as a record so nobody
+  re-adds them from the mirror. See the header for what each one actually contains.
+
+    'tooled-leather': 'plate-0jPoMEhhtD2S7JnA.jpg',
+    'buckle-denim':   'plate-8pCfKpGiMZNgUUtw.jpg',
+    'pearl-snaps':    'plate-PcRtH72Y6thHTjJQ.jpg',
+    'snap-macro':     'plate-wntCegdQvJ_JaFew.jpg',
+*/
 const SELECTION = {
   'leather-bench': 'plate--OnVgrCXbWXmRfYw.jpg',
-  'tooled-leather': 'plate-0jPoMEhhtD2S7JnA.jpg',
   'indigo-thread': 'plate-2seOHmOtrnx3xk-g.jpg',
   'embossed-leather': 'plate-59ec8k39kJS_gYRg.jpg',
   'denim-weave': 'plate-5nGTkWlNlZfscMBQ.jpg',
   'selvedge-beam': 'plate-7lZiJCgL-RCDu3sA.jpg',
-  'buckle-denim': 'plate-8pCfKpGiMZNgUUtw.jpg',
   'hardware-bench': 'plate-I8Xun1NpegaGA7jQ.jpg',
   'longhorn-buckle': 'plate-MD9QplUIvZBJMh7A.jpg',
   'high-dunes': 'plate-Oq6inNPmh2jMUMRA.jpg',
-  'pearl-snaps': 'plate-PcRtH72Y6thHTjJQ.jpg',
   'selvedge-stitch': 'plate-QN_UhW9FSphDL2dQ.jpg',
   'night-set': 'plate-QQYIQDfhi4DjzhXg.jpg',
   'khaki-twill': 'plate-RrOla5d1dxOZNBxA.jpg',
@@ -45,7 +79,6 @@ const SELECTION = {
   'saddle-stitch': 'plate-qw9G5DZy39J-WoMQ.jpg',
   'tooled-belt-rock': 'plate-smK8aPGxR10Y3kSQ.jpg',
   'showroom-bench': 'plate-wXEVhzeFk-w80CiA.jpg',
-  'snap-macro': 'plate-wntCegdQvJ_JaFew.jpg',
   'denim-blue': 'plate-yAcHZNNq9AKOypNw.jpg',
 }
 

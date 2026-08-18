@@ -200,3 +200,64 @@ describe('taxonomy', () => {
     }
   })
 })
+
+/**
+ * WITHDRAWN CAMPAIGN PLATES.
+ *
+ * Four of the twenty-six published Stitch plates were screens rather than photographs —
+ * design boards and a device mockup, with the photograph inset inside tool chrome. They were
+ * withdrawn on 2026-08-18; the full account is in `scripts/import-campaign-plates.mjs`.
+ *
+ * The one that matters is `buckle-denim`: a phone mockup rendering an invented product page
+ * for an "Artisan Crafted Silver Buckle" at **€245**, against a verified wholesale band of
+ * $7–$33. A fabricated product name and a fabricated price, inside an image the site
+ * presents as its own campaign imagery.
+ *
+ * They were cleared by a review that rendered every candidate as a square with
+ * `object-fit: cover`, which centre-crops away the caption bar and the gutters — the exact
+ * evidence that a frame is a mockup. That review method is the root cause, and a person
+ * repeating it would re-add these four in good faith. This test is what stops that.
+ */
+describe('withdrawn campaign plates never return', () => {
+  const WITHDRAWN = ['tooled-leather', 'buckle-denim', 'pearl-snaps', 'snap-macro'] as const
+
+  it('publishes none of them in the generated plate manifest', async () => {
+    const { PLATE_ASSETS } = await import('@/content/media/campaign-plates.generated')
+    for (const slug of WITHDRAWN) {
+      expect(
+        Object.keys(PLATE_ASSETS),
+        `${slug} is a design-tool mockup, not a photograph`,
+      ).not.toContain(slug)
+    }
+  })
+
+  it('serves no derivative for them under the public campaign directory', () => {
+    const files = readdirSync(join('public', 'media', 'campaign'))
+    for (const slug of WITHDRAWN) {
+      const leaked = files.filter((file) => file.startsWith(`${slug}-`))
+      expect(
+        leaked,
+        `${slug} derivatives are still fetchable at a stable public URL. Removing a plate ` +
+          `from the manifest does not unpublish the bytes — the €245 buckle mockup stayed ` +
+          `live on the origin until these were deleted.`,
+      ).toEqual([])
+    }
+  })
+
+  it('references none of them anywhere in shippable source', () => {
+    const text = shippableText()
+    for (const slug of WITHDRAWN) {
+      /*
+        Match a PLATE reference, not the bare string. `tooled-leather-concho-belt` is a real
+        product slug in the fixtures and has nothing to do with the withdrawn plate; a
+        substring test fails on it and would teach the next reader that this assertion cries
+        wolf. A plate is only ever referenced as a quoted slug passed to `atmospherePlate`,
+        or as a path under the campaign media directory.
+      */
+      const asPlateSlug = new RegExp(`['"\`]${slug}['"\`]`)
+      const asMediaPath = new RegExp(`/media/campaign/${slug}-`)
+      expect(asPlateSlug.test(text), `${slug} is still referenced as a plate slug`).toBe(false)
+      expect(asMediaPath.test(text), `${slug} is still referenced by media path`).toBe(false)
+    }
+  })
+})

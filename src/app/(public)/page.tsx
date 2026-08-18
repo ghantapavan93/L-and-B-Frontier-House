@@ -2,7 +2,6 @@ import Link from 'next/link'
 import {
   atmospherePlate,
   CATEGORY_TILE_FALLBACK,
-  MATERIAL_PLATE,
   PLACE_PLATE,
 } from '@/content/media/campaign-plates'
 import { officialMediaForSlot } from '@/content/media/official-media'
@@ -16,6 +15,7 @@ import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
 import { HouseMarquee } from '@/ui/house-marquee'
+import { MaterialWall } from '@/ui/material-wall'
 import { HouseStrip, SplitCampaign } from '@/ui/house-strip'
 import { MensChapter } from '@/ui/mens-chapter'
 import { FixtureNotice } from '@/ui/notices'
@@ -51,14 +51,14 @@ export default async function HomePage() {
     'A model in a cream western-scenic printed midi dress with a concho belt and straw hat',
   )
   /*
-    The editorial bands take campaign plates rather than catalogue shots.
+    The sizing band takes a campaign plate rather than a catalogue shot.
 
-    Both slots wanted a full-bleed photograph and were being handed a 360x540 product image
-    upscaled to fill it — which is the single thing the audit says caps perceived quality
-    across the whole site. These are 1408px and were composed as photographs. Neither is a
-    product; both carry `generated-campaign` provenance.
+    The slot wants a full-bleed photograph and was being handed a 360x540 product image
+    upscaled to fill it — the single thing the audit says caps perceived quality across the
+    whole site. This one is 1408px and was composed as a photograph. It is not a product and
+    carries `generated-campaign` provenance. The making band's plates moved into
+    `MaterialWall`, which owns them now.
   */
-  const craftDetail = MATERIAL_PLATE
   const extendedSizing = PLACE_PLATE
 
   return (
@@ -176,30 +176,14 @@ export default async function HomePage() {
         }))}
       />
 
-      {craftDetail ? (
-        <section className="container section" aria-labelledby="craft-heading">
-          <div className="editorial-split">
-            <figure className="editorial-split__figure depth-far">
-              <EditorialMedia media={craftDetail} sizes="(min-width: 62rem) 55vw, 100vw" />
-              {/* Names what the plate actually shows, and that it is generated. The old
-                  caption described a garment — which this image is not, and must not be
-                  read as. */}
-              <figcaption>Denim, leather and hardware · campaign imagery</figcaption>
-            </figure>
-            <div>
-              <p className="eyebrow">The making</p>
-              <h2 id="craft-heading">Legible at close range.</h2>
-              <p className="lede">
-                Buck stitch, pearl snaps, a swirl worked into the leg. The detail is the
-                argument, so we photograph close enough that you can see the thread.
-              </p>
-              <Link href="/new-arrivals" className="text-link">
-                See what just landed
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
+      {/*
+        The making band carries six photographs now instead of one. Burberry runs eight
+        images in a 799px editorial band; this ran one in 726px, which is the whole density
+        gap in a single measurement (docs/research/teardown-burberry-gstar-vero.md §1.2).
+        The claim "legible at close range" is now made by the pictures rather than by the
+        sentence above them.
+      */}
+      <MaterialWall />
 
       {/*
         TWO BANDS REMOVED HERE, AND NOTHING LOST WITH THEM.
