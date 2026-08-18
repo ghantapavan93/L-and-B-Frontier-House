@@ -19,7 +19,6 @@ import { HouseMarquee } from '@/ui/house-marquee'
 import { HouseStrip, SplitCampaign } from '@/ui/house-strip'
 import { MensChapter } from '@/ui/mens-chapter'
 import { FixtureNotice } from '@/ui/notices'
-import { ProductCard, ProductGrid } from '@/ui/product-card'
 import { EditorialMedia } from '@/ui/product-media'
 import { ProductWorlds } from '@/ui/product-worlds'
 import { ThisWeekBand, MotionClipBand } from '@/ui/this-week'
@@ -41,8 +40,6 @@ import { ThreadToTrade, ThreadToTradeJourney } from '@/ui/thread-to-trade'
 export default async function HomePage() {
   const frontier = frontierEnabled()
   const newest = await listPublicProducts({ sort: 'newest' })
-  const featured = newest.slice(0, 4)
-  const [lead, ...supporting] = featured
   const sheet = newest.slice(0, 9)
 
   const hero = officialMediaForSlot(
@@ -166,7 +163,18 @@ export default async function HomePage() {
         this for me", and a row of category tiles cannot answer that. The category grid
         still ships below — this is a way in, never a replacement for it.
       */}
-      <ChooseYourWest edits={populatedEdits(newest)} products={newest} />
+      <ChooseYourWest
+        edits={populatedEdits(newest)}
+        products={newest}
+        categories={navigableCategories().map((category) => ({
+          ...category,
+          /* Owner photography when it exists; a cleared material plate until then — an
+             imageless tile reads as a broken one, and material claims no garment. */
+          media:
+            officialMediaForSlot(`category-${category.slug}`) ??
+            CATEGORY_TILE_FALLBACK[category.slug],
+        }))}
+      />
 
       {craftDetail ? (
         <section className="container section" aria-labelledby="craft-heading">
@@ -193,59 +201,24 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="container section" aria-labelledby="new-heading">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">New arrivals</p>
-            <h2 id="new-heading">Just landed</h2>
-          </div>
-          <Link href="/new-arrivals" className="text-link">
-            View all
-          </Link>
-        </div>
-
-        {lead ? (
-          <div className="feature-row">
-            <div className="feature-row__lead">
-              <ProductCard product={lead} priority sizes="(min-width: 62rem) 50vw, 100vw" />
-            </div>
-            <ul className="product-grid product-grid--supporting">
-              {supporting.map((product) => (
-                <li key={product.id}>
-                  <ProductCard product={product} sizes="(min-width: 62rem) 25vw, 50vw" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <ProductGrid products={featured} emptyMessage="No new arrivals are published yet." />
-        )}
-      </section>
-
       {/*
-        FIT AS A FEATURE — the finder's front door. Three questions instead of seventy
-        thumbnails; the page behind it is honest filtering over published garment facts.
+        TWO BANDS REMOVED HERE, AND NOTHING LOST WITH THEM.
+
+        A "Just landed" feature row stood here, drawing `newest.slice(0, 4)` — the same
+        query, the same products and the same "everything new" destination as the This Week
+        band six bands above it, rendered as a plainer grid. Below it sat a fit teaser
+        offering the two links the Fit Gateway band already carries.
+
+        The measurement that condemned them: three bands were saying "here is new product"
+        and three more were saying "here is a way in", against Burberry's two and one, on a
+        page running 27.9 screens to their 6.8
+        (docs/research/teardown-burberry-gstar-vero.md §0). The reference does not win by
+        having better product rows. It wins by having fewer of them, with more photography
+        in each.
+
+        `/new-arrivals` keeps every one of these garments, This Week links to it, and the
+        Fit Passport link moved into the Fit Gateway head.
       */}
-      <section className="container section--tight" aria-labelledby="fit-heading">
-        <div className="panel fit-teaser">
-          <div>
-            <p className="eyebrow">Fit</p>
-            <h2 id="fit-heading">Find your denim</h2>
-            <p className="meta">
-              Silhouette, wash, stretch — answer what you know and see the pairs that match. Or
-              tell the House once, and every style answers in your size.
-            </p>
-          </div>
-          <div className="cluster">
-            <Link href="/find-your-denim" className="button">
-              Start
-            </Link>
-            <Link href="/fit-passport" className="button button--secondary">
-              Fit Passport
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {extendedSizing ? (
         <section className="container section" aria-labelledby="sizing-heading">
@@ -271,45 +244,13 @@ export default async function HomePage() {
 
       {frontier ? <ThreadToTradeJourney /> : <ThreadToTrade />}
 
-      {/* The real, shippable taxonomy keeps its own grid — the men's worlds above are a
-          proposal, this is the business that ships today. */}
-      {
-        <section className="container section" aria-labelledby="shop-heading">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">The line</p>
-              <h2 id="shop-heading">Shop by category</h2>
-            </div>
-          </div>
-          <ul className="category-grid">
-            {navigableCategories().map((category) => {
-              /* Owner photography when it exists; a cleared material plate until then —
-                 an imageless tile reads as a broken one, and material claims no garment. */
-              const tile =
-                officialMediaForSlot(`category-${category.slug}`) ??
-                CATEGORY_TILE_FALLBACK[category.slug]
-              return (
-                <li key={category.slug}>
-                  <article className="category-card">
-                    <Link href={`/shop/${category.slug}`} className="category-card__link">
-                      {tile ? (
-                        <div className="category-card__media">
-                          <EditorialMedia
-                            media={tile}
-                            sizes="(min-width: 62rem) 33vw, (min-width: 48rem) 50vw, 100vw"
-                          />
-                        </div>
-                      ) : null}
-                      <h3>{category.label}</h3>
-                    </Link>
-                    <p className="meta">{category.blurb}</p>
-                  </article>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-      }
+      {/*
+        The shippable taxonomy moved up into Choose Your West rather than holding a band of
+        its own. Identity ("who is it for") and taxonomy ("what is it") are one decision, and
+        the reference carries that decision inside a single band with a segmented control
+        instead of spending 168px of section rhythm on a second heading. Same three
+        crawlable /shop/[category] links, same photography, one band.
+      */}
 
       {/* The door to the signature interaction: one aisle, every rack, native scroll. */}
       <section className="container section--tight" aria-labelledby="warehouse-heading">

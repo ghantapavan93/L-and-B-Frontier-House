@@ -53,9 +53,21 @@ export async function FitGateway() {
             point for you.
           </p>
         </div>
-        <a href="/find-your-denim" className="text-link">
-          Find your denim
-        </a>
+        {/*
+          Both fit doors live here now. A second homepage band further down offered the same
+          two links under a near-identical heading ("Find your denim" against this band's
+          "Know your line"), which is the duplication the Burberry teardown measures as our
+          largest structural cost — see docs/research/teardown-burberry-gstar-vero.md §0.
+          One band, both entrances, nothing lost.
+        */}
+        <div className="cluster">
+          <a href="/find-your-denim" className="text-link">
+            Find your denim
+          </a>
+          <a href="/fit-passport" className="text-link">
+            Fit Passport
+          </a>
+        </div>
       </div>
 
       <ul className="fit-gateway__grid">

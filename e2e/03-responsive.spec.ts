@@ -331,9 +331,26 @@ test.describe('layout invariants', () => {
       The House Guide is the one deliberate fixed layer besides the header: the corner help
       entry every reference carries, small and self-dismissing. The keyboard suite's
       topmost-at-centre walk is what proves it never obscures a focused control.
+
+      The journey chapter rail is the third and last, and it is the narrowest case of the
+      three. It is sticky only INSIDE its own section — a sticky element cannot escape its
+      containing block — so it exists for the five stages it indexes and for no other part
+      of the page. It earns the exception the same way the other two do, by measurement
+      rather than by assertion: `02-keyboard-and-focus` tabs every focusable control on
+      every public route and fails on any focused element that is not topmost at its own
+      centre, and the stages carry `scroll-margin-top` clearing both the header and the
+      rail so an anchor jump never parks its target underneath either.
+
+      Any FOURTH sticky layer should be refused. This is the pattern that accumulates
+      quietly until a keyboard user has nowhere left to stand.
     */
     expect(
-      positioned.filter((p) => !p.includes('site-header') && !p.includes('house-guide')),
+      positioned.filter(
+        (p) =>
+          !p.includes('site-header') &&
+          !p.includes('house-guide') &&
+          !p.includes('journey__rail'),
+      ),
     ).toHaveLength(0)
     expect(positioned.some((p) => p.includes('site-header'))).toBe(true)
 

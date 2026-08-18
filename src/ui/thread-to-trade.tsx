@@ -22,6 +22,7 @@ import { EditorialMedia } from './product-media'
 
 const STAGES = [
   {
+    id: 'stage-textile',
     title: 'Textile',
     body: 'We own the textile stage of the chain rather than buying finished cloth.',
     proof: 'Vertically integrated — their words',
@@ -29,6 +30,7 @@ const STAGES = [
     caption: 'Embroidery at close range',
   },
   {
+    id: 'stage-design',
     title: 'Design',
     body: 'Styles are designed in house, which is why the line turns over as fast as it does.',
     proof: 'Daily drops, in-house design',
@@ -36,6 +38,7 @@ const STAGES = [
     caption: 'A house print, worn',
   },
   {
+    id: 'stage-manufacturing',
     title: 'Manufacturing',
     body: 'Production is ours to schedule, so a style can be repeated rather than chased.',
     proof: 'Owned production — no photography yet',
@@ -43,6 +46,7 @@ const STAGES = [
     swatch: 'weave' as const,
   },
   {
+    id: 'stage-distribution',
     title: 'Distribution',
     body: '2.64 days average processing. Order by 5pm CST and it ships same or next business day.',
     proof: '2.64-day average processing',
@@ -50,6 +54,7 @@ const STAGES = [
     swatch: 'route' as const,
   },
   {
+    id: 'stage-boutique',
     title: 'Boutique · Sales',
     body: '100% order fill rate. What you order is what arrives — we are partners in your success.',
     proof: '100% fill rate · 615 reviews',
@@ -105,6 +110,34 @@ export function ThreadToTradeJourney() {
         </div>
       </div>
 
+      {/*
+        THE CHAPTER RAIL — G-Star's one genuinely transferable structural device.
+
+        Their story page pins a 55px topic rail under the header for its full 6,403px, so a
+        long read always carries its own map (docs/research/teardown-burberry-gstar-vero.md
+        §2.2). This band is our longest by a wide margin, and it was asking the reader to
+        scroll five screens with no sense of how many stages remained.
+
+        Built as five real anchors to five real ids: it is a table of contents without
+        JavaScript, it works with scripting disabled, it is keyboard-native, and a screen
+        reader gets it as a labelled navigation landmark. `scroll-margin-top` on the stages
+        keeps the sticky site header from covering the target — the 2.4.11 trap.
+      */}
+      <nav className="journey__rail" aria-label="Supply chain stages">
+        <ol className="journey__rail-list">
+          {STAGES.map((stage, index) => (
+            <li key={stage.id}>
+              <a href={`#${stage.id}`} className="journey__rail-link">
+                <span className="journey__rail-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {stage.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
       <div className="journey__spine" aria-hidden="true" />
 
       <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -113,6 +146,7 @@ export function ThreadToTradeJourney() {
           return (
             <li
               key={stage.title}
+              id={stage.id}
               className={`journey__stage${index % 2 === 1 ? ' journey__stage--reverse' : ''}`}
             >
               <StageMedia

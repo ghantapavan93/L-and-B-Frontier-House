@@ -108,6 +108,25 @@
   /* ---- Layout ---- */
   --container-max: 1440px;
   --gutter: 24px;
+  /* The sticky header's row min-height. Anything that pins below the header, or scrolls a
+     jump target into view underneath it, resolves its offset from here rather than
+     re-guessing 64 in a dozen places. */
+  --header-height: 64px;
+
+  /*
+    ONE PRODUCT ASPECT RATIO.
+
+    A garment shot as a product is always this shape, everywhere on the site. It was
+    previously 2/3 in the product card, 4/5 in the contact sheet, gallery, PDP and related
+    grid, and 3/4 in the category, edit and fit tiles — three ratios for one object, which
+    is most of the fifteen distinct ratios measured on the homepage against Burberry's
+    seven and G-Star's four (docs/research/teardown-burberry-gstar-vero.md §0).
+
+    3/4 is what both references converge on, and it was already our most-used value.
+    Editorial and campaign planes deliberately keep their own shapes — a campaign band that
+    matches the product grid stops reading as a campaign.
+  */
+  --ratio-product: 3 / 4;
   --margin-desktop: 64px;
   --margin-mobile: 20px;
   /*

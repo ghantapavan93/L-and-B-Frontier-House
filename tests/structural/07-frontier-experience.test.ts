@@ -263,7 +263,15 @@ describe('flag disabled — the verified Phase 1 experience', () => {
     expect(body).not.toContain('sheet-story')
     expect(body).not.toContain('world-women')
     // The Phase 1 fallbacks are what render instead.
-    expect(body).toContain('Shop by category')
+    //
+    // Assert the taxonomy LINKS, not the heading above them. This previously named the
+    // string "Shop by category", which belonged to a standalone band that has since been
+    // folded into Choose Your West — so the assertion broke on a layout change while the
+    // property it exists to protect (the flag-off homepage still reaches every category)
+    // was never in danger. The hrefs are the invariant; the heading is decoration.
+    for (const category of ['women', 'girls', 'accessories']) {
+      expect(body).toContain(`href="/shop/${category}"`)
+    }
     expect(body).toContain('thread__stages')
   })
 

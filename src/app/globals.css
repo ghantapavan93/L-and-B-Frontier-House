@@ -754,7 +754,7 @@ svg {
   happen to sit on one page.
 */
 .category-card__media {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: var(--ratio-product);
   overflow: hidden;
   border-radius: var(--radius-default);
   background: var(--surface-raised);
@@ -1226,7 +1226,7 @@ legend {
 .product-card__media {
   display: block; /* the demo rack mounts this on a <span> */
   position: relative;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: var(--ratio-product);
   background: var(--surface-sunken);
   border-radius: var(--radius-default);
   overflow: hidden;
@@ -1387,7 +1387,7 @@ legend {
 */
 .pdp__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio-product);
   background: var(--surface-sunken);
   border-radius: var(--radius-default);
   overflow: hidden;
@@ -1804,7 +1804,7 @@ tfoot td {
 */
 .contact-sheet__frame {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio-product);
   overflow: hidden;
   background: #16130f;
   border: var(--space-2) solid var(--color-bone);
@@ -2296,6 +2296,67 @@ tfoot td {
   position: relative;
 }
 
+/* THE CHAPTER RAIL — a sticky table of contents for the longest band on the site.
+
+   The reference pins its topic rail under the header for the whole read
+   (docs/research/teardown-burberry-gstar-vero.md §2.2). `top` clears our sticky header so
+   the two never overlap, and the stages carry a matching `scroll-margin-top` so an anchor
+   never lands its target underneath either of them — WCAG 2.4.11, which a sticky rail
+   above jump links is the classic way to fail.
+
+   It scrolls horizontally on narrow screens rather than wrapping to two rows: a rail that
+   grows taller as the viewport narrows eats the phone screen it is meant to help with. */
+.journey__rail {
+  position: sticky;
+  top: calc(var(--header-height, 56px) + var(--space-2));
+  z-index: var(--z-sticky);
+  margin-bottom: var(--space-6);
+  padding-block: var(--space-2);
+  background: color-mix(in srgb, var(--surface-page) 88%, transparent);
+  backdrop-filter: blur(var(--glass-blur));
+  border-block: 1px solid var(--rule);
+}
+
+.journey__rail-list {
+  display: flex;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.journey__rail-list::-webkit-scrollbar {
+  display: none;
+}
+
+.journey__rail-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-block: var(--space-1);
+  /* Label-caps, matching the eyebrows — the rail is navigation chrome, not content. */
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text-meta);
+  text-decoration: none;
+}
+
+.journey__rail-link:hover,
+.journey__rail-link:focus-visible {
+  color: var(--color-text);
+}
+
+.journey__rail-index {
+  font-family: var(--font-mono);
+  color: var(--color-tobacco);
+}
+
 .journey__spine {
   position: absolute;
   top: 0;
@@ -2349,7 +2410,10 @@ tfoot td {
   display: grid;
   gap: var(--space-5);
   align-items: center;
-  padding-block: var(--space-7);
+  padding-block: var(--space-6);
+  /* Clears the site header AND the sticky chapter rail above, so a jump link never parks
+     its heading behind them. */
+  scroll-margin-top: calc(var(--header-height, 56px) + var(--space-8));
 }
 
 @media (min-width: 62rem) {
@@ -2377,9 +2441,17 @@ tfoot td {
   position: relative;
 }
 
+/* Landscape, and the same 4/3 the material swatches already use.
+
+   These planes took the source aspect, so the photographed stages rendered ~860px tall
+   against the swatch stages' ~490px — the band read as two different designs, and five
+   portrait planes were most of why it ran five screens. Matching the swatch settles both
+   at once. */
 .journey__media img {
   width: 100%;
+  aspect-ratio: 4 / 3;
   height: auto;
+  object-fit: cover;
 }
 
 .journey__media figcaption {
@@ -3581,6 +3653,80 @@ tfoot td {
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 }
 
+/* THE TAXONOMY ROW — the shipping categories, closing the band that opens with the edits.
+
+   This was its own full section with its own heading and its own 168px of rhythm, one
+   screen further down, answering "what is it" where the edits above answer "who is it
+   for". Burberry carries that same pair inside a single band with a segmented control
+   rather than spending a second band on it
+   (docs/research/teardown-burberry-gstar-vero.md §1.2). Same links, same photography,
+   one band. */
+.west-taxonomy {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+
+.west-taxonomy__title {
+  margin: 0 0 var(--space-5);
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.west-taxonomy__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.west-taxonomy__link {
+  display: grid;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Landscape, deliberately: the edit cards directly above are product-ratio portraits, and
+   a second portrait row under them reads as one grid of eight rather than as two distinct
+   ways in. */
+.west-taxonomy__media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+}
+
+.west-taxonomy__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-entrance);
+}
+
+.west-taxonomy__link:hover .west-taxonomy__media img,
+.west-taxonomy__link:focus-visible .west-taxonomy__media img {
+  transform: scale(1.03);
+}
+
+.west-taxonomy__name {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: var(--headline-md-leading);
+}
+
+.west-taxonomy__link:hover .west-taxonomy__name {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .edit-card {
   display: flex;
   flex-direction: column;
@@ -3594,7 +3740,7 @@ tfoot td {
 }
 
 .edit-card__media {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: var(--ratio-product);
   overflow: hidden;
   border-radius: var(--radius-default);
   background: var(--surface-raised);
@@ -4494,7 +4640,7 @@ tfoot td {
 
 .warehouse__item img {
   inline-size: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: var(--ratio-product);
   object-fit: cover;
   background: var(--surface-sunken);
   border: var(--space-2) solid var(--color-bone);
@@ -5867,7 +6013,7 @@ tfoot td {
 }
 
 .fit-results .product-card__media {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: var(--ratio-product);
   padding: var(--space-1);
 }
 
@@ -5943,7 +6089,7 @@ tfoot td {
 .gallery__thumb img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio-product);
   object-fit: cover;
   display: block;
 }
@@ -6001,7 +6147,7 @@ tfoot td {
 .gallery__open img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio-product);
   object-fit: cover;
   display: block;
 }
@@ -6247,7 +6393,7 @@ tfoot td {
 .related-grid img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--ratio-product);
   object-fit: cover;
   display: block;
   background: var(--surface-sunken);
