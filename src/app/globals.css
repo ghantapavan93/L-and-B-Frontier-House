@@ -5454,6 +5454,26 @@ tfoot td {
   margin-top: var(--space-6);
 }
 
+/* On a phone the "unlocks" panel stacked ABOVE the form and put the first field at
+   1,065 px — 1.3 screens — on the one page whose whole job is a field. Someone who tapped
+   "Apply" has already decided; the field comes first and the reasons follow as
+   reassurance under it. The panel's copy is unchanged and it is still on the page before
+   anything is submitted. Desktop keeps its order. */
+@media (max-width: 47.99rem) {
+  .apply {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .apply > .apply-unlocks {
+    order: 1;
+  }
+
+  .apply > div:has(> .notice--fixture) {
+    order: 2;
+  }
+}
+
 .apply-unlocks__list {
   list-style: none;
   margin: 0;

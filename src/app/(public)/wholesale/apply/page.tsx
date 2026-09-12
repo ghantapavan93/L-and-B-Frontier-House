@@ -109,7 +109,9 @@ export default async function ApplyPage({
 
       {step === 1 ? (
         <>
-          {/* What the applicant is applying FOR — before any field asks for anything. */}
+          {/* What the applicant is applying FOR — before any field asks for anything, on
+              a desktop. On a phone the stylesheet orders it under the form: the field is
+              the page's job, and this is the reassurance beneath it. */}
           <section className="panel apply-unlocks" aria-labelledby="unlocks-heading">
             <h2 className="eyebrow" id="unlocks-heading">
               An account unlocks
