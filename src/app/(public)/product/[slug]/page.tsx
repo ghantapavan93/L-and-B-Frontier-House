@@ -91,8 +91,6 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
 
   const frontier = frontierEnabled()
   const category = findCategory(product.categorySlug)
-  const opening = product.media[0]
-  const hasPhotography = opening?.provenance === 'owner-supplied'
   const related = (await listPublicProducts({ categorySlug: product.categorySlug }))
     .filter((p) => p.id !== product.id)
     .slice(0, 3)
@@ -146,33 +144,23 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
 
   return (
     <>
-      {frontier && hasPhotography && opening ? (
-        <section className="pdp-arrival" aria-hidden="true">
-          <div
-            className="pdp-arrival__backdrop"
-            aria-hidden="true"
-            style={{ backgroundImage: `url(${opening.poster})` }}
-          />
-          <div className="pdp-arrival__inner">
-            <p className="pdp-arrival__eyebrow">
-              {category ? category.label : 'The line'} ·{' '}
-              {AVAILABILITY_LABELS[product.availability]}
-            </p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={opening.poster}
-              alt={opening.alt}
-              width={opening.intrinsicWidth ?? 360}
-              height={opening.intrinsicHeight ?? 540}
-              fetchPriority="high"
-            />
-            <p className="pdp-arrival__title" aria-hidden="true">
-              {product.displayName}
-            </p>
-          </div>
-        </section>
-      ) : null}
+      {/*
+        NO ARRIVAL BAND. The product page begins with the product.
 
+        A full-width "arrival" stood here: the first photograph again, large, on a blurred
+        copy of itself, with the garment's name set as a decorative paragraph — the whole
+        section aria-hidden, because it carried nothing the gallery one screen below did
+        not. It measured 767 px at 1440 and 626 px on a phone. On the phone that put the
+        title at 1,535 px and the wholesale action at 2,055 px: two and a half screens
+        before the page told a buyer what to do, on the surface where Deloitte measured
+        +40% progression per tenth of a second. Nothing referenced it, no test pinned it,
+        and its commit message did not mention it.
+
+        This is §11's failure in miniature — the atmosphere layer growing over the commerce
+        layer one reasonable-looking band at a time — caught early. The gallery's first
+        frame is eager, carries the view-transition name, and is the LCP now. The morph
+        from the card still lands.
+      */}
       <div className="container section">
         <nav aria-label="Breadcrumb">
           <p className="meta">
@@ -219,7 +207,16 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           />
 
           <div className="stack">
-            <div>
+            {/*
+              `pdp__head` so the phone can lift it above the gallery. On a 375 px screen
+              the info column stacks under the frames and the garment's name sat at 1,535
+              px, the wholesale action at 2,055 — two and a half screens before the page
+              said what it was or what to do. The stack dissolves into the page grid on a
+              phone (`display: contents`) and this block orders itself first: name, then
+              photograph, then the action. Desktop is unchanged — the sticky column keeps
+              the name beside the frames.
+            */}
+            <div className="pdp__head">
               <h1 className="pdp__title">{product.displayName}</h1>
               <p className="spec-name">{product.specName}</p>
               <div className="badge-row">

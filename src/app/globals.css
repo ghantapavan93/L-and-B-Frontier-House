@@ -5988,6 +5988,32 @@ tfoot td {
   }
 }
 
+/* On a phone the column order is name → photograph → action. The stack's box dissolves
+   into the page grid so its title block can order itself ahead of the gallery; the grid
+   gap takes over the stack's owl spacing so nothing doubles. Measured: the title moved
+   from 1,535 px to inside the first screen, the action from 2,055 to under the second. */
+@media (max-width: 61.99rem) {
+  .pdp {
+    gap: var(--space-4);
+  }
+
+  .pdp > .stack {
+    display: contents;
+  }
+
+  .pdp > .stack > * + * {
+    margin-block-start: 0;
+  }
+
+  .pdp__head {
+    order: -1;
+  }
+
+  .pdp > .gallery {
+    margin-block-end: var(--space-2);
+  }
+}
+
 /* ==========================================================================
    CROSS-DOCUMENT VIEW TRANSITIONS — the click becomes a morph
 
@@ -6851,14 +6877,19 @@ tfoot td {
    title sits on it, which is what every reference does.
    ========================================================================== */
 
+/* A title band with the category's photograph behind it — not a hero. At 58vh it was
+   471 px of a phone screen for the word "Women", and the first garment sat 1.3 screens
+   down; Burberry's listing has no hero at all and Tecovas' banner is a strip. The
+   photograph stays, the band shrinks to a strip, and the first product arrives inside
+   the first screen on every viewport. */
 .page-hero {
   position: relative;
-  min-height: min(58vh, 30rem);
+  min-height: min(28vh, 15rem);
   display: grid;
   align-items: end;
   overflow: hidden;
   background: var(--surface-sunken);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .page-hero__media {
@@ -6890,7 +6921,7 @@ tfoot td {
 .page-hero__inner {
   position: relative;
   z-index: 1;
-  padding: var(--space-6) var(--margin-mobile) var(--space-7);
+  padding: var(--space-5) var(--margin-mobile) var(--space-5);
   max-width: var(--container-max);
   margin-inline: auto;
   width: 100%;
@@ -6902,9 +6933,14 @@ tfoot td {
   }
 }
 
+/* Category names are labels, not statements. The page's own product titles are 26 px;
+   a 68 px "Women" above them was the largest type on any shop surface and the only thing
+   on the page bigger than the garments. Burberry's largest heading anywhere is 24 px. */
 .page-hero h1 {
   color: var(--text-on-inverse);
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-1);
+  font-size: clamp(1.625rem, 2.5vw + 1rem, var(--headline-lg));
+  line-height: 1.1;
 }
 
 .page-hero .eyebrow,
