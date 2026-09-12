@@ -1933,6 +1933,27 @@ tfoot td {
   position: relative;
 }
 
+/* On a phone the five stages stacked to 1,251 px — the second-tallest band on the mobile
+   homepage after the product rails, for a fact the section head already states in one
+   sentence. A chain reads left to right: one row, scrolling, each stage a card the width
+   of a thumb's swipe, native snap. Desktop's five-column row is untouched. */
+@media (max-width: 61.99rem) {
+  .thread__stages {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(15rem, 72vw);
+    gap: var(--space-4);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    padding-bottom: var(--space-3);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .thread__stage {
+    scroll-snap-align: start;
+  }
+}
+
 @media (min-width: 62rem) {
   .thread__stages {
     grid-template-columns: repeat(5, minmax(0, 1fr));
