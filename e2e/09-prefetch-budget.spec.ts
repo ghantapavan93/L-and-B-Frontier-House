@@ -74,3 +74,49 @@ for (const route of ['/', '/shop/women', '/new-arrivals', `/product/${PRODUCT_SL
     )
   })
 }
+
+/**
+ * THE FILM IS OWED ONLY TO A PLAY THAT HAPPENS.
+ *
+ * The background film is 1.8 MB on a phone. Two visitors must never be handed it: the
+ * one whose reduced-motion setting means it will never play, and the one who has asked
+ * Chrome for less data or is on a 2G-class link. §10 permits the Network Information API
+ * for exactly this — demoting — and forbids it for tiering.
+ */
+test.describe('the hero film on a thrifty phone', () => {
+  test('reduced motion: the poster shows and no film bytes are fetched', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/', { waitUntil: 'networkidle' })
+    await expect(page.locator('.hero-film__poster img')).toBeVisible()
+    await expect(page.locator('[data-hero-toggle]')).toHaveText(/Play the film/)
+    // `preload="metadata"` may fetch headers and a first chunk; it must not fetch the film.
+    const videoBytes = await page.evaluate(() =>
+      performance
+        .getEntriesByType('resource')
+        .filter((e) => /ignition.*\.(mp4|webm)$/.test(e.name))
+        .reduce((sum, e) => sum + ((e as PerformanceResourceTiming).transferSize || 0), 0),
+    )
+    expect(
+      videoBytes,
+      `film bytes transferred under reduced motion: ${videoBytes}`,
+    ).toBeLessThan(64 * 1024)
+  })
+
+  test('Data Saver: the film is never started', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'connection', {
+        configurable: true,
+        value: { saveData: true, effectiveType: '4g' },
+      })
+    })
+    await page.goto('/', { waitUntil: 'networkidle' })
+    const video = page.locator('[data-hero-film]')
+    await expect(page.locator('[data-hero-toggle]')).toBeVisible()
+    await page.waitForTimeout(600)
+    expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true)
+    await expect(page.locator('[data-hero-toggle]')).toHaveText(/Play the film/)
+    // The visitor can still choose it.
+    await page.locator('[data-hero-toggle]').click()
+    await expect.poll(async () => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(false)
+  })
+})

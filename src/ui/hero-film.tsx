@@ -58,6 +58,14 @@ export type HeroFilmSources = {
  * a data saver, a user setting). That rejection is caught and ignored on purpose: the
  * refusal is a correct outcome, the poster is already showing, and the control is already
  * on screen for anyone who wants to start it themselves.
+ *
+ * Data Saver and 2G are consulted before play() is ever called. §10 bars the Network
+ * Information API for TIERING — Safari and Firefox never implemented it, so a tier built
+ * on it promotes every iPhone — and permits it for DEMOTING, which is all this does: a
+ * Chrome-on-Android visitor who has asked for less data, or is on a 2G-class link, keeps
+ * the poster and the play control and is never handed 1.8 MB of background film they did
+ * not ask for. That is precisely the budget phone §10 says to test on. Where the API is
+ * absent the film behaves as before.
  */
 const CONTROLLER = `(function(){
 var v=document.querySelector('[data-hero-film]'),b=document.querySelector('[data-hero-toggle]');
@@ -66,7 +74,8 @@ function sync(){var p=v.paused||v.ended;b.textContent=p?'Play the film':'Pause t
 b.addEventListener('click',function(){if(v.paused||v.ended){v.play().catch(function(){})}else{v.pause()}});
 v.addEventListener('play',sync);v.addEventListener('pause',sync);v.addEventListener('ended',sync);
 b.hidden=false;sync();
-if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.play().catch(function(){})}
+var c=navigator.connection,thrifty=!!(c&&(c.saveData||/(^|-)2g$/.test(c.effectiveType||'')));
+if(!thrifty&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.play().catch(function(){})}
 })();`
 
 export function HeroFilm({ film }: { film: HeroFilmSources }) {
@@ -99,7 +108,14 @@ export function HeroFilm({ film }: { film: HeroFilmSources }) {
         data-hero-film=""
         muted
         playsInline
-        preload="auto"
+        /*
+          `metadata`, not `auto`. With `auto` the browser fetched the whole film — 1.8 MB
+          on a phone — the moment the page parsed, including for the reader whose
+          reduced-motion setting means the controller will never call play(). The poster
+          is already the complete section; the film's bytes are owed only to a play() that
+          actually happens, which fetches them itself.
+        */
+        preload="metadata"
         aria-hidden="true"
         tabIndex={-1}
       >
