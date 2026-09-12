@@ -10,6 +10,7 @@ import { BUYER_RECORDS, FIXTURE_PASSWORD } from '@/fixtures/buyers'
 import { ORDER_RECORDS } from '@/fixtures/orders'
 import { PRODUCT_RECORDS } from '@/fixtures/products'
 import type { Buyer } from '@/domain/buyer'
+import type { PaymentMethodId } from '@/domain/payment'
 import type { Order, OrderLine } from '@/domain/order'
 import type { ProductRecord } from '@/domain/product'
 import { findCategory } from '@/domain/taxonomy'
@@ -209,7 +210,7 @@ export class FixtureCommerceAdapter implements CommerceAdapter {
     return updated
   }
 
-  async submitDraftOrder(buyerId: string): Promise<Order> {
+  async submitDraftOrder(buyerId: string, paymentMethod: PaymentMethodId): Promise<Order> {
     const draft = await this.getDraftOrder(buyerId)
     const today = new Date().toISOString().slice(0, 10)
     const submitted: Order = {
@@ -217,6 +218,8 @@ export class FixtureCommerceAdapter implements CommerceAdapter {
       id: `LB-FIXTURE-${String(store().submitted.length + 1).padStart(4, '0')}`,
       status: 'submitted',
       submittedAt: today,
+      // Recorded, not acted on: the fixture collects nothing. See domain/payment.ts.
+      paymentMethod,
     }
     store().submitted.push(submitted)
     store().drafts.set(buyerId, emptyDraft(buyerId))

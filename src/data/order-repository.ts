@@ -11,6 +11,7 @@ import 'server-only'
 import { isAuthorisedBuyer } from '@/domain/session'
 import type { Session } from '@/domain/session'
 import type { Order } from '@/domain/order'
+import type { PaymentMethodId } from '@/domain/payment'
 import { commerce } from './index'
 import type { AddLineInput } from './adapters/commerce-adapter'
 
@@ -42,8 +43,11 @@ export async function setOrderLineQuantity(
   return commerce.setDraftOrderLineQuantity(requireBuyerId(session), lineId, quantity)
 }
 
-export async function submitOrder(session: Session): Promise<Order> {
-  return commerce.submitDraftOrder(requireBuyerId(session))
+export async function submitOrder(
+  session: Session,
+  paymentMethod: PaymentMethodId,
+): Promise<Order> {
+  return commerce.submitDraftOrder(requireBuyerId(session), paymentMethod)
 }
 
 export async function listOrders(session: Session): Promise<readonly Order[]> {

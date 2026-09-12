@@ -97,6 +97,26 @@ test.describe('approved buyer — full journey', () => {
     await expect(page).toHaveURL(/\/trade\/orders\/LB-FIXTURE-\d+\?submitted=1/)
     await expect(page.getByText('Order sent')).toBeVisible()
     await expect(page.getByRole('listitem').filter({ hasText: 'Submitted' })).toBeVisible()
+    // Nothing chosen means the verified default, and the confirmation says so.
+    await expect(page.getByText(/Net 30 terms/)).toBeVisible()
+  })
+
+  test('records a buy-now-pay-later choice on the order', async ({ page }) => {
+    await signIn(page, BUYERS.approved)
+    await clearOrder(page)
+    await page.goto(`/trade/product/${PRODUCT_SLUG}`)
+    await page.getByRole('button', { name: 'Add to order' }).click()
+    await expect(page).toHaveURL('/trade/order')
+
+    // A real radio group: the legend names it, the choice is one click, keyboard works.
+    const group = page.getByRole('group', { name: 'How would you like to pay?' })
+    await expect(group.getByRole('radio', { name: /Net 30 terms/ })).toBeChecked()
+    await group.getByRole('radio', { name: /Sezzle/ }).check()
+    await page.getByRole('button', { name: 'Send this order' }).click()
+
+    await expect(page).toHaveURL(/\/trade\/orders\/LB-FIXTURE-\d+\?submitted=1/)
+    await expect(page.getByText(/· Sezzle/)).toBeVisible()
+    await expect(page.getByText(/Net 30 terms/)).toHaveCount(0)
   })
 })
 

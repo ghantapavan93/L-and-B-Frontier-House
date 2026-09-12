@@ -573,6 +573,110 @@ svg {
   text-decoration: underline;
 }
 
+/* ── BUY NOW, PAY LATER — the footer strip ──────────────────────────────────────────
+   Phrase, then the three marks. The marks are the brand's own (S-20), knocked out to
+   transparency; they only read on this dark surface, which is the only place they appear. */
+.bnpl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-7);
+  padding-block: var(--space-6);
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.bnpl__label {
+  margin: 0;
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-sandstone);
+}
+
+.bnpl__label strong {
+  color: var(--text-on-inverse);
+  font-weight: var(--label-caps-weight);
+}
+
+.bnpl__marks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.bnpl__marks img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+/* ── PAYMENT CHOICE — the radio group on the order form ───────────────────────────── */
+.payment-choice {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.payment-choice legend {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: var(--headline-md-leading);
+  margin-bottom: var(--space-4);
+}
+
+.payment-choice__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.payment-choice__option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--rule-strong);
+  background: var(--surface-raised);
+  cursor: pointer;
+}
+
+.payment-choice__option input {
+  grid-row: 1 / 3;
+  align-self: center;
+  margin: 0;
+  /* 24 × 24 minimum (WCAG 2.5.8); the whole option is the click target, this is the input's own. */
+  width: 24px;
+  height: 24px;
+  accent-color: var(--color-ink);
+}
+
+.payment-choice__option:has(input:checked) {
+  border-color: var(--color-ink);
+}
+
+.payment-choice__option:has(input:focus-visible) {
+  outline: 2px solid var(--color-tobacco);
+  outline-offset: 2px;
+}
+
+.payment-choice__label {
+  font-weight: 600;
+}
+
+.afterpay-line {
+  display: block;
+  color: var(--color-text-meta);
+}
+
 .site-footer__colophon {
   padding-top: var(--space-6);
 }
@@ -1066,6 +1170,12 @@ select:hover,
 input:focus,
 select:focus {
   border-bottom-color: var(--color-ink);
+}
+
+.field__error {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-error);
 }
 
 .field__hint {

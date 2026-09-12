@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { acceptedMethodsSentence } from '@/ui/payment-methods'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { AVAILABILITY_LABELS, primaryMedia } from '@/domain/product'
@@ -202,6 +203,9 @@ export default async function WholesalePage() {
 
               <dt>Dispatch</dt>
               <dd>Order by 5pm CST and it ships same or next business day.</dd>
+
+              <dt>Payment</dt>
+              <dd>{acceptedMethodsSentence()}</dd>
             </dl>
           </div>
         </section>

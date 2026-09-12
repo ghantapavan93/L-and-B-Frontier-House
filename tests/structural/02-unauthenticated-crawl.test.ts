@@ -32,6 +32,12 @@ const RESTRICTED_TERMS = [
   'Add to order',
   'stockBySize',
   'Stock by size',
+  /*
+    The live site's D-00 leak in one phrase: an Afterpay module computing "4 payments of"
+    on an un-gated pack price. The methods may be NAMED publicly (the brand's own footer
+    names them); the arithmetic may not.
+  */
+  'payments of',
 ]
 
 describe('Test 2A — no restricted value on any public surface', () => {

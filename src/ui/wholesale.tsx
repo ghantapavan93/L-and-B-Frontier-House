@@ -1,3 +1,4 @@
+import { AfterpayLine, checkoutMethodsPhrase } from '@/ui/payment-methods'
 import Link from 'next/link'
 import { addToOrderAction } from '@/features/order/actions'
 import { formatMoney, VERIFIED_ORDER_MINIMUM } from '@/domain/money'
@@ -58,6 +59,12 @@ export function WholesalePricePanel({ product }: { product: AuthorisedProduct })
 
         <dt>Terms</dt>
         <dd>{wholesale.terms}</dd>
+
+        {/* Authorised surface only: the instalment is arithmetic on a restricted price. */}
+        <dt>Pay</dt>
+        <dd>
+          {checkoutMethodsPhrase()} — <AfterpayLine total={wholesale.packPrice} /> on a pack.
+        </dd>
       </dl>
     </section>
   )

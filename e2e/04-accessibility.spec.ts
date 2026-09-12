@@ -210,7 +210,9 @@ test.describe('images', () => {
   test('every product image has a meaningful alternative', async ({ page }) => {
     for (const route of PUBLIC_ROUTES) {
       await page.goto(route)
-      const images = page.locator('img')
+      // Photographs, not marks: a payment provider's logo is correctly named by the
+      // provider's name, and "Sezzle" is six characters. The strip has its own test.
+      const images = page.locator('img:not(.bnpl img)')
       const count = await images.count()
 
       for (let i = 0; i < count; i += 1) {
@@ -326,5 +328,21 @@ test.describe('reduced motion', () => {
     await page.goto('/')
     const violations = await axeViolations(page)
     expect(violations, violations.join('\n')).toHaveLength(0)
+  })
+})
+
+test.describe('buy now, pay later', () => {
+  test('the footer strip names every method in text and every mark says its name', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    const strip = page.getByRole('region', { name: /Buy now, pay later/ })
+    await expect(strip).toBeVisible()
+    for (const name of ['Afterpay', 'Sezzle', 'PayPal Credit']) {
+      await expect(strip.getByRole('img', { name })).toBeVisible()
+    }
+    // The live site ships this as one JPEG with no alt. Ours never may.
+    const bareImages = await strip.locator('img:not([alt]), img[alt=""]').count()
+    expect(bareImages).toBe(0)
   })
 })

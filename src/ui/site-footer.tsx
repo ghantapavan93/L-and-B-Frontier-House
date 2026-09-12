@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BuyNowPayLater } from '@/ui/payment-methods'
 import { navigableCategories } from '@/domain/taxonomy'
 
 /**
@@ -128,6 +129,10 @@ export function SiteFooter() {
             </p>
           </section>
         </div>
+
+        {/* The live site's footer carries this as a JPEG with no alt (S-20). Ours is text
+            and a list, with the marks as images that say their names. */}
+        <BuyNowPayLater />
 
         <div className="site-footer__colophon">
           <p className="meta">

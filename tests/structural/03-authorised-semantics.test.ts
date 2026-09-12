@@ -36,6 +36,16 @@ describe('Test 3 — authorised commerce is real HTML', () => {
     expect(body).toMatch(/Units<\/th>(?:<td>\d+<\/td>)+<td>6<\/td>/)
   })
 
+  it('states the accepted payment methods and the Afterpay instalment on the pack', async () => {
+    const { body } = await get(AUTHORISED_PDP, asBuyer('b-approved'))
+
+    // Named, in text — the same three the brand's own footer shows (S-20).
+    expect(body).toMatch(/Afterpay, Sezzle or PayPal Credit at checkout/)
+    // $186.00 pack ÷ 4, ceiling to the cent. Authorised surface only; 02 asserts the
+    // public side never carries "payments of".
+    expect(body).toContain('4 payments of $46.50 with Afterpay')
+  })
+
   it('renders Add to Order as a real button in a real form', async () => {
     const { body } = await get(AUTHORISED_PDP, asBuyer('b-approved'))
 

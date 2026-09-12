@@ -12,6 +12,7 @@
 
 import type { Buyer } from '@/domain/buyer'
 import type { Order } from '@/domain/order'
+import type { PaymentMethodId } from '@/domain/payment'
 import type { ProductRecord } from '@/domain/product'
 import type { SizeRangeKind } from '@/domain/size'
 
@@ -81,7 +82,7 @@ export interface CommerceAdapter {
   getDraftOrder(buyerId: string): Promise<Order>
   addDraftOrderLine(buyerId: string, input: AddLineInput): Promise<Order>
   setDraftOrderLineQuantity(buyerId: string, lineId: string, quantity: number): Promise<Order>
-  submitDraftOrder(buyerId: string): Promise<Order>
+  submitDraftOrder(buyerId: string, paymentMethod: PaymentMethodId): Promise<Order>
 
   listOrders(buyerId: string): Promise<readonly Order[]>
   getOrder(buyerId: string, orderId: string): Promise<Order | null>

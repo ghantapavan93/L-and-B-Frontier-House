@@ -1,3 +1,4 @@
+import { findPaymentMethod } from '@/domain/payment'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -57,6 +58,8 @@ export default async function OrderDetailPage({
       <h1>Order {order.id}</h1>
       <p className="meta">
         Placed {order.submittedAt ?? order.createdAt} · {ORDER_STATUS_LABELS[order.status]}
+        {/* Seeded orders predate the choice and say nothing rather than guess. */}
+        {order.paymentMethod ? ` · ${findPaymentMethod(order.paymentMethod)?.label}` : ''}
       </p>
 
       {order.status !== 'cancelled' ? (

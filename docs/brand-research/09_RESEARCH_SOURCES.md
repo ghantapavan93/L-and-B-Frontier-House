@@ -64,6 +64,7 @@ Third-party copy. **Not** treated as official brand truth; used only for
 | S-17 | `zoominfo.com` company listing | Search-result summary only — Farmers Branch HQ claim |
 | S-18 | `revamp.landbw.co` | WebFetch — **not a brand site**; an employee clock-in login on a company subdomain. Recorded to prevent future misidentification |
 | S-19 | `tiktok.com/view/product/1729452403164811418` | **Security challenge** — seller unidentified (OQ-02) |
+| S-20 | `landbapparel.com/images/promo/221/BuyNowPayLater_2600x320px.jpg` | Retrieved 2026-09-12 (`www.luckyandblessed.com` 301s to `landbapparel.com`). The live footer's "Buy now, pay later" strip: **Afterpay · Sezzle · PayPal Credit**, one 2600×320 JPEG, empty alt. PayPal scripts load on the page. Kept at `assets/source/owner-approved/payment/` |
 
 ---
 

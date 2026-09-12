@@ -67,6 +67,9 @@ Two further leaks on the same pages:
 
 - Some product **titles** print the price literally — `($31.00) Stone Wash Stretch Denim
   Dress…`, `($16.00) Classic Western Button Down Long Sleeve Denim Dress`.
+- The footer states **"Buy now, pay later" — Afterpay, Sezzle, PayPal Credit** (S-20, verified
+  2026-09-12; a JPEG with an empty alt, so the three methods are unreadable to a screen
+  reader). `VERIFIED FACT`: the house accepts these three at checkout alongside its terms.
 - An Afterpay module computes on the un-gated pack price, displaying
   *"Or 4 payments of $60.00"* on an 8-unit pack at $30/unit.
 

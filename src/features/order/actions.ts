@@ -11,6 +11,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { getSession } from '@/auth/session'
+import { isPaymentMethodId } from '@/domain/payment'
 import { listVisibleProducts } from '@/data/catalog-repository'
 import {
   addToOrder,
@@ -72,12 +73,21 @@ export async function setLineQuantityAction(formData: FormData): Promise<void> {
   redirect('/trade/order')
 }
 
-export async function submitOrderAction(): Promise<void> {
+export async function submitOrderAction(formData: FormData): Promise<void> {
   const session = await getSession()
+
+  /*
+    The buyer's payment choice comes from a radio group whose values are the registry's
+    ids. Anything else, a missing field or a tampered value, is refused rather than
+    defaulted: silently recording "Net 30" for someone who chose Afterpay would be a
+    false fact on their order.
+  */
+  const method = formData.get('paymentMethod')
+  if (!isPaymentMethodId(method)) redirect('/trade/order?error=payment')
 
   let orderId: string
   try {
-    const order = await submitOrder(session)
+    const order = await submitOrder(session, method)
     orderId = order.id
   } catch (error) {
     if (error instanceof NotAuthorisedError) denyToSignIn()

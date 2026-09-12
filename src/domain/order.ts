@@ -7,6 +7,7 @@
 
 import { addMoney, compareMoney, multiplyMoney, usd, VERIFIED_ORDER_MINIMUM } from './money'
 import type { Money } from './money'
+import type { PaymentMethodId } from './payment'
 import type { Prepack } from './product'
 
 export type OrderStatus =
@@ -42,6 +43,12 @@ export type Order = {
   readonly submittedAt?: string
   readonly shipWindow?: { readonly start: string; readonly end: string }
   readonly tracking?: string
+  /**
+   * How the buyer chose to pay, recorded at submission. Absent on drafts and on orders
+   * seeded before the choice existed: a missing value means "not recorded", never a
+   * default. See domain/payment.ts for what is and is not claimed by this field.
+   */
+  readonly paymentMethod?: PaymentMethodId
 }
 
 /** Units in one line: prepack size × number of prepacks. */

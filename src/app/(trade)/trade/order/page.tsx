@@ -5,6 +5,7 @@ import { getDraftOrder } from '@/data/order-repository'
 import { setLineQuantityAction, submitOrderAction } from '@/features/order/actions'
 import { formatMoney } from '@/domain/money'
 import { lineTotal, lineUnits, minimumMet, orderSubtotal, orderUnits } from '@/domain/order'
+import { PaymentMethodChoice } from '@/ui/payment-methods'
 import { MinimumOrderProgress } from '@/ui/wholesale'
 
 export const metadata: Metadata = { title: 'Your order', robots: { index: false } }
@@ -19,7 +20,12 @@ export const metadata: Metadata = { title: 'Your order', robots: { index: false 
  * Submission is blocked below the verified $50 minimum, but browsing never is: the minimum
  * is a checkout condition, not a gate.
  */
-export default async function OrderPage() {
+export default async function OrderPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>
+}) {
+  const { error } = await searchParams
   const session = await requireApprovedBuyer('/trade/order')
   const order = await getDraftOrder(session)
 
@@ -125,7 +131,8 @@ export default async function OrderPage() {
 
           <MinimumOrderProgress order={order} />
 
-          <form action={submitOrderAction}>
+          <form action={submitOrderAction} className="stack">
+            <PaymentMethodChoice error={error === 'payment'} />
             <button type="submit" className="button" disabled={!canSubmit}>
               Send this order
             </button>
