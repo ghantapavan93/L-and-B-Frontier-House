@@ -58,25 +58,39 @@ export function WaysIn({
         ))}
       </ul>
 
+      {/* Editorial destinations prefetch on demand; the category tiles above are shop
+          paths and keep theirs. See site-footer for the measurement. */}
       <nav className="ways-in__routes" aria-label="More of the house">
         <ul>
           <li>
-            <Link href="/edit">Choose your west — the edits</Link>
+            <Link prefetch={false} href="/edit">
+              Choose your west — the edits
+            </Link>
           </li>
           <li>
-            <Link href="/film">The house, on film</Link>
+            <Link prefetch={false} href="/film">
+              The house, on film
+            </Link>
           </li>
           <li>
-            <Link href="/material">Legible at close range</Link>
+            <Link prefetch={false} href="/material">
+              Legible at close range
+            </Link>
           </li>
           <li>
-            <Link href="/thread-to-trade">One chain, end to end</Link>
+            <Link prefetch={false} href="/thread-to-trade">
+              One chain, end to end
+            </Link>
           </li>
           <li>
-            <Link href="/warehouse">Walk the Warehouse</Link>
+            <Link prefetch={false} href="/warehouse">
+              Walk the Warehouse
+            </Link>
           </li>
           <li>
-            <Link href="/denim-guide">The denim guide</Link>
+            <Link prefetch={false} href="/denim-guide">
+              The denim guide
+            </Link>
           </li>
         </ul>
       </nav>

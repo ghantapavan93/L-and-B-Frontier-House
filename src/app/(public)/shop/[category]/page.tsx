@@ -88,7 +88,10 @@ export default async function CategoryPage({
           <div className="page-hero__inner">
             <nav aria-label="Breadcrumb">
               <p className="meta page-hero__crumb">
-                <Link href="/">Home</Link> / {category.label}
+                <Link prefetch={false} href="/">
+                  Home
+                </Link>{' '}
+                / {category.label}
               </p>
             </nav>
             <h1 id="category-heading">{category.label}</h1>
@@ -99,7 +102,10 @@ export default async function CategoryPage({
         <div className="container section--tight">
           <nav aria-label="Breadcrumb">
             <p className="meta">
-              <Link href="/">Home</Link> / {category.label}
+              <Link prefetch={false} href="/">
+                Home
+              </Link>{' '}
+              / {category.label}
             </p>
           </nav>
           <h1 id="category-heading">{category.label}</h1>

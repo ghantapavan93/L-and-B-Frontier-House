@@ -97,7 +97,14 @@ export function SiteHeader({ session }: { session?: Session }) {
           </nav>
         </details>
 
-        <Link href="/" className="site-header__wordmark">
+        {/*
+          The wordmark is in view on every page, so Next prefetched the homepage's full
+          RSC payload — 126 KB, both product rails embedded — on every page load, before
+          anyone had scrolled. The homepage is the one route a returning visitor already
+          has cached and a new visitor arrived through; nobody needs it pre-loaded from
+          the logo. On demand.
+        */}
+        <Link prefetch={false} href="/" className="site-header__wordmark">
           Lucky &amp; Blessed
         </Link>
 

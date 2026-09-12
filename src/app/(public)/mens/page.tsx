@@ -219,7 +219,10 @@ export default function MensPage() {
       <div className="container section stack">
         <nav aria-label="Breadcrumb">
           <p className="meta">
-            <Link href="/">Home</Link> / Men&rsquo;s
+            <Link prefetch={false} href="/">
+              Home
+            </Link>{' '}
+            / Men&rsquo;s
           </p>
         </nav>
 

@@ -38,7 +38,10 @@ export default async function FindYourDenimPage({
     <div className="container section">
       <nav aria-label="Breadcrumb">
         <p className="meta">
-          <Link href="/">Home</Link> / Find your denim
+          <Link prefetch={false} href="/">
+            Home
+          </Link>{' '}
+          / Find your denim
         </p>
       </nav>
 

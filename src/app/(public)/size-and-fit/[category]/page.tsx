@@ -56,8 +56,10 @@ export default async function SizeAndFitPage({ params }: { params: Promise<Param
     <div className="container section">
       <nav aria-label="Breadcrumb">
         <p className="meta">
-          <Link href="/">Home</Link> /{' '}
-          <Link href={`/shop/${category.slug}`}>{category.label}</Link> / Size and fit
+          <Link prefetch={false} href="/">
+            Home
+          </Link>{' '}
+          / <Link href={`/shop/${category.slug}`}>{category.label}</Link> / Size and fit
         </p>
       </nav>
 

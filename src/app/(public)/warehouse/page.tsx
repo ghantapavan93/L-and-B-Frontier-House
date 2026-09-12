@@ -68,7 +68,10 @@ export default async function WarehousePage() {
       <div className="container section--tight">
         <nav aria-label="Breadcrumb">
           <p className="meta warehouse__crumb">
-            <Link href="/">Home</Link> / The Warehouse
+            <Link prefetch={false} href="/">
+              Home
+            </Link>{' '}
+            / The Warehouse
           </p>
         </nav>
 

@@ -51,7 +51,10 @@ export default async function EditPage({ params }: { params: Promise<Params> }) 
     <div className="container section">
       <nav aria-label="Breadcrumb">
         <p className="meta">
-          <Link href="/">Home</Link> / {edit.name}
+          <Link prefetch={false} href="/">
+            Home
+          </Link>{' '}
+          / {edit.name}
         </p>
       </nav>
 

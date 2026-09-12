@@ -10,6 +10,16 @@ import { navigableCategories } from '@/domain/taxonomy'
  *
  * The copyright year is generated. The design corpus carries a stale © 2024 throughout.
  */
+/**
+ * `prefetch={false}` on every footer link, and it is a budget decision, not a taste.
+ *
+ * The footer is on every page and links every route. Next prefetches a static route's
+ * full RSC payload the moment its link scrolls into view, so reaching the bottom of ANY
+ * page on a phone fetched eleven pages nobody had tapped — 453 KB, 109 KB of it the men's
+ * demonstration — against a 1.5 MB shop-surface budget. The footer is a directory; a
+ * directory is read, not pre-loaded. The paths that sell — product cards, categories, the
+ * drop, the wholesale gate — keep their prefetch where they appear in the page body.
+ */
 export function SiteFooter() {
   const year = new Date().getFullYear()
 
@@ -23,11 +33,15 @@ export function SiteFooter() {
             <h2 className="eyebrow">Shop</h2>
             <ul className="site-footer__list">
               <li>
-                <Link href="/new-arrivals">New Arrivals</Link>
+                <Link prefetch={false} href="/new-arrivals">
+                  New Arrivals
+                </Link>
               </li>
               {navigableCategories().map((category) => (
                 <li key={category.slug}>
-                  <Link href={`/shop/${category.slug}`}>{category.label}</Link>
+                  <Link prefetch={false} href={`/shop/${category.slug}`}>
+                    {category.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -37,22 +51,34 @@ export function SiteFooter() {
             <h2 className="eyebrow">Discover</h2>
             <ul className="site-footer__list">
               <li>
-                <Link href="/search">Search the line</Link>
+                <Link prefetch={false} href="/search">
+                  Search the line
+                </Link>
               </li>
               <li>
-                <Link href="/find-your-denim">Find your denim</Link>
+                <Link prefetch={false} href="/find-your-denim">
+                  Find your denim
+                </Link>
               </li>
               <li>
-                <Link href="/fit-passport">Fit Passport</Link>
+                <Link prefetch={false} href="/fit-passport">
+                  Fit Passport
+                </Link>
               </li>
               <li>
-                <Link href="/mens">Men&rsquo;s — the demonstration</Link>
+                <Link prefetch={false} href="/mens">
+                  Men&rsquo;s — the demonstration
+                </Link>
               </li>
               <li>
-                <Link href="/size-and-fit/women">Size and fit</Link>
+                <Link prefetch={false} href="/size-and-fit/women">
+                  Size and fit
+                </Link>
               </li>
               <li>
-                <Link href="/warehouse">The Warehouse</Link>
+                <Link prefetch={false} href="/warehouse">
+                  The Warehouse
+                </Link>
               </li>
             </ul>
           </section>
@@ -61,13 +87,19 @@ export function SiteFooter() {
             <h2 className="eyebrow">Wholesale</h2>
             <ul className="site-footer__list">
               <li>
-                <Link href="/wholesale">How wholesale works</Link>
+                <Link prefetch={false} href="/wholesale">
+                  How wholesale works
+                </Link>
               </li>
               <li>
-                <Link href="/wholesale/apply">Apply for an account</Link>
+                <Link prefetch={false} href="/wholesale/apply">
+                  Apply for an account
+                </Link>
               </li>
               <li>
-                <Link href="/sign-in">Buyer sign in</Link>
+                <Link prefetch={false} href="/sign-in">
+                  Buyer sign in
+                </Link>
               </li>
             </ul>
           </section>

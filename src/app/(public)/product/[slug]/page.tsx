@@ -164,7 +164,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       <div className="container section">
         <nav aria-label="Breadcrumb">
           <p className="meta">
-            <Link href="/">Home</Link>
+            <Link prefetch={false} href="/">
+              Home
+            </Link>
             {category ? (
               <>
                 {' / '}
@@ -393,7 +395,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
                   from here.
                 </p>
               </div>
-              <Link href="/#sheet" className="text-link">
+              <Link prefetch={false} href="/#sheet" className="text-link">
                 Return to the contact sheet
               </Link>
             </div>

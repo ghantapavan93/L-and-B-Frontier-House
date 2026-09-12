@@ -81,7 +81,10 @@ export default async function MensProductPage({ params }: { params: Promise<Para
     <div className="container section">
       <nav aria-label="Breadcrumb">
         <p className="meta">
-          <Link href="/">Home</Link> / <Link href="/mens">Men&rsquo;s</Link> /{' '}
+          <Link prefetch={false} href="/">
+            Home
+          </Link>{' '}
+          / <Link href="/mens">Men&rsquo;s</Link> /{' '}
           <Link href={`/mens#${anchor}`}>{product.category}</Link> / {product.name}
         </p>
       </nav>
