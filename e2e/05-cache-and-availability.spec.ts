@@ -189,7 +189,9 @@ test.describe('availability', () => {
     await expect(stock).toBeVisible()
 
     // Exact figures, as semantic table cells.
-    await expect(stock.getByRole('rowheader', { name: 'S', exact: true })).toBeVisible()
+    // Sizes across the head, one row of units — the same shape as the pack run.
+    await expect(stock.getByRole('columnheader', { name: 'S', exact: true })).toBeVisible()
+    await expect(stock.getByRole('rowheader', { name: 'Units', exact: true })).toBeVisible()
     await expect(stock.getByRole('cell', { name: '38', exact: true })).toBeVisible()
     await expect(stock.getByRole('cell', { name: '17', exact: true })).toBeVisible()
 

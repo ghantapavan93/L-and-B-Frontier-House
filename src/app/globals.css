@@ -1479,6 +1479,19 @@ legend {
    Tables — size and fit, prepack, orders. Structured text, never an image.
    ========================================================================== */
 
+/* The transposed pack run: numbers line up under their sizes. */
+.prepack th,
+.prepack td {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.prepack th[scope='row'],
+.prepack th:first-child {
+  text-align: left;
+}
+
 .table-scroll {
   overflow-x: auto;
   max-width: 100%;

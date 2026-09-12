@@ -200,7 +200,9 @@ test.describe('tables', () => {
 
     const prepack = page.getByRole('table', { name: /Units per prepack/ })
     await expect(prepack).toBeVisible()
-    await expect(prepack.getByRole('rowheader', { name: 'Total' })).toBeVisible()
+    // Sizes across the head, one row of units: a screen reader still hears both headers.
+    await expect(prepack.getByRole('columnheader', { name: 'Total' })).toBeVisible()
+    await expect(prepack.getByRole('rowheader', { name: 'Units' })).toBeVisible()
   })
 })
 

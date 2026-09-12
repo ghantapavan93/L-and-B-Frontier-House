@@ -91,28 +91,36 @@ export default async function LineSheetPage() {
             <h2 id={`sheet-${category.slug}`} className="line-sheet__category">
               {category.label}
             </h2>
-            <table className="line-sheet__table">
-              <thead>
-                <tr>
-                  <th scope="col">Photo</th>
-                  <th scope="col">Style</th>
-                  <th scope="col">Name &amp; spec</th>
-                  <th scope="col">Colours</th>
-                  <th scope="col">Sizes</th>
-                  <th scope="col">Pack</th>
-                  <th scope="col">WHLSL</th>
-                  <th scope="col">Pack $</th>
-                  <th scope="col">MSRP</th>
-                  <th scope="col">MOQ</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rack.map((product) => (
-                  <SheetRow key={product.id} product={product} />
-                ))}
-              </tbody>
-            </table>
+            {/*
+              The sheet is a seven-column table — SKU, size run, pack, cost — and on a
+              phone it ran 969 px wide and dragged the whole page sideways with it. Wide
+              content scrolls inside its own container; the page body never does. The
+              print stylesheet is unaffected.
+            */}
+            <div className="table-scroll">
+              <table className="line-sheet__table">
+                <thead>
+                  <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Style</th>
+                    <th scope="col">Name &amp; spec</th>
+                    <th scope="col">Colours</th>
+                    <th scope="col">Sizes</th>
+                    <th scope="col">Pack</th>
+                    <th scope="col">WHLSL</th>
+                    <th scope="col">Pack $</th>
+                    <th scope="col">MSRP</th>
+                    <th scope="col">MOQ</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rack.map((product) => (
+                    <SheetRow key={product.id} product={product} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         )
       })}

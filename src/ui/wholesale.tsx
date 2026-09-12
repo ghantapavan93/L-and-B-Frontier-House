@@ -78,34 +78,42 @@ export function PrepackTable({ prepack }: { prepack: Prepack }) {
     )
   }
 
+  /*
+    TRANSPOSED. This was one row per size — eight rows on a phone, ~450 px, sat between
+    the price and "Add to order" on the buyer's page and pushed the action to three
+    screens. A size run reads left to right: sizes across the head, units across the
+    body, one glance. Still a real table with row and column headers, so a screen reader
+    hears "Size M, units 2" exactly as before; it scrolls inside its own container if a
+    long run outgrows a phone.
+  */
   return (
     <section aria-labelledby="prepack-heading">
       <h2 className="eyebrow" id="prepack-heading">
         Pack breakdown
       </h2>
       <div className="table-scroll inset">
-        <table>
+        <table className="prepack">
           <caption>Units per prepack ({prepack.totalUnits} total)</caption>
           <thead>
             <tr>
               <th scope="col">Size</th>
-              <th scope="col">Units</th>
+              {prepack.breakdown.map((row) => (
+                <th scope="col" key={row.size}>
+                  {row.size}
+                </th>
+              ))}
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody>
-            {prepack.breakdown.map((row) => (
-              <tr key={row.size}>
-                <th scope="row">{row.size}</th>
-                <td>{row.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
             <tr>
-              <th scope="row">Total</th>
+              <th scope="row">Units</th>
+              {prepack.breakdown.map((row) => (
+                <td key={row.size}>{row.quantity}</td>
+              ))}
               <td>{prepack.totalUnits}</td>
             </tr>
-          </tfoot>
+          </tbody>
         </table>
       </div>
     </section>

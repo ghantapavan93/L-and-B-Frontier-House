@@ -28,9 +28,12 @@ describe('Test 3 — authorised commerce is real HTML', () => {
 
     expect(body).toContain('Units per prepack (6 total)')
     expect(body).toContain('<table')
-    expect(body).toContain('scope="row"')
-    // The verified prepack structure is 6 units.
-    expect(body).toMatch(/Total<\/th><td>6<\/td>/)
+    // Transposed on 2026-09-12 — sizes across the head, units across one body row — so a
+    // size run reads in one glance on a phone. The properties are unchanged: real row
+    // and column headers, and the verified prepack total of 6 as a real cell.
+    expect(body).toMatch(/<th scope="col"[^>]*>Total<\/th>/)
+    expect(body).toMatch(/<th scope="row"[^>]*>Units<\/th>/)
+    expect(body).toMatch(/Units<\/th>(?:<td>\d+<\/td>)+<td>6<\/td>/)
   })
 
   it('renders Add to Order as a real button in a real form', async () => {

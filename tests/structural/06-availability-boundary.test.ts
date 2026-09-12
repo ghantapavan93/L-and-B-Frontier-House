@@ -122,7 +122,10 @@ describe('the authorised side of the boundary', () => {
     expect(status).toBe(200)
     expect(body).toContain('Units currently available by size')
     expect(body).toContain('<table')
-    expect(body).toMatch(/<th scope="row">S<\/th><td>38<\/td>/)
+    // Transposed on 2026-09-12 to match the pack run: sizes across the head, one row of
+    // units. S still heads a column and 38 is still a real cell in the same table.
+    expect(body).toMatch(/<th scope="col"[^>]*>S<\/th>/)
+    expect(body).toMatch(/<th scope="row"[^>]*>Units<\/th><td>38<\/td>/)
     expect(body).toContain('Net 30 for approved accounts')
   })
 

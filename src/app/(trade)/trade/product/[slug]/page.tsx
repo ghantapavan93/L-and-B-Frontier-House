@@ -6,7 +6,7 @@ import { getVisibleProduct } from '@/data/catalog-repository'
 import { AVAILABILITY_LABELS } from '@/domain/product'
 import { isAuthorisedProduct } from '@/domain/product'
 import { FixtureNotice, StateBlock } from '@/ui/notices'
-import { ProductMedia } from '@/ui/product-media'
+import { PdpGallery } from '@/ui/pdp/gallery'
 import { SizeAndFitTable } from '@/ui/size-and-fit-table'
 import { AddToOrder, PrepackTable, WholesalePricePanel } from '@/ui/wholesale'
 
@@ -56,16 +56,24 @@ export default async function TradeProductPage({ params }: { params: Promise<Par
       </nav>
 
       <div className="pdp">
-        <div className="pdp__gallery">
-          {product.media.map((media, index) => (
-            <div className="pdp__media" key={media.id}>
-              <ProductMedia media={media} priority={index === 0} />
-            </div>
-          ))}
-        </div>
+        {/*
+          THE BUYER'S PAGE, MEASURED ON A PHONE: price at 2.07 screens, "Add to order" at
+          3.5. The one control that pays for everything was the worst-placed control on
+          the site — two frames stacked full-width ahead of the buying column, on the
+          page where the public PDP had already been fixed. Same gallery as the public
+          page now (thumbnail rail, snap strip, enlarge), and `pdp__head` so the phone
+          lifts the name above the frames. The buying column follows the strip.
+        */}
+        <PdpGallery
+          frames={product.media.map((media, index) => ({
+            id: `frame-${product.slug}-${index}`,
+            image: media,
+            label: index === 0 ? 'Front' : index === 1 ? 'Second view' : `View ${index + 1}`,
+          }))}
+        />
 
         <div className="stack">
-          <div>
+          <div className="pdp__head">
             <h1 className="pdp__title">{product.displayName}</h1>
             <p className="spec-name">{product.specName}</p>
             <div className="badge-row">
@@ -75,31 +83,38 @@ export default async function TradeProductPage({ params }: { params: Promise<Par
 
           <WholesalePricePanel product={product} />
 
-          <PrepackTable prepack={product.wholesale.prepack} />
-
+          {/* The action directly under the price; the pack breakdown is the reference
+              beneath it. The quantity field already says how many units a pack holds. */}
           <AddToOrder product={product} returnTo="/trade/order" />
+
+          <PrepackTable prepack={product.wholesale.prepack} />
 
           {product.wholesale.stockBySize.length > 0 ? (
             <section aria-labelledby="stock-heading">
               <h2 className="eyebrow" id="stock-heading">
                 Stock by size
               </h2>
+              {/* Same shape as the pack run above it: sizes across, one row of numbers. */}
               <div className="table-scroll">
-                <table>
+                <table className="prepack">
                   <caption>Units currently available by size</caption>
                   <thead>
                     <tr>
                       <th scope="col">Size</th>
-                      <th scope="col">Units</th>
+                      {product.wholesale.stockBySize.map((row) => (
+                        <th scope="col" key={row.size}>
+                          {row.size}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    {product.wholesale.stockBySize.map((row) => (
-                      <tr key={row.size}>
-                        <th scope="row">{row.size}</th>
-                        <td>{row.units}</td>
-                      </tr>
-                    ))}
+                    <tr>
+                      <th scope="row">Units</th>
+                      {product.wholesale.stockBySize.map((row) => (
+                        <td key={row.size}>{row.units}</td>
+                      ))}
+                    </tr>
                   </tbody>
                 </table>
               </div>
