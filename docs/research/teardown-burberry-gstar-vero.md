@@ -323,3 +323,47 @@ Two things caught building it. The fieldset's first child is its `<legend>`, so
 `nth-of-type`, found by the browser suite before a human. And the tempting fallback for
 old browsers — hide by default, show-all under `@supports not selector(:has(a))` — hides
 every garment on any browser old enough to lack `selector()` as well. Fail open.
+
+### 4.4 Fifth to ninth passes — the shop surfaces and the phone, 2026-09-12
+
+The homepage done, the same probe went to the surfaces that sell, on a phone, where this
+audience is. Each row is a measurement that was wrong and the number it became.
+
+| Surface · measure | Was | Now | Reference |
+| :--- | ---: | ---: | ---: |
+| PDP · gallery column (desktop) | 3,393 px — two frames and two empty placeholder boxes | **1,488 px**, no placeholders | Tecovas 8 frames |
+| PDP · page (desktop) | 8,688 px | **6,016 px** | 4,984 |
+| PDP · title on a phone | 1,535 px (1.9 screens) — behind an aria-hidden "arrival" band | **226 px** (0.28) | |
+| PDP · wholesale action on a phone | 2,055 px (2.5 screens) | **1,127 px** (1.4) | |
+| Listing · first product on a phone | 1,052 px (1.3 screens) — a 58vh hero for the word "Women" | **775 px** (0.95) | Burberry has no hero |
+| Listing · title | 68 px, the largest type on any shop surface | **26–40 px** | Burberry 24 |
+| Application · first field on a phone | 1,065 px (1.3 screens) — a 370 px "unlocks" panel above the form | **719 px** (0.89) | |
+| Homepage · link garden on a phone | 1,674 px — three 4:3 tiles stacked | **908 px** — a list | |
+| Homepage · chain summary on a phone | 1,251 px — five stages stacked | **663 px** — one scrolling row | |
+| Homepage · phone, full page | 10,080 px | **8,727 px** | |
+
+Three findings were not layout.
+
+**The demonstration had the better product page.** `/mens/[slug]`, the demo of a line the
+owner has not decided to sell, shipped a proper gallery — snap strip, named thumbnails,
+`:target` enlarge, "no placeholder slots padding the count". The real catalogue's PDP
+shipped a stack with two 839 px boxes labelled "Detail crop" and "Back view". The gallery
+now serves both; the placeholders are gone, not softened — a slot is a filename now.
+
+**Prefetch is page weight.** Reaching the bottom of any page on a phone fetched eleven
+routes nobody had tapped (453 KB), and every page fetched the homepage's 126 KB payload
+on load because the wordmark is always in view. Rule, now a Playwright assertion
+(`e2e/09-prefetch-budget`): a link toward a purchase may prefetch; a directory link —
+footer, link garden, wordmark, breadcrumb home — is read, not pre-loaded. And the 1.8 MB
+background film moved from `preload="auto"` to `metadata`, with Data Saver and 2G
+consulted before `play()` — the demotion §10 permits.
+
+**Nobody had watched the campaign film.** Its poster was the black fade-in frame; its
+season name had been removed as "invented vocabulary". The frames carry "EXPLORE OUR FALL
+COLLECTION 2026" and the house's own longhorn mark. The name is back, the poster is a
+frame with garments in it. A prohibition on inventing a cliché is not a prohibition on
+the brand's own logo.
+
+One measurement was an artefact: the pane's viewport emulation makes the preload scanner
+fetch both `<picture>` posters. A Playwright device context fetches one. Verified before
+"fixing"; not fixed.
