@@ -6,7 +6,6 @@ import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { AVAILABILITY_LABELS } from '@/domain/product'
 import type { PublicProduct } from '@/domain/product'
 import { findCategory } from '@/domain/taxonomy'
-import { MediaSlot } from '@/ui/media-slot'
 import { PdpGallery } from '@/ui/pdp/gallery'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard } from '@/ui/product-card'
@@ -359,22 +358,16 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         </section>
 
         {/*
-          SEE IT MOVE — the reserved film slot. Every strong reference carries garment
-          motion on the product page; the container ships now, at the portrait ratio the
-          owner's footage should arrive in, and says plainly what belongs in it.
+          NO "SEE IT MOVE" SECTION UNTIL SOMETHING MOVES.
+
+          A section by that name stood here with one thing in it: a dashed 9:16 box reading
+          "<garment> in motion — film slot". A heading that promises motion over a labelled
+          rectangle is a worse product page than no section — it tells a buyer the house
+          wanted to show them something and could not. D-11 asks whether any garment film
+          exists; the answer today is no. When it does, it arrives as `kind: 'video'` in
+          `product.media` and the gallery carries it as a frame, with a poster and a pause
+          control, where a buyer inspecting the garment is already looking.
         */}
-        <section className="section--tight" aria-labelledby="motion-slot-heading">
-          <h2 className="eyebrow" id="motion-slot-heading">
-            See it move
-          </h2>
-          <div className="pdp-motion">
-            <MediaSlot
-              label={`${product.displayName} in motion — film slot`}
-              aspectRatio="9 / 16"
-              kind="video"
-            />
-          </div>
-        </section>
 
         {frontier && related.length > 0 ? (
           <section className="section" aria-labelledby="related-heading">
