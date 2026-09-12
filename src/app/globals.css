@@ -3661,6 +3661,131 @@ tfoot td {
    rather than spending a second band on it
    (docs/research/teardown-burberry-gstar-vero.md §1.2). Same links, same photography,
    one band. */
+/* ── THE LINE — second shop rail with a native segmented control ──────────────────────
+   Three radios, three labels, three panels. `:checked` on the nth input reveals the nth
+   panel through the sibling combinator — no script, so a script failure cannot hide a
+   garment. Without CSS every panel renders; that is the intended failure. */
+.line-rail__switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  border: 0;
+}
+
+.line-rail__option {
+  position: relative;
+  display: inline-flex;
+}
+
+/* The input stays in the page, transparent, exactly over its label: one element takes the
+   click, the tap, the focus and the 44 px measurement (the marquee's control does the
+   same). Hiding it with display:none would drop it from the tab order. */
+.line-rail__state {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.line-rail__option label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--rule-strong);
+  background: var(--surface-raised);
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+}
+
+.line-rail__state:checked + label {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--text-on-inverse);
+}
+
+.line-rail__state:focus-visible + label {
+  outline: 2px solid var(--color-tobacco);
+  outline-offset: 2px;
+}
+
+/* FAIL OPEN. The default is every panel visible; only a browser that can evaluate
+   `:has()` is allowed to hide the unselected ones. The tempting inverse — hide by default,
+   reveal on `:has`, show-all under `@supports not selector(:has(a))` — hides every garment
+   on any browser old enough to lack `selector()` in @supports as well. A product may never
+   depend on a selector to be seen. */
+.line-rail__panel {
+  display: block;
+}
+
+@supports selector(:has(a)) {
+  .line-rail__panel {
+    display: none;
+  }
+
+  /* The fieldset is the inputs' parent, so the chain runs from the fieldset: :has() names
+     which radio is on, the sibling combinator reaches the panels. `nth-of-type`, not
+     `nth-child` — the fieldset's first child is its <legend>, so by child count the first
+     option is the second child and no panel ever matched. Caught in the browser suite. */
+  .line-rail__switch:has(.line-rail__option:nth-of-type(1) .line-rail__state:checked)
+    ~ .line-rail__panels
+    > .line-rail__panel:nth-child(1),
+  .line-rail__switch:has(.line-rail__option:nth-of-type(2) .line-rail__state:checked)
+    ~ .line-rail__panels
+    > .line-rail__panel:nth-child(2),
+  .line-rail__switch:has(.line-rail__option:nth-of-type(3) .line-rail__state:checked)
+    ~ .line-rail__panels
+    > .line-rail__panel:nth-child(3),
+  .line-rail__switch:has(.line-rail__option:nth-of-type(4) .line-rail__state:checked)
+    ~ .line-rail__panels
+    > .line-rail__panel:nth-child(4) {
+    display: block;
+  }
+}
+
+/* One row. Each cell is a fixed fraction of the strip so the row never wraps; the strip
+   scrolls natively and snaps to cell starts. Scrollbar stays visible for the mouse user
+   the rail's arrows also serve. */
+.line-rail__strip {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--space-3);
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.line-rail__strip > li {
+  flex: 0 0 70vw;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 48rem) {
+  .line-rail__strip > li {
+    flex-basis: calc((100% - 2 * var(--space-3)) / 3);
+  }
+}
+
+@media (min-width: 62rem) {
+  .line-rail__strip > li {
+    flex-basis: calc((100% - 3 * var(--space-3)) / 4);
+  }
+}
+
+.line-rail__all {
+  margin: var(--space-5) 0 0;
+}
+
 /* ── WAYS IN — the front page's link garden ──────────────────────────────────────────
    Category tiles reuse the taxonomy classes above; below them, the rest of the house as a
    column of plain links. Burberry's closing band is exactly this shape: photographs, then

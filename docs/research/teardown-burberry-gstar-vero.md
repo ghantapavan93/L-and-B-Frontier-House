@@ -289,3 +289,37 @@ sheet, carrying garments the sheet does not.
 
 Every band moved took a `heading` prop with it so it renders `h1` on its own route and
 `h2` as a band; sub-headings follow one level under. Nothing was deleted.
+
+### 4.3 Fourth pass — the second rail, 2026-09-12
+
+Owner-directed: build the second shop rail. It is Burberry §1.2's second rail translated,
+not copied — a different grouping from the first, with the switch inside the band.
+
+**"Beyond this week."** Every garment the sheet does not carry, grouped by the shippable
+taxonomy (Women · Girls · Accessories), one scrolling row per group, a native radio group
+as the segmented control. No JavaScript decides what shows: `:checked` on the nth input
+reveals the nth panel through `:has()`, and the default — for any browser that cannot
+evaluate `:has()` — is every panel visible. A product may never depend on a selector to be
+seen. The row itself is the existing `ScrollRail`: native overflow with snap, arrows and a
+progress bar only when the element upgrades.
+
+| | Third pass | **Fourth** | Burberry |
+| :--- | ---: | ---: | ---: |
+| Product bands | 1 | **2** | 2 |
+| Distinct garments on the page | 9 | **21 of 22** | 16 |
+| Document height @ 1440 | 7,868 | **9,126 px** | 6,150 |
+| Screens @ 900 | 8.7 | **10.1** | 6.8 |
+| First product link | 808 | **808 px** | ≈ 836 |
+| Second rail height | — | 1,257 px | 629 px |
+
+The page gained 1,258 px and twelve garments. As a grid the rail measured 1,829 px — three
+times the reference for the same product — which is the measurement that made it a rail:
+one row, scrolling, is what the word means. What remains of the height gap is the house's
+own section rhythm (120 px each side) plus the switch and the "all N" line; that is the
+band's cost, not padding to trim.
+
+Two things caught building it. The fieldset's first child is its `<legend>`, so
+`.line-rail__option:nth-child(1)` never matched an option and no panel ever showed —
+`nth-of-type`, found by the browser suite before a human. And the tempting fallback for
+old browsers — hide by default, show-all under `@supports not selector(:has(a))` — hides
+every garment on any browser old enough to lack `selector()` as well. Fail open.

@@ -12,6 +12,7 @@ import { HouseStrip } from '@/ui/house-strip'
 import { FixtureNotice } from '@/ui/notices'
 import { EditorialMedia } from '@/ui/product-media'
 import { ThreadToTrade } from '@/ui/thread-to-trade'
+import { LineRail } from '@/ui/line-rail'
 import { WaysIn } from '@/ui/ways-in'
 
 /**
@@ -31,6 +32,22 @@ export default async function HomePage() {
   const frontier = frontierEnabled()
   const newest = await listPublicProducts({ sort: 'newest' })
   const sheet = newest.slice(0, 9)
+
+  /*
+    The second rail carries what the first does not. Every garment in the sheet is
+    excluded from every panel, so the two rails together put the most distinct product on
+    the front page the catalogue allows — the reference's two rails are two different
+    groupings, never the same eight twice.
+  */
+  const inSheet = new Set(sheet.map((product) => product.slug))
+  const line = navigableCategories().map((category) => {
+    const all = newest.filter((product) => product.categorySlug === category.slug)
+    return {
+      category,
+      products: all.filter((product) => !inSheet.has(product.slug)).slice(0, 8),
+      total: all.length,
+    }
+  })
 
   const hero = officialMediaForSlot(
     'homepage-hero',
@@ -121,6 +138,13 @@ export default async function HomePage() {
       <FitGateway />
 
       <HouseMarquee />
+
+      {/*
+        The second shop rail. Story · shop · story · shop: the sheet was the first, the fit
+        gateway and the marquee sat between, and this is the second — different garments,
+        grouped by the shippable taxonomy, with the switch inside the rail.
+      */}
+      <LineRail panels={line} />
 
       {/*
         The five-column summary says the verified fact in one band. The journey — five

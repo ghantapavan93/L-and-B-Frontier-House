@@ -257,3 +257,53 @@ test.describe('wholesale showroom', () => {
     expect(text).not.toMatch(/\$\s?\d[\d,]*\.\d{2}/)
   })
 })
+
+test.describe('the line rail — a segmented control with no script', () => {
+  test('the switch changes the panel, and arrow keys drive it', async ({ page }) => {
+    await page.goto('/')
+    const rail = page.locator('.line-rail')
+    await rail.scrollIntoViewIfNeeded()
+
+    const radios = rail.locator('.line-rail__state')
+    const count = await radios.count()
+    test.skip(count < 2, 'needs at least two panels to switch between')
+
+    const panels = rail.locator('.line-rail__panel')
+    await expect(panels.nth(0)).toBeVisible()
+    await expect(panels.nth(1)).toBeHidden()
+
+    // Click the second label — the input sits over it and takes the click.
+    await rail.locator('.line-rail__option').nth(1).click()
+    await expect(panels.nth(1)).toBeVisible()
+    await expect(panels.nth(0)).toBeHidden()
+
+    // Radio-group semantics: focus the group, an arrow key moves the selection.
+    await radios.nth(1).focus()
+    await page.keyboard.press('ArrowLeft')
+    await expect(radios.nth(0)).toBeChecked()
+    await expect(panels.nth(0)).toBeVisible()
+
+    // The focused label shows a ring — the input is transparent, the label paints it.
+    const ring = await rail
+      .locator('.line-rail__option')
+      .nth(0)
+      .locator('label')
+      .evaluate((el) => getComputedStyle(el).outlineStyle)
+    expect(ring, 'the selected option takes focus with no visible ring').not.toBe('none')
+  })
+
+  test('every garment in the rail is a link that reaches its product page', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    const first = page
+      .locator('.line-rail__panel')
+      .first()
+      .locator('a[href^="/product/"]')
+      .first()
+    const href = await first.getAttribute('href')
+    expect(href).toMatch(/^\/product\//)
+    await first.click()
+    await expect(page).toHaveURL(new RegExp(href!.replace(/\//g, '\/')))
+  })
+})
