@@ -7,9 +7,9 @@ import { AVAILABILITY_LABELS } from '@/domain/product'
 import type { PublicProduct } from '@/domain/product'
 import { findCategory } from '@/domain/taxonomy'
 import { MediaSlot } from '@/ui/media-slot'
+import { PdpGallery } from '@/ui/pdp/gallery'
 import { FixtureNotice } from '@/ui/notices'
 import { ProductCard } from '@/ui/product-card'
-import { ProductMedia } from '@/ui/product-media'
 import { ProofStrip } from '@/ui/proof-strip'
 import { SizeAndFitTable } from '@/ui/size-and-fit-table'
 import { WholesaleGate } from '@/ui/wholesale'
@@ -190,31 +190,34 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         </nav>
 
         <div className="pdp">
-          <div className="pdp__gallery">
-            {product.media.map((media, index) => (
-              <div className="pdp__media" key={media.id}>
-                <ProductMedia
-                  media={media}
-                  priority={index === 0}
-                  /* The card's photograph morphs into this one on arrival. */
-                  {...(index === 0 ? { transitionName: `p-${product.slug}` } : {})}
-                />
-              </div>
-            ))}
-            {/*
-              The gallery STRUCTURE the references run, ahead of the photography that fills
-              it. Sézane carries forty images per product; this catalogue carries one. Two
-              reserved slots make the multi-angle layout true today and give the owner named
-              boxes to paste into — detail crop and back view are the two angles every
-              reference PDP carries that ours cannot yet.
-            */}
-            <div className="pdp__media">
-              <MediaSlot label="Detail crop — stitch, hardware or print" aspectRatio="2 / 3" />
-            </div>
-            <div className="pdp__media">
-              <MediaSlot label="Back view" aspectRatio="2 / 3" />
-            </div>
-          </div>
+          {/*
+            THE GALLERY THE DEMONSTRATION HAD, GIVEN TO THE PRODUCTS THAT PAY.
+
+            This was a vertical stack of the catalogue's frames followed by two empty
+            placeholder boxes — "Detail crop", "Back view" — reserved for photography
+            that does not exist. Two frames of product and two 839 px boxes of nothing:
+            the gallery measured 3,393 px, and a buyer scrolled past a screen and a half
+            of labelled emptiness to reach the anatomy. Meanwhile /mens/[slug], the
+            demonstration of a line the owner has not decided to sell, shipped a proper
+            gallery: snap strip, named thumbnails, an enlarged view, no placeholders. The
+            line that does not exist had the better product page. That is exactly the
+            drift the constitution warns about, one reasonable band at a time.
+
+            The placeholders are gone, and not softened. The reserved-box argument — the
+            owner needs named boxes to paste into — is answered better by the shot list:
+            a slot is a FILENAME now (docs/assets/LB_MENSWEAR_PHOTOGRAPHY_BRIEF.md §6),
+            and a frame that arrives named appears here without touching this file. An
+            empty frame on a public product page is a promise the catalogue has not kept.
+          */}
+          <PdpGallery
+            frames={product.media.map((media, index) => ({
+              id: `frame-${product.slug}-${index}`,
+              image: media,
+              label: index === 0 ? 'Front' : index === 1 ? 'Second view' : `View ${index + 1}`,
+              /* The card's photograph morphs into the first frame on arrival. */
+              ...(index === 0 ? { transitionName: `p-${product.slug}` } : {}),
+            }))}
+          />
 
           <div className="stack">
             <div>

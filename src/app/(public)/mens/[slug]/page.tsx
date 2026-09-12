@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
 import type { DemoProduct } from '@/fixtures/mens-demo'
-import { PdpGallery } from '@/ui/pdp/gallery'
+import { fromDemoImage, PdpGallery } from '@/ui/pdp/gallery'
 import type { GalleryImage } from '@/ui/pdp/gallery'
 import { PdpAnatomy, PdpStory, PdpWorn } from '@/ui/pdp/sections'
 
@@ -60,7 +60,7 @@ function galleryFrames(product: DemoProduct): GalleryImage[] {
   const names = ['Front', 'Worn', 'Detail', 'In context', 'Alternate']
   return product.media.map((image, index) => ({
     id: `frame-${product.slug}-${index}`,
-    image,
+    image: fromDemoImage(image),
     label: names[index] ?? `View ${index + 1}`,
   }))
 }

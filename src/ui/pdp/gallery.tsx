@@ -17,34 +17,69 @@ import type { DemoImage } from '@/fixtures/mens-demo'
  * padding the count, because an empty frame is a promise the catalogue has not kept.
  */
 
+/**
+ * What one frame needs to render. Deliberately the intersection of the catalogue's
+ * `MediaRef` and the demo fixture's `DemoImage`, so the same gallery serves both — the
+ * demonstration line had this gallery first, and the real catalogue was rendering a stack
+ * with placeholder boxes. The gallery is for the products that pay; the demo borrows it.
+ */
+export type GalleryMedia = {
+  readonly poster: string
+  readonly alt: string
+  /** Responsive encodings, in preference order. Absent → the poster alone. */
+  readonly sources?: readonly { readonly type: string; readonly srcSet: string }[]
+  readonly intrinsicWidth?: number
+  readonly intrinsicHeight?: number
+}
+
 export type GalleryImage = {
   readonly id: string
-  readonly image: DemoImage
+  readonly image: GalleryMedia
   /** Short view name: Front, Back, Detail, Worn. Announced with the thumbnail. */
   readonly label: string
+  /** View-transition name for the first frame, so a card's photograph morphs into it. */
+  readonly transitionName?: string
+}
+
+/** The demo fixture's shape, mapped to the gallery's. */
+export function fromDemoImage(image: DemoImage): GalleryMedia {
+  const { asset, alt } = image
+  return {
+    poster: asset.poster,
+    alt,
+    sources: [
+      { type: 'image/avif', srcSet: asset.avifSrcSet },
+      { type: 'image/webp', srcSet: asset.webpSrcSet },
+    ],
+    intrinsicWidth: asset.intrinsicWidth,
+    intrinsicHeight: asset.intrinsicHeight,
+  }
 }
 
 function Picture({
   image,
   sizes,
   loading = 'lazy',
+  transitionName,
 }: {
-  image: DemoImage
+  image: GalleryMedia
   sizes: string
   loading?: 'lazy' | 'eager'
+  transitionName?: string | undefined
 }) {
-  const { asset, alt } = image
   return (
     <picture>
-      <source type="image/avif" srcSet={asset.avifSrcSet} sizes={sizes} />
-      <source type="image/webp" srcSet={asset.webpSrcSet} sizes={sizes} />
+      {(image.sources ?? []).map((source) => (
+        <source key={source.type} type={source.type} srcSet={source.srcSet} sizes={sizes} />
+      ))}
       <img
-        src={asset.poster}
-        alt={alt}
-        width={asset.intrinsicWidth}
-        height={asset.intrinsicHeight}
+        src={image.poster}
+        alt={image.alt}
+        width={image.intrinsicWidth}
+        height={image.intrinsicHeight}
         loading={loading}
         decoding="async"
+        style={transitionName ? { viewTransitionName: transitionName } : undefined}
       />
     </picture>
   )
@@ -85,6 +120,7 @@ export function PdpGallery({ frames }: { frames: readonly GalleryImage[] }) {
                 image={frame.image}
                 sizes="(min-width: 62rem) 46vw, 100vw"
                 loading={index === 0 ? 'eager' : 'lazy'}
+                transitionName={frame.transitionName}
               />
               {/* One accessible name, not two — the audit caught this pair computing
                   to "EnlargeEnlarge the front view". */}
