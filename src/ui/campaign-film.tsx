@@ -3,11 +3,20 @@ import { PLATE_CAMPAIGN_BACKDROP, PLATE_MARKER } from '@/content/media/frontier-
 /**
  * THE CAMPAIGN STAGE — the house's own film, staged.
  *
- * NOTE ON THE NAME: this section shipped as "Fall Collection 2026". That season name was
- * ours, not the owner's — their file arrived as `video_6a36d58ece9146.64769701.mp4`, and
- * nothing in the corpus establishes that L&B names seasons at all. Invented brand
- * vocabulary is exactly what §12 forbids, so the name is gone. The runtime stays: the file
- * measures 18.0s at 1350×1200.
+ * NOTE ON THE NAME, CORRECTED 2026-09-12: this section shipped as "Fall Collection 2026",
+ * then lost the name on the reasoning that it was ours — the file arrived as
+ * `video_6a36d58ece9146.64769701.mp4` and the corpus never showed L&B naming seasons.
+ * Nobody had watched the film. Its own frames carry "EXPLORE OUR FALL COLLECTION 2026"
+ * burned in from second three to second sixteen, and it opens and closes on the house's
+ * longhorn mark with "LUCKY & BLESSED" beneath. The season name is the owner's, in the
+ * owner's own footage — Level 1 — and it is back. The file measures 18.0s at 1350×1200.
+ *
+ * THE POSTER, same day: it was the fade-in frame — black, the logo still blurred, a sliver
+ * of hay bale at the edge — which carried nothing and is what every iOS Low Power Mode
+ * visitor saw in place of the film. It is now the frame at eleven seconds: two looks, the
+ * denim legible, the owner's caption, the split-screen seam in the centre where a forced
+ * play glyph lands on nothing. Extracted from the film itself, so it claims nothing the
+ * film does not.
  *
  * The owner asked for the reference "scroll-expansion" treatment: a cinematic backdrop
  * that recedes while the film grows and starts on its own. The reference does it by
@@ -87,7 +96,7 @@ export function CampaignFilm({ heading: Heading = 'h2' }: { heading?: HeadingLev
       <div className="container campaign-stage__inner">
         <div className="section-head">
           <div>
-            <p className="eyebrow">The campaign</p>
+            <p className="eyebrow">Fall Collection 2026 · the house&rsquo;s own film</p>
             <Heading id="campaign-film-heading">The house, on film</Heading>
             {/* The old line promised "plays on your click, never by itself" — no longer
                 true, so it does not ship. The new line says exactly what happens. */}
