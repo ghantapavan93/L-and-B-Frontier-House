@@ -32,6 +32,8 @@ export const PUBLIC_ROUTES = [
   '/denim-guide',
   '/calendar',
   '/warehouse',
+  '/film',
+  '/thread-to-trade',
   '/edit/working-west',
   '/edit/rodeo-edit',
   `/product/${PRODUCT_SLUG}`,

@@ -25,6 +25,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/denim-guide',
     '/calendar',
     '/warehouse',
+    '/film',
+    '/thread-to-trade',
   ].map((path) => ({
     url: `${base}${path}`,
     changeFrequency: 'daily' as const,

@@ -130,9 +130,9 @@ test.describe('public surfaces — desktop', () => {
     await expect(page).toHaveScreenshot('desktop-homepage-opening.png')
   })
 
-  test('homepage — the collection grid', async ({ page }) => {
-    await page.goto('/')
-    await shootRegion(page, '.worlds', 'desktop-homepage-collections')
+  test('mens — the collection index', async ({ page }) => {
+    await page.goto('/mens')
+    await shootRegion(page, '.worlds', 'desktop-mens-collections')
   })
 
   test('homepage — the marquee', async ({ page }) => {

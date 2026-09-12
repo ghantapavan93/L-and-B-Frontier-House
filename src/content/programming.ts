@@ -162,15 +162,31 @@ function inWindow(entry: ProgrammingEntry, onDate: string): boolean {
 }
 
 /**
+ * The date programming is rendered against.
+ *
+ * Production: today, resolved at build time because public pages are statically
+ * prerendered — a window edge takes effect on the next revalidation.
+ *
+ * Test builds: `LB_RENDER_DATE`, pinned. Without it, every visual baseline silently
+ * expires on the day a programming window closes: the Dallas Market bar (Aug 18–21) gave
+ * way to "This week's drop" on Aug 22, the promo bar lost a line, every full-page mobile
+ * screenshot shifted 32 px, and five routes nobody had touched failed at 15% pixel
+ * difference. A screenshot of the calendar is not a screenshot of the code. The build
+ * scripts that feed the suites set this; nothing else should.
+ */
+function renderDate(): string {
+  return process.env['LB_RENDER_DATE'] ?? new Date().toISOString().slice(0, 10)
+}
+
+/**
  * Entries fit to render today: live, verified, inside their window.
  *
- * `onDate` defaults to the render date. Public pages are statically prerendered, so in
- * production this resolves at build time and a window edge takes effect on the next
- * revalidation — the operational note is in the progress report. Tests pass a fixed date.
+ * `onDate` defaults to the render date (see `renderDate`). Unit tests pass a fixed date
+ * explicitly.
  */
 export function liveProgramming(
   kind?: ProgrammingKind,
-  onDate: string = new Date().toISOString().slice(0, 10),
+  onDate: string = renderDate(),
   /*
     AUDIENCE DEFAULTS TO PUBLIC, AND THAT DEFAULT IS THE POINT.
 

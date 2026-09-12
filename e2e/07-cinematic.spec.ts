@@ -185,11 +185,11 @@ test.describe('contact-sheet stories', () => {
   })
 })
 
-test.describe('product worlds', () => {
+test.describe("product worlds — the men's collection index", () => {
   test('the four collection tiles are whole-tile links into the labelled demonstration', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/mens')
 
     /*
       The worlds are the men's COLLECTIONS now (owner-directed, 2026-08-08): a two-column
@@ -214,7 +214,7 @@ test.describe('product worlds', () => {
   })
 
   test('the collection grid is reachable and operable by keyboard', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/mens')
 
     const denim = page.locator('#world-denim a')
     await denim.focus()
@@ -230,7 +230,7 @@ test.describe('product worlds', () => {
   test('the cinematic homepage still has no horizontal overflow on mobile', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/mens')
     const overflow = await page.evaluate(() => {
       window.scrollTo(999_999, 0)
       const x = window.scrollX

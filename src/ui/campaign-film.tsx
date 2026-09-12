@@ -52,7 +52,15 @@ else if(!v.paused){v.pause()}
 io.observe(v);
 })();`
 
-export function CampaignFilm() {
+/**
+ * A band's heading is an `h2` when it sits among other bands and an `h1` when the band IS
+ * the page. The route decides; the markup stays otherwise identical. Without this, a
+ * surface promoted to its own URL ships with no level-one heading — which axe reports,
+ * the landmark suite fails on, and a screen-reader user notices first.
+ */
+type HeadingLevel = 'h1' | 'h2'
+
+export function CampaignFilm({ heading: Heading = 'h2' }: { heading?: HeadingLevel } = {}) {
   const backdrop = PLATE_CAMPAIGN_BACKDROP
   return (
     <section className="campaign-stage" aria-labelledby="campaign-film-heading">
@@ -80,7 +88,7 @@ export function CampaignFilm() {
         <div className="section-head">
           <div>
             <p className="eyebrow">The campaign</p>
-            <h2 id="campaign-film-heading">The house, on film</h2>
+            <Heading id="campaign-film-heading">The house, on film</Heading>
             {/* The old line promised "plays on your click, never by itself" — no longer
                 true, so it does not ship. The new line says exactly what happens. */}
             <p className="meta">

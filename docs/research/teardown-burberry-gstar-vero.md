@@ -221,3 +221,43 @@ the measurement is now on record so the question does not get reopened by a scre
 Not applied: autoplaying hero film (§1.4 shows the reference does not either), multiple
 `<h1>` per page (§1.5), GSAP (§2.1 — the reference does not use it for the story), any
 WebGL or GLB (§3), accessibility overlays (§2.1).
+
+### 4.1 Second pass — measured honestly, 2026-09-11
+
+The first pass above claimed the homepage was "compressed to a story · shop · story · shop
+rhythm". Re-running §0's probe against the build said otherwise: **22,241 px, 24.7 screens,
+18 bands, and the first product link 6,589 px down** — seven screens of the house before a
+single garment. The comments said density; the page was still length.
+
+The fix was structural rather than cosmetic. The constitution's own rule — *most visitors
+arrive into the middle of this journey; every surface must stand alone* (§6) — means the
+approved journey is a set of surfaces, and the homepage had been built as all of them
+stacked. So:
+
+| Band | Was | Now |
+| :--- | :--- | :--- |
+| The house, on film + Shot like a film | 2,139 px, second and ninth on the front page | **`/film`** — its own route |
+| One chain, end to end (the five-stage journey) | 3,450 px, fourteenth | **`/thread-to-trade`** — its own route; the front page keeps the one-band summary |
+| Four worlds (the men's collection index) | 2,141 px, third, above any buyable garment | **on `/mens`**, where its four anchors already resolved |
+| One garment. One size range. | 979 px | removed — the Fit Gateway carries the link |
+| This week's sheet | tenth band | **second band**, under the hero, where Burberry puts theirs |
+| This week (five frames) | newest[0..5] — the same garments as the sheet | newest[9..14] — the *next* five |
+
+| | Before | After | Burberry |
+| :--- | ---: | ---: | ---: |
+| Document height @ 1440 | 22,241 px | **14,477 px** | 6,150 px |
+| Screens @ 900 px | 24.7 | **16.1** | 6.8 |
+| Top-level bands | 18 | **15** | 7 |
+| First product link | 6,589 px · 7.3 screens | **808 px · 0.9 screens** | ≈ 836 px |
+| Distinct garments on the page | 9 | **14** | 16 |
+
+The first-product number is the one that matters and it now matches the reference. The
+page is still 2.4× Burberry's length; the remaining weight is the four story bands
+(material wall 1,834 · choose your west 1,771 · this week 1,553 · worn plainly 1,269) and
+that is the next honest cut, not a reason to pretend this one finished the job.
+
+Two things the move surfaced. The promoted bands shipped with no `<h1>` — they were built
+as sections — so both components take a `heading` level now and the route decides. And
+five mobile visual baselines on routes nobody had touched failed at 15% difference,
+because the promo bar's programming window had closed by calendar: the build clock is
+now pinned for test builds (`LB_RENDER_DATE`, `npm run build:pinned`).

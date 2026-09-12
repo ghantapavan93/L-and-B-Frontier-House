@@ -33,7 +33,7 @@ test.describe('with JavaScript disabled', () => {
   })
 
   test('film surfaces degrade to click-to-play with native controls', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/film')
 
     // No script ran, so nothing may autoplay and no script-revealed toggle may show.
     const campaign = page.locator('[data-campaign-film]')

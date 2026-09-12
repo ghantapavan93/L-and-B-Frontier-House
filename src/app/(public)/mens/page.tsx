@@ -14,6 +14,7 @@ import {
   MENS_DEMO_PRODUCTS,
 } from '@/fixtures/mens-demo'
 import type { DemoImage, DemoProduct } from '@/fixtures/mens-demo'
+import { ProductWorlds } from '@/ui/product-worlds'
 
 /**
  * MEN'S — the Frontier House demonstration surface.
@@ -232,6 +233,17 @@ export default function MensPage() {
           </p>
           <p className="mens-hero__badge">Demonstration · fixture data · no prices</p>
         </header>
+
+        {/*
+          THE COLLECTION INDEX, HOME AT LAST.
+
+          These four tiles spent their life on the public homepage as "Four worlds", 2,141
+          px of the front page given to a line the owner has not decided to sell, above the
+          first garment anyone could actually buy. Every tile already linked to an anchor
+          on THIS page. So they live here, where the anchors resolve in place and the tile
+          is what it always wanted to be — a table of contents for the racks below.
+        */}
+        <ProductWorlds />
 
         {MENS_DEMO_CATEGORIES.map((category) => {
           const rack = MENS_DEMO_PRODUCTS.filter((p) => p.category === category)

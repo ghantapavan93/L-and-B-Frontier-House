@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pinned": "node scripts/build-pinned.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -13,10 +14,10 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:unit": "vitest run --project unit",
-    "test:structural": "npm run build && vitest run --project structural",
-    "test:e2e": "npm run build && playwright test",
-    "test:e2e:update": "npm run build && playwright test --update-snapshots",
-    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run build && vitest run && playwright test",
+    "test:structural": "npm run build:pinned && vitest run --project structural",
+    "test:e2e": "npm run build:pinned && playwright test",
+    "test:e2e:update": "npm run build:pinned && playwright test --update-snapshots",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run build:pinned && vitest run && playwright test",
     "import:media": "node --experimental-strip-types scripts/import-official-media.ts",
     "media:optimize": "node --experimental-strip-types scripts/optimize-approved-media.ts"
   },

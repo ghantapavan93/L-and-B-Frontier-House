@@ -96,13 +96,25 @@ function StageMedia({
   )
 }
 
-export function ThreadToTradeJourney() {
+/**
+ * A band's heading is an `h2` when it sits among other bands and an `h1` when the band IS
+ * the page. The route decides; the markup stays otherwise identical. Without this, a
+ * surface promoted to its own URL ships with no level-one heading — which axe reports,
+ * the landmark suite fails on, and a screen-reader user notices first.
+ */
+type HeadingLevel = 'h1' | 'h2'
+
+export function ThreadToTradeJourney({
+  heading: Heading = 'h2',
+}: { heading?: HeadingLevel } = {}) {
+  // Stages sit one level under the band heading, wherever the band heading sits.
+  const Stage = Heading === 'h1' ? 'h2' : 'h3'
   return (
     <section className="container section journey" aria-labelledby="thread-heading">
       <div className="section-head">
         <div>
           <p className="eyebrow">Thread to trade</p>
-          <h2 id="thread-heading">One chain, end to end.</h2>
+          <Heading id="thread-heading">One chain, end to end.</Heading>
           <p className="lede">
             We own, operate and manage every area of the supply chain. Follow the thread from
             cloth to the boutique floor.
@@ -158,7 +170,7 @@ export function ThreadToTradeJourney() {
                 <span className="journey__index" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3>{stage.title}</h3>
+                <Stage>{stage.title}</Stage>
                 <p>{stage.body}</p>
                 <p className="journey__proof">{stage.proof}</p>
               </div>

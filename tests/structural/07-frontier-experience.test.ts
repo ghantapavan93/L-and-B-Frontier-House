@@ -80,8 +80,13 @@ describe('flag enabled (default) — cinematic specifics', () => {
     expect(body).toContain('Close story')
   })
 
-  it('replaces category cards with the four verified worlds — and only those', async () => {
-    const { body } = await get('/')
+  it("indexes the men's demonstration with the four collection tiles — and only those", async () => {
+    /*
+      The tiles moved from the homepage to /mens on 2026-09-11. They always linked to
+      anchors on /mens; the front page was carrying 2,141 px of a line the owner has not
+      decided to sell, above the first buyable garment. Same tiles, same guards, right page.
+    */
+    const { body } = await get('/mens')
 
     for (const world of [
       'world-denim',
@@ -105,7 +110,8 @@ describe('flag enabled (default) — cinematic specifics', () => {
   })
 
   it('renders the journey with honest planes and no invented place', async () => {
-    const { body } = await get('/')
+    // The five-stage journey has its own route now; the homepage keeps the summary.
+    const { body } = await get('/thread-to-trade')
 
     expect(body).toContain('journey__spine')
     expect(body).toContain('Photography pending — nothing real is depicted')
