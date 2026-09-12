@@ -4,19 +4,15 @@ import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { navigableCategories } from '@/domain/taxonomy'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
-import { populatedEdits } from '@/domain/edits'
 import { FitGateway } from '@/ui/fit-gateway'
-import { ChooseYourWest } from '@/ui/choose-your-west'
 import { ContactSheet } from '@/ui/contact-sheet'
 import { FrontierIgnition } from '@/ui/frontier-ignition'
 import { HouseMarquee } from '@/ui/house-marquee'
-import { MaterialWall } from '@/ui/material-wall'
-import { HouseStrip, SplitCampaign } from '@/ui/house-strip'
-import { MensChapter } from '@/ui/mens-chapter'
+import { HouseStrip } from '@/ui/house-strip'
 import { FixtureNotice } from '@/ui/notices'
 import { EditorialMedia } from '@/ui/product-media'
-import { ThisWeekBand } from '@/ui/this-week'
 import { ThreadToTrade } from '@/ui/thread-to-trade'
+import { WaysIn } from '@/ui/ways-in'
 
 /**
  * PUBLIC HOMEPAGE — cinematic, poster-first.
@@ -122,40 +118,28 @@ export default async function HomePage() {
         stories={frontier}
       />
 
-      <SplitCampaign />
-
       <FitGateway />
-
-      {/*
-        The making band carries six photographs now instead of one. Burberry runs eight
-        images in a 799px editorial band; this ran one in 726px, which is the whole density
-        gap in a single measurement (docs/research/teardown-burberry-gstar-vero.md §1.2).
-        The claim "legible at close range" is now made by the pictures rather than by the
-        sentence above them.
-      */}
-      <MaterialWall />
-
-      {/*
-        The second product band draws the NEXT five, not the same five. It and the sheet
-        used to overlap on newest[0..5] — two bands, nine distinct garments, five of them
-        shown twice. Burberry's two rails carry different product. Now fourteen distinct
-        garments reach the front page instead of nine, for no extra length.
-      */}
-      <ThisWeekBand products={newest.slice(9)} />
 
       <HouseMarquee />
 
-      {/* The demonstration, after the commerce it must never be mistaken for. */}
-      <MensChapter />
+      {/*
+        The five-column summary says the verified fact in one band. The journey — five
+        stages, a routing thread, a sticky chapter rail, 3,450 px of it — lives at
+        /thread-to-trade, where someone who wants it can arrive at it directly.
+      */}
+      <ThreadToTrade />
 
       {/*
-        Identity before taxonomy. Someone arriving from a search or a post is asking "is
-        this for me", and a row of category tiles cannot answer that. The category grid
-        still ships below — this is a way in, never a replacement for it.
+        FOUR BANDS BECAME ONE LINK GARDEN, AND EACH OF THE FOUR KEPT ITS PAGE.
+
+        The identity edits, the material wall, the five-frame drop and the two-frame
+        campaign story — 6,400 px between them — each said "here is a way in" at the length
+        of a destination. They are destinations now: /edit, /material, /film. What the front
+        page keeps is what Burberry keeps at the bottom of theirs — the category tiles and
+        a column of plain links — because a front page that has already shown fourteen
+        garments has done its job, and the rest of the house is one click, not one scroll.
       */}
-      <ChooseYourWest
-        edits={populatedEdits(newest)}
-        products={newest}
+      <WaysIn
         categories={navigableCategories().map((category) => ({
           ...category,
           /* Owner photography when it exists; a cleared material plate until then — an
@@ -165,25 +149,6 @@ export default async function HomePage() {
             CATEGORY_TILE_FALLBACK[category.slug],
         }))}
       />
-
-      {/*
-        The five-column summary says the verified fact in one band. The journey — five
-        stages, a routing thread, a sticky chapter rail, 3,450 px of it — lives at
-        /thread-to-trade now, where someone who wants it can arrive at it directly instead
-        of finding it on screen nineteen.
-      */}
-      <ThreadToTrade />
-      <section className="container section--tight" aria-label="The full chain">
-        <p className="meta">
-          <Link href="/thread-to-trade" className="text-link">
-            Walk the whole chain, stage by stage
-          </Link>
-          {' · '}
-          <Link href="/film" className="text-link">
-            The house, on film
-          </Link>
-        </p>
-      </section>
 
       {/* The door to the signature interaction: one aisle, every rack, native scroll. */}
       <section className="container section--tight" aria-labelledby="warehouse-heading">

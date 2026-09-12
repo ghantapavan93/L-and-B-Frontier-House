@@ -39,6 +39,8 @@ export function SiteHeader({ session }: { session?: Session }) {
     { href: '/warehouse', label: 'The Warehouse', note: 'Every rack, one aisle' },
     { href: '/film', label: 'The film', note: 'The house, on film' },
     { href: '/thread-to-trade', label: 'Thread to trade', note: 'One chain, end to end' },
+    { href: '/material', label: 'Close range', note: 'The weave, legible' },
+    { href: '/edit', label: 'The edits', note: 'Choose your west' },
     { href: '/denim-guide', label: 'Denim guide', note: 'The four cuts, side by side' },
     { href: '/calendar', label: 'The calendar', note: 'Markets, drops and campaigns' },
   ]

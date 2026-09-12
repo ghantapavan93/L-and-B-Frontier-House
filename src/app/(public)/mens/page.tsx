@@ -14,6 +14,7 @@ import {
   MENS_DEMO_PRODUCTS,
 } from '@/fixtures/mens-demo'
 import type { DemoImage, DemoProduct } from '@/fixtures/mens-demo'
+import { MensChapter } from '@/ui/mens-chapter'
 import { ProductWorlds } from '@/ui/product-worlds'
 
 /**
@@ -233,6 +234,17 @@ export default function MensPage() {
           </p>
           <p className="mens-hero__badge">Demonstration · fixture data · no prices</p>
         </header>
+
+        {/*
+          THE CHAPTER, THEN THE INDEX.
+
+          "The West, worn plainly" is the men's campaign story — a lead frame and an
+          inset. It spent its life on the public homepage, 1,269 px of a demonstration
+          line sat among the real catalogue, where the DEMONSTRATION marker had to work
+          hardest. Here it is what a fashion house's collection page opens with: the
+          story, then the table of contents, then the racks. Same frames, same marker.
+        */}
+        <MensChapter />
 
         {/*
           THE COLLECTION INDEX, HOME AT LAST.

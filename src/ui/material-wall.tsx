@@ -48,13 +48,19 @@ const MACROS = [
   { slug: 'embossed-leather', label: 'Leather' },
 ] as const
 
-export function MaterialWall() {
+/**
+ * A band's heading is an `h2` when it sits among other bands and an `h1` when the band IS
+ * the page. The route decides; the markup stays otherwise identical.
+ */
+type HeadingLevel = 'h1' | 'h2'
+
+export function MaterialWall({ heading: Heading = 'h2' }: { heading?: HeadingLevel } = {}) {
   return (
     <section className="container section material-wall" aria-labelledby="craft-heading">
       <div className="section-head">
         <div>
           <p className="eyebrow">The making</p>
-          <h2 id="craft-heading">Legible at close range.</h2>
+          <Heading id="craft-heading">Legible at close range.</Heading>
           <p className="lede">
             Buck stitch, pearl snaps, a swirl worked into the leg. The detail is the argument,
             so we photograph close enough that you can see the thread.

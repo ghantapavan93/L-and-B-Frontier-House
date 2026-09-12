@@ -261,3 +261,31 @@ as sections — so both components take a `heading` level now and the route deci
 five mobile visual baselines on routes nobody had touched failed at 15% difference,
 because the promo bar's programming window had closed by calendar: the build clock is
 now pinned for test builds (`LB_RENDER_DATE`, `npm run build:pinned`).
+
+### 4.2 Third pass — the story bands, 2026-09-11
+
+Owner-directed: cut the four story bands too. Each became a route; the front page keeps a
+link garden in Burberry's closing-band shape.
+
+| Band | Was | Now |
+| :--- | :--- | :--- |
+| Choose your west (identity edits + category row) | 1,771 px | **`/edit`** — the index above the `/edit/[slug]` pages that never had one |
+| Legible at close range (material wall) | 1,834 px | **`/material`** |
+| This week (five frames) + The house, in two frames | 1,553 + 949 px | **`/film`**, which is now the editorial surface in the reference's order: film · shop rail · story · film |
+| The West, worn plainly (the men's chapter) | 1,269 px | **`/mens`**, opening the demonstration between its title card and the collection index |
+
+| | First pass | Second | **Third** | Burberry |
+| :--- | ---: | ---: | ---: | ---: |
+| Document height @ 1440 | 22,241 | 14,477 | **7,868 px** | 6,150 |
+| Screens @ 900 | 24.7 | 16.1 | **8.7** | 6.8 |
+| Top-level bands | 18 | 15 | **10** | 7 |
+| First product link | 6,589 | 808 | **808 px** | ≈ 836 |
+| Distinct garments | 9 | 14 | **9** | 16 |
+
+Within 28% of the reference on length, matched on first-product. The honest gap now runs
+the other way: one product band against Burberry's two, nine garments against sixteen. The
+next move is not another cut — it is a second, *different* shop rail, as dense as the
+sheet, carrying garments the sheet does not.
+
+Every band moved took a `heading` prop with it so it renders `h1` on its own route and
+`h2` as a band; sub-headings follow one level under. Nothing was deleted.

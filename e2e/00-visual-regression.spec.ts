@@ -140,9 +140,9 @@ test.describe('public surfaces — desktop', () => {
     await shootRegion(page, '.marquee', 'desktop-homepage-marquee')
   })
 
-  test('homepage — the campaign story', async ({ page }) => {
-    await page.goto('/')
-    await shootRegion(page, '.story', 'desktop-homepage-story')
+  test('mens — the campaign story', async ({ page }) => {
+    await page.goto('/mens')
+    await shootRegion(page, '.story', 'desktop-mens-story')
   })
 
   test('homepage — the house strip', async ({ page }) => {

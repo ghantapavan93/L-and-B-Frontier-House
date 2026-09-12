@@ -34,6 +34,8 @@ export const PUBLIC_ROUTES = [
   '/warehouse',
   '/film',
   '/thread-to-trade',
+  '/material',
+  '/edit',
   '/edit/working-west',
   '/edit/rodeo-edit',
   `/product/${PRODUCT_SLUG}`,

@@ -49,11 +49,19 @@ function pickCover(products: readonly PublicProduct[], claimed: Set<string>) {
   return chosen
 }
 
+/**
+ * A band's heading is an `h2` when it sits among other bands and an `h1` when the band IS
+ * the page. The route decides; the markup stays otherwise identical.
+ */
+type HeadingLevel = 'h1' | 'h2'
+
 export function ChooseYourWest({
   edits,
   products,
   categories,
+  heading: Heading = 'h2',
 }: {
+  heading?: HeadingLevel
   edits: readonly Edit[]
   products: readonly PublicProduct[]
   /**
@@ -78,6 +86,8 @@ export function ChooseYourWest({
   }[]
 }) {
   if (edits.length === 0) return null
+  // Card names and the taxonomy title sit one level under the band heading, wherever it sits.
+  const Sub = Heading === 'h1' ? 'h2' : 'h3'
 
   const claimed = new Set<string>()
 
@@ -86,7 +96,7 @@ export function ChooseYourWest({
       <div className="section-head">
         <div>
           <p className="eyebrow">Ways in</p>
-          <h2 id="west-heading">Choose your west</h2>
+          <Heading id="west-heading">Choose your west</Heading>
           {/*
             The count is derived, never written down.
 
@@ -121,7 +131,7 @@ export function ChooseYourWest({
                       />
                     </div>
                   ) : null}
-                  <h3 className="edit-card__name">{edit.name}</h3>
+                  <Sub className="edit-card__name">{edit.name}</Sub>
                 </Link>
                 <p className="edit-card__line">{edit.line}</p>
                 <p className="meta">
@@ -135,7 +145,7 @@ export function ChooseYourWest({
 
       {categories.length > 0 ? (
         <div className="west-taxonomy">
-          <h3 className="west-taxonomy__title">Or shop the line by category</h3>
+          <Sub className="west-taxonomy__title">Or shop the line by category</Sub>
           <ul className="west-taxonomy__list">
             {categories.map((category) => (
               <li key={category.slug}>
