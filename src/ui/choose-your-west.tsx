@@ -107,9 +107,9 @@ export function ChooseYourWest({
             §12 allows real numbers only.
           */}
           <p className="meta">
-            {COUNT_WORD[edits.length] ?? edits.length} ways the same line reads. Every edit is a
-            filter over the published catalogue — the garments are the ones you will find under
-            Women, Girls and Accessories.
+            {COUNT_WORD[edits.length] ?? edits.length} {edits.length === 1 ? 'way' : 'ways'} the
+            same line reads. Every edit is a filter over the published catalogue — the garments
+            are the ones you will find under Women, Girls and Accessories.
           </p>
         </div>
       </div>

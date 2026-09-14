@@ -116,7 +116,16 @@ const all = readdirSync(SRC).filter((f) => SOURCE_EXT.test(f))
 
 /* The index map's positions were taken against this exact filter — .avif only, byte
    duplicates removed. It has to keep seeing the same list to keep meaning the same thing. */
-const indexed = all.filter((f) => f.endsWith('.avif') && !/\(\d\)/.test(f)).sort()
+const indexed = all
+  .filter((f) => f.endsWith('.avif') && !/\(\d\)/.test(f))
+  /*
+    A file that resolves BY NAME is not part of the indexed list. Without this line a
+    correctly-named .avif drop joined the alphabetical list and shifted every legacy
+    position after it — the exact trap the header describes, reintroduced by the fix.
+    Caught in review, before a drop.
+  */
+  .filter((f) => !KEY_SHAPE.test(f.replace(SOURCE_EXT, '').toLowerCase()))
+  .sort()
 
 /** A file whose basename IS the key, ignoring extension and case. */
 function byName(key) {
@@ -149,17 +158,16 @@ const KEYS = [
   ]),
 ]
 
-rmSync(OUT_DIR, { recursive: true, force: true })
-mkdirSync(OUT_DIR, { recursive: true })
-
-const entries = []
+/*
+  Resolve EVERY key before touching the output directory. The old order wiped the
+  directory first and then resolved; one unresolvable key threw halfway and left the
+  committed manifest pointing at files that no longer existed. Resolve, then replace.
+*/
 const resolvedByName = []
 const resolvedByIndex = []
-
-for (const key of KEYS) {
+const plan = KEYS.map((key) => {
   const named = byName(key)
   const source = named ?? indexed[LEGACY_INDEX[key]]
-
   if (!source) {
     throw new Error(
       `No source for '${key}'. Drop a file named '${key}.<ext>' into ${SRC}, ` +
@@ -167,7 +175,15 @@ for (const key of KEYS) {
     )
   }
   ;(named ? resolvedByName : resolvedByIndex).push(key)
+  return { key, source }
+})
 
+rmSync(OUT_DIR, { recursive: true, force: true })
+mkdirSync(OUT_DIR, { recursive: true })
+
+const entries = []
+
+for (const { key, source } of plan) {
   const image = sharp(join(SRC, source))
   const meta = await image.metadata()
   const { width, height } = meta

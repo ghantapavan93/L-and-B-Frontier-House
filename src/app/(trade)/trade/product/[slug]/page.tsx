@@ -64,6 +64,23 @@ export default async function TradeProductPage({ params }: { params: Promise<Par
           page now (thumbnail rail, snap strip, enlarge), and `pdp__head` so the phone
           lifts the name above the frames. The buying column follows the strip.
         */}
+        {/*
+          NAME FIRST, IN THE DOM AND ON THE SCREEN.
+
+          The title block sits before the gallery in source order, so on a phone the page
+          reads name → photograph → action with no CSS reordering. The previous pass lifted it
+          with `order: -1`, which moved it visually and left a screen reader and the Tab key
+          on the old order (WCAG 1.3.2, 2.4.3; caught in review). On desktop the grid places
+          it at the top of the right column, above the sticky buying stack.
+        */}
+        <div className="pdp__head">
+          <h1 className="pdp__title">{product.displayName}</h1>
+          <p className="spec-name">{product.specName}</p>
+          <div className="badge-row">
+            <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
+          </div>
+        </div>
+
         <PdpGallery
           frames={product.media.map((media, index) => ({
             id: `frame-${product.slug}-${index}`,
@@ -73,14 +90,6 @@ export default async function TradeProductPage({ params }: { params: Promise<Par
         />
 
         <div className="stack">
-          <div className="pdp__head">
-            <h1 className="pdp__title">{product.displayName}</h1>
-            <p className="spec-name">{product.specName}</p>
-            <div className="badge-row">
-              <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
-            </div>
-          </div>
-
           <WholesalePricePanel product={product} />
 
           {/* The action directly under the price; the pack breakdown is the reference

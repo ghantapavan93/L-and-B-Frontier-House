@@ -1,7 +1,7 @@
 import type { Money } from '@/domain/money'
 import { formatMoney } from '@/domain/money'
 import {
-  afterpayInstalment,
+  afterpayInstalments,
   AFTERPAY_INSTALMENTS,
   BUY_NOW_PAY_LATER,
   DEFAULT_PAYMENT_METHOD,
@@ -83,10 +83,13 @@ export function checkoutMethodsPhrase(): string {
  * crawl asserts the phrase is absent there.
  */
 export function AfterpayLine({ total }: { total: Money }) {
+  const { first, rest } = afterpayInstalments(total)
+  const equal = first.amountMinor === rest.amountMinor
   return (
     <span className="afterpay-line">
-      or {AFTERPAY_INSTALMENTS} payments of {formatMoney(afterpayInstalment(total))} with
-      Afterpay
+      {equal
+        ? `or ${AFTERPAY_INSTALMENTS} payments of ${formatMoney(rest)} with Afterpay`
+        : `or ${formatMoney(first)} then ${AFTERPAY_INSTALMENTS - 1} payments of ${formatMoney(rest)} with Afterpay`}
     </span>
   )
 }
@@ -106,7 +109,7 @@ export function PaymentMethodChoice({ error }: { error?: boolean }) {
       <legend>How would you like to pay?</legend>
       {error ? (
         <p className="field__error" id="payment-error" role="alert">
-          Choose a payment method to submit the order.
+          That is not a payment method we accept. Choose one below to send the order.
         </p>
       ) : null}
       <ul className="payment-choice__list">

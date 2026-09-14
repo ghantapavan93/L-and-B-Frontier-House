@@ -60,6 +60,8 @@ export default defineConfig({
     env: {
       NODE_ENV: 'production',
       LB_SESSION_SECRET: 'browser-test-secret',
+      // Dynamic public routes render programming at request time; pin them like the build.
+      LB_RENDER_DATE: process.env['LB_RENDER_DATE'] ?? '2026-09-11',
       LB_SITE_URL: BASE_URL,
     },
   },

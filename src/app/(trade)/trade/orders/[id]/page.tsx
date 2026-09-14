@@ -36,6 +36,8 @@ export default async function OrderDetailPage({
   const justSubmitted = (await searchParams)['submitted'] === '1'
   const reachedIndex = TIMELINE.indexOf(order.status)
 
+  const paymentLabel = findPaymentMethod(order.paymentMethod)?.label
+
   return (
     <div className="container section stack">
       <nav aria-label="Breadcrumb">
@@ -58,8 +60,9 @@ export default async function OrderDetailPage({
       <h1>Order {order.id}</h1>
       <p className="meta">
         Placed {order.submittedAt ?? order.createdAt} · {ORDER_STATUS_LABELS[order.status]}
-        {/* Seeded orders predate the choice and say nothing rather than guess. */}
-        {order.paymentMethod ? ` · ${findPaymentMethod(order.paymentMethod)?.label}` : ''}
+        {/* Seeded orders predate the choice and say nothing rather than guess; so does an
+            id the registry no longer carries. Never the word "undefined". */}
+        {paymentLabel ? ` · ${paymentLabel}` : ''}
       </p>
 
       {order.status !== 'cancelled' ? (

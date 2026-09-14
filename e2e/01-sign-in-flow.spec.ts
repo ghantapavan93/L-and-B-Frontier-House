@@ -120,6 +120,72 @@ test.describe('approved buyer — full journey', () => {
   })
 })
 
+/**
+ * THE DRAFT LIVES IN THE BUYER'S BROWSER, SEALED.
+ *
+ * On serverless hosting the process that took "Add to order" is not the process that
+ * renders the order page. The fixture keeps the buyer's state in one httpOnly cookie
+ * (src/data/adapters/fixture-persistence.ts), so three things must hold: the state is in
+ * the cookie and nowhere else; the cookie carries nothing restricted; and a cookie this
+ * server did not write reads as empty rather than as a forged line.
+ */
+test.describe('fixture state in the cookie', () => {
+  const STATE_COOKIE = 'lb_fixture_state'
+
+  test('a draft survives into a fresh browser context that carries only the cookies', async ({
+    page,
+    browser,
+  }) => {
+    await signIn(page, BUYERS.approved)
+    await clearOrder(page)
+    await page.goto(`/trade/product/${PRODUCT_SLUG}`)
+    await page.getByRole('button', { name: 'Add to order' }).click()
+    await expect(page).toHaveURL('/trade/order')
+
+    const cookies = await page.context().cookies()
+    const state = cookies.find((c) => c.name === STATE_COOKIE)
+    expect(state, 'the state cookie was not written').toBeDefined()
+    expect(state?.httpOnly, 'the state cookie is readable by script').toBe(true)
+
+    // Nothing restricted in the cookie: decode the sealed body and look for money.
+    const body = Buffer.from(state!.value.split('.')[0]!, 'base64url').toString('utf8')
+    expect(body).not.toMatch(/\$\s?\d/)
+    expect(body).not.toMatch(/amountMinor|unitPrice|wholesale|sku/i)
+    expect(body).toContain('"q":1')
+
+    // A context with no memory of the first one — only the cookies. The draft is there.
+    const fresh = await browser.newContext()
+    await fresh.addCookies(cookies)
+    const other = await fresh.newPage()
+    await other.goto('/trade/order')
+    await expect(other.getByRole('button', { name: 'Send this order' })).toBeVisible()
+    await expect(other.locator('input[name="quantity"]')).toHaveCount(1)
+    await fresh.close()
+  })
+
+  test('a tampered state cookie reads as an empty order, never as a forged line', async ({
+    page,
+  }) => {
+    await signIn(page, BUYERS.approved)
+    await clearOrder(page)
+    await page.goto(`/trade/product/${PRODUCT_SLUG}`)
+    await page.getByRole('button', { name: 'Add to order' }).click()
+    await expect(page).toHaveURL('/trade/order')
+
+    const context = page.context()
+    const cookies = await context.cookies()
+    const state = cookies.find((c) => c.name === STATE_COOKIE)!
+    // Same body, one character of signature changed: the seal must reject it.
+    const [body, sig] = state.value.split('.') as [string, string]
+    const forged = `${body}.${sig.slice(0, -1)}${sig.endsWith('A') ? 'B' : 'A'}`
+    await context.addCookies([{ ...state, value: forged }])
+
+    const response = await page.goto('/trade/order')
+    expect(response?.status()).toBe(200)
+    await expect(page.locator('input[name="quantity"]')).toHaveCount(0)
+  })
+})
+
 test.describe('credential and account states', () => {
   test('rejects invalid credentials without revealing which field was wrong', async ({
     page,

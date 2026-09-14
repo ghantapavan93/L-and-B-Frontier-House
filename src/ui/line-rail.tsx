@@ -73,6 +73,7 @@ export function LineRail({ panels }: { panels: readonly LinePanel[] }) {
           <div
             className="line-rail__panel"
             key={panel.category.slug}
+            role="group"
             aria-label={`${panel.category.label} — ${panel.products.length} of ${panel.total}`}
           >
             {/*

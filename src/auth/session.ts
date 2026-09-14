@@ -12,8 +12,8 @@ import 'server-only'
  * loses access on the next request, not at their next sign-in.
  */
 
-import { createHmac, timingSafeEqual } from 'node:crypto'
 import { cookies } from 'next/headers'
+import { safeEqual, sign } from './seal'
 import { commerce } from '@/data'
 import { ANONYMOUS_SESSION } from '@/domain/session'
 import type { Session } from '@/domain/session'
@@ -21,31 +21,7 @@ import type { Session } from '@/domain/session'
 const COOKIE_NAME = 'lb_session'
 const MAX_AGE_SECONDS = 60 * 60 * 8
 
-/**
- * A development signing key. In any deployed environment LB_SESSION_SECRET must be set;
- * the build refuses to start without it in production.
- */
-function signingSecret(): string {
-  const secret = process.env['LB_SESSION_SECRET']
-  if (secret && secret.length > 0) return secret
-  if (process.env.NODE_ENV === 'production' && process.env['LB_ALLOW_DEV_SECRET'] !== '1') {
-    throw new Error('LB_SESSION_SECRET is required in production')
-  }
-  return 'development-only-session-secret'
-}
-
 type TokenPayload = { buyerId: string; expiresAt: number }
-
-function sign(value: string): string {
-  return createHmac('sha256', signingSecret()).update(value).digest('base64url')
-}
-
-function safeEqual(a: string, b: string): boolean {
-  const bufferA = Buffer.from(a)
-  const bufferB = Buffer.from(b)
-  if (bufferA.length !== bufferB.length) return false
-  return timingSafeEqual(bufferA, bufferB)
-}
 
 function encode(payload: TokenPayload): string {
   const body = Buffer.from(JSON.stringify(payload)).toString('base64url')

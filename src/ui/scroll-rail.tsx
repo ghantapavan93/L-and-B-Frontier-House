@@ -46,6 +46,7 @@ prev.addEventListener('click',function(){go(-1)});
 next.addEventListener('click',function(){go(1)});
 sc.addEventListener('scroll',metrics,{passive:true});
 window.addEventListener('resize',metrics,{passive:true});
+if(window.ResizeObserver){new ResizeObserver(metrics).observe(sc)}
 prev.hidden=false;next.hidden=false;metrics();
 }});
 })();`

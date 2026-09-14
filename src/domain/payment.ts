@@ -94,6 +94,13 @@ export function isPaymentMethodId(value: unknown): value is PaymentMethodId {
  */
 export const AFTERPAY_INSTALMENTS = 4
 
-export function afterpayInstalment(total: Money): Money {
-  return usd(Math.ceil(total.amountMinor / AFTERPAY_INSTALMENTS))
+/**
+ * Four payments that SUM to the total. Equal when the cents divide by four; otherwise the
+ * remainder rides on the first, which is how Afterpay itself splits — never a ceiling that
+ * overstates the pack by up to three cents (caught in review).
+ */
+export function afterpayInstalments(total: Money): { first: Money; rest: Money } {
+  const rest = Math.floor(total.amountMinor / AFTERPAY_INSTALMENTS)
+  const first = total.amountMinor - rest * (AFTERPAY_INSTALMENTS - 1)
+  return { first: usd(first), rest: usd(rest) }
 }

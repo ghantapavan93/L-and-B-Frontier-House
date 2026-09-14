@@ -198,6 +198,23 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             and a frame that arrives named appears here without touching this file. An
             empty frame on a public product page is a promise the catalogue has not kept.
           */}
+          {/*
+            NAME FIRST, IN THE DOM AND ON THE SCREEN.
+
+            The title block sits before the gallery in source order, so on a phone the page
+            reads name → photograph → action with no CSS reordering. The previous pass lifted it
+            with `order: -1`, which moved it visually and left a screen reader and the Tab key
+            on the old order (WCAG 1.3.2, 2.4.3; caught in review). On desktop the grid places
+            it at the top of the right column, above the sticky buying stack.
+          */}
+          <div className="pdp__head">
+            <h1 className="pdp__title">{product.displayName}</h1>
+            <p className="spec-name">{product.specName}</p>
+            <div className="badge-row">
+              <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
+            </div>
+          </div>
+
           <PdpGallery
             frames={product.media.map((media, index) => ({
               id: `frame-${product.slug}-${index}`,
@@ -209,23 +226,6 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           />
 
           <div className="stack">
-            {/*
-              `pdp__head` so the phone can lift it above the gallery. On a 375 px screen
-              the info column stacks under the frames and the garment's name sat at 1,535
-              px, the wholesale action at 2,055 — two and a half screens before the page
-              said what it was or what to do. The stack dissolves into the page grid on a
-              phone (`display: contents`) and this block orders itself first: name, then
-              photograph, then the action. Desktop is unchanged — the sticky column keeps
-              the name beside the frames.
-            */}
-            <div className="pdp__head">
-              <h1 className="pdp__title">{product.displayName}</h1>
-              <p className="spec-name">{product.specName}</p>
-              <div className="badge-row">
-                <span className="badge">{AVAILABILITY_LABELS[product.availability]}</span>
-              </div>
-            </div>
-
             <p className="lede">{product.description}</p>
 
             {product.preOrder ? (
