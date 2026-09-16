@@ -30,6 +30,7 @@ import type {
 } from './commerce-adapter'
 import {
   MAX_DRAFT_LINES,
+  MAX_ORDER_LINES,
   MAX_RECENT_ORDERS,
   readFixtureState,
   writeFixtureState,
@@ -269,7 +270,8 @@ export class FixtureCommerceAdapter implements CommerceAdapter {
       submittedAt: today(),
       // Recorded, not acted on: the fixture collects nothing. See domain/payment.ts.
       paymentMethod,
-      lines: state.drafts[buyerId] ?? [],
+      // History keeps a sample of the lines so five orders fit beside a full draft.
+      lines: (state.drafts[buyerId] ?? []).slice(0, MAX_ORDER_LINES),
     }
     const next: FixtureState = {
       ...withDraft(state, buyerId, []),

@@ -25,8 +25,12 @@ import 'server-only'
  *      (an older version, a hand edit), fails the shape check and reads as empty. Neither
  *      path ever renders a forged line or throws on a bad byte.
  *
- * Bounded on purpose: forty draft lines, five recent orders. A cookie is ~4 KB, and a
- * fixture is not a ledger.
+ * Bounded on purpose, and MEASURED: a browser drops a cookie over ~4,093 bytes silently —
+ * no error, the draft simply vanishes — so the state is sized to stay under it. A draft
+ * line is ~22 bytes sealed; a stored order is ~90 plus its lines. Every product in a draft
+ * AND five full orders came to 7,168 bytes, which is why orders keep at most eight lines
+ * and the write-back trims the oldest orders until the sealed value fits. A fixture is
+ * not a ledger; the one that matters is the current draft, and it is never trimmed.
  */
 
 import { cookies } from 'next/headers'
@@ -40,6 +44,10 @@ const VERSION = 1
 
 export const MAX_DRAFT_LINES = 40
 export const MAX_RECENT_ORDERS = 5
+/** Lines kept per submitted order. The draft keeps all of its lines; history keeps a sample. */
+export const MAX_ORDER_LINES = 8
+/** The browser's per-cookie ceiling, with room for the name and attributes. */
+export const COOKIE_BUDGET_BYTES = 3900
 
 /** A line as stored: what the buyer chose, never what it costs. */
 export type StoredLine = { readonly p: string; readonly q: number }
@@ -143,9 +151,22 @@ export async function readFixtureState(): Promise<FixtureState> {
  * cookie during a render, which is correct: a page that reads the draft must not also
  * change it. Every mutating adapter method is reached through an action.
  */
+/**
+ * Fit the state into one cookie. Drop the oldest submitted order until the sealed value is
+ * under budget; the draft and the application are never dropped, because they are what
+ * the buyer is in the middle of. Returns the state actually written.
+ */
+export function fitToBudget(state: FixtureState): FixtureState {
+  let fitted = state
+  while (sealJson(fitted).length > COOKIE_BUDGET_BYTES && fitted.orders.length > 0) {
+    fitted = { ...fitted, orders: fitted.orders.slice(0, -1) }
+  }
+  return fitted
+}
+
 export async function writeFixtureState(state: FixtureState): Promise<void> {
   const jar = await cookies()
-  jar.set(COOKIE_NAME, sealJson(state), {
+  jar.set(COOKIE_NAME, sealJson(fitToBudget(state)), {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
