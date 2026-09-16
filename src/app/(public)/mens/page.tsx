@@ -77,7 +77,7 @@ function DemoCard({ product }: { product: DemoProduct }) {
     <article className="product-card">
       {/* The card opens the product's own page — the quick view below stays as the
           glance, exactly as it works on the real catalogue. */}
-      <a href={`/mens/${product.slug}`} className="product-card__link">
+      <a href={`/product/${product.slug}`} className="product-card__link">
         {face ? (
           swap ? (
             <span className="product-card__swap">
@@ -152,7 +152,7 @@ function DemoQuickView({ product }: { product: DemoProduct }) {
           <p>{product.description}</p>
           <p className="meta">{product.sizesNote}. No price exists for a demo entry.</p>
           <div className="cluster">
-            <a href={`/mens/${product.slug}`} className="button">
+            <a href={`/product/${product.slug}`} className="button">
               View product
             </a>
             <a href={`#pd-${product.slug}`} className="button button--secondary">

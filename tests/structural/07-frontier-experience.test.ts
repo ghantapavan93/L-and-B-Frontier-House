@@ -72,11 +72,10 @@ describe('flag enabled (default) — cinematic specifics', () => {
     const { body } = await get('/')
 
     // Frames select stories; stories resolve to the product route.
-    expect(body).toContain('href="#story-dark-wash-high-rise-flare-jean"')
-    expect(body).toContain('id="story-dark-wash-high-rise-flare-jean"')
-    expect(body).toMatch(
-      /id="story-dark-wash-high-rise-flare-jean"[\s\S]*?href="\/product\/dark-wash-high-rise-flare-jean"/,
-    )
+    // The sheet is the nine newest garments, and the men's line dates newest (2026-09-16).
+    expect(body).toContain('href="#story-dark-rigid-jean"')
+    expect(body).toContain('id="story-dark-rigid-jean"')
+    expect(body).toMatch(/id="story-dark-rigid-jean"[\s\S]*?href="\/product\/dark-rigid-jean"/)
     expect(body).toContain('Close story')
   })
 
@@ -106,7 +105,7 @@ describe('flag enabled (default) — cinematic specifics', () => {
     expect(body).not.toMatch(/for him/i)
     expect(body, 'the collection grid lost its demonstration marker').toMatch(/demonstration/i)
     // Every world opens the labelled demonstration, never a catalogue route.
-    expect(body).toContain('href="/mens#mens-denim"')
+    expect(body).toContain('href="/shop/mens-denim"')
   })
 
   it('renders the journey with honest planes and no invented place', async () => {

@@ -23,6 +23,7 @@
 
 import type { MediaRef, MediaSource, ProductRecord } from '@/domain/product'
 import manifest from './official-media-manifest.json'
+import { MENS_REFERENCE_MEDIA } from '@/fixtures/mens-media'
 
 type Rendition = { width: number; format: 'avif' | 'webp'; file: string; byteSize: number }
 
@@ -112,7 +113,7 @@ function productAssets(productId: string): ApprovedAsset[] {
  * the photograph shows — never from a filename, which is not a description.
  */
 export function officialMediaForProduct(product: ProductRecord): MediaRef[] {
-  return productAssets(product.id).map((asset, index) =>
+  const official = productAssets(product.id).map((asset, index) =>
     toMediaRef(
       asset,
       index === 0
@@ -120,6 +121,26 @@ export function officialMediaForProduct(product: ProductRecord): MediaRef[] {
         : `${product.displayName}, additional view — ${asset.describes}`,
     ),
   )
+  return official
+}
+
+/**
+ * The second overlay: the men's reference frames, owner-dropped, per product id.
+ *
+ * Applied AFTER `withOfficialMedia`, and only where it left the placeholder. Same contract
+ * as the manifest — the record carries a placeholder, the overlay carries the photograph —
+ * so a men's style is photographed the way a women's style is, never by a claim embedded
+ * in its own record. Kept as a separate function so the official manifest's governance
+ * (owner approval gates publication; a product receives only what a human mapped to it)
+ * is tested on the official path alone.
+ */
+export function withReferenceMedia(product: ProductRecord): ProductRecord {
+  const alreadyPhotographed = product.media.some(
+    (m) => m.provenance !== 'generated-placeholder',
+  )
+  if (alreadyPhotographed) return product
+  const frames = MENS_REFERENCE_MEDIA[product.id]
+  return frames && frames.length > 0 ? { ...product, media: [...frames] } : product
 }
 
 /** Approved editorial imagery for a named slot, or undefined. */

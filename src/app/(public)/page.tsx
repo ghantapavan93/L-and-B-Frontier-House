@@ -2,7 +2,11 @@ import Link from 'next/link'
 import { atmospherePlate, CATEGORY_TILE_FALLBACK } from '@/content/media/campaign-plates'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import { listPublicProducts } from '@/data/catalog-repository'
-import { navigableCategories } from '@/domain/taxonomy'
+import {
+  navigableCategories,
+  routableCategories,
+  womensLineCategories,
+} from '@/domain/taxonomy'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { FitGateway } from '@/ui/fit-gateway'
 import { ContactSheet } from '@/ui/contact-sheet'
@@ -40,7 +44,7 @@ export default async function HomePage() {
     groupings, never the same eight twice.
   */
   const inSheet = new Set(sheet.map((product) => product.slug))
-  const line = navigableCategories().map((category) => {
+  const line = routableCategories().map((category) => {
     const all = newest.filter((product) => product.categorySlug === category.slug)
     return {
       category,
@@ -164,6 +168,7 @@ export default async function HomePage() {
         garments has done its job, and the rest of the house is one click, not one scroll.
       */}
       <WaysIn
+        womens={womensLineCategories()}
         categories={navigableCategories().map((category) => ({
           ...category,
           /* Owner photography when it exists; a cleared material plate until then — an

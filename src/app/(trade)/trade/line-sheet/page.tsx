@@ -8,9 +8,10 @@ import { AVAILABILITY_LABELS, isAuthorisedProduct, primaryMedia } from '@/domain
 import type { AuthorisedProduct } from '@/domain/product'
 import { SIZE_RANGE_LABELS } from '@/domain/size'
 import { isAuthorisedBuyer } from '@/domain/session'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 import { BuyerStatusPanel } from '@/ui/buyer-status'
 import { ProductMedia } from '@/ui/product-media'
+import { DemonstrationNotice } from '@/ui/notices'
 
 export const metadata: Metadata = { title: 'Line sheet', robots: { index: false } }
 
@@ -57,7 +58,7 @@ export default async function LineSheetPage() {
 
   const visible = await listVisibleProducts(session)
   const authorised = visible.filter(isAuthorisedProduct)
-  const categories = navigableCategories()
+  const categories = routableCategories()
   const preparedOn = new Date().toISOString().slice(0, 10)
 
   return (
@@ -89,8 +90,9 @@ export default async function LineSheetPage() {
         return (
           <section key={category.slug} aria-labelledby={`sheet-${category.slug}`}>
             <h2 id={`sheet-${category.slug}`} className="line-sheet__category">
-              {category.label}
+              {category.line === 'mens' ? `Men's ${category.label}` : category.label}
             </h2>
+            {category.demonstration ? <DemonstrationNotice compact /> : null}
             {/*
               The sheet is a seven-column table — SKU, size run, pack, cost — and on a
               phone it ran 969 px wide and dragged the whole page sideways with it. Wide

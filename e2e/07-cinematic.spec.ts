@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { PRODUCT_SLUG } from './support/fixtures'
+import { SHEET_SLUG } from './support/fixtures'
 
 /**
  * PHASE 2 — the cinematic layer, exercised the way a person uses it.
@@ -141,25 +141,25 @@ test.describe('contact-sheet stories', () => {
   test('a frame opens its story by keyboard and resolves to the product', async ({ page }) => {
     await page.goto('/')
 
-    const frame = page.getByRole('link', { name: `Open the story for Dark Wash Flare` })
+    const frame = page.getByRole('link', { name: `Open the story for Dark Rigid Jean` })
     await frame.focus()
     await page.keyboard.press('Enter')
 
-    await expect(page).toHaveURL(new RegExp(`#story-${PRODUCT_SLUG}$`))
-    const story = page.locator(`#story-${PRODUCT_SLUG}`)
+    await expect(page).toHaveURL(new RegExp(`#story-${SHEET_SLUG}$`))
+    const story = page.locator(`#story-${SHEET_SLUG}`)
     await expect(story).toBeVisible()
-    await expect(story.getByRole('heading', { name: 'Dark Wash Flare' })).toBeVisible()
+    await expect(story.getByRole('heading', { name: 'Dark Rigid Jean' })).toBeVisible()
 
     // Story → product route.
     const view = story.getByRole('link', { name: 'View product' })
     await view.focus()
     await page.keyboard.press('Enter')
-    await expect(page).toHaveURL(`/product/${PRODUCT_SLUG}`)
+    await expect(page).toHaveURL(`/product/${SHEET_SLUG}`)
   })
 
   test('closing a story returns to the sheet and hides the panel', async ({ page }) => {
-    await page.goto(`/#story-${PRODUCT_SLUG}`)
-    const story = page.locator(`#story-${PRODUCT_SLUG}`)
+    await page.goto(`/#story-${SHEET_SLUG}`)
+    const story = page.locator(`#story-${SHEET_SLUG}`)
     await expect(story).toBeVisible()
 
     await story.getByRole('link', { name: 'Close story' }).click()
@@ -168,19 +168,19 @@ test.describe('contact-sheet stories', () => {
   })
 
   test('the selected frame persists through a reload', async ({ page }) => {
-    await page.goto(`/#story-${PRODUCT_SLUG}`)
+    await page.goto(`/#story-${SHEET_SLUG}`)
     await page.reload()
-    await expect(page.locator(`#story-${PRODUCT_SLUG}`)).toBeVisible()
+    await expect(page.locator(`#story-${SHEET_SLUG}`)).toBeVisible()
   })
 
   test('under reduced motion the story appears directly, fully usable', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto('/')
 
-    await page.getByRole('link', { name: 'Open the story for Dark Wash Flare' }).click()
-    await expect(page.locator(`#story-${PRODUCT_SLUG}`)).toBeVisible()
+    await page.getByRole('link', { name: 'Open the story for Dark Rigid Jean' }).click()
+    await expect(page.locator(`#story-${SHEET_SLUG}`)).toBeVisible()
     await expect(
-      page.locator(`#story-${PRODUCT_SLUG}`).getByRole('link', { name: 'View product' }),
+      page.locator(`#story-${SHEET_SLUG}`).getByRole('link', { name: 'View product' }),
     ).toBeVisible()
   })
 })
@@ -203,7 +203,7 @@ test.describe("product worlds — the men's collection index", () => {
 
       const links = tile.locator('a')
       await expect(links, 'a tile must be exactly one link').toHaveCount(1)
-      await expect(links).toHaveAttribute('href', `/mens#mens-${world}`)
+      await expect(links).toHaveAttribute('href', `/shop/mens-${world}`)
 
       // The link covers the tile: the image is inside it, not beside it.
       await expect(links.locator('img')).toHaveCount(1)
@@ -224,7 +224,7 @@ test.describe("product worlds — the men's collection index", () => {
     expect(ring, 'the tile takes focus with no visible ring').not.toBe('none')
 
     await page.keyboard.press('Enter')
-    await expect(page).toHaveURL(/\/mens#mens-denim$/)
+    await expect(page).toHaveURL(/\/shop\/mens-denim$/)
   })
 
   test('the cinematic homepage still has no horizontal overflow on mobile', async ({

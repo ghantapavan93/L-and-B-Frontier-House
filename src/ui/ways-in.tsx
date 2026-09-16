@@ -22,7 +22,9 @@ import { EditorialMedia } from '@/ui/product-media'
  */
 export function WaysIn({
   categories,
+  womens,
 }: {
+  womens: readonly { slug: string; label: string }[]
   categories: readonly {
     slug: string
     label: string
@@ -60,6 +62,19 @@ export function WaysIn({
 
       {/* Editorial destinations prefetch on demand; the category tiles above are shop
           paths and keep theirs. See site-footer for the measurement. */}
+      <nav className="ways-in__routes" aria-label="The women's line">
+        <p className="nav-group-label">Women&rsquo;s line — the business today</p>
+        <ul>
+          {womens.map((category) => (
+            <li key={category.slug}>
+              <Link prefetch={false} href={`/shop/${category.slug}`}>
+                {category.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <nav className="ways-in__routes" aria-label="More of the house">
         <ul>
           <li>

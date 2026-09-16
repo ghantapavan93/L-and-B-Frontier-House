@@ -24,6 +24,14 @@ import { EditorialMedia } from '@/ui/product-media'
  */
 
 /** Campaign-voice glosses — statements about a cut's geometry, never about a product. */
+const COUNT_WORD: Record<number, string> = {
+  2: 'Two',
+  3: 'Three',
+  4: 'Four',
+  5: 'Five',
+  6: 'Six',
+}
+
 const GLOSS: Record<string, string> = {
   straight: 'One line, hip to hem.',
   bootcut: 'Room at the hem for a heel.',
@@ -34,7 +42,7 @@ const GLOSS: Record<string, string> = {
 }
 
 export async function FitGateway() {
-  const facets = await getFacets('women')
+  const facets = await getFacets('mens-denim')
   const cuts = DENIM_LEG_OPENINGS.map((cut) => {
     const tally = facets.legOpening.find((entry) => entry.value === cut.value)
     return { ...cut, count: tally?.count ?? 0, media: officialMediaForSlot(`fit-${cut.value}`) }
@@ -49,8 +57,8 @@ export async function FitGateway() {
           <p className="eyebrow">Denim, by cut</p>
           <h2 id="fit-gateway-heading">Know your line</h2>
           <p className="meta">
-            Four cuts, one house. Point at yours — or answer three questions and let the finder
-            point for you.
+            {COUNT_WORD[cuts.length] ?? cuts.length} cuts, one house. Point at yours — or answer
+            three questions and let the finder point for you.
           </p>
         </div>
         {/*
@@ -75,7 +83,7 @@ export async function FitGateway() {
           <li key={cut.value}>
             <a
               className="fit-gateway__tile"
-              href={`/shop/women?legOpening=${cut.value}#products`}
+              href={`/shop/mens-denim?legOpening=${cut.value}#products`}
             >
               {cut.media ? (
                 <span className="fit-gateway__media" aria-hidden="true">

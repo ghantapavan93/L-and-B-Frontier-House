@@ -3,7 +3,13 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { PRODUCT_RECORDS } from '@/fixtures/products'
 import { VERIFIED_PREPACK_UNITS, VERIFIED_WHOLESALE_BAND_MINOR } from '@/domain/money'
-import { CATEGORIES, navigableCategories, findRoutableCategory } from '@/domain/taxonomy'
+import {
+  CATEGORIES,
+  findRoutableCategory,
+  indexableCategories,
+  navigableCategories,
+  womensLineCategories,
+} from '@/domain/taxonomy'
 
 /**
  * CONTENT INTEGRITY.
@@ -153,8 +159,41 @@ describe('fixture data respects verified commercial reality', () => {
 })
 
 describe('taxonomy', () => {
-  it('exposes only verified categories in navigation', () => {
-    expect(navigableCategories().map((c) => c.slug)).toEqual(['women', 'girls', 'accessories'])
+  /*
+    THE RULE, REWRITTEN 2026-09-16 BY THE OWNER'S DIRECTION.
+
+    This test used to assert that navigation exposed only the three verified categories
+    and that no men's category existed at any status: menswear did not exist and must
+    not ship as though it did. The owner has directed the house to present men's-first.
+    The fact has not changed — the brand sells women's, girls' and accessories — so the
+    rule becomes: a men's category may lead, and every one of them is flagged
+    `demonstration`, carries the marker on every surface, and never reaches the sitemap.
+    The women's line stays routable, verified, and never flagged.
+  */
+  it("leads with the men's line, every category of it a demonstration", () => {
+    const primary = navigableCategories()
+    expect(primary.map((c) => c.slug)).toEqual([
+      'mens-denim',
+      'mens-shirts',
+      'mens-outerwear',
+      'mens-accessories',
+    ])
+    for (const category of primary) {
+      expect(category.demonstration, `${category.slug} must be flagged`).toBe(true)
+      expect(category.line).toBe('mens')
+    }
+  })
+
+  it("keeps the verified women's line routable, and never flags it", () => {
+    expect(womensLineCategories().map((c) => c.slug)).toEqual(['women', 'girls', 'accessories'])
+    for (const category of womensLineCategories()) {
+      expect(category.demonstration).toBeUndefined()
+      expect(findRoutableCategory(category.slug)).toBeDefined()
+    }
+  })
+
+  it('lists only the published line as indexable', () => {
+    expect(indexableCategories().map((c) => c.slug)).toEqual(['women', 'girls', 'accessories'])
   })
 
   it('holds Home back pending the owner decision', () => {
@@ -162,18 +201,10 @@ describe('taxonomy', () => {
     expect(findRoutableCategory('home')).toBeUndefined()
   })
 
-  it('has no menswear or footwear category at any status', () => {
-    // "women" legitimately contains "men", so this is an exact-slug denylist rather than a
-    // substring match.
-    const forbidden = new Set([
-      'men',
-      'mens',
-      'menswear',
-      'for-him',
-      'footwear',
-      'shoes',
-      'boots',
-    ])
+  it('has no footwear category at any status, and no audience gateway', () => {
+    // Footwear does not exist and is not proposed; "for him" is the design corpus's
+    // audience-gateway label (§6) and is never a category. Exact slugs, not substrings.
+    const forbidden = new Set(['for-him', 'footwear', 'shoes', 'boots'])
 
     for (const category of CATEGORIES) {
       expect(forbidden.has(category.slug), `category ${category.slug}`).toBe(false)

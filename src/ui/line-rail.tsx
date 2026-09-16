@@ -34,6 +34,11 @@ export type LinePanel = {
   readonly total: number
 }
 
+/** Two lines share a word: the men's Accessories and the women's. Say which. */
+function lineLabel(category: Category): string {
+  return category.line === 'mens' ? `Men's ${category.label}` : category.label
+}
+
 export function LineRail({ panels }: { panels: readonly LinePanel[] }) {
   const live = panels.filter((panel) => panel.products.length > 0)
   if (live.length === 0) return null
@@ -63,7 +68,7 @@ export function LineRail({ panels }: { panels: readonly LinePanel[] }) {
               className="line-rail__state"
               defaultChecked={index === 0}
             />
-            <label htmlFor={`line-${panel.category.slug}`}>{panel.category.label}</label>
+            <label htmlFor={`line-${panel.category.slug}`}>{lineLabel(panel.category)}</label>
           </span>
         ))}
       </fieldset>
@@ -74,7 +79,7 @@ export function LineRail({ panels }: { panels: readonly LinePanel[] }) {
             className="line-rail__panel"
             key={panel.category.slug}
             role="group"
-            aria-label={`${panel.category.label} — ${panel.products.length} of ${panel.total}`}
+            aria-label={`${lineLabel(panel.category)} — ${panel.products.length} of ${panel.total}`}
           >
             {/*
               ONE ROW, SCROLLING — which is what "rail" means. Burberry fits eight garments
@@ -97,7 +102,7 @@ export function LineRail({ panels }: { panels: readonly LinePanel[] }) {
             </ScrollRail>
             <p className="line-rail__all">
               <Link href={`/shop/${panel.category.slug}`} className="text-link">
-                All {panel.total} in {panel.category.label}
+                All {panel.total} in {lineLabel(panel.category)}
               </Link>
             </p>
           </div>

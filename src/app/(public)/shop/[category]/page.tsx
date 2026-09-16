@@ -6,7 +6,7 @@ import { officialMediaForSlot } from '@/content/media/official-media'
 import { getFacets, listPublicProducts } from '@/data/catalog-repository'
 import { findRoutableCategory, routableCategories } from '@/domain/taxonomy'
 import { FacetPanel } from '@/ui/facet-panel'
-import { FixtureNotice } from '@/ui/notices'
+import { DemonstrationNotice, FixtureNotice } from '@/ui/notices'
 import { ProductGrid } from '@/ui/product-card'
 import { EditorialMedia } from '@/ui/product-media'
 import { readFacetParams, toProductQuery } from '@/features/discovery/facet-params'
@@ -37,7 +37,12 @@ export async function generateMetadata({
   const { category: slug } = await params
   const category = findRoutableCategory(slug)
   if (!category) return {}
-  return { title: category.label, description: category.blurb }
+  return {
+    title: category.demonstration ? `${category.label} — men's demonstration` : category.label,
+    description: category.blurb,
+    // A proposed line is not published: it is reachable, never indexed.
+    ...(category.demonstration ? { robots: { index: false, follow: false } } : {}),
+  }
 }
 
 export default async function CategoryPage({
@@ -114,6 +119,7 @@ export default async function CategoryPage({
       )}
 
       <div className="container section--tight">
+        {category.demonstration ? <DemonstrationNotice /> : null}
         <FixtureNotice detail={false} />
 
         {/*

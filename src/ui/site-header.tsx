@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { signOutAction } from '@/auth/actions'
 import { liveProgramming } from '@/content/programming'
 import { EDITS } from '@/domain/edits'
-import { navigableCategories } from '@/domain/taxonomy'
+import { navigableCategories, womensLineCategories } from '@/domain/taxonomy'
 import type { Session } from '@/domain/session'
 
 /**
@@ -27,6 +27,7 @@ import type { Session } from '@/domain/session'
  */
 export function SiteHeader({ session }: { session?: Session }) {
   const categories = navigableCategories()
+  const womens = womensLineCategories()
   const signedIn = session?.kind === 'buyer'
   const approved = session?.kind === 'buyer' && session.status === 'approved'
   const market = liveProgramming('market')[0]
@@ -63,11 +64,16 @@ export function SiteHeader({ session }: { session?: Session }) {
                 </li>
               ))}
               <li>
-                <Link href="/mens" className="site-nav__demo">
-                  Men&rsquo;s
-                  <span className="site-nav__demo-tag">Demo</span>
-                </Link>
+                <Link href="/mens">The men&rsquo;s house</Link>
               </li>
+            </ul>
+            <p className="nav-group-label">Women&rsquo;s line</p>
+            <ul>
+              {womens.map((category) => (
+                <li key={`m-${category.slug}`}>
+                  <Link href={`/shop/${category.slug}`}>{category.label}</Link>
+                </li>
+              ))}
             </ul>
             <p className="nav-group-label">Discover</p>
             <ul>
@@ -120,10 +126,19 @@ export function SiteHeader({ session }: { session?: Session }) {
               </li>
             ))}
             <li>
-              <Link href="/mens" className="site-nav__demo">
-                Men&rsquo;s
-                <span className="site-nav__demo-tag">Demo</span>
-              </Link>
+              <details className="nav-drop" name="site-nav-drop">
+                <summary>Women&rsquo;s line</summary>
+                <div className="nav-drop__panel">
+                  <ul className="nav-drop__list">
+                    {womens.map((category) => (
+                      <li key={category.slug}>
+                        <Link href={`/shop/${category.slug}`}>{category.label}</Link>
+                        <p className="nav-drop__note">{category.blurb}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
             </li>
             <li>
               {/* `name` groups the two drops as a native exclusive accordion: opening

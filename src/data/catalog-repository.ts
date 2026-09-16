@@ -16,11 +16,15 @@ import {
   visibleProduct,
   visibleProducts,
 } from '@/auth/authorize'
-import { withOfficialMedia } from '@/content/media/official-media'
+import { withOfficialMedia, withReferenceMedia } from '@/content/media/official-media'
 import type { PublicProduct, VisibleProduct } from '@/domain/product'
 import type { Session } from '@/domain/session'
 import { commerce } from './index'
 import type { ProductQuery } from './adapters/commerce-adapter'
+import type { ProductRecord } from '@/domain/product'
+
+/** Both overlays, in order: the official manifest first, the men's reference frames second. */
+const withMedia = (record: ProductRecord) => withReferenceMedia(withOfficialMedia(record))
 
 /**
  * Approved official photography is overlaid here, before authorisation is applied, so public
@@ -31,7 +35,7 @@ import type { ProductQuery } from './adapters/commerce-adapter'
 export async function listPublicProducts(query: ProductQuery = {}): Promise<PublicProduct[]> {
   try {
     const records = await commerce.listProducts(query)
-    return publicProducts(records.map(withOfficialMedia))
+    return publicProducts(records.map(withMedia))
   } catch {
     return []
   }
@@ -40,7 +44,7 @@ export async function listPublicProducts(query: ProductQuery = {}): Promise<Publ
 export async function getPublicProduct(slug: string): Promise<PublicProduct | null> {
   try {
     const record = await commerce.getProduct(slug)
-    return record ? publicProduct(withOfficialMedia(record)) : null
+    return record ? publicProduct(withMedia(record)) : null
   } catch {
     return null
   }
@@ -56,7 +60,7 @@ export async function getVisibleProduct(
 ): Promise<VisibleProduct | null> {
   try {
     const record = await commerce.getProduct(slug)
-    return record ? visibleProduct(withOfficialMedia(record), session) : null
+    return record ? visibleProduct(withMedia(record), session) : null
   } catch {
     return null
   }
@@ -76,7 +80,7 @@ export async function listVisibleProducts(
 ): Promise<VisibleProduct[]> {
   try {
     const records = await commerce.listProducts(query)
-    return visibleProducts(records.map(withOfficialMedia), session)
+    return visibleProducts(records.map(withMedia), session)
   } catch {
     return []
   }

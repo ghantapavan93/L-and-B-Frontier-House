@@ -1013,6 +1013,22 @@ svg {
   background: var(--surface-raised);
 }
 
+/* The demonstration marker: solid rule in the accent, so it reads as the house's own
+   statement rather than a development warning. Never hidden on any breakpoint. */
+.notice--demonstration {
+  border-color: var(--color-tobacco);
+  border-left-width: 3px;
+  background: var(--surface-raised);
+}
+
+.notice--demonstration .notice__title {
+  color: var(--color-tobacco);
+}
+
+.ways-in__routes .nav-group-label {
+  margin: 0 0 var(--space-2);
+}
+
 .notice--error {
   border-color: var(--color-error);
   border-left-width: 3px;
@@ -5432,7 +5448,11 @@ tfoot td {
 .product-card__quick {
   display: inline-flex;
   align-items: center;
+  /* Block padding, not min-height alone: a 10px line inside a 24px min-height inline-flex
+     measures 23.99 in the layout tree and fails the 2.5.8 sweep. Longer names wrapped to
+     two lines and hid it; the men's one-line names exposed it. */
   min-height: var(--target-min);
+  padding-block: var(--space-1);
   margin-top: var(--space-1);
   font-size: 10px;
   font-weight: var(--label-caps-weight);

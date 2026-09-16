@@ -20,6 +20,13 @@ export const BUYERS = {
 
 export const PRODUCT_SLUG = 'dark-wash-high-rise-flare-jean'
 
+/**
+ * A garment in the homepage sheet — the nine newest. The men's line dates newest, so the
+ * sheet leads with it; the women's flare above keeps the buyer-flow tests, whose stock
+ * figures and prepack it carries.
+ */
+export const SHEET_SLUG = 'dark-rigid-jean'
+
 /** Every Phase 1 public route. */
 export const PUBLIC_ROUTES = [
   '/',
@@ -28,6 +35,9 @@ export const PUBLIC_ROUTES = [
   '/shop/girls',
   '/shop/accessories',
   '/mens',
+  '/shop/mens-denim',
+  '/shop/mens-accessories',
+  '/product/dark-rigid-jean',
   '/find-your-denim',
   '/denim-guide',
   '/calendar',
@@ -43,7 +53,6 @@ export const PUBLIC_ROUTES = [
   '/wholesale',
   '/wholesale/apply',
   '/wholesale/apply/received',
-  '/mens/everyday-mid-jean',
   '/search',
   '/fit-passport',
   '/sign-in',

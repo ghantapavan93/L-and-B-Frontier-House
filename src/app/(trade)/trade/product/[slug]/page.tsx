@@ -5,10 +5,11 @@ import { requireApprovedBuyer } from '@/auth/guards'
 import { getVisibleProduct } from '@/data/catalog-repository'
 import { AVAILABILITY_LABELS } from '@/domain/product'
 import { isAuthorisedProduct } from '@/domain/product'
-import { FixtureNotice, StateBlock } from '@/ui/notices'
+import { DemonstrationNotice, FixtureNotice, StateBlock } from '@/ui/notices'
 import { PdpGallery } from '@/ui/pdp/gallery'
 import { SizeAndFitTable } from '@/ui/size-and-fit-table'
 import { AddToOrder, PrepackTable, WholesalePricePanel } from '@/ui/wholesale'
+import { isDemonstrationCategory } from '@/domain/taxonomy'
 
 export const metadata: Metadata = { robots: { index: false, follow: false } }
 
@@ -90,6 +91,10 @@ export default async function TradeProductPage({ params }: { params: Promise<Par
         />
 
         <div className="stack">
+          {isDemonstrationCategory(product.categorySlug) ? (
+            <DemonstrationNotice compact />
+          ) : null}
+
           <WholesalePricePanel product={product} />
 
           {/* The action directly under the price; the pack breakdown is the reference

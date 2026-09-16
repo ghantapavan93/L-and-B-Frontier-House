@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { VERIFIED_APPROVAL_TIMING } from '@/domain/buyer'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 import { applyStepAction, submitApplicationAction } from '@/features/apply/actions'
 import { readApplyDraft } from '@/features/apply/draft'
 import { ErrorNotice, FixtureNotice } from '@/ui/notices'
@@ -76,7 +76,7 @@ export default async function ApplyPage({
   const rawStep = typeof params['step'] === 'string' ? Number.parseInt(params['step'], 10) : 1
   const step = Number.isInteger(rawStep) && rawStep >= 1 && rawStep <= 4 ? rawStep : 1
   const draft = await readApplyDraft()
-  const categories = navigableCategories()
+  const categories = routableCategories()
 
   return (
     <div className="container section apply">

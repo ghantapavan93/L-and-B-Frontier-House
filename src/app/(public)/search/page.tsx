@@ -5,7 +5,7 @@ import { liveProgramming } from '@/content/programming'
 import { EditorialMedia } from '@/ui/product-media'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { populatedEdits } from '@/domain/edits'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 import { searchProducts } from '@/features/discovery/search'
 import { ProductGrid } from '@/ui/product-card'
 
@@ -106,9 +106,11 @@ export default async function SearchPage({
               <li>
                 <Link href="/new-arrivals">New Arrivals</Link>
               </li>
-              {navigableCategories().map((category) => (
+              {routableCategories().map((category) => (
                 <li key={category.slug}>
-                  <Link href={`/shop/${category.slug}`}>{category.label}</Link>
+                  <Link href={`/shop/${category.slug}`}>
+                    {category.line === 'mens' ? `Men's ${category.label}` : category.label}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -27,6 +27,7 @@ import { usd } from '@/domain/money'
 import type { MediaRef, ProductRecord } from '@/domain/product'
 import { FIXTURE_MEDIA_PROVENANCE } from './notice'
 import { GIRLS_RANGE, ONE_SIZE, WOMENS_EXTENDED, WOMENS_STRAIGHT } from './size-ranges'
+import { MENS_PRODUCT_RECORDS } from './products-mens'
 
 /**
  * The fallback every product carries. Owner-approved photography is overlaid on top of it in
@@ -91,7 +92,11 @@ const STANDARD_STOCK = [
 
 const TERMS = 'Net 30 for approved accounts. Prepacks ship complete.'
 
-export const PRODUCT_RECORDS: readonly ProductRecord[] = [
+/**
+ * The women's line, verified. The men's line (products-mens.ts) is merged in front of it
+ * below so the catalogue's default order leads with the line the house presents first.
+ */
+const WOMENS_PRODUCT_RECORDS: readonly ProductRecord[] = [
   /* ── Jeans ───────────────────────────────────────────────────────────── */
   {
     id: 'p-je334-dw',
@@ -842,3 +847,8 @@ export const PRODUCT_RECORDS: readonly ProductRecord[] = [
     },
   },
 ] as const
+
+export const PRODUCT_RECORDS: readonly ProductRecord[] = [
+  ...MENS_PRODUCT_RECORDS,
+  ...WOMENS_PRODUCT_RECORDS,
+]

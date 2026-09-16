@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { BuyNowPayLater } from '@/ui/payment-methods'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 
 /**
  * Dark footer with the wordmark centred, per V3.
@@ -38,10 +38,10 @@ export function SiteFooter() {
                   New Arrivals
                 </Link>
               </li>
-              {navigableCategories().map((category) => (
+              {routableCategories().map((category) => (
                 <li key={category.slug}>
                   <Link prefetch={false} href={`/shop/${category.slug}`}>
-                    {category.label}
+                    {category.line === 'mens' ? `Men's ${category.label}` : category.label}
                   </Link>
                 </li>
               ))}

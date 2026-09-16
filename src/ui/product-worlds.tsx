@@ -37,7 +37,7 @@ function floorFrame(key: string): DemoImage | undefined {
 const WORLDS: readonly World[] = [
   {
     id: 'world-denim',
-    href: '/mens#mens-denim',
+    href: '/shop/mens-denim',
     name: 'Denim',
     line: 'Rigid, washed, cut for a boot.',
     /* A full-length look leads the grid — the lower-body crops read as detail, and the
@@ -46,21 +46,21 @@ const WORLDS: readonly World[] = [
   },
   {
     id: 'world-shirts',
-    href: '/mens#mens-shirts',
+    href: '/shop/mens-shirts',
     name: 'Shirts',
     line: 'Snap fronts and long sleeves.',
     image: productFrame('stripe-pearl-snap-shirt'),
   },
   {
     id: 'world-outerwear',
-    href: '/mens#mens-outerwear',
+    href: '/shop/mens-outerwear',
     name: 'Outerwear',
     line: 'Denim that goes on last.',
     image: productFrame('indigo-trucker-jacket'),
   },
   {
     id: 'world-accessories',
-    href: '/mens#mens-accessories',
+    href: '/shop/mens-accessories',
     name: 'Accessories',
     line: 'Leather, hardware, weight.',
     image: floorFrame('floor-waist-detail'),

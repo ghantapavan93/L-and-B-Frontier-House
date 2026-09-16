@@ -47,7 +47,7 @@ describe('the line rail', () => {
   it('links each panel to the whole category it samples', async () => {
     const { body } = await get('/')
     const rail = body.slice(body.indexOf('line-rail'), body.indexOf('ways-in'))
-    for (const category of ['women', 'girls', 'accessories']) {
+    for (const category of ['mens-denim', 'women', 'girls', 'accessories']) {
       if (rail.includes(`id="line-${category}"`)) {
         expect(rail).toContain(`href="/shop/${category}"`)
       }

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 import { SiteFooter } from '@/ui/site-footer'
 import { SiteHeader } from '@/ui/site-header'
 
@@ -35,10 +35,10 @@ export default function NotFound() {
               New arrivals
             </Link>
           </li>
-          {navigableCategories().map((category) => (
+          {routableCategories().map((category) => (
             <li key={category.slug}>
               <Link href={`/shop/${category.slug}`} className="button button--secondary">
-                {category.label}
+                {category.line === 'mens' ? `Men's ${category.label}` : category.label}
               </Link>
             </li>
           ))}

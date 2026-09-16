@@ -5,9 +5,9 @@ import { getPublicProduct, listPublicProducts } from '@/data/catalog-repository'
 import { frontierEnabled } from '@/features/experience/frontier-flag'
 import { AVAILABILITY_LABELS } from '@/domain/product'
 import type { PublicProduct } from '@/domain/product'
-import { findCategory } from '@/domain/taxonomy'
+import { findCategory, isDemonstrationCategory } from '@/domain/taxonomy'
 import { PdpGallery } from '@/ui/pdp/gallery'
-import { FixtureNotice } from '@/ui/notices'
+import { DemonstrationNotice, FixtureNotice } from '@/ui/notices'
 import { ProductCard } from '@/ui/product-card'
 import { ProofStrip } from '@/ui/proof-strip'
 import { SizeAndFitTable } from '@/ui/size-and-fit-table'
@@ -48,6 +48,10 @@ export async function generateMetadata({
     title: product.displayName,
     description: product.description,
     alternates: { canonical: `/product/${product.slug}` },
+    // A proposed line is not published: reachable, never indexed.
+    ...(isDemonstrationCategory(product.categorySlug)
+      ? { robots: { index: false, follow: false } }
+      : {}),
   }
 }
 
@@ -226,6 +230,8 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           />
 
           <div className="stack">
+            {category?.demonstration ? <DemonstrationNotice compact /> : null}
+
             <p className="lede">{product.description}</p>
 
             {product.preOrder ? (

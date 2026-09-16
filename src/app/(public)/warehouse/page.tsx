@@ -4,7 +4,7 @@ import { listPublicProducts } from '@/data/catalog-repository'
 import { populatedEdits, productsInEdit } from '@/domain/edits'
 import type { PublicProduct } from '@/domain/product'
 import { primaryMedia } from '@/domain/product'
-import { navigableCategories } from '@/domain/taxonomy'
+import { routableCategories } from '@/domain/taxonomy'
 import { AisleDepth } from '@/ui/motion/aisle-depth'
 import { ScrollRail } from '@/ui/scroll-rail'
 import { FixtureNotice } from '@/ui/notices'
@@ -138,13 +138,13 @@ export default async function WarehousePage() {
               <p className="warehouse__sign-line">Everything, by category.</p>
             </header>
             <div className="warehouse__exit">
-              {navigableCategories().map((category) => (
+              {routableCategories().map((category) => (
                 <Link
                   key={category.slug}
                   href={`/shop/${category.slug}`}
                   className="button button--secondary"
                 >
-                  {category.label}
+                  {category.line === 'mens' ? `Men's ${category.label}` : category.label}
                 </Link>
               ))}
               <Link href="/new-arrivals" className="button button--secondary">

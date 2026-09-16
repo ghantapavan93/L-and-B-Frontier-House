@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { listPublicProducts } from '@/data/catalog-repository'
 import { EDITS } from '@/domain/edits'
-import { routableCategories } from '@/domain/taxonomy'
+import { indexableCategories, isDemonstrationCategory } from '@/domain/taxonomy'
 
 /**
  * Public routes only.
@@ -11,11 +11,14 @@ import { routableCategories } from '@/domain/taxonomy'
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env['LB_SITE_URL'] ?? 'http://localhost:3000'
-  const products = await listPublicProducts()
+  const products = (await listPublicProducts()).filter(
+    (product) => !isDemonstrationCategory(product.categorySlug),
+  )
 
   /*
-    /mens is deliberately absent: it is a noindex demonstration surface for an owner
-    decision (D-03), not a published category.
+    /mens and every demonstration category and product are deliberately absent: the men's
+    line is a noindex proposal for an owner decision (D-03), not a published category. The
+    house presents it first; the sitemap lists what the business sells.
   */
   const staticRoutes = [
     '',
@@ -47,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }))
 
-  const categoryRoutes = routableCategories().flatMap((category) => [
+  const categoryRoutes = indexableCategories().flatMap((category) => [
     { url: `${base}/shop/${category.slug}`, changeFrequency: 'daily' as const, priority: 0.8 },
     {
       url: `${base}/size-and-fit/${category.slug}`,
