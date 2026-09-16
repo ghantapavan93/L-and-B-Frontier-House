@@ -4383,6 +4383,22 @@ tfoot td {
     padding-bottom: calc(var(--space-6) + var(--film-controls-band));
   }
 
+  /*
+    Three actions, three rows. Wrapped, the second row was "Skip to shop" beside
+    "Wholesale access", whose last thirty pixels sat under the fixed House Guide chip in
+    the corner — the keyboard suite's centre test passes, a thumb aiming at "ACCESS" does
+    not. One action per row ends every target well clear of the corner. Seen in the
+    settled phone render, not in any audit.
+  */
+  .ignition__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ignition__actions > * {
+    text-align: center;
+  }
+
   .hero-film__controls {
     inset-block-end: var(--space-4);
     inset-inline: var(--margin-mobile);

@@ -43,7 +43,7 @@ describe('Test 3 — authorised commerce is real HTML', () => {
     expect(body).toMatch(/Afterpay, Sezzle or PayPal Credit at checkout/)
     // $186.00 pack ÷ 4, ceiling to the cent. Authorised surface only; 02 asserts the
     // public side never carries "payments of".
-    expect(body).toContain('4 payments of $46.50 with Afterpay')
+    expect(body).toContain('A pack is 4 payments of $46.50 with Afterpay.')
   })
 
   it('renders Add to Order as a real button in a real form', async () => {

@@ -77,7 +77,8 @@ export function checkoutMethodsPhrase(): string {
 }
 
 /**
- * The Afterpay line on an AUTHORISED price panel: "or 4 payments of $46.50 with Afterpay".
+ * The Afterpay line on an AUTHORISED price panel: "A pack is 4 payments of $46.50 with
+ * Afterpay." One sentence that stands on its own after the methods.
  * Derived from a restricted amount, so the caller must already be inside the session
  * boundary — this component never appears on a public route, and the unauthenticated
  * crawl asserts the phrase is absent there.
@@ -88,8 +89,8 @@ export function AfterpayLine({ total }: { total: Money }) {
   return (
     <span className="afterpay-line">
       {equal
-        ? `or ${AFTERPAY_INSTALMENTS} payments of ${formatMoney(rest)} with Afterpay`
-        : `or ${formatMoney(first)} then ${AFTERPAY_INSTALMENTS - 1} payments of ${formatMoney(rest)} with Afterpay`}
+        ? `A pack is ${AFTERPAY_INSTALMENTS} payments of ${formatMoney(rest)} with Afterpay.`
+        : `A pack is ${formatMoney(first)} then ${AFTERPAY_INSTALMENTS - 1} payments of ${formatMoney(rest)} with Afterpay.`}
     </span>
   )
 }

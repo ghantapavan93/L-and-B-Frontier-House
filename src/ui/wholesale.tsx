@@ -63,7 +63,7 @@ export function WholesalePricePanel({ product }: { product: AuthorisedProduct })
         {/* Authorised surface only: the instalment is arithmetic on a restricted price. */}
         <dt>Pay</dt>
         <dd>
-          {checkoutMethodsPhrase()} — <AfterpayLine total={wholesale.packPrice} /> on a pack.
+          {checkoutMethodsPhrase()}. <AfterpayLine total={wholesale.packPrice} />
         </dd>
       </dl>
     </section>
