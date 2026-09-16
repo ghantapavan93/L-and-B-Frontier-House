@@ -283,41 +283,15 @@ export default function MensPage() {
           )
         })}
 
-        <section aria-labelledby="mens-film-heading">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">See it move</p>
-              <h2 id="mens-film-heading">The reference film</h2>
-              <p className="meta">
-                Dropped in with the photographs — plays on your click, never by itself.
-                Reference footage only, replaced by owned film before anything ships (D-09).
-              </p>
-            </div>
-          </div>
-          {/*
-          User-initiated playback: `preload="none"` so the 4.8 MB file costs nothing until
-          asked for, native controls because a click-to-play product film is a player, and
-          no autoplay — so WCAG 2.2.2 never engages. The poster is a frame of the film
-          itself, captured at import.
+        {/*
+          NO "SEE IT MOVE" SECTION UNTIL SOMETHING MOVES — the same rule the product page
+          learned. A section headed "The reference film" stood here over a <video> whose
+          poster returned 404 and whose source was never imported: a heading promising
+          motion over a broken grey box, on the page whose whole job is to make the men's
+          direction look real. Found walking the phone build before deploy. When reference
+          footage arrives it comes through the import script like every other men's asset,
+          and the section comes back with it.
         */}
-          <figure className="mens-film">
-            <video
-              controls
-              preload="none"
-              playsInline
-              poster="/media/mens-demo/reference-film-poster.webp"
-              width={1920}
-              height={1080}
-            >
-              <source src="/media/mens-demo/reference-film.mp4" type="video/mp4" />
-              Your browser cannot play this film. It is reference footage of denim in motion.
-            </video>
-            <figcaption className="meta">
-              Reference film · fixture — not Lucky &amp; Blessed footage
-            </figcaption>
-          </figure>
-        </section>
-
         {gravel && bootPull ? (
           <section aria-labelledby="mens-campaign-heading">
             <div className="section-head">

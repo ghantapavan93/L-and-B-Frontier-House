@@ -4363,10 +4363,34 @@ tfoot td {
   margin-top: var(--space-4);
 }
 
+/*
+  ON A PHONE THE CONTROLS OWN THE BOTTOM BAND; THE COPY MAY NOT ENTER IT.
+
+  Pinned to the section's bottom-left corner, "Pause the film" landed exactly on "Skip to
+  shop" and "Wholesale access" at 375 px — the headline, lede and three actions fill the
+  section on a phone, so there is no empty corner. A 44 px button on top of the one-action
+  exit to shop is the worst place on the site for it. Caught walking the phone build.
+
+  The controls are children of the film layer, not of the section grid, so they cannot
+  simply join the flow. Instead: one full-width row along the bottom edge, and the
+  section's bottom padding grows to the row's height so the centred content stops above
+  it. Two things can no longer share a pixel. Desktop keeps the corner, where the centred
+  copy never reaches it.
+*/
 @media (max-width: 47.99rem) {
+  .ignition {
+    --film-controls-band: 96px;
+    padding-bottom: calc(var(--space-6) + var(--film-controls-band));
+  }
+
   .hero-film__controls {
     inset-block-end: var(--space-4);
-    inset-inline-end: var(--space-4);
+    inset-inline: var(--margin-mobile);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
   }
 }
 
