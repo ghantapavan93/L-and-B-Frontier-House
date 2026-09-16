@@ -421,9 +421,14 @@ svg {
   }
 }
 
-/* Nothing is ever scrolled under the sticky header. */
+/* Nothing is ever scrolled under the sticky header — or into the corner the fixed House
+   Guide chip owns. A Tab press scrolls the newly-focused control into view by the least
+   movement, which parks a control at the bottom edge; with the chip there, a right-aligned
+   button lands under it (2.4.11, measured on the Warehouse teaser's "Enter" at 1440 once
+   the homepage's bands moved). The bottom margin clears the chip's 44 px and its inset. */
 :where(a, button, input, select, textarea, [tabindex], h1, h2, h3, main) {
   scroll-margin-top: calc(5rem + var(--safe-top));
+  scroll-margin-bottom: calc(44px + var(--space-6) + var(--safe-bottom));
 }
 
 .site-header__wordmark {
@@ -2117,6 +2122,18 @@ tfoot td {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: var(--gutter);
   }
+}
+
+.thread__stage-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.thread__stage-link:hover h3,
+.thread__stage-link:focus-visible h3 {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .thread__stage h3 {
@@ -3984,6 +4001,251 @@ tfoot td {
 
 .line-rail__all {
   margin: var(--space-5) 0 0;
+}
+
+/* ── THE LINE CARDS — four men's categories, one render each ──────────────────────
+   Same box for all four (a 4:5 well), each render's own composition inside it. The title,
+   line and destination are live text on a scrim over the lower third; the picture drifts
+   a few percent on hover and not at all under reduced motion. The plate marker sits in
+   the corner because the picture is generated, and says so. */
+.line-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 62rem) {
+  .line-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+}
+
+.line-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-carbon);
+  color: var(--text-on-inverse);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.line-card__media {
+  position: absolute;
+  inset: 0;
+}
+
+.line-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform var(--duration-slow) var(--ease-entrance);
+}
+
+.line-card:hover .line-card__media img,
+.line-card:focus-visible .line-card__media img {
+  transform: scale(1.04);
+}
+
+/* Text always lands on a readable ground: the scrim holds >= 0.72 under the whole block. */
+.line-card__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-7) var(--space-4) var(--space-4);
+  background: linear-gradient(
+    to top,
+    rgb(10 10 10 / 0.86) 0%,
+    rgb(10 10 10 / 0.55) 55%,
+    rgb(10 10 10 / 0) 100%
+  );
+}
+
+.line-card__name {
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: var(--headline-md-leading);
+}
+
+.line-card__line {
+  font-size: var(--text-xs);
+  color: var(--color-sandstone);
+}
+
+.line-card:focus-visible {
+  outline: 2px solid var(--color-tobacco);
+  outline-offset: 3px;
+}
+
+/* The chip sits top-right, sized to its text. Two selectors, because a later `.plate-note`
+   rule (the type-scale block) re-sets `bottom` and the chip stretched down over the card's
+   body — measured: the right half of every blurb was under it. */
+.line-card .plate-note--card,
+.ops-card .plate-note--card {
+  inset: var(--space-2) var(--space-2) auto auto;
+  height: auto;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+/* Narrow phones: the overlay clipped the blurb inside a 140 px card at 320 (the
+   responsive sweep caught "Trucker jackets and outer laye"). Below 48rem the card is
+   plain flow — the render on top at 4:5, the name and line beneath on the page surface,
+   nothing absolutely positioned, nothing to clip. The overlay is a desktop composition. */
+@media (max-width: 47.99rem) {
+  .line-card {
+    aspect-ratio: auto;
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  .line-card__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+  }
+
+  .line-card__body {
+    position: static;
+    padding: var(--space-3) 0 0;
+    background: none;
+  }
+
+  .line-card__name {
+    font-size: 1.125rem;
+  }
+
+  .line-card__line {
+    color: var(--color-text-meta);
+  }
+}
+
+/* ── OPERATIONS CARDS — four facts, four renders ─────────────────────────────────── */
+.ops-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.ops-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.ops-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+.ops-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-entrance);
+}
+
+.ops-card:hover .ops-card__media img {
+  transform: scale(1.03);
+}
+
+.ops-card__body {
+  padding: var(--space-4);
+}
+
+.ops-card__term {
+  font-size: var(--label-caps);
+  line-height: var(--label-caps-leading);
+  font-weight: var(--label-caps-weight);
+  letter-spacing: var(--label-caps-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-meta);
+  margin: 0 0 var(--space-2);
+}
+
+.ops-card__detail {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--headline-md);
+  line-height: var(--headline-md-leading);
+}
+
+/* Phone: a 4:5 render per card stacked four times is four screens of pictures for four
+   sentences. The render becomes a 5:4 band above the fact instead. */
+@media (max-width: 47.99rem) {
+  .ops-card__media {
+    aspect-ratio: 5 / 4;
+  }
+
+  .ops-card__media img {
+    object-position: center 40%;
+  }
+}
+
+/* ── FIXTURE NOTICE WITH ITS PLATE ──────────────────────────────────────────────────
+   Picture left, live text right on desktop; picture above on a phone. The crop keeps the
+   swatches and the pattern paper: the render's right two-thirds carry them. */
+.notice--fixture-plate {
+  display: grid;
+  gap: var(--space-4);
+  padding: 0;
+  overflow: hidden;
+}
+
+.notice--fixture-plate .notice__plate {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+.notice--fixture-plate .notice__plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% center;
+}
+
+.notice--fixture-plate .notice__body {
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+@media (min-width: 48rem) {
+  .notice--fixture-plate {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .notice--fixture-plate .notice__plate {
+    aspect-ratio: 4 / 3;
+    height: 100%;
+  }
+
+  .notice--fixture-plate .notice__body {
+    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line-card__media img,
+  .ops-card__media img {
+    transition: none;
+    transform: none !important;
+  }
 }
 
 /* ── WAYS IN — the front page's link garden ──────────────────────────────────────────
@@ -6523,6 +6785,23 @@ tfoot td {
   overflow-x: auto;
   scrollbar-width: thin;
   order: 2;
+  /* A grid item's automatic minimum is its content: eight `flex: none` thumbnails made the
+     rail 580 px wide inside a 375 px page and dragged the whole product page sideways —
+     the rail was built for two frames. Contain the overflow; the scrollbar was already
+     there. */
+  min-width: 0;
+  max-width: 100%;
+  scroll-snap-type: x proximity;
+  /* The containing block for the thumbnails' visually-hidden labels. Each is a 1 px
+     `position: absolute` span at its thumb's laid-out x; without a positioned ancestor
+     they escaped the scroller and the document was 580 px wide on a 375 px phone while
+     body and main measured 375. Bisected by hiding the rail. */
+  position: relative;
+}
+
+.gallery__rail > .gallery__thumb {
+  scroll-snap-align: start;
+  position: relative;
 }
 
 @media (min-width: 48rem) {

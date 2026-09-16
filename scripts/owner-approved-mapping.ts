@@ -32,6 +32,15 @@ export type ApprovedAsset = {
   /** Lucky & Blessed style code as it appears in their own filename, when present. */
   readonly styleCode: string | null
   readonly placement: Placement
+  /**
+   * A RENDER THE OWNER GENERATED AND PLACED HERE, not a photograph. Carried into the
+   * manifest as `owner-generated` and served with `generated-campaign` provenance, so
+   * every surface that mounts it shows the plate marker beside it. The owner's D-09
+   * decision approves generated media for atmosphere and refuses it for evidence; each
+   * entry below that sits on the refused side says so in `describes`, and the owner
+   * placed it knowingly (2026-09-16).
+   */
+  readonly generated?: true
 }
 
 export const APPROVED_ASSETS: readonly ApprovedAsset[] = [
@@ -335,5 +344,186 @@ export const APPROVED_ASSETS: readonly ApprovedAsset[] = [
         '2.2.2), a poster frame and a captions track, and it belongs to Phase 2 media. ' +
         'Preserved as an original; not optimised or published.',
     },
+  },
+
+  /* ── Thread to trade — five stage planes, OWNER-GENERATED RENDERS (2026-09-16) ─────
+     Each depicts a stage of the chain with a figure at work: a loom, a pattern bench, a
+     sewing machine, a packing floor, a boutique. D-09 refuses generated media for
+     manufacturing and facility claims; these are placed by the owner as campaign
+     fiction and mount with the plate marker beside them. No place, mill or person is
+     named. ───────────────────────────────────────────────────────────────────────── */
+  {
+    original: 'thread-to-trade-01-textile.png',
+    slug: 'thread-01-textile',
+    styleCode: null,
+    describes: 'Generated render of indigo yarn on cones beside a loom weaving dark denim',
+    placement: { kind: 'editorial', slot: 'thread-to-trade-01-textile' },
+    generated: true,
+  },
+  {
+    original: 'thread-to-trade-02-design.png',
+    slug: 'thread-02-design',
+    styleCode: null,
+    describes:
+      'Generated render of a pattern bench: hands chalking a paper pattern beside denim, snaps and a sketch',
+    placement: { kind: 'editorial', slot: 'thread-to-trade-02-design' },
+    generated: true,
+  },
+  {
+    original: 'thread-to-trade-03-manufacturing.png',
+    slug: 'thread-03-manufacturing',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a hat guiding a denim jacket through an industrial sewing machine',
+    placement: { kind: 'editorial', slot: 'thread-to-trade-03-manufacturing' },
+    generated: true,
+  },
+  {
+    original: 'thread-to-trade-04-distribution.png',
+    slug: 'thread-04-distribution',
+    styleCode: null,
+    describes:
+      'Generated render of a packing floor: garment rails, a figure scanning a carton, stacked boxes',
+    placement: { kind: 'editorial', slot: 'thread-to-trade-04-distribution' },
+    generated: true,
+  },
+  {
+    original: 'thread-to-trade-05-boutique-sales.png',
+    slug: 'thread-05-boutique-sales',
+    styleCode: null,
+    describes:
+      'Generated render of a boutique counter: a figure in a hat inspecting a denim jacket among racks',
+    placement: { kind: 'editorial', slot: 'thread-to-trade-05-boutique-sales' },
+    generated: true,
+  },
+
+  /* ── Operations — four cards, OWNER-GENERATED RENDERS (2026-09-16) ──────────────── */
+  {
+    original: 'operations-01-fill-rate.png',
+    slug: 'operations-01-fill-rate',
+    styleCode: null,
+    describes:
+      'Generated render of a grid of folded, bagged garments with a conveyor running through it',
+    placement: { kind: 'editorial', slot: 'operations-01-fill-rate' },
+    generated: true,
+  },
+  {
+    original: 'operations-02-processing.png',
+    slug: 'operations-02-processing',
+    styleCode: null,
+    describes:
+      'Generated render of a bagged garment passing through a lit scanner on a conveyor',
+    placement: { kind: 'editorial', slot: 'operations-02-processing' },
+    generated: true,
+  },
+  {
+    original: 'operations-03-minimum-prepacks.png',
+    slug: 'operations-03-minimum-prepacks',
+    styleCode: null,
+    describes: 'Generated render of six bagged, tagged garments laid out beside an open carton',
+    placement: { kind: 'editorial', slot: 'operations-03-minimum-prepacks' },
+    generated: true,
+  },
+  {
+    original: 'operations-04-showroom.png',
+    slug: 'operations-04-showroom',
+    styleCode: null,
+    describes:
+      'Generated render of a showroom interior with garment rails and a table before a city skyline; not the Dallas Market Center',
+    placement: { kind: 'editorial', slot: 'operations-04-showroom' },
+    generated: true,
+  },
+
+  /* ── The line — four men's category cards, OWNER-GENERATED RENDERS (2026-09-16) ──── */
+  {
+    original: 'shop-category-mens-denim.png',
+    slug: 'category-mens-denim',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in dark denim and boots walking a stone terrace above a desert',
+    placement: { kind: 'editorial', slot: 'category-mens-denim' },
+    generated: true,
+  },
+  {
+    original: 'shop-category-mens-shirts.png',
+    slug: 'category-mens-shirts',
+    styleCode: null,
+    describes:
+      'Generated render of a figure fastening the cuff of an oxblood pearl-snap western shirt',
+    placement: { kind: 'editorial', slot: 'category-mens-shirts' },
+    generated: true,
+  },
+  {
+    original: 'shop-category-mens-outerwear.png',
+    slug: 'category-mens-outerwear',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a dark jacket walking a wet loading yard at dusk',
+    placement: { kind: 'editorial', slot: 'category-mens-outerwear' },
+    generated: true,
+  },
+  {
+    original: 'shop-category-mens-accessories.png',
+    slug: 'category-mens-accessories',
+    styleCode: null,
+    describes:
+      'Generated render of a leather belt, wallet and card case on stone and blue-green glass blocks',
+    placement: { kind: 'editorial', slot: 'category-mens-accessories' },
+    generated: true,
+  },
+
+  /* ── Development fixture notice — OWNER-GENERATED RENDER (2026-09-16) ───────────── */
+  {
+    original: 'development-fixture-notice.png',
+    slug: 'development-fixture-notice',
+    styleCode: null,
+    describes:
+      'Generated render of a development table: cobalt and teal fabric swatches, pattern paper, oxblood thread, coloured acrylic and a steel rule',
+    placement: { kind: 'editorial', slot: 'development-fixture-notice' },
+    generated: true,
+  },
+
+  /* ── Fit tiles — OWNER-GENERATED RENDERS (2026-09-16) ────────────────────────────── */
+  {
+    original: 'fit-straight.png',
+    slug: 'fit-straight',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a white shirt and straight dark jeans on a ranch porch',
+    placement: {
+      kind: 'withheld',
+      reason:
+        'A wooden sign in the frame reads BETTER MEN HIGHER PLAINS beneath a longhorn ' +
+        'skull — an invented slogan baked into the image (§12) and the anti-cliché ' +
+        "contract's longhorn. Regenerate without signage; the tile falls back to type.",
+    },
+    generated: true,
+  },
+  {
+    original: 'fit-bootcut.png',
+    slug: 'fit-bootcut',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a tan shirt jacket and bootcut jeans leaning on a rail fence',
+    placement: { kind: 'editorial', slot: 'fit-bootcut' },
+    generated: true,
+  },
+  {
+    original: 'fit-flare.png',
+    slug: 'fit-flare',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a denim shirt and flared jeans against a windmill and fence',
+    placement: { kind: 'editorial', slot: 'fit-flare' },
+    generated: true,
+  },
+  {
+    original: 'fit-wide.png',
+    slug: 'fit-wide-leg',
+    styleCode: null,
+    describes:
+      'Generated render of a figure in a chambray shirt and wide-leg jeans in a ranch yard at sunset',
+    placement: { kind: 'editorial', slot: 'fit-wide-leg' },
+    generated: true,
   },
 ]

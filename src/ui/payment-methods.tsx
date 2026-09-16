@@ -11,7 +11,7 @@ import {
 
 /**
  * The marks, as the brand's own strip shows them, cut from that strip
- * (assets/source/owner-approved/payment/, S-20). Knocked out to transparency so they sit
+ * (assets/source/payment/, S-20). Knocked out to transparency so they sit
  * on the house's own dark surface; on a light one Afterpay's wordmark is a hole and
  * Sezzle's is white on white, which is why the marks appear ONLY on the footer and every
  * other surface names the methods in text.

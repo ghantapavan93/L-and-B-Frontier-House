@@ -401,6 +401,31 @@ export const MENS_DEMO_CAMPAIGN: readonly DemoImage[] = [
  * category, so they appear here as how the trousers are worn rather than as entries to buy.
  * Nothing in this group carries a name, a size or a price, and the section says what it is.
  */
+/**
+ * THE CAMPAIGN FRAMES the owner placed under the brief's names on 2026-09-16, resolved
+ * through the import script by filename. Generated renders, mounted one to one: the story
+ * lead and inset on the homepage chapter, the mobile hero plate and the Denim world tile
+ * on /mens. Never reused elsewhere.
+ */
+export const MENS_CAMPAIGN_FRAMES: readonly DemoImage[] = [
+  img(
+    'campaign-story-lead',
+    'A figure in denim at a ranch gate at sunset, generated campaign frame',
+  ),
+  img(
+    'campaign-story-inset',
+    'A belt buckle and denim waistband, close, generated campaign frame',
+  ),
+  img(
+    'campaign-hero-mobile',
+    'A figure in a denim shirt beside a barn at golden hour, generated campaign frame',
+  ),
+  img(
+    'campaign-world-tile',
+    'A hat, boots and folded denim on a wooden shelf, generated campaign frame',
+  ),
+]
+
 export const MENS_DEMO_FLOOR: readonly DemoImage[] = [
   img('floor-white-jean-worn', 'Cream jeans worn full length with brown western boots'),
   img('floor-dark-jean-back', 'Dark jeans seen from behind, worn with boots'),
@@ -423,3 +448,8 @@ export const MENS_DEMO_FLOOR: readonly DemoImage[] = [
   img('floor-light-jean-flat', 'Light-wash jeans laid flat'),
   img('floor-pale-jean-flat', 'Pale-wash jeans laid flat'),
 ]
+
+/** A campaign frame by key, for the surfaces that mount them one to one. */
+export function campaignFrame(key: string): DemoImage | undefined {
+  return MENS_CAMPAIGN_FRAMES.find((f) => f.asset.poster.includes(key))
+}

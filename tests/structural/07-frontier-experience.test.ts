@@ -113,11 +113,18 @@ describe('flag enabled (default) — cinematic specifics', () => {
     const { body } = await get('/thread-to-trade')
 
     expect(body).toContain('journey__spine')
-    expect(body).toContain('Photography pending — nothing real is depicted')
+    /*
+      Since 2026-09-16 every stage carries an owner-generated render instead of an
+      abstract swatch. The property this test holds is unchanged: the planes are marked
+      as generated in their captions, every one — a picture of a sewing machine is
+      illustration, not evidence — and no place, mill or person is named.
+    */
+    expect(body.match(/generated campaign artwork/gi)?.length ?? 0).toBeGreaterThanOrEqual(5)
+    expect(body).toContain('no place or person is real')
     for (const stage of ['Textile', 'Design', 'Manufacturing', 'Distribution']) {
       expect(body).toContain(stage)
     }
-    expect(body).not.toMatch(/kuroki|tannery|factory in|our mill/i)
+    expect(body).not.toMatch(/kuroki|tannery|factory in|our mill|made in texas|texas factory/i)
   })
 
   /**

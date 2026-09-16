@@ -438,3 +438,35 @@ lands, with no scrim — and keep the centre clear enough to survive an iOS play
 | Campaign | 8 | 2 have · **6 to shoot** |
 | Generated ground plates (§4) | 10 | **all to generate** |
 | **Total** | **106** | **56 to shoot · 10 to generate** |
+
+---
+
+## 8. What arrived — 2026-09-16
+
+The owner generated and placed 32 frames. Every one was reviewed at natural aspect on grey
+before it touched a page, and every one is wired through the existing resolution system:
+the men's-line frames by **filename** through `import-mens-demo` (the §6 contract), the
+rest through `owner-approved-mapping.ts` → `media:optimize` → the manifest → a named slot.
+
+| Group | Files | Where | Provenance |
+| :--- | :--- | :--- | :--- |
+| Men's product frames | `dark-rigid-jean-{model,hem,back,motion,stack}`, `mid-wash-jean-{side,macro,back,motion,stack}` | `MENS_REFERENCE_MEDIA` → the product gallery, 8 frames per style | generated reference; replaced by real frames of the same names at launch |
+| Campaign | `campaign-story-lead`, `campaign-story-inset`, `campaign-hero-mobile`, `campaign-world-tile` | Men's chapter lead + inset · `/mens` portrait hero · Denim world tile | generated |
+| Thread to trade | `thread-to-trade-01…05` | one stage plane each, caption carries the plate marker | generated · **D-09 refused side** (facility, manufacturing, figures) — placed knowingly |
+| Operations | `operations-01…04` | `OperationsCards`, one per fact | generated |
+| The line | `shop-category-mens-{denim,shirts,outerwear,accessories}` | `WaysIn` line cards, slots `category-mens-*` | generated |
+| Fixture notice | `development-fixture-notice` | `FixtureNotice`, beside live text | generated |
+| Fit tiles | `fit-bootcut`, `fit-flare`, `fit-wide` (→ slot `fit-wide-leg`) | Fit Gateway | generated |
+
+**Withheld:** `fit-straight.png` — a sign in frame reads *BETTER MEN HIGHER PLAINS* under
+a longhorn skull. Invented slogan (§12) and the anti-cliché contract's longhorn. Regenerate
+without signage; the tile shows type until then.
+
+**Not on disk:** `operations-how-we-ship-background.png` was described but never placed;
+the owner's later instruction superseded it with four cards, so nothing is missing.
+
+**Content note:** `dark-rigid-jean-back.png` shows a mid-blue wash, not the dark indigo of
+the style's flat. Mounted as named; the first frame a real shoot replaces.
+
+Every generated frame carries `generated-campaign` provenance via the mapping's `generated`
+flag and shows the plate marker on the surface that mounts it. None is reused.

@@ -39,13 +39,33 @@ export function demoMedia(key: string, alt: string): MediaRef {
 
 /** Reference frames per men's product id. Alt says what the frame shows, never a price. */
 export const MENS_REFERENCE_MEDIA: Readonly<Record<string, readonly MediaRef[]>> = {
+  /*
+    Two styles carry the brief's full eight-frame pattern. Five frames each arrived on
+    2026-09-16 under the brief's exact filenames (model, hem, back, motion, stack) and
+    resolved by name through the import script, which is the contract. They are
+    owner-generated renders, not photographs: prototype imagery for the demonstration, to
+    be replaced by real frames of the same names at launch. The `-back` frame of the Dark
+    Rigid shows a mid-blue wash, not the dark indigo of its flat; noted, mounted as named,
+    and the first thing a real shoot replaces.
+  */
   'p-mj101-drk': [
     demoMedia(
       'dark-rigid-jean-flat',
       'Dark Rigid Jean, dark indigo five-pocket jean laid flat',
     ),
+    demoMedia(
+      'dark-rigid-jean-model',
+      'Dark Rigid Jean, worn full length on a ranch yard, generated',
+    ),
     demoMedia('dark-rigid-jean-side', 'Dark Rigid Jean, side view worn with a brown belt'),
+    demoMedia('dark-rigid-jean-hem', 'Dark Rigid Jean, the hem over a boot heel, generated'),
     demoMedia('dark-rigid-jean-macro', 'Dark Rigid Jean, close view of the dark indigo weave'),
+    demoMedia('dark-rigid-jean-back', 'Dark Rigid Jean, back pockets and yoke, generated'),
+    demoMedia('dark-rigid-jean-motion', 'Dark Rigid Jean, mid-stride across a yard, generated'),
+    demoMedia(
+      'dark-rigid-jean-stack',
+      'Dark Rigid Jean, three of the run folded on a bench, generated',
+    ),
   ],
   'p-mj102-mid': [
     demoMedia(
@@ -54,12 +74,26 @@ export const MENS_REFERENCE_MEDIA: Readonly<Record<string, readonly MediaRef[]>>
     ),
     demoMedia('mid-wash-jean-model', 'Everyday Mid-Wash Jean, worn full length'),
     demoMedia(
-      'mid-wash-jean-front',
-      'Everyday Mid-Wash Jean, front waistband with a brown belt',
+      'mid-wash-jean-side',
+      'Everyday Mid-Wash Jean, side view of the leg line, generated',
     ),
     demoMedia(
       'mid-wash-jean-hem',
       'Everyday Mid-Wash Jean, the hem breaking over a western boot',
+    ),
+    demoMedia(
+      'mid-wash-jean-macro',
+      'Everyday Mid-Wash Jean, close view of the whiskering, generated',
+    ),
+    demoMedia('mid-wash-jean-back', 'Everyday Mid-Wash Jean, back pockets and yoke, generated'),
+    demoMedia('mid-wash-jean-motion', 'Everyday Mid-Wash Jean, mid-stride, generated'),
+    demoMedia(
+      'mid-wash-jean-stack',
+      'Everyday Mid-Wash Jean, three of the run folded, generated',
+    ),
+    demoMedia(
+      'mid-wash-jean-front',
+      'Everyday Mid-Wash Jean, front waistband with a brown belt',
     ),
   ],
   'p-mj103-lgt': [

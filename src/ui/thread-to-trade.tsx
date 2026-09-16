@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { officialMediaForSlot } from '@/content/media/official-media'
 import type { MediaRef } from '@/domain/product'
 import { EditorialMedia } from './product-media'
@@ -15,9 +16,17 @@ import { EditorialMedia } from './product-media'
  * Every stage is a VERIFIED FACT from docs/brand-research/00_BRAND_TRUTH.md — the brand's
  * own words: *"we own, operate, and manage all areas of the supply chain… textile, design,
  * manufacturing, distribution, and sales."* Nothing asserts a manufacturing LOCATION
- * (unevidenced, OQ-04), and no mill, factory, supplier or person is named or depicted.
- * Where no honest photograph exists, the plane is an abstract woven or routed swatch that
- * depicts nothing real.
+ * (unevidenced, OQ-04), and no mill, factory, supplier or person is NAMED.
+ *
+ * THE PLANES, SINCE 2026-09-16: five owner-generated renders, one per stage, placed by the
+ * owner under the names `thread-to-trade-01-textile` … `05-boutique-sales` and mounted
+ * one to one. They depict a loom, a pattern bench, a sewing machine, a packing floor and a
+ * boutique counter, each with a figure at work. That is campaign fiction on the side of
+ * D-09 the owner's own decision refuses for generated media — manufacturing and facility
+ * depictions — and the owner placed them knowingly. So each plane carries the plate
+ * marker in its caption, its provenance is `generated-campaign`, and the statement beside
+ * it stays the verified fact. Evocative, never evidentiary: the picture illustrates the
+ * sentence; the sentence is what is true.
  */
 
 const STAGES = [
@@ -26,40 +35,40 @@ const STAGES = [
     title: 'Textile',
     body: 'We own the textile stage of the chain rather than buying finished cloth.',
     proof: 'Vertically integrated — their words',
-    slot: 'craft-detail',
-    caption: 'Embroidery at close range',
+    slot: 'thread-to-trade-01-textile',
+    caption: 'Textile — generated campaign artwork, not photography',
   },
   {
     id: 'stage-design',
     title: 'Design',
     body: 'Styles are designed in house, which is why the line turns over as fast as it does.',
     proof: 'Daily drops, in-house design',
-    slot: 'homepage-hero-portrait',
-    caption: 'A house print, worn',
+    slot: 'thread-to-trade-02-design',
+    caption: 'Design — generated campaign artwork, not photography',
   },
   {
     id: 'stage-manufacturing',
     title: 'Manufacturing',
     body: 'Production is ours to schedule, so a style can be repeated rather than chased.',
-    proof: 'Owned production — no photography yet',
-    slot: null,
-    swatch: 'weave' as const,
+    proof: 'Owned production — their words',
+    slot: 'thread-to-trade-03-manufacturing',
+    caption: 'Manufacturing — generated campaign artwork; no place or person is real',
   },
   {
     id: 'stage-distribution',
     title: 'Distribution',
     body: '2.64 days average processing. Order by 5pm CST and it ships same or next business day.',
     proof: '2.64-day average processing',
-    slot: null,
-    swatch: 'route' as const,
+    slot: 'thread-to-trade-04-distribution',
+    caption: 'Distribution — generated campaign artwork, not photography',
   },
   {
     id: 'stage-boutique',
     title: 'Boutique · Sales',
     body: '100% order fill rate. What you order is what arrives — we are partners in your success.',
     proof: '100% fill rate · 615 reviews',
-    slot: 'new-arrivals',
-    caption: 'The line, on its way to boutiques',
+    slot: 'thread-to-trade-05-boutique-sales',
+    caption: 'Boutique — generated campaign artwork, not photography',
   },
 ] as const
 
@@ -161,11 +170,9 @@ export function ThreadToTradeJourney({
               id={stage.id}
               className={`journey__stage${index % 2 === 1 ? ' journey__stage--reverse' : ''}`}
             >
-              <StageMedia
-                media={media}
-                {...('caption' in stage && stage.caption ? { caption: stage.caption } : {})}
-                {...('swatch' in stage && stage.swatch ? { swatch: stage.swatch } : {})}
-              />
+              {/* Every stage has a slot now; the swatch path stays for a slot that is
+                  ever unmapped, so a missing render shows an honest abstract, not a hole. */}
+              <StageMedia media={media} caption={stage.caption} swatch="weave" />
               <div className="journey__copy">
                 <span className="journey__index" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}
@@ -207,14 +214,22 @@ export function ThreadToTrade() {
         <path d="M10 84 C 180 24, 340 108, 520 62 S 840 20, 990 66" />
       </svg>
 
+      {/* Each stage links to its full plane on the journey route, which also makes the
+          phone's sideways scroller keyboard-reachable — every card is a tab stop. */}
       <ol className="thread__stages">
         {STAGES.map((stage, index) => (
           <li className="thread__stage" key={stage.title}>
-            <span className="thread__index" aria-hidden="true">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <h3>{stage.title}</h3>
-            <p>{stage.body}</p>
+            <Link
+              prefetch={false}
+              href={`/thread-to-trade#${stage.id}`}
+              className="thread__stage-link"
+            >
+              <span className="thread__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3>{stage.title}</h3>
+              <p>{stage.body}</p>
+            </Link>
           </li>
         ))}
       </ol>

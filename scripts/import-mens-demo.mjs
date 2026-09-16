@@ -116,6 +116,15 @@ const all = readdirSync(SRC).filter((f) => SOURCE_EXT.test(f))
 
 /* The index map's positions were taken against this exact filter — .avif only, byte
    duplicates removed. It has to keep seeing the same list to keep meaning the same thing. */
+/*
+  Deliberately narrow. The current reference drop is named by content hash —
+  `e8c25a7676c18b5fcc27d44ae3bfe16a09030982-2000x2500.avif` — and a loose
+  "lowercase words joined by hyphens" pattern matches every one of them, which on the first
+  run published 46 hash-named assets beside the 46 real ones. A key is words: each segment
+  starts sensibly, none runs longer than a word, and the first must begin with a letter.
+*/
+const KEY_SHAPE = /^[a-z][a-z0-9]{1,13}(?:-[a-z0-9]{1,13}){1,4}$/
+
 const indexed = all
   .filter((f) => f.endsWith('.avif') && !/\(\d\)/.test(f))
   /*
@@ -142,14 +151,6 @@ function byName(key) {
  * to the convention is the whole act of publishing it — the fixture can start using it
  * whenever, and until then it is encoded, in the manifest and ready.
  */
-/*
-  Deliberately narrow. The current reference drop is named by content hash —
-  `e8c25a7676c18b5fcc27d44ae3bfe16a09030982-2000x2500.avif` — and a loose
-  "lowercase words joined by hyphens" pattern matches every one of them, which on the first
-  run published 46 hash-named assets beside the 46 real ones. A key is words: each segment
-  starts sensibly, none runs longer than a word, and the first must begin with a letter.
-*/
-const KEY_SHAPE = /^[a-z][a-z0-9]{1,13}(?:-[a-z0-9]{1,13}){1,4}$/
 
 const KEYS = [
   ...new Set([

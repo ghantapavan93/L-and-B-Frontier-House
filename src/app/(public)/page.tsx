@@ -17,6 +17,7 @@ import { FixtureNotice } from '@/ui/notices'
 import { EditorialMedia } from '@/ui/product-media'
 import { ThreadToTrade } from '@/ui/thread-to-trade'
 import { LineRail } from '@/ui/line-rail'
+import { OperationsCards } from '@/ui/operations-cards'
 import { WaysIn } from '@/ui/ways-in'
 
 /**
@@ -168,7 +169,12 @@ export default async function HomePage() {
         garments has done its job, and the rest of the house is one click, not one scroll.
       */}
       <WaysIn
-        womens={womensLineCategories()}
+        womens={womensLineCategories().map((category) => ({
+          ...category,
+          media:
+            officialMediaForSlot(`category-${category.slug}`) ??
+            CATEGORY_TILE_FALLBACK[category.slug],
+        }))}
         categories={navigableCategories().map((category) => ({
           ...category,
           /* Owner photography when it exists; a cleared material plate until then — an
@@ -202,32 +208,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="container section" aria-labelledby="ops-heading">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Operations</p>
-            <h2 id="ops-heading">How we ship</h2>
-          </div>
-        </div>
-
-        <div className="panel">
-          <dl className="definition-list">
-            <dt>Fill rate</dt>
-            <dd>100% of orders filled complete.</dd>
-
-            <dt>Processing</dt>
-            <dd>
-              2.64 days on average. Order by 5pm CST and we ship same or next business day.
-            </dd>
-
-            <dt>Minimum</dt>
-            <dd>$50 per order. Prepacks of 6.</dd>
-
-            <dt>Showroom</dt>
-            <dd>#13656, Dallas Market Center. Markets August 18–21 and October 20–23, 2026.</dd>
-          </dl>
-        </div>
-      </section>
+      <OperationsCards />
 
       <HouseStrip />
 

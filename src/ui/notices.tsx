@@ -1,4 +1,6 @@
 import { FIXTURE_NOTICE, FIXTURE_NOTICE_DETAIL } from '@/fixtures/notice'
+import { officialMediaForSlot } from '@/content/media/official-media'
+import { EditorialMedia } from '@/ui/product-media'
 
 /**
  * The fixture notice is rendered wherever fixture data is shown. It is deliberately
@@ -6,12 +8,35 @@ import { FIXTURE_NOTICE, FIXTURE_NOTICE_DETAIL } from '@/fixtures/notice'
  * claims ship.
  */
 export function FixtureNotice({ detail = true }: { detail?: boolean }) {
+  /*
+    The development table, as a picture: swatches, pattern paper, oxblood thread, coloured
+    acrylic — cobalt, teal, graphite and silver, a different world from the ranch, on
+    purpose. Owner-generated (slot `development-fixture-notice`, 2026-09-16), mounted only
+    here, never elsewhere. The heading and paragraph stay live HTML beside it; nothing is
+    written into the image. Absent from the manifest → the notice is text alone.
+  */
+  const plate = officialMediaForSlot(
+    'development-fixture-notice',
+    'A development table: fabric swatches, pattern paper, thread and coloured acrylic — generated artwork',
+  )
   return (
-    <aside className="notice notice--fixture" aria-labelledby="fixture-notice-title">
-      <p className="notice__title" id="fixture-notice-title">
-        {FIXTURE_NOTICE}
-      </p>
-      {detail ? <p className="meta">{FIXTURE_NOTICE_DETAIL}</p> : null}
+    <aside
+      className={
+        plate ? 'notice notice--fixture notice--fixture-plate' : 'notice notice--fixture'
+      }
+      aria-labelledby="fixture-notice-title"
+    >
+      {plate ? (
+        <div className="notice__plate" aria-hidden="true">
+          <EditorialMedia media={plate} sizes="(min-width: 62rem) 22rem, 100vw" />
+        </div>
+      ) : null}
+      <div className="notice__body">
+        <p className="notice__title" id="fixture-notice-title">
+          {FIXTURE_NOTICE}
+        </p>
+        {detail ? <p className="meta">{FIXTURE_NOTICE_DETAIL}</p> : null}
+      </div>
     </aside>
   )
 }

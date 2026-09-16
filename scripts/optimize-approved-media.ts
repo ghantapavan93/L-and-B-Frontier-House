@@ -117,7 +117,7 @@ async function main(): Promise<void> {
       styleCode: entry.styleCode,
       describes: entry.describes,
       sourcePath: `assets/source/owner-approved/${entry.original}`,
-      provenance: 'owner-provided',
+      provenance: entry.generated ? 'owner-generated' : 'owner-provided',
       addedOn: new Date().toISOString().slice(0, 10),
       sourceWidth,
       sourceHeight,
@@ -131,7 +131,9 @@ async function main(): Promise<void> {
       suitable: true,
       published: true,
       ownerApproval: 'approved',
-      note: 'OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT',
+      note: entry.generated
+        ? 'OWNER GENERATED — A RENDER PLACED BY LUCKY & BLESSED, NOT A PHOTOGRAPH'
+        : 'OWNER APPROVED — SUPPLIED BY LUCKY & BLESSED FOR THIS PROJECT',
     })
 
     const total = renditions.reduce((sum, r) => sum + r.byteSize, 0)

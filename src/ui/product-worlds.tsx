@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
+import { campaignFrame, MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
 import type { DemoImage } from '@/fixtures/mens-demo'
 
 /**
@@ -40,9 +40,9 @@ const WORLDS: readonly World[] = [
     href: '/shop/mens-denim',
     name: 'Denim',
     line: 'Rigid, washed, cut for a boot.',
-    /* A full-length look leads the grid — the lower-body crops read as detail, and the
-       first tile has to carry a person. */
-    image: floorFrame('floor-light-jean-worn'),
+    /* The owner's `campaign-world-tile` frame (2026-09-16) leads the grid; the floor
+       frame stays the fallback if the key is ever absent. */
+    image: campaignFrame('campaign-world-tile') ?? floorFrame('floor-light-jean-worn'),
   },
   {
     id: 'world-shirts',

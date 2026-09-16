@@ -24,7 +24,12 @@ export function WaysIn({
   categories,
   womens,
 }: {
-  womens: readonly { slug: string; label: string }[]
+  womens: readonly {
+    slug: string
+    label: string
+    blurb: string
+    media?: MediaRef | undefined
+  }[]
   categories: readonly {
     slug: string
     label: string
@@ -41,20 +46,33 @@ export function WaysIn({
         </div>
       </div>
 
-      <ul className="west-taxonomy__list">
+      {/*
+        THE FOUR MEN'S CARDS. One owner-generated render per category, placed under the
+        names `shop-category-mens-*` and mounted here one to one, nowhere else. The picture
+        fills the card; the title, line and destination stay live HTML on a scrim; the
+        image drifts a few percent on hover and not at all under reduced motion. Same card
+        box for all four, each image's own composition inside it — `object-position` per
+        card is deliberate, the figure or the object sits where the render put it.
+      */}
+      <ul className="line-cards">
         {categories.map((category) => (
           <li key={category.slug}>
-            <Link href={`/shop/${category.slug}`} className="west-taxonomy__link">
+            <Link href={`/shop/${category.slug}`} className="line-card">
               {category.media ? (
-                <span className="west-taxonomy__media">
+                <span className="line-card__media">
                   <EditorialMedia
                     media={category.media}
-                    sizes="(min-width: 62rem) 25vw, 33vw"
+                    sizes="(min-width: 62rem) 25vw, 50vw"
                   />
                 </span>
               ) : null}
-              <span className="west-taxonomy__name">{category.label}</span>
-              <span className="meta">{category.blurb}</span>
+              <span className="line-card__body">
+                <span className="line-card__name">{category.label}</span>
+                <span className="line-card__line">{category.blurb}</span>
+              </span>
+              <span className="plate-note plate-note--card" aria-hidden="true">
+                Generated artwork
+              </span>
             </Link>
           </li>
         ))}
@@ -62,18 +80,29 @@ export function WaysIn({
 
       {/* Editorial destinations prefetch on demand; the category tiles above are shop
           paths and keep theirs. See site-footer for the measurement. */}
-      <nav className="ways-in__routes" aria-label="The women's line">
-        <p className="nav-group-label">Women&rsquo;s line — the business today</p>
-        <ul>
+      {/* The business today: the verified women's line, on its own owner-approved
+          photography — never the men's renders. */}
+      <div className="west-taxonomy">
+        <h3 className="west-taxonomy__title">Women&rsquo;s line — the business today</h3>
+        <ul className="west-taxonomy__list">
           {womens.map((category) => (
             <li key={category.slug}>
-              <Link prefetch={false} href={`/shop/${category.slug}`}>
-                {category.label}
+              <Link href={`/shop/${category.slug}`} className="west-taxonomy__link">
+                {category.media ? (
+                  <span className="west-taxonomy__media">
+                    <EditorialMedia
+                      media={category.media}
+                      sizes="(min-width: 62rem) 25vw, 33vw"
+                    />
+                  </span>
+                ) : null}
+                <span className="west-taxonomy__name">{category.label}</span>
+                <span className="meta">{category.blurb}</span>
               </Link>
             </li>
           ))}
         </ul>
-      </nav>
+      </div>
 
       <nav className="ways-in__routes" aria-label="More of the house">
         <ul>

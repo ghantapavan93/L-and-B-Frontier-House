@@ -392,4 +392,130 @@ export const MENS_DEMO_MEDIA: Record<string, MensDemoAsset> = {
     intrinsicWidth: 540,
     intrinsicHeight: 675,
   },
+  'campaign-hero-mobile': {
+    poster: '/media/mens-demo/campaign-hero-mobile-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/campaign-hero-mobile-480.avif 480w, /media/mens-demo/campaign-hero-mobile-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/campaign-hero-mobile-480.webp 480w, /media/mens-demo/campaign-hero-mobile-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'campaign-story-inset': {
+    poster: '/media/mens-demo/campaign-story-inset-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/campaign-story-inset-480.avif 480w, /media/mens-demo/campaign-story-inset-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/campaign-story-inset-480.webp 480w, /media/mens-demo/campaign-story-inset-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'campaign-story-lead': {
+    poster: '/media/mens-demo/campaign-story-lead-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/campaign-story-lead-480.avif 480w, /media/mens-demo/campaign-story-lead-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/campaign-story-lead-480.webp 480w, /media/mens-demo/campaign-story-lead-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'campaign-world-tile': {
+    poster: '/media/mens-demo/campaign-world-tile-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/campaign-world-tile-480.avif 480w, /media/mens-demo/campaign-world-tile-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/campaign-world-tile-480.webp 480w, /media/mens-demo/campaign-world-tile-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'dark-rigid-jean-back': {
+    poster: '/media/mens-demo/dark-rigid-jean-back-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/dark-rigid-jean-back-480.avif 480w, /media/mens-demo/dark-rigid-jean-back-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/dark-rigid-jean-back-480.webp 480w, /media/mens-demo/dark-rigid-jean-back-960.webp 960w',
+    intrinsicWidth: 1086,
+    intrinsicHeight: 1448,
+  },
+  'dark-rigid-jean-hem': {
+    poster: '/media/mens-demo/dark-rigid-jean-hem-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/dark-rigid-jean-hem-480.avif 480w, /media/mens-demo/dark-rigid-jean-hem-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/dark-rigid-jean-hem-480.webp 480w, /media/mens-demo/dark-rigid-jean-hem-960.webp 960w',
+    intrinsicWidth: 1086,
+    intrinsicHeight: 1448,
+  },
+  'dark-rigid-jean-model': {
+    poster: '/media/mens-demo/dark-rigid-jean-model-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/dark-rigid-jean-model-480.avif 480w, /media/mens-demo/dark-rigid-jean-model-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/dark-rigid-jean-model-480.webp 480w, /media/mens-demo/dark-rigid-jean-model-960.webp 960w',
+    intrinsicWidth: 1086,
+    intrinsicHeight: 1448,
+  },
+  'dark-rigid-jean-motion': {
+    poster: '/media/mens-demo/dark-rigid-jean-motion-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/dark-rigid-jean-motion-480.avif 480w, /media/mens-demo/dark-rigid-jean-motion-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/dark-rigid-jean-motion-480.webp 480w, /media/mens-demo/dark-rigid-jean-motion-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'dark-rigid-jean-stack': {
+    poster: '/media/mens-demo/dark-rigid-jean-stack-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/dark-rigid-jean-stack-480.avif 480w, /media/mens-demo/dark-rigid-jean-stack-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/dark-rigid-jean-stack-480.webp 480w, /media/mens-demo/dark-rigid-jean-stack-960.webp 960w',
+    intrinsicWidth: 1448,
+    intrinsicHeight: 1086,
+  },
+  'mid-wash-jean-back': {
+    poster: '/media/mens-demo/mid-wash-jean-back-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/mid-wash-jean-back-480.avif 480w, /media/mens-demo/mid-wash-jean-back-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/mid-wash-jean-back-480.webp 480w, /media/mens-demo/mid-wash-jean-back-960.webp 960w',
+    intrinsicWidth: 1086,
+    intrinsicHeight: 1448,
+  },
+  'mid-wash-jean-macro': {
+    poster: '/media/mens-demo/mid-wash-jean-macro-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/mid-wash-jean-macro-480.avif 480w, /media/mens-demo/mid-wash-jean-macro-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/mid-wash-jean-macro-480.webp 480w, /media/mens-demo/mid-wash-jean-macro-960.webp 960w',
+    intrinsicWidth: 1254,
+    intrinsicHeight: 1254,
+  },
+  'mid-wash-jean-motion': {
+    poster: '/media/mens-demo/mid-wash-jean-motion-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/mid-wash-jean-motion-480.avif 480w, /media/mens-demo/mid-wash-jean-motion-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/mid-wash-jean-motion-480.webp 480w, /media/mens-demo/mid-wash-jean-motion-960.webp 960w',
+    intrinsicWidth: 1122,
+    intrinsicHeight: 1402,
+  },
+  'mid-wash-jean-side': {
+    poster: '/media/mens-demo/mid-wash-jean-side-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/mid-wash-jean-side-480.avif 480w, /media/mens-demo/mid-wash-jean-side-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/mid-wash-jean-side-480.webp 480w, /media/mens-demo/mid-wash-jean-side-960.webp 960w',
+    intrinsicWidth: 1086,
+    intrinsicHeight: 1448,
+  },
+  'mid-wash-jean-stack': {
+    poster: '/media/mens-demo/mid-wash-jean-stack-960.webp',
+    avifSrcSet:
+      '/media/mens-demo/mid-wash-jean-stack-480.avif 480w, /media/mens-demo/mid-wash-jean-stack-960.avif 960w',
+    webpSrcSet:
+      '/media/mens-demo/mid-wash-jean-stack-480.webp 480w, /media/mens-demo/mid-wash-jean-stack-960.webp 960w',
+    intrinsicWidth: 1448,
+    intrinsicHeight: 1086,
+  },
 }

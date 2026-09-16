@@ -33,6 +33,7 @@ type Placement =
   | { kind: 'withheld'; reason: string }
 
 type ApprovedAsset = {
+  readonly provenance?: 'owner-provided' | 'owner-generated'
   original: string
   slug: string
   styleCode: string | null
@@ -84,7 +85,9 @@ function toMediaRef(asset: ApprovedAsset, alt: string): MediaRef {
     poster: posterFor(asset),
     aspectRatio: asset.aspectRatio ?? '4 / 5',
     alt,
-    provenance: 'owner-supplied',
+    // A render the owner placed is generated media, and says so to every surface.
+    provenance:
+      asset.provenance === 'owner-generated' ? 'generated-campaign' : 'owner-supplied',
     sources: sourcesFor(asset),
     ...(asset.sourceWidth !== undefined ? { intrinsicWidth: asset.sourceWidth } : {}),
     ...(asset.sourceHeight !== undefined ? { intrinsicHeight: asset.sourceHeight } : {}),

@@ -8,6 +8,7 @@ import {
   PLATE_TILES,
 } from '@/content/media/frontier-plates'
 import {
+  campaignFrame,
   MENS_DEMO_CAMPAIGN,
   MENS_DEMO_CATEGORIES,
   MENS_DEMO_FLOOR,
@@ -167,6 +168,10 @@ function DemoQuickView({ product }: { product: DemoProduct }) {
 
 export default function MensPage() {
   const [gravel, bootPull] = MENS_DEMO_CAMPAIGN
+  const heroMobile = campaignFrame('campaign-hero-mobile') ?? {
+    asset: PLATE_STOREFRONT.asset,
+    alt: '',
+  }
 
   return (
     <>
@@ -198,8 +203,11 @@ export default function MensPage() {
             srcSet={PLATE_CORRAL_WIDE.asset.webpSrcSet}
             sizes="100vw"
           />
-          <source type="image/avif" srcSet={PLATE_STOREFRONT.asset.avifSrcSet} sizes="100vw" />
-          <source type="image/webp" srcSet={PLATE_STOREFRONT.asset.webpSrcSet} sizes="100vw" />
+          {/* The portrait plate is the owner's `campaign-hero-mobile` frame (2026-09-16),
+              resolved by name through the men's import; the storefront plate stays the
+              fallback if the key is ever absent. */}
+          <source type="image/avif" srcSet={heroMobile.asset.avifSrcSet} sizes="100vw" />
+          <source type="image/webp" srcSet={heroMobile.asset.webpSrcSet} sizes="100vw" />
           {/* One alt that is true for both art directions — the frame swaps, the meaning
               does not. Aspect ratios are reserved in CSS per breakpoint, so neither
               direction shifts layout while it loads. */}

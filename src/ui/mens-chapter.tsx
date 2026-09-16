@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
+import { campaignFrame, MENS_DEMO_FLOOR, MENS_DEMO_PRODUCTS } from '@/fixtures/mens-demo'
 import type { DemoImage } from '@/fixtures/mens-demo'
 
 /**
@@ -51,8 +51,16 @@ function Frame({
 }
 
 export function MensChapter() {
-  const lead = MENS_DEMO_PRODUCTS.find((p) => p.slug === 'indigo-trucker-jacket')?.media[1]
-  const inset = frame('floor-cuffing-barn')
+  /*
+    The campaign frames the owner placed under the brief's names (2026-09-16):
+    `campaign-story-lead` across the headline, `campaign-story-inset` overlapping it.
+    Generated renders, mounted only here. The previous stand-ins — the trucker jacket's
+    second frame and a floor frame — remain the fallback if either key is ever absent.
+  */
+  const lead =
+    campaignFrame('campaign-story-lead') ??
+    MENS_DEMO_PRODUCTS.find((p) => p.slug === 'indigo-trucker-jacket')?.media[1]
+  const inset = campaignFrame('campaign-story-inset') ?? frame('floor-cuffing-barn')
 
   if (!lead) return null
 
